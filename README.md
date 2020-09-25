@@ -1,5 +1,7 @@
 # Flashimages
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/flashimages?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/flashimages&utm_campaign=Badge_Grade)
+
 ## Technical stack
 
 - [Node.js](https://nodejs.org) / [Nestjs](https://nestjs.com/)
