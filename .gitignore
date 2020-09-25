@@ -8,12 +8,8 @@ Thumbs.db
 .vscode
 
 # libs
-node_modules
+**/node_modules
 
 # Tests
-/coverage
-/.nyc_output
-
-## API
-ormconfig.json
-.env
+**/coverage
+**/.nyc_output
