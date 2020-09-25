@@ -18,7 +18,7 @@ services:
       - 'database:/var/lib/postgresql/data'
 
   api:
-    image: node:14.3
+    image: node:lts-alpine
     working_dir: '/var/www'
     depends_on:
       - database
