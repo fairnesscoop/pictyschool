@@ -8,7 +8,6 @@ logs = ${compose} logs -f
 
 install: ## Install API and client
 	cp api/ormconfig.json.dist api/ormconfig.json
-	cp api/.env.dist api/.env
 	docker run -it --rm -v ${PWD}/api:/app -w /app node npm i
 	make start
 	make api-build-dist

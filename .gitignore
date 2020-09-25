@@ -8,8 +8,8 @@ Thumbs.db
 .vscode
 
 # libs
-node_modules
+**/node_modules
 
 # Tests
-/coverage
-/.nyc_output
+**/coverage
+**/.nyc_output
