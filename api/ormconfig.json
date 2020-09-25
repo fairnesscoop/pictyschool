@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "docker",
   "password": "docker",
-  "database": "permacoop",
+  "database": "flashimages",
   "synchronize": false,
   "logging": ["error"],
   "entities": ["dist/src/Domain/**/*.entity{.ts,.js}"],

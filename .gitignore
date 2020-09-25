@@ -13,3 +13,7 @@ node_modules
 # Tests
 /coverage
 /.nyc_output
+
+## API
+ormconfig.json
+.env
