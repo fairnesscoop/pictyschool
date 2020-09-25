@@ -1,0 +1,15 @@
+# OS specific
+.DS_Store
+Thumbs.db
+.Trashes
+
+# IDE preference specific
+.idea
+.vscode
+
+# libs
+node_modules
+
+# Tests
+/coverage
+/.nyc_output
