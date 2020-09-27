@@ -23,8 +23,10 @@ start: ## Start docker containers
 test: ## Run test suite
 	${exec} api npm run test
 	${exec} client npm run test-unit
-linter: ## Linter
+linter: ## Lint code base
 	${exec} api npm run lint
+format: ## Format code base
+	${exec} api npm run format
 api-logs: ## Display API logs
 	${logs} api
 api-bash: ## Connect to API container
