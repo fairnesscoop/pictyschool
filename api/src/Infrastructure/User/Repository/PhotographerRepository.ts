@@ -10,4 +10,8 @@ export class PhotographerRepository implements IPhotographerRepository {
     @InjectRepository(Photographer)
     private readonly repository: Repository<Photographer>
   ) {}
+
+  public save(photographer: Photographer): Promise<Photographer> {
+    return this.repository.save(photographer);
+  }
 }

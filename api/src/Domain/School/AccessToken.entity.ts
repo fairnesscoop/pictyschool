@@ -18,11 +18,7 @@ export class AccessToken {
   @Column({ type: 'timestamp', nullable: false })
   private expiredAt: Date;
 
-  @OneToOne(
-    type => Photo,
-    photo => photo.accessToken,
-    { onDelete: 'CASCADE' }
-  )
+  @OneToOne(() => Photo, photo => photo.accessToken, { onDelete: 'CASCADE' })
   @JoinColumn()
   photo: Photo;
 

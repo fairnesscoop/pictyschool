@@ -22,7 +22,6 @@ start: ## Start docker containers
 	${compose} up -d
 test: ## Run test suite
 	${exec} api npm run test
-	${exec} client npm run test-unit
 linter: ## Lint code base
 	${exec} api npm run lint
 format: ## Format code base

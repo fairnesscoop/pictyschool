@@ -31,13 +31,10 @@ export class Photo {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   private createdAt: Date;
 
-  @ManyToOne(type => School, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => School, { nullable: false, onDelete: 'CASCADE' })
   private school: School;
 
-  @OneToOne(
-    type => AccessToken,
-    accessToken => accessToken.photo
-  )
+  @OneToOne(() => AccessToken, accessToken => accessToken.photo)
   accessToken: AccessToken;
 
   constructor(type: PhotoType, name: string, path: string, school: School) {

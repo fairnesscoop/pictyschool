@@ -10,4 +10,8 @@ export class PhotoRepository implements IPhotoRepository {
     @InjectRepository(Photo)
     private readonly repository: Repository<Photo>
   ) {}
+
+  public save(photo: Photo): Promise<Photo> {
+    return this.repository.save(photo);
+  }
 }

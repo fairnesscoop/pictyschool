@@ -10,4 +10,8 @@ export class SchoolRepository implements ISchoolRepository {
     @InjectRepository(School)
     private readonly repository: Repository<School>
   ) {}
+
+  public save(school: School): Promise<School> {
+    return this.repository.save(school);
+  }
 }
