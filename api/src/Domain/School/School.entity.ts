@@ -21,7 +21,7 @@ export class School {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   private createdAt: Date;
 
-  @ManyToOne(type => Photographer, { nullable: true, onDelete: 'SET NULL' })
+  @ManyToOne(() => Photographer, { nullable: true, onDelete: 'SET NULL' })
   private photographer: Photographer;
 
   constructor(

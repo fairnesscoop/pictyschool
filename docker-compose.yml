@@ -1,29 +1,29 @@
 version: '3'
 
 volumes:
-  database: {}
+    database: {}
 
 services:
-  database:
-    image: postgres:13-alpine
-    environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: flashimages
-      PGUSER: docker
-      PGPASSWORD: docker
-    ports:
-      - '5432:5432'
-    volumes:
-      - 'database:/var/lib/postgresql/data'
+    database:
+        image: postgres:13-alpine
+        environment:
+            POSTGRES_USER: docker
+            POSTGRES_PASSWORD: docker
+            POSTGRES_DB: flashimages
+            PGUSER: docker
+            PGPASSWORD: docker
+        ports:
+            - '5432:5432'
+        volumes:
+            - 'database:/var/lib/postgresql/data'
 
-  api:
-    image: node:lts-alpine
-    working_dir: '/var/www'
-    depends_on:
-      - database
-    volumes:
-      - './api:/var/www:cached'
-    ports:
-      - 8080:3000
-    command: npm run start:dev
+    api:
+        image: node:14.3
+        working_dir: '/var/www'
+        depends_on:
+            - database
+        volumes:
+            - './api:/var/www:cached'
+        ports:
+            - 8080:3000
+        command: npm run start:dev

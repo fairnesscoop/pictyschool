@@ -10,4 +10,8 @@ export class AccessTokenRepository implements IAccessTokenRepository {
     @InjectRepository(AccessToken)
     private readonly repository: Repository<AccessToken>
   ) {}
+
+  public save(accessToken: AccessToken): Promise<AccessToken> {
+    return this.repository.save(accessToken);
+  }
 }
