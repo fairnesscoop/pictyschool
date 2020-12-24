@@ -11,12 +11,12 @@ describe('Photo', () => {
       'path/to/image.jpg',
       instance(school)
     );
-    expect(photo.getId()).toBe(undefined);
+    expect(photo.getId()).toBeUndefined();
     expect(photo.getName()).toBe('0031');
     expect(photo.getPath()).toBe('path/to/image.jpg');
     expect(photo.getType()).toBe(PhotoType.UNIT);
     expect(photo.getSchool()).toBe(instance(school));
-    expect(photo.getCreatedAt()).toBe(undefined);
-    expect(photo.getAccessToken()).toBe(undefined);
+    expect(photo.getCreatedAt()).toBeUndefined();
+    expect(photo.getAccessToken()).toBeUndefined();
   });
 });

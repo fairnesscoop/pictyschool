@@ -8,7 +8,7 @@ describe('AccessToken', () => {
     const photo = mock(Photo);
     const accesstoken = new AccessToken('token', date, instance(photo));
 
-    expect(accesstoken.getId()).toBe(undefined);
+    expect(accesstoken.getId()).toBeUndefined();
     expect(accesstoken.getPhoto()).toBe(instance(photo));
     expect(accesstoken.getToken()).toBe('token');
     expect(accesstoken.getExpiredAt()).toBe(date);

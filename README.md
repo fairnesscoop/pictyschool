@@ -9,13 +9,14 @@
 
 ## Technical stack
 
-- [Node.js](https://nodejs.org) / [Nestjs](https://nestjs.com/)
-- [TypeORM](https://typeorm.io)
-- [Typescript](https://www.typescriptlang.org/)
-- [Jest](https://jestjs.io/) / [Ts-mockito](https://github.com/NagRock/ts-mockito)
-- [Svelte](https://svelte.dev/) / [Sapper](https://sapper.svelte.dev/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Docker](https://www.docker.com/)
+-   [Node.js](https://nodejs.org) / [Nestjs](https://nestjs.com/)
+-   [TypeORM](https://typeorm.io)
+-   [Typescript](https://www.typescriptlang.org/)
+-   [Jest](https://jestjs.io/) / [Ts-mockito](https://github.com/NagRock/ts-mockito)
+-   [Svelte](https://svelte.dev/) / [Sapper](https://sapper.svelte.dev/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [PostgreSQL](https://www.postgresql.org/)
+-   [Docker](https://www.docker.com/)
 
 ## Prerequisites
 
@@ -36,9 +37,22 @@ make start
 
 ```
 
-The server and client will be started:
+-   API available on http://localhost/api
 
-- API documentation available on http://localhost:8080/api
+## Security
+
+The client must send the user `apiToken` in the Authorization header when making requests to protected resources : `Authorization: Bearer <apiToken>`
+
+At the installation of the project a default user was created :
+
+```json
+{
+    "email": "john@doe.com",
+    "password": "john"
+}
+```
+
+To retrieve the `apiToken`, make a post request on `/login` with a user email and password.
 
 ## Helpers
 

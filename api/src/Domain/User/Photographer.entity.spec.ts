@@ -9,7 +9,7 @@ describe('Photographer', () => {
       'apiToken',
       'password'
     );
-    expect(photographer.getId()).toBe(undefined);
+    expect(photographer.getId()).toBeUndefined();
     expect(photographer.getFirstName()).toBe('Mathieu');
     expect(photographer.getLastName()).toBe('MARCHOIS');
     expect(photographer.getEmail()).toBe('mathieu@fairness.coop');

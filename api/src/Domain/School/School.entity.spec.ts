@@ -12,12 +12,12 @@ describe('School', () => {
       'Paris',
       instance(photographer)
     );
-    expect(school.getId()).toBe(undefined);
+    expect(school.getId()).toBeUndefined();
     expect(school.getName()).toBe('Ecole élémentaire Belliard');
     expect(school.getReference()).toBe('LM120I');
     expect(school.getCity()).toBe('Paris');
     expect(school.getZipCode()).toBe('75018');
     expect(school.getPhotographer()).toBe(instance(photographer));
-    expect(school.getCreatedAt()).toBe(undefined);
+    expect(school.getCreatedAt()).toBeUndefined();
   });
 });
