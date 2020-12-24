@@ -1,10 +1,9 @@
 {
   "name": "api",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "description": "Flashimages",
+  "author": "Mathieu MARCHOIS",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -42,6 +41,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
+    "shortid": "^2.2.16",
     "swagger-ui-express": "^4.1.6",
     "tslint": "^6.1.3",
     "typeorm": "^0.2.26"
