@@ -8,6 +8,7 @@ describe('School', () => {
     const school = new School(
       'LM120I',
       'Ecole élémentaire Belliard',
+      '127 Rue Belliard',
       '75018',
       'Paris',
       instance(photographer)
@@ -17,6 +18,7 @@ describe('School', () => {
     expect(school.getReference()).toBe('LM120I');
     expect(school.getCity()).toBe('Paris');
     expect(school.getZipCode()).toBe('75018');
+    expect(school.getAddress()).toBe('127 Rue Belliard');
     expect(school.getPhotographer()).toBe(instance(photographer));
     expect(school.getCreatedAt()).toBeUndefined();
   });
