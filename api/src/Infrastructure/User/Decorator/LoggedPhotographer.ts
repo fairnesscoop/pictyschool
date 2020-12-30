@@ -5,6 +5,6 @@ export const LoggedPhotographer = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): Photographer => {
     const request = ctx.switchToHttp().getRequest();
 
-    return request.photographer;
+    return request.user;
   }
 );

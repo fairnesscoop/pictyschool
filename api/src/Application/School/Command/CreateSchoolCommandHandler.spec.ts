@@ -35,14 +35,22 @@ describe('CreateSchoolCommandHandler', () => {
   });
 
   it('testSchoolCreatedSuccessfully', async () => {
-    when(isSchoolAlreadyExist.isSatisfiedBy('School')).thenResolve(false);
+    when(isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')).thenResolve(false);
     when(createdSchool.getId()).thenReturn(
       '2d5fb4da-12c2-11ea-8d71-362b9e155667'
     );
-    when(createdSchool.getName()).thenReturn('School');
     when(
       schoolRepository.save(
-        deepEqual(new School('School', instance(createdAddress)))
+        deepEqual(
+          new School(
+            'xLKJSs',
+            'Ecole élementaire Belliard',
+            '127 Rue Belliard',
+            '75010',
+            'Paris',
+            instance(photographer)
+          )
+        )
       )
     ).thenResolve(instance(createdSchool));
 
@@ -50,24 +58,33 @@ describe('CreateSchoolCommandHandler', () => {
       '2d5fb4da-12c2-11ea-8d71-362b9e155667'
     );
 
-    verify(isSchoolAlreadyExist.isSatisfiedBy('School')).once();
+    verify(isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')).once();
     verify(
       schoolRepository.save(
-        deepEqual(new School('School', instance(createdAddress)))
+        deepEqual(
+          new School(
+            'xLKJSs',
+            'Ecole élementaire Belliard',
+            '127 Rue Belliard',
+            '75010',
+            'Paris',
+            instance(photographer)
+          )
+        )
       )
     ).once();
     verify(createdSchool.getId()).once();
   });
 
   it('testSchoolAlreadyExist', async () => {
-    when(isSchoolAlreadyExist.isSatisfiedBy('School')).thenResolve(true);
+    when(isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')).thenResolve(true);
 
     try {
       await handler.execute(command);
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolAlreadyExistException);
-      expect(e.message).toBe('crm.schools.errors.already_exist');
-      verify(isSchoolAlreadyExist.isSatisfiedBy('School')).once();
+      expect(e.message).toBe('schools.errors.already_exist');
+      verify(isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')).once();
       verify(schoolRepository.save(anything())).never();
       verify(createdSchool.getId()).never();
     }

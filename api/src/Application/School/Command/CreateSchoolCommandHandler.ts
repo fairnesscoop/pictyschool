@@ -15,12 +15,11 @@ export class CreateSchoolCommandHandler {
   ) {}
 
   public async execute(command: CreateSchoolCommand): Promise<string> {
-    const { reference, address, city, name, photographer, zipCode} = command;
+    const { reference, address, city, name, photographer, zipCode } = command;
 
     if (true === (await this.isSchoolAlreadyExist.isSatisfiedBy(reference))) {
       throw new SchoolAlreadyExistException();
     }
-
 
     const school = await this.schoolRepository.save(
       new School(reference, name, address, zipCode, city, photographer)
