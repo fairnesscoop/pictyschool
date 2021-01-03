@@ -10,16 +10,19 @@ import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAl
 import { CreateSchoolCommandHandler } from 'src/Application/School/Command/CreateSchoolCommandHandler';
 import { CreateSchoolAction } from './Action/CreateSchoolAction';
 import { BusModule } from '../bus.module';
+import { GetSchoolsQueryHandler } from 'src/Application/School/Query/GetSchoolsQueryHandler';
+import { GetSchoolsAction } from './Action/GetSchoolsAction';
 
 @Module({
   imports: [BusModule, TypeOrmModule.forFeature([School, Photo, AccessToken])],
-  controllers: [CreateSchoolAction],
+  controllers: [GetSchoolsAction, CreateSchoolAction],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     IsSchoolAlreadyExist,
-    CreateSchoolCommandHandler
+    CreateSchoolCommandHandler,
+    GetSchoolsQueryHandler
   ]
 })
 export class SchoolModule {}
