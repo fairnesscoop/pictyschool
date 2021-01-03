@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { School } from 'src/Domain/School/School.entity';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
+import { MAX_ITEMS_PER_PAGE } from 'src/Application/Common/Pagination';
 
 @Injectable()
 export class SchoolRepository implements ISchoolRepository {
@@ -23,5 +24,22 @@ export class SchoolRepository implements ISchoolRepository {
       ])
       .where('lower(school.reference) = :reference', { reference: reference.toLowerCase() })
       .getOne();
+  }
+
+  public findSchools(page: number = 1): Promise<[School[], number]> {
+    return this.repository
+      .createQueryBuilder('school')
+      .select([
+        'school.id',
+        'school.name',
+        'school.reference',
+        'school.address',
+        'school.city',
+        'school.zipCode'
+      ])
+      .orderBy('school.name', 'ASC')
+      .limit(MAX_ITEMS_PER_PAGE)
+      .offset((page - 1) * MAX_ITEMS_PER_PAGE)
+      .getManyAndCount();
   }
 }
