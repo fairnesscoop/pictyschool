@@ -31,6 +31,7 @@ describe('LoginQueryHandler', () => {
     try {
       await queryHandler.execute(query);
     } catch (e) {
+      expect(e.message).toBe('users.errors.not_found');
       expect(e).toBeInstanceOf(UserNotFoundException);
       verify(photographerRepository.findOneByEmail(email)).once();
       verify(passwordEncoder.compare(anything(), anything())).never();
@@ -46,6 +47,7 @@ describe('LoginQueryHandler', () => {
     try {
       await queryHandler.execute(query);
     } catch (e) {
+      expect(e.message).toBe('users.errors.password_not_match');
       expect(e).toBeInstanceOf(PasswordNotMatchException);
       verify(photographerRepository.findOneByEmail(email)).once();
       verify(passwordEncoder.compare('hash', 'plainPassword')).once();

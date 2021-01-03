@@ -13,6 +13,9 @@ export class School {
   private name: string;
 
   @Column({ type: 'varchar', nullable: false })
+  private address: string;
+
+  @Column({ type: 'varchar', nullable: false })
   private zipCode: string;
 
   @Column({ type: 'varchar', nullable: false })
@@ -27,12 +30,14 @@ export class School {
   constructor(
     reference: string,
     name: string,
+    address: string,
     zipCode: string,
     city: string,
     photographer: Photographer
   ) {
     this.reference = reference;
     this.name = name;
+    this.address = address;
     this.zipCode = zipCode;
     this.city = city;
     this.photographer = photographer;
@@ -52,6 +57,10 @@ export class School {
 
   public getZipCode(): string {
     return this.zipCode;
+  }
+
+  public getAddress(): string {
+    return this.address;
   }
 
   public getCity(): string {
