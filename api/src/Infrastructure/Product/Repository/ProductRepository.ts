@@ -14,4 +14,14 @@ export class ProductRepository implements IProductRepository {
   public save(product: Product): Promise<Product> {
     return this.repository.save(product);
   }
+
+  public findOneByTitle(title: string): Promise<Product | undefined> {
+    return this.repository
+      .createQueryBuilder('product')
+      .select([
+        'product.id'
+      ])
+      .where('lower(product.title) = :title', { title: title.toLowerCase() })
+      .getOne();
+  }
 }
