@@ -5,6 +5,6 @@ export class SchoolView {
     public readonly reference: string,
     public readonly address: string,
     public readonly city: string,
-    public readonly zipCode: string    
+    public readonly zipCode: string   
   ) {}
 }
