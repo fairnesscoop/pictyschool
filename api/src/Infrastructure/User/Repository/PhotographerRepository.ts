@@ -42,4 +42,17 @@ export class PhotographerRepository implements IPhotographerRepository {
       .where('photographer.email = :email', { email })
       .getOne();
   }
+
+  public findOneById(id: string): Promise<Photographer | undefined> {
+    return this.repository
+      .createQueryBuilder('photographer')
+      .select([
+        'photographer.id',
+        'photographer.firstName',
+        'photographer.lastName',
+        'photographer.email'
+      ])
+      .where('photographer.id = :id', { id })
+      .getOne();
+  }
 }

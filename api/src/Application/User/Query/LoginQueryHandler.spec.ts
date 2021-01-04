@@ -5,7 +5,7 @@ import { PasswordEncoderAdapter } from 'src/Infrastructure/Adapter/PasswordEncod
 import { LoginQuery } from 'src/Application/User/Query/LoginQuery';
 import { PasswordNotMatchException } from 'src/Domain/User/Exception/PasswordNotMatchException';
 import { AuthenticatedView } from 'src/Application/User/View/AuthenticatedView';
-import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
+import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
 import { Photographer } from 'src/Domain/User/Photographer.entity';
 
 describe('LoginQueryHandler', () => {
@@ -32,7 +32,7 @@ describe('LoginQueryHandler', () => {
       await queryHandler.execute(query);
     } catch (e) {
       expect(e.message).toBe('users.errors.not_found');
-      expect(e).toBeInstanceOf(UserNotFoundException);
+      expect(e).toBeInstanceOf(PhotographerNotFoundException);
       verify(photographerRepository.findOneByEmail(email)).once();
       verify(passwordEncoder.compare(anything(), anything())).never();
     }
