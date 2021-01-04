@@ -24,17 +24,17 @@ services:
       - './api:/var/www:cached'
     command: npm run start:dev
 
-  #client:
-  #  image: node:14.3
-  #  working_dir: '/var/www'
-  #  depends_on:
-  #    - api
-  #  volumes:
-  #    - './client:/var/www:cached'
-  #  ports:
-  #    - 5000:5000
-  #    - 10000:10000
-  #  command: npm run dev
+  client:
+    image: node:14.3
+    working_dir: '/var/www'
+    depends_on:
+      - api
+    volumes:
+      - './client:/var/www:cached'
+    ports:
+      - 5000:5000
+      - 10000:10000
+    command: npm run dev
 
   nginx:
     image: nginx:latest
@@ -43,7 +43,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      #- 'client'
+      - 'client'
       - 'api'
     volumes:
       - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro

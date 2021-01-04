@@ -1,0 +1,44 @@
+{
+  "app": "Flashimages",
+  "error": "Erreur",
+  "error_generic": "Une erreur est survenue",
+  "pagination": "Affichage {start}-{from} sur {totalItems}",
+  "common": {
+    "actions": "Actions",
+    "form": {
+      "save": "Enregistrer",
+      "edit": "Modifier",
+      "add": "Ajouter",
+      "remove": "Supprimer",
+      "see": "Voir"
+    }
+  },
+  "login": {
+    "title": "Se connecter",
+    "sub_title": "Connexion",
+    "password_lost": "Mot de passe oublié ?",
+    "form": {
+      "button": "Se connecter",
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    }
+  },
+  "profile": {
+    "title": "Mon compte",
+    "logout": "Se déconnecter",
+    "form": {
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    }
+  },
+  "search": {
+    "title": "Chercher une école, un élève ...",
+    "aria_label": "Rechercher"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcome": "Bonjour {firstName} {lastName} !"
+  }
+}

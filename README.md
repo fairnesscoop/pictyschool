@@ -38,6 +38,7 @@ make start
 ```
 
 -   API available on http://localhost/api
+-   Client available on http://localhost
 
 ## Security
 

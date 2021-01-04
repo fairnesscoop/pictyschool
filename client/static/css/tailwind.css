@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-dark .open {
+  background: rgba(26, 28, 35, var(--bg-opacity)) !important;
+}
+.open {
+  position: fixed;
+  margin-top: 4rem;
+  height: 100%;
+  background: #fff;
+  display: block;
+}
