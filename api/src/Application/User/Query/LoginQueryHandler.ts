@@ -5,7 +5,7 @@ import { AuthenticatedView } from '../View/AuthenticatedView';
 import { IPhotographerRepository } from 'src/Domain/User/Repository/IPhotographerRepository';
 import { IPasswordEncoder } from 'src/Application/IPasswordEncoder';
 import { PasswordNotMatchException } from 'src/Domain/User/Exception/PasswordNotMatchException';
-import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
+import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
 
 @QueryHandler(LoginQuery)
 export class LoginQueryHandler {
@@ -21,7 +21,7 @@ export class LoginQueryHandler {
     const user = await this.photographerRepository.findOneByEmail(email);
 
     if (!user) {
-      throw new UserNotFoundException();
+      throw new PhotographerNotFoundException();
     }
 
     if (
