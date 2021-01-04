@@ -26,6 +26,19 @@ export class ProductRepository implements IProductRepository {
       .getOne();
   }
 
+  public findOneById(id: string): Promise<Product | undefined> {
+    return this.repository
+      .createQueryBuilder('product')
+      .select([
+        'product.id',
+        'product.title',
+        'product.description',
+        'product.unitPrice'
+      ])
+      .where('product.id = :id', { id })
+      .getOne();
+  }
+
   public findProducts(page: number = 1): Promise<[Product[], number]> {
     return this.repository
       .createQueryBuilder('product')
