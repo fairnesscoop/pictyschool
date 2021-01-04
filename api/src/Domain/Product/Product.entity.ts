@@ -35,4 +35,10 @@ export class Product {
   public getUnitPrice(): number {
     return this.unitPrice;
   }
+
+  public update(title: string, description: string, unitPrice: number): void {
+    this.title = title;
+    this.description = description;
+    this.unitPrice = unitPrice;
+  }
 }
