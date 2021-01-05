@@ -3,6 +3,7 @@
   import { _ } from 'svelte-i18n';
   import DashboardIcon from './icons/DashboardIcon.svelte';
   import FolderIcon from './icons/FolderIcon.svelte';
+  import SchoolIcon from './icons/SchoolIcon.svelte';
   import { settings } from '../store';
 
   const { session } = stores();
@@ -33,19 +34,28 @@
       <ul class="mt-6">
         <li class="relative px-6 py-3">
           {#if !segment}
-            <span class="{activeClass}" aria-hidden="true"></span>
+            <span class={activeClass} aria-hidden="true"></span>
           {/if}
-          <a class="{!segment ? activeLinkClass : linkClass}" href="/">
-            <DashboardIcon className="{'w-5 h-5'}" />
+          <a class={!segment ? activeLinkClass : linkClass} href="/">
+            <DashboardIcon className={'w-5 h-5'} />
             <span class="ml-4">{$_('dashboard.title')}</span>
           </a>
         </li>
         <li class="relative px-6 py-3">
-          {#if segment === "products"}
-            <span class="{activeClass}" aria-hidden="true"></span>
+          {#if segment === "schools"}
+            <span class={activeClass} aria-hidden="true"></span>
           {/if}
-          <a class="{!segment ? activeLinkClass : linkClass}" href="/products">
-            <FolderIcon className="{'w-5 h-5'}" />
+          <a class={!segment ? activeLinkClass : linkClass} href="/schools">
+            <SchoolIcon className={'w-5 h-5'} />
+            <span class="ml-4">{$_('schools.breadcrumb')}</span>
+          </a>
+        </li>
+        <li class="relative px-6 py-3">
+          {#if segment === "products"}
+            <span class={activeClass} aria-hidden="true"></span>
+          {/if}
+          <a class={!segment ? activeLinkClass : linkClass} href="/products">
+            <FolderIcon className={'w-5 h-5'} />
             <span class="ml-4">{$_('products.breadcrumb')}</span>
           </a>
         </li>
