@@ -26,6 +26,21 @@ export class SchoolRepository implements ISchoolRepository {
       .getOne();
   }
 
+  public findOneById(id: string): Promise<School | undefined> {
+    return this.repository
+      .createQueryBuilder('school')
+      .select([
+        'school.id',
+        'school.name',
+        'school.reference',
+        'school.address',
+        'school.city',
+        'school.zipCode'
+      ])
+      .where('school.id = :id', { id })
+      .getOne();
+  }
+
   public findSchools(page: number = 1): Promise<[School[], number]> {
     return this.repository
       .createQueryBuilder('school')
