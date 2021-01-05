@@ -1,0 +1,7 @@
+/node_modules/
+/src/node_modules/@sapper/
+config.js
+/cypress/screenshots/
+/__sapper__/
+/coverage
+static/css/index.css
