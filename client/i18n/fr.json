@@ -36,7 +36,7 @@
   "products": {
     "breadcrumb": "Produits",
     "list": {
-      "title": "Produit",
+      "title": "Nom du produit",
       "description": "Description",
       "unit_price": "Prix unitaire TTC"
     },
@@ -67,7 +67,7 @@
       "title": "Ajouter une école"
     },
     "edit": {
-      "title": "Edition de l'école \"{title}\""
+      "title": "Edition de l'école \"{name}\""
     },
     "form": {
       "reference": "Référence",

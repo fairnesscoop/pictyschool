@@ -1,5 +1,6 @@
 <script>
   import { _ } from 'svelte-i18n';
+  import EditLink from '../../components/links/EditLink.svelte';
 
   export let items;
 </script>
@@ -19,7 +20,11 @@
         <td class="px-4 py-3 text-sm">{reference}</td>
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">{address} - {city} {zipCode}</td>
-        <td class="px-4 py-3"></td>
+        <td class="px-4 py-3">
+          <div class="flex items-center space-x-4 text-sm">
+            <EditLink href={`/schools/${id}/edit`} />
+          </div>
+        </td>
       </tr>
     {/each}
   </tbody>

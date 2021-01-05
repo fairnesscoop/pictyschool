@@ -74,4 +74,18 @@ export class School {
   public getPhotographer(): Photographer {
     return this.photographer;
   }
+
+  public update(
+    reference: string,
+    name: string,
+    address: string,
+    zipCode: string,
+    city: string
+  ): void {
+    this.reference = reference;
+    this.name = name;
+    this.address = address;
+    this.zipCode = zipCode;
+    this.city = city;
+  }
 }

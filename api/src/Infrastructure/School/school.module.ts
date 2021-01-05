@@ -12,17 +12,28 @@ import { CreateSchoolAction } from './Action/CreateSchoolAction';
 import { BusModule } from '../bus.module';
 import { GetSchoolsQueryHandler } from 'src/Application/School/Query/GetSchoolsQueryHandler';
 import { GetSchoolsAction } from './Action/GetSchoolsAction';
+import { UpdateSchoolAction } from './Action/UpdateSchoolAction';
+import { UpdateSchoolCommandHandler } from 'src/Application/School/Command/UpdateSchoolCommandHandler';
+import { GetSchoolAction } from './Action/GetSchoolAction';
+import { GetSchoolByIdQueryHandler } from 'src/Application/School/Query/GetSchoolByIdQueryHandler';
 
 @Module({
   imports: [BusModule, TypeOrmModule.forFeature([School, Photo, AccessToken])],
-  controllers: [GetSchoolsAction, CreateSchoolAction],
+  controllers: [
+    GetSchoolsAction,
+    CreateSchoolAction,
+    GetSchoolAction,
+    UpdateSchoolAction
+  ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
-    GetSchoolsQueryHandler
+    GetSchoolsQueryHandler,
+    GetSchoolByIdQueryHandler,
+    UpdateSchoolCommandHandler
   ]
 })
 export class SchoolModule {}

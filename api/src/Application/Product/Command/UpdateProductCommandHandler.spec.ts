@@ -76,11 +76,11 @@ describe('UpdateProductCommandHandler', () => {
   });
 
   it('testSuccessfullyUpdated', async () => {
+    when(product.getId()).thenReturn('8a9df044-94a7-4e6c-abd1-ecdd69d788d5');
+    when(product.getTitle()).thenReturn('Mug');
     when(
       productRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(product));
-    when(product.getId()).thenReturn('8a9df044-94a7-4e6c-abd1-ecdd69d788d5');
-    when(product.getTitle()).thenReturn('Mug');
 
     expect(await handler.execute(command)).toBe(
       '8a9df044-94a7-4e6c-abd1-ecdd69d788d5'
