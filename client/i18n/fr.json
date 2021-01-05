@@ -1,5 +1,5 @@
 {
-  "app": "Flashimages",
+  "app": "Flash'images",
   "error": "Erreur",
   "error_generic": "Une erreur est survenue",
   "pagination": "Affichage {start}-{from} sur {totalItems}",
@@ -31,6 +31,29 @@
       "last_name": "Nom",
       "email": "Adresse email",
       "password": "Mot de passe"
+    }
+  },
+  "products": {
+    "breadcrumb": "Produits",
+    "list": {
+      "title": "Produit",
+      "description": "Description",
+      "unit_price": "Prix unitaire TTC"
+    },
+    "add": {
+      "title": "Ajouter un produit"
+    },
+    "edit": {
+      "title": "Edition du produit \"{title}\""
+    },
+    "form": {
+      "title": "Nom du produit",
+      "description": "Description",
+      "unit_price": "Prix unitaire TTC"
+    },
+    "errors": {
+      "already_exist": "Un produit avec le même nom a déjà été créé.",
+      "not_found": "Le produit recherché n'existe pas."
     }
   },
   "search": {
