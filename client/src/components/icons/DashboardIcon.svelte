@@ -3,7 +3,7 @@
 </script>
 
 <svg
-  class="{className}"
+  class={className}
   aria-hidden="true"
   fill="none"
   stroke-linecap="round"

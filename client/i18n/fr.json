@@ -52,8 +52,33 @@
       "unit_price": "Prix unitaire TTC"
     },
     "errors": {
-      "already_exist": "Un produit avec le même nom a déjà été créé.",
+      "already_exist": "Un produit avec ce nom existe déjà.",
       "not_found": "Le produit recherché n'existe pas."
+    }
+  },
+  "schools": {
+    "breadcrumb": "Écoles",
+    "list": {
+      "reference": "Référence",
+      "name": "Nom de l'école",
+      "address": "Adresse"
+    },
+    "add": {
+      "title": "Ajouter une école"
+    },
+    "edit": {
+      "title": "Edition de l'école \"{title}\""
+    },
+    "form": {
+      "reference": "Référence",
+      "name": "Nom de l'école",
+      "address": "Adresse",
+      "city": "Ville",
+      "zip_code": "Code postal"
+    },
+    "errors": {
+      "already_exist": "Une école avec cette référence existe déjà.",
+      "not_found": "L'école recherchée n'existe pas."
     }
   },
   "search": {

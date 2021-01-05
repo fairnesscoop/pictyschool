@@ -39,7 +39,7 @@
             {#if currentPage > 1}
               <li>
                 <button
-                  on:click="{() => changePage(currentPage - 1)}"
+                  on:click={() => changePage(currentPage - 1)}
                   class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
                   aria-label="Précédent">
                   <svg
@@ -57,8 +57,8 @@
             {#each range(1, pageCount) as page}
               <li>
                 <button
-                  class="{page == currentPage ? activeLink : link}"
-                  on:click="{() => changePage(page)}">
+                  class={page == currentPage ? activeLink : link}
+                  on:click={() => changePage(page)}>
                   {page}
                 </button>
               </li>
@@ -66,7 +66,7 @@
             {#if currentPage < pageCount}
               <li>
                 <button
-                  on:click="{() => changePage(currentPage + 1)}"
+                  on:click={() => changePage(currentPage + 1)}
                   class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
                   aria-label="Suivant">
                   <svg
