@@ -16,9 +16,11 @@ import { UpdateSchoolAction } from './Action/UpdateSchoolAction';
 import { UpdateSchoolCommandHandler } from 'src/Application/School/Command/UpdateSchoolCommandHandler';
 import { GetSchoolAction } from './Action/GetSchoolAction';
 import { GetSchoolByIdQueryHandler } from 'src/Application/School/Query/GetSchoolByIdQueryHandler';
+import { SchoolProductRepository } from './Repository/SchoolProductRepository';
+import { SchoolProduct } from 'src/Domain/School/SchoolProduct.entity';
 
 @Module({
-  imports: [BusModule, TypeOrmModule.forFeature([School, Photo, AccessToken])],
+  imports: [BusModule, TypeOrmModule.forFeature([School, Photo, AccessToken, SchoolProduct])],
   controllers: [
     GetSchoolsAction,
     CreateSchoolAction,
@@ -29,6 +31,7 @@ import { GetSchoolByIdQueryHandler } from 'src/Application/School/Query/GetSchoo
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
+    { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
     GetSchoolsQueryHandler,
