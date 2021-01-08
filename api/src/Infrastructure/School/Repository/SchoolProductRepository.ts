@@ -31,15 +31,30 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .getOne();
   }
 
-  public findOneBySchoolAndProduct(school: School, product: Product)
-  : Promise<SchoolProduct | undefined> {
+  public findOneBySchoolAndProduct(
+    school: School,
+    product: Product
+  ): Promise<SchoolProduct | undefined> {
     return this.repository
       .createQueryBuilder('schoolProduct')
-      .select([
-        'schoolProduct.id'
-      ])
-      .innerJoin('schoolProduct.school', 'school', 'school.id = :school', { school: school.getId() })
-      .innerJoin('schoolProduct.product', 'product', 'product.id = :product', { product: product.getId() })
+      .select(['schoolProduct.id'])
+      .innerJoin('schoolProduct.school', 'school', 'school.id = :school', {
+        school: school.getId()
+      })
+      .innerJoin('schoolProduct.product', 'product', 'product.id = :product', {
+        product: product.getId()
+      })
       .getOne();
+  }
+
+  public findBySchoolId(schoolId: string): Promise<SchoolProduct[]> {
+    return this.repository
+      .createQueryBuilder('schoolProduct')
+      .select(['schoolProduct.id', 'product.title', 'schoolProduct.unitPrice'])
+      .innerJoin('schoolProduct.school', 'school')
+      .innerJoin('schoolProduct.product', 'product')
+      .where('school.id = :schoolId', { schoolId })
+      .orderBy('product.title')
+      .getMany();
   }
 }

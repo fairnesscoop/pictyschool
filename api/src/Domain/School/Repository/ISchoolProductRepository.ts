@@ -6,4 +6,5 @@ export interface ISchoolProductRepository {
   save(schoolProduct: SchoolProduct): Promise<SchoolProduct>;
   findOneById(id: string): Promise<SchoolProduct | undefined>;
   findOneBySchoolAndProduct(school: School, product: Product): Promise<SchoolProduct | undefined>;
+  findBySchoolId(schoolId: string): Promise<SchoolProduct[]>;
 }
