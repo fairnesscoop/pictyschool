@@ -2,7 +2,7 @@
   import { _ } from 'svelte-i18n';
   import SeeLink from '../../components/links/SeeLink.svelte';
   import EditLink from '../../components/links/EditLink.svelte';
-  import SeeProductLink from '../../components/links/SeeProductLink.svelte';
+  import PhotoIcon from '../../components/icons/PhotoIcon.svelte';
 
   export let items;
 </script>
@@ -26,7 +26,9 @@
           <div class="flex items-center space-x-4 text-sm">
             <SeeLink href={`/schools/${id}`} />
             <EditLink href="{`/schools/${id}/edit`}" />
-            <SeeProductLink href="{`/schools/${id}/products`}" />
+            <SeeLink href="{`/schools/${id}/products`}">
+              <PhotoIcon className={'w-5 h-5'} />
+            </SeeLink>
           </div>
         </td>
       </tr>

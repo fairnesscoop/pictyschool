@@ -3,6 +3,7 @@ import { Inject } from '@nestjs/common';
 import { GetSchoolProductsQuery } from './GetSchoolProductsQuery';
 import { SchoolProductView } from '../View/SchoolProductView';
 import { ISchoolProductRepository } from 'src/Domain/School/Repository/ISchoolProductRepository';
+import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryView';
 
 @QueryHandler(GetSchoolProductsQuery)
 export class GetSchoolProductsQueryHandler {
@@ -24,8 +25,8 @@ export class GetSchoolProductsQueryHandler {
       schoolProductViews.push(
         new SchoolProductView(
           schoolProduct.getId(),
-          schoolProduct.getProduct().getTitle(),
-          schoolProduct.getUnitPrice() / 100
+          schoolProduct.getUnitPrice() / 100,
+          new ProductSummaryView(schoolProduct.getProduct().getTitle(), schoolProduct.getProduct().getUnitPrice() / 100),
         )
       );
     }
