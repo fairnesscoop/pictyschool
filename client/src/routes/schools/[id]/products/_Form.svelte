@@ -1,44 +1,46 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { createEventDispatcher } from 'svelte';
-  import Input from '../../components/inputs/Input.svelte';
-  import Button from '../../components/inputs/Button.svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
+  import { get } from '../../../../utils/axios';
+  import Input from '../../../../components/inputs/Input.svelte';
+  import { format } from '../../../../normalizer/money';
+  import Button from '../../../../components/inputs/Button.svelte';
+  import SelectInput from '../../../../components/inputs/SelectInput.svelte';
 
-  export let address = '';
-  export let city = '';
-  export let zipCode = '';
-  export let reference = '';
-  export let name = '';
+  export let unitPrice = '';
+  export let productId = '';
   export let loading;
+
+  let products = { items: [] };
+
+  onMount(async () => {
+    products = (await get('products', { params: { page: 1 } })).data;
+  });
 
   const dispatch = createEventDispatcher();
 
   const submit = () => {
-    dispatch('save', { reference, city, zipCode, name, address });
+    dispatch('save', { productId, unitPrice });
   };
 </script>
 
 <form
   on:submit|preventDefault={submit}
   class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+  <SelectInput
+    label={$_('schools.products.form.product')}
+    bind:value={productId}>
+    <option>{$_('schools.products.form.product_placeholder')}</option>
+    {#each products.items as { id, title, unitPrice }}
+      <option value={id}>{title} ({format(unitPrice)})</option>
+    {/each}
+  </SelectInput>
   <Input
-    label={$_('schools.form.reference')}
-    bind:value={reference} />
-  <Input
-    label={$_('schools.form.name')}
-    bind:value={name} />
-  <Input
-    label={$_('schools.form.address')}
-    bind:value={address} />
-  <Input
-    label={$_('schools.form.city')}
-    bind:value={city} />
-  <Input
-    label={$_('schools.form.zip_code')}
-    bind:value={zipCode} />
-  
+    type={'money'}
+    label={$_('schools.products.form.unit_price')}
+    bind:value={unitPrice} />
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!reference || !name || !address || !city || !zipCode || loading} />
+    disabled={!productId || !unitPrice || loading} />
 </form>

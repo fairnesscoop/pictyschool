@@ -18,8 +18,9 @@
       await post('schools', e.detail);
       goto('/schools');
     } catch (e) {
-      loading = false;
       errors = errorNormalizer(e);
+    } finally {
+      loading = false;
     }
   };
 </script>

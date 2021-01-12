@@ -35,12 +35,12 @@
 </svelte:head>
 
 <Breadcrumb items={[
-  { title: $_('schools.breadcrumb'), path: '/schools' }, 
-  { title: school && school.name, path: `/schools/${id}` }, 
+  { title: $_('schools.breadcrumb'), path: '/schools' },
+  { title: school && `${school.reference} - ${school.name}`, path: `/schools/${id}` },
   { title }
 ]} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  <Link href={`/schools/${id}/products/add`} value={$_('common.form.add')} />
+  <Link href={`/schools/${id}/products/add`} value={$_('schools.products.add.title')} />
 </div>
 <ServerErrors {errors} />

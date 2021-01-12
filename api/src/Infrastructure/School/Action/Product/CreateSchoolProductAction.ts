@@ -31,11 +31,7 @@ export class CreateSchoolProductAction {
 
     try {
       const id = await this.commandBus.execute(
-        new CreateSchoolProductCommand(
-          unitPrice,
-          idDto.id,
-          productId,
-        )
+        new CreateSchoolProductCommand(unitPrice, idDto.id, productId)
       );
 
       return { id };

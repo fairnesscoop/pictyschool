@@ -5,7 +5,6 @@
 </script>
 
 <script>
-  import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
   import { get } from '../../../utils/axios';
@@ -13,9 +12,9 @@
   import { errorNormalizer } from '../../../normalizer/errors';
   import ServerErrors from '../../../components/ServerErrors.svelte';
   import H4Title from '../../../components/H4Title.svelte';
-  import PhotoIcon from '../../../components/icons/PhotoIcon.svelte';
-  import FolderIcon from '../../../components/icons/FolderIcon.svelte';
-  import OrderIcon from '../../../components/icons/OrderIcon.svelte';
+  import CardPhoto from './_CardPhoto.svelte';
+  import CardProduct from './_CardProduct.svelte';
+  import CardOrder from './_CardOrder.svelte';
   import Link from '../../../components/links/Link.svelte';
 
   export let id;
@@ -27,7 +26,7 @@
   onMount(async () => {
     try {
       ({ data: school } = await get(`schools/${id}`));
-      title = school.name;
+      title = `${school.reference} - ${school.name}`;
     } catch (e) {
       errors = errorNormalizer(e);
     }
@@ -46,31 +45,7 @@
 <ServerErrors {errors} />
 
 <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
-  <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-    <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
-      <PhotoIcon className={'w-5 h-5'}/>
-    </div>
-    <div>
-      <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{$_('schools.dashboard.photos')}</p>
-      <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">N/A</p>
-    </div>
-  </div>
-  <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-    <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
-      <OrderIcon className={'w-5 h-5'}/>
-    </div>
-    <div>
-      <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{$_('schools.dashboard.orders')}</p>
-      <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">N/A</p>
-    </div>
-  </div>
-  <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-    <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
-      <FolderIcon className={'w-5 h-5'}/>
-    </div>
-    <div>
-      <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{$_('schools.dashboard.products')}</p>
-      <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">N/A</p>
-    </div>
-  </div>
+  <CardPhoto />
+  <CardOrder />
+  <CardProduct {id} />
 </div>

@@ -92,7 +92,8 @@
       },
       "form": {
         "product": "Produit",
-        "unit_price": "Prix unitaire TTC"
+        "product_placeholder": "-- Choisir un produit --",
+        "unit_price": "Définir un nouveau prix unitaire TTC"
       },
       "errors": {
         "already_exist": "Ce produit a déjà été associé à l'école",

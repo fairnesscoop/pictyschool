@@ -30,10 +30,7 @@ export class UpdateSchoolProductAction {
   public async index(@Param() { id }: IdDTO, @Body() { unitPrice }: UnitPriceDTO) {
     try {
       await this.commandBus.execute(
-        new UpdateSchoolProductCommand(
-          id,
-          unitPrice
-        )
+        new UpdateSchoolProductCommand(id, unitPrice)
       );
 
       return { id };
