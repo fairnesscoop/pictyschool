@@ -19,13 +19,12 @@
 
   let loading = false;
   let school;
-  let title = '';
+  let title = $_('schools.edit.title');
   let errors = [];
 
   onMount(async () => {
     try {
       ({ data: school } = await get(`schools/${id}`));
-      title = $_('schools.edit.title', { values: { name: school.name } });
     } catch (e) {
       errors = errorNormalizer(e);
     }
@@ -35,7 +34,7 @@
     try {
       loading = true;
       await put(`schools/${id}`, e.detail);
-      goto('/schools');
+      goto(`schools/${id}`);
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {
@@ -48,7 +47,11 @@
   <title>{title} - {$_('app')}</title>
 </svelte:head>
 
-<Breadcrumb items={[{ title: $_('schools.breadcrumb'), path: '/schools' }, { title }]} />
+<Breadcrumb items={[
+  { title: $_('schools.breadcrumb'), path: '/schools' }, 
+  { title: school && school.name, path: `/schools/${id}` }, 
+  { title }
+]} />
 <H4Title {title} />
 <ServerErrors {errors} />
 {#if school}

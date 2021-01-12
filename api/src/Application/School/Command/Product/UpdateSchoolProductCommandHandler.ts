@@ -21,7 +21,7 @@ export class UpdateSchoolProductCommandHandler {
     }
 
     schoolProduct.updateUnitPrice(Math.round(unitPrice * 100));
-    this.schoolProductRepository.save(schoolProduct)
+    this.schoolProductRepository.save(schoolProduct);
 
     return schoolProduct.getId();
   }

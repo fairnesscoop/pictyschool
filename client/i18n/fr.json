@@ -67,7 +67,12 @@
       "title": "Ajouter une école"
     },
     "edit": {
-      "title": "Edition de l'école \"{name}\""
+      "title": "Edition de l'école"
+    },
+    "dashboard": {
+      "products": "Produits proposés",
+      "orders": "Commandes",
+      "photos": "Photos"
     },
     "form": {
       "reference": "Référence",
