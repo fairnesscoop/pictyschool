@@ -26,6 +26,10 @@ export class SchoolProduct {
     this.product = product;
   }
 
+  public updateUnitPrice(unitPrice: number): void {
+    this.unitPrice = unitPrice;
+  }
+
   public getId(): string {
     return this.id;
   }

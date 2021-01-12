@@ -17,6 +17,17 @@ export class SchoolProductRepository implements ISchoolProductRepository {
     return this.repository.save(schoolProduct);
   }
 
+  public findOneById(id: string): Promise<SchoolProduct | undefined> {
+    return this.repository
+      .createQueryBuilder('schoolProduct')
+      .select([
+        'schoolProduct.id',
+        'schoolProduct.unitPrice',
+      ])
+      .where('schoolProduct.id = :id', { id })
+      .getOne();
+  }
+
   public findOneBySchoolAndProduct(school: School, product: Product)
   : Promise<SchoolProduct | undefined> {
     return this.repository
