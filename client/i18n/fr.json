@@ -84,6 +84,20 @@
     "errors": {
       "already_exist": "Une école avec cette référence existe déjà.",
       "not_found": "L'école recherchée n'existe pas."
+    },
+    "products": {
+      "title": "Produits proposés",
+      "add": {
+        "title": "Associer un nouveau produit"
+      },
+      "form": {
+        "product": "Produit",
+        "unit_price": "Prix unitaire TTC"
+      },
+      "errors": {
+        "already_exist": "Ce produit a déjà été associé à l'école",
+        "not_found": "Le produit de l'école recherché n'existe pas."
+      }
     }
   },
   "search": {

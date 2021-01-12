@@ -54,7 +54,7 @@ describe('UpdateSchoolProductCommandHandler', () => {
       await handler.execute(command);
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolProductNotFoundException);
-      expect(e.message).toBe('school_products.errors.not_found');
+      expect(e.message).toBe('schools.products.errors.not_found');
       verify(schoolProductRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad')).once();
       verify(schoolProductRepository.save(anything())).never();
     }

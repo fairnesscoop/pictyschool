@@ -98,7 +98,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       await handler.execute(command);
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolProductAlreadyExistException);
-      expect(e.message).toBe('school_products.errors.already_exist');
+      expect(e.message).toBe('schools.products.errors.already_exist');
       verify(productRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad')).once();
       verify(schoolRepository.findOneById('553e2b3c-eb11-42b1-8f76-903add071ca7')).once();
       verify(isSchoolProductAlreadyExist.isSatisfiedBy(instance(school), instance(product))).once();

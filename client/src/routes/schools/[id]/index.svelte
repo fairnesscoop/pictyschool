@@ -20,7 +20,6 @@
 
   export let id;
 
-  let loading = false;
   let school;
   let title = '';
   let errors = [];
