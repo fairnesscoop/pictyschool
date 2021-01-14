@@ -5,7 +5,7 @@
   export let value;
   export let label = '';
   export let placeholder = '';
-  export let marginClass = 'mt-4';
+  export let marginClass = 'mb-4';
   export let required = 'required';
 
   const id = shortid.generate();
