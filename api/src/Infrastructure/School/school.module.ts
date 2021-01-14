@@ -25,6 +25,8 @@ import { IsSchoolProductAlreadyExist } from 'src/Domain/School/Specification/Pro
 import { CreateSchoolProductAction } from './Action/Product/CreateSchoolProductAction';
 import { UpdateSchoolProductCommandHandler } from 'src/Application/School/Command/Product/UpdateSchoolProductCommandHandler';
 import { UpdateSchoolProductAction } from './Action/Product/UpdateSchoolProductAction';
+import { GetSchoolProductAction } from './Action/Product/GetSchoolProductAction';
+import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductByIdQueryHandler';
 
 @Module({
   imports: [
@@ -43,6 +45,7 @@ import { UpdateSchoolProductAction } from './Action/Product/UpdateSchoolProductA
     GetSchoolAction,
     UpdateSchoolAction,
     CreateSchoolProductAction,
+    GetSchoolProductAction,
     UpdateSchoolProductAction
   ],
   providers: [
@@ -58,7 +61,8 @@ import { UpdateSchoolProductAction } from './Action/Product/UpdateSchoolProductA
     UpdateSchoolCommandHandler,
     CreateSchoolProductCommandHandler,
     IsSchoolProductAlreadyExist,
-    UpdateSchoolProductCommandHandler
+    UpdateSchoolProductCommandHandler,
+    GetSchoolProductByIdQueryHandler
   ]
 })
 export class SchoolModule {}

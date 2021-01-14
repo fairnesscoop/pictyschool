@@ -15,7 +15,7 @@ import { UpdateSchoolProductCommand } from 'src/Application/School/Command/Produ
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { UnitPriceDTO } from '../../DTO/UnitPriceDTO';
 
-@Controller('schools')
+@Controller('schools/:schoolId/products')
 @ApiTags('School')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'))
@@ -25,7 +25,7 @@ export class UpdateSchoolProductAction {
     private readonly commandBus: ICommandBus
   ) {}
 
-  @Put('/:schoolId/products/:id')
+  @Put(':id')
   @ApiOperation({summary: 'Edit school product unit price'})
   public async index(@Param() { id }: IdDTO, @Body() { unitPrice }: UnitPriceDTO) {
     try {

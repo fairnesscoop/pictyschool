@@ -23,8 +23,11 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .select([
         'schoolProduct.id',
         'schoolProduct.unitPrice',
+        'product.title',
+        'product.unitPrice'
       ])
       .where('schoolProduct.id = :id', { id })
+      .innerJoin('schoolProduct.product', 'product')
       .getOne();
   }
 
