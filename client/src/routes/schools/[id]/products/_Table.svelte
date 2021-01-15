@@ -22,8 +22,7 @@
         <td class="px-4 py-3 text-sm">{format(unitPrice)}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
-            {schoolId}
-            <!-- <EditLink href={`/schools/${schoolId}/products/${id}`} /> -->
+            <EditLink href={`/schools/${schoolId}/products/${id}/edit`} />
           </div>
         </td>
       </tr>
