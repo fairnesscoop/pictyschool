@@ -5,7 +5,6 @@
 </script>
 
 <script>
-  import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
   import { get } from '../../../../utils/axios';
@@ -14,16 +13,23 @@
   import ServerErrors from '../../../../components/ServerErrors.svelte';
   import H4Title from '../../../../components/H4Title.svelte';
   import Link from '../../../../components/links/Link.svelte';
+  import Table from './_Table.svelte';
 
   export let id;
 
   let school;
   let title = $_('schools.products.title');
   let errors = [];
+  let schoolProducts = [];
 
   onMount(async () => {
     try {
-      ({ data: school } = await get(`schools/${id}`));
+      const [ schoolResponse, schoolProductsResponse ] = await Promise.all([
+        get(`schools/${id}`),
+        get(`schools/${id}/products`),
+      ]);
+      school = schoolResponse.data;
+      schoolProducts = schoolProductsResponse.data;
     } catch (e) {
       errors = errorNormalizer(e);
     }
@@ -42,5 +48,10 @@
 <div class="inline-flex items-center">
   <H4Title {title} />
   <Link href={`/schools/${id}/products/add`} value={$_('schools.products.add.title')} />
+</div>
+<div class="w-full overflow-hidden rounded-lg shadow-xs">
+  <div class="w-full overflow-x-auto">
+    <Table items="{schoolProducts}" schoolId="{id}" />
+  </div>
 </div>
 <ServerErrors {errors} />

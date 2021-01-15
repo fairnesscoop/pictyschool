@@ -1,6 +1,8 @@
 <script>
   import { _ } from 'svelte-i18n';
   import SeeLink from '../../components/links/SeeLink.svelte';
+  import EditLink from '../../components/links/EditLink.svelte';
+  import PhotoIcon from '../../components/icons/PhotoIcon.svelte';
 
   export let items;
 </script>
@@ -23,6 +25,7 @@
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
             <SeeLink href={`/schools/${id}`} />
+            <EditLink href="{`/schools/${id}/edit`}" />
           </div>
         </td>
       </tr>

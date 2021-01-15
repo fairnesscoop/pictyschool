@@ -27,6 +27,8 @@ import { UpdateSchoolProductCommandHandler } from 'src/Application/School/Comman
 import { UpdateSchoolProductAction } from './Action/Product/UpdateSchoolProductAction';
 import { GetSchoolProductAction } from './Action/Product/GetSchoolProductAction';
 import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductByIdQueryHandler';
+import { GetSchoolProductsAction } from './Action/GetSchoolProductsAction';
+import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/GetSchoolProductsQueryHandler';
 
 @Module({
   imports: [
@@ -46,7 +48,9 @@ import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/P
     UpdateSchoolAction,
     CreateSchoolProductAction,
     GetSchoolProductAction,
-    UpdateSchoolProductAction
+    GetSchoolProductsAction,
+    UpdateSchoolProductAction,
+    UpdateSchoolAction
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
@@ -56,6 +60,7 @@ import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/P
     { provide: 'IProductRepository', useClass: ProductRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
+    GetSchoolProductsQueryHandler,
     GetSchoolsQueryHandler,
     GetSchoolByIdQueryHandler,
     UpdateSchoolCommandHandler,
