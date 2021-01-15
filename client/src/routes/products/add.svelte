@@ -18,8 +18,9 @@
       await post('products', e.detail);
       goto('/products');
     } catch (e) {
-      loading = false;
       errors = errorNormalizer(e);
+    } finally {
+      loading = false;
     }
   };
 </script>

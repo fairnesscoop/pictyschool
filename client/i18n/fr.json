@@ -67,7 +67,12 @@
       "title": "Ajouter une école"
     },
     "edit": {
-      "title": "Edition de l'école \"{name}\""
+      "title": "Edition de l'école"
+    },
+    "dashboard": {
+      "products": "Produits proposés",
+      "orders": "Commandes",
+      "photos": "Photos"
     },
     "form": {
       "reference": "Référence",
@@ -79,6 +84,25 @@
     "errors": {
       "already_exist": "Une école avec cette référence existe déjà.",
       "not_found": "L'école recherchée n'existe pas."
+    },
+    "products": {
+      "title": "Produits proposés",
+      "add": {
+        "title": "Associer un nouveau produit"
+      },
+      "edit": {
+        "title": "Edition du prix unitaire de \"{product}\"",
+        "notice": "Le prix de base définit sur ce produit est de {price}."
+      },
+      "form": {
+        "product": "Produit",
+        "product_placeholder": "-- Choisir un produit --",
+        "unit_price": "Prix unitaire TTC"
+      },
+      "errors": {
+        "already_exist": "Ce produit a déjà été associé à l'école",
+        "not_found": "Le produit de l'école recherché n'existe pas."
+      }
     }
   },
   "search": {
