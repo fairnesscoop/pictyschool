@@ -5,6 +5,7 @@ import { SchoolProductView } from '../View/SchoolProductView';
 import { GetSchoolProductsQuery } from './GetSchoolProductsQuery';
 import { GetSchoolProductsQueryHandler } from './GetSchoolProductsQueryHandler';
 import { SchoolProductRepository } from 'src/Infrastructure/School/Repository/SchoolProductRepository';
+import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryView';
 
 describe('GetSchoolsQueryHandler', () => {
   it('testGetSchoolProducts', async () => {
@@ -12,6 +13,7 @@ describe('GetSchoolsQueryHandler', () => {
 
     const product1 = mock(Product);
     when(product1.getTitle()).thenReturn('Photo de classe traditionnelle');
+    when(product1.getUnitPrice()).thenReturn(1500);
 
     const schoolProduct1 = mock(SchoolProduct);
     when(schoolProduct1.getId()).thenReturn(
@@ -22,6 +24,7 @@ describe('GetSchoolsQueryHandler', () => {
 
     const product2 = mock(Product);
     when(product2.getTitle()).thenReturn('1 page individuelle');
+    when(product2.getUnitPrice()).thenReturn(1500);
 
     const schoolProduct2 = mock(SchoolProduct);
     when(schoolProduct2.getId()).thenReturn(
@@ -43,13 +46,13 @@ describe('GetSchoolsQueryHandler', () => {
     const expectedResult = [
       new SchoolProductView(
         '4de2ffc4-e835-44c8-95b7-17c171c09873',
-        'Photo de classe traditionnelle',
-        12
+        12,
+        new ProductSummaryView('Photo de classe traditionnelle', 15),
       ),
       new SchoolProductView(
         '12b4aa8a-ece7-45f0-a07e-ca755e67be1e',
-        '1 page individuelle',
-        15
+        15,
+        new ProductSummaryView('1 page individuelle', 15),
       )
     ];
 
