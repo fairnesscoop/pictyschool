@@ -50,10 +50,9 @@ export class SchoolProductRepository implements ISchoolProductRepository {
   public findBySchoolId(schoolId: string): Promise<SchoolProduct[]> {
     return this.repository
       .createQueryBuilder('schoolProduct')
-      .select(['schoolProduct.id', 'product.title', 'schoolProduct.unitPrice'])
-      .innerJoin('schoolProduct.school', 'school')
+      .select(['schoolProduct.id', 'schoolProduct.unitPrice', 'product.title', 'product.unitPrice'])
+      .innerJoin('schoolProduct.school', 'school',  'school.id = :school', { school: schoolId })
       .innerJoin('schoolProduct.product', 'product')
-      .where('school.id = :schoolId', { schoolId })
       .orderBy('product.title')
       .getMany();
   }
