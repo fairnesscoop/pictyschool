@@ -16,9 +16,9 @@
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, title, unitPrice } (id)}
+    {#each items as { id, product, unitPrice } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
-        <td class="px-4 py-3 text-sm">{title}</td>
+        <td class="px-4 py-3 text-sm">{product.title}</td>
         <td class="px-4 py-3 text-sm">{format(unitPrice)}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
