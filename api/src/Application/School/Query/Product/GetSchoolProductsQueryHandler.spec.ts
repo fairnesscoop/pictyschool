@@ -1,7 +1,7 @@
 import { mock, instance, when, verify } from 'ts-mockito';
 import { SchoolProduct } from 'src/Domain/School/SchoolProduct.entity';
 import { Product } from 'src/Domain/Product/Product.entity';
-import { SchoolProductView } from '../View/SchoolProductView';
+import { SchoolProductView } from '../../View/SchoolProductView';
 import { GetSchoolProductsQuery } from './GetSchoolProductsQuery';
 import { GetSchoolProductsQueryHandler } from './GetSchoolProductsQueryHandler';
 import { SchoolProductRepository } from 'src/Infrastructure/School/Repository/SchoolProductRepository';
