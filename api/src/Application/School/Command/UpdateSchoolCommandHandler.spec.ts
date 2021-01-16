@@ -54,7 +54,7 @@ describe('UpdateSchoolCommandHandler', () => {
   });
 
   it('testSchoolAlreadyExist', async () => {
-    when(school.getReference()).thenReturn('xLKJSs');
+    when(school.getReference()).thenReturn('abc');
     when(
       schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(school));

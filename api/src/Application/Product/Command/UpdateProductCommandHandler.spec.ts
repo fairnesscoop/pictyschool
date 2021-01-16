@@ -52,13 +52,11 @@ describe('UpdateProductCommandHandler', () => {
   });
 
   it('testProductAlreadyExist', async () => {
-    when(product.getTitle()).thenReturn('Porte clef');
+    when(product.getTitle()).thenReturn('Portrait');
     when(
       productRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(product));
-    when(
-      isProductAlreadyExist.isSatisfiedBy('Porte clef')
-    ).thenResolve(true);
+    when(isProductAlreadyExist.isSatisfiedBy('Mug')).thenResolve(true);
 
     try {
       await handler.execute(command);
@@ -66,7 +64,10 @@ describe('UpdateProductCommandHandler', () => {
       expect(e).toBeInstanceOf(ProductAlreadyExistException);
       expect(e.message).toBe('products.errors.already_exist');
       verify(
-        isProductAlreadyExist.isSatisfiedBy('Porte clef')
+        productRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
+      ).once();
+      verify(
+        isProductAlreadyExist.isSatisfiedBy('Mug')
       ).once();
       verify(
         product.update(anything(), anything(), anything())

@@ -22,8 +22,10 @@ export class UpdateSchoolCommandHandler {
       throw new SchoolNotFoundException();
     }
 
-    if (reference !== school.getReference()
-      && true === (await this.isSchoolAlreadyExist.isSatisfiedBy(reference))) {
+    if (
+      reference !== school.getReference() &&
+      true === (await this.isSchoolAlreadyExist.isSatisfiedBy(reference))
+    ) {
       throw new SchoolAlreadyExistException();
     }
 

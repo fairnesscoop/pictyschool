@@ -1,4 +1,4 @@
-# Flashimages
+# Flash'images
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/flashimages/CI)
 [![codecov](https://codecov.io/gh/fairnesscoop/flashimages/branch/master/graph/badge.svg)](https://codecov.io/gh/fairnesscoop/flashimages)
@@ -6,6 +6,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/flashimages?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/flashimages&utm_campaign=Badge_Grade)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/fairnesscoop/flashimages)
 [![GitHub license](https://img.shields.io/github/license/fairnesscoop/flashimages.svg)](https://github.com/fairnesscoop/flashimages)
+
+Flash'images is an open source and eco design school photo management software
 
 ## Technical stack
 

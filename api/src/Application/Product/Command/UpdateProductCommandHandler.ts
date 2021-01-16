@@ -22,8 +22,10 @@ export class UpdateProductCommandHandler {
       throw new ProductNotFoundException();
     }
 
-    if (title !== product.getTitle()
-      && true === (await this.isProductAlreadyExist.isSatisfiedBy(title))) {
+    if (
+      title !== product.getTitle() &&
+      true === (await this.isProductAlreadyExist.isSatisfiedBy(title))
+    ) {
       throw new ProductAlreadyExistException();
     }
 

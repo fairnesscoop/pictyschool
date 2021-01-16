@@ -17,6 +17,10 @@ export class SchoolProductRepository implements ISchoolProductRepository {
     return this.repository.save(schoolProduct);
   }
 
+  public remove(schoolProduct: SchoolProduct): void {
+    this.repository.delete(schoolProduct);
+  }
+
   public findOneById(id: string): Promise<SchoolProduct | undefined> {
     return this.repository
       .createQueryBuilder('schoolProduct')

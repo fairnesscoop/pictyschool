@@ -87,6 +87,10 @@
     },
     "products": {
       "title": "Produits proposés",
+      "list": {
+        "product": "Nom du produit",
+        "unit_price": "Prix unitaire TTC"
+      },
       "add": {
         "title": "Associer un nouveau produit"
       },
