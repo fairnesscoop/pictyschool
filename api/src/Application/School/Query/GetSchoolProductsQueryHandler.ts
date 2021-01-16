@@ -12,10 +12,7 @@ export class GetSchoolProductsQueryHandler {
     private readonly schoolProductRepository: ISchoolProductRepository
   ) {}
 
-  public async execute(
-    query: GetSchoolProductsQuery
-  ): Promise<SchoolProductView[]> {
-
+  public async execute(query: GetSchoolProductsQuery): Promise<SchoolProductView[]> {
     const schoolProductViews: SchoolProductView[] = [];
     const schoolProducts = await this.schoolProductRepository.findBySchoolId(
       query.schoolId
@@ -26,7 +23,10 @@ export class GetSchoolProductsQueryHandler {
         new SchoolProductView(
           schoolProduct.getId(),
           schoolProduct.getUnitPrice() / 100,
-          new ProductSummaryView(schoolProduct.getProduct().getTitle(), schoolProduct.getProduct().getUnitPrice() / 100),
+          new ProductSummaryView(
+            schoolProduct.getProduct().getTitle(),
+            schoolProduct.getProduct().getUnitPrice() / 100
+          )
         )
       );
     }

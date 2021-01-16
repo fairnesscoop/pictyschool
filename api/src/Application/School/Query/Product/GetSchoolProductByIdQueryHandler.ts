@@ -20,14 +20,12 @@ export class GetSchoolProductByIdQueryHandler {
       throw new SchoolProductNotFoundException();
     }
 
-    const product = schoolProduct.getProduct();
-
     return new SchoolProductView(
       schoolProduct.getId(),
       schoolProduct.getUnitPrice() / 100,
       new ProductSummaryView(
-        product.getTitle(),
-        product.getUnitPrice() / 100
+        schoolProduct.getProduct().getTitle(),
+        schoolProduct.getProduct().getUnitPrice() / 100
       )
     );
   }

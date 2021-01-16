@@ -29,6 +29,8 @@ import { GetSchoolProductAction } from './Action/Product/GetSchoolProductAction'
 import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductByIdQueryHandler';
 import { GetSchoolProductsAction } from './Action/GetSchoolProductsAction';
 import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/GetSchoolProductsQueryHandler';
+import { RemoveSchoolProductCommandHandler } from 'src/Application/School/Command/Product/RemoveSchoolProductCommandHandler';
+import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductAction';
 
 @Module({
   imports: [
@@ -50,7 +52,7 @@ import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/GetS
     GetSchoolProductAction,
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
-    UpdateSchoolAction
+    RemoveSchoolProductAction
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
@@ -67,7 +69,8 @@ import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/GetS
     CreateSchoolProductCommandHandler,
     IsSchoolProductAlreadyExist,
     UpdateSchoolProductCommandHandler,
-    GetSchoolProductByIdQueryHandler
+    GetSchoolProductByIdQueryHandler,
+    RemoveSchoolProductCommandHandler
   ]
 })
 export class SchoolModule {}
