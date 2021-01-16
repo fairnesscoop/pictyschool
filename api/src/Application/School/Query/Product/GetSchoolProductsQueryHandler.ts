@@ -1,7 +1,7 @@
 import { QueryHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { GetSchoolProductsQuery } from './GetSchoolProductsQuery';
-import { SchoolProductView } from '../View/SchoolProductView';
+import { SchoolProductView } from '../../View/SchoolProductView';
 import { ISchoolProductRepository } from 'src/Domain/School/Repository/ISchoolProductRepository';
 import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryView';
 

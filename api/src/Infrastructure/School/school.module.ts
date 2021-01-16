@@ -27,10 +27,12 @@ import { UpdateSchoolProductCommandHandler } from 'src/Application/School/Comman
 import { UpdateSchoolProductAction } from './Action/Product/UpdateSchoolProductAction';
 import { GetSchoolProductAction } from './Action/Product/GetSchoolProductAction';
 import { GetSchoolProductByIdQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductByIdQueryHandler';
-import { GetSchoolProductsAction } from './Action/GetSchoolProductsAction';
-import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/GetSchoolProductsQueryHandler';
+import { GetSchoolProductsAction } from './Action/Product/GetSchoolProductsAction';
 import { RemoveSchoolProductCommandHandler } from 'src/Application/School/Command/Product/RemoveSchoolProductCommandHandler';
 import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductAction';
+import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductsQueryHandler';
+import { CountSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/CountSchoolProductsQueryHandler';
+import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsAction';
 
 @Module({
   imports: [
@@ -50,6 +52,7 @@ import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductA
     UpdateSchoolAction,
     CreateSchoolProductAction,
     GetSchoolProductAction,
+    CountSchoolProductsAction,
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
     RemoveSchoolProductAction
@@ -70,7 +73,8 @@ import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductA
     IsSchoolProductAlreadyExist,
     UpdateSchoolProductCommandHandler,
     GetSchoolProductByIdQueryHandler,
-    RemoveSchoolProductCommandHandler
+    RemoveSchoolProductCommandHandler,
+    CountSchoolProductsQueryHandler
   ]
 })
 export class SchoolModule {}

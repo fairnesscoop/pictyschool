@@ -35,6 +35,14 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .getOne();
   }
 
+  public countBySchoolId(id: string): Promise<number> {
+    return this.repository
+      .createQueryBuilder('schoolProduct')
+      .select('schoolProduct.id')
+      .innerJoin('schoolProduct.school', 'school', 'school.id = :id', { id })
+      .getCount();
+  }
+
   public findOneBySchoolAndProduct(
     school: School,
     product: Product
@@ -51,11 +59,11 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .getOne();
   }
 
-  public findBySchoolId(schoolId: string): Promise<SchoolProduct[]> {
+  public findBySchoolId(id: string): Promise<SchoolProduct[]> {
     return this.repository
       .createQueryBuilder('schoolProduct')
       .select(['schoolProduct.id', 'schoolProduct.unitPrice', 'product.title', 'product.unitPrice'])
-      .innerJoin('schoolProduct.school', 'school',  'school.id = :school', { school: schoolId })
+      .innerJoin('schoolProduct.school', 'school',  'school.id = :id', { id })
       .innerJoin('schoolProduct.product', 'product')
       .orderBy('product.title')
       .getMany();
