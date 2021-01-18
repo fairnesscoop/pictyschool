@@ -11,6 +11,9 @@
       "add": "Ajouter",
       "remove": "Supprimer",
       "see": "Voir"
+    },
+    "confirm": {
+      "delete": "Êtes-vous sûr de vouloir supprimer ceci ?"
     }
   },
   "login": {
@@ -97,6 +100,9 @@
       "edit": {
         "title": "Edition du prix unitaire de \"{product}\"",
         "notice": "Le prix de base définit sur ce produit est de {price}."
+      },
+      "delete": {
+        "confirm": "Êtes-vous sûr de vouloir supprimer ce produit ?"
       },
       "form": {
         "product": "Produit",

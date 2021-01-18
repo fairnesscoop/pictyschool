@@ -7,7 +7,7 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get } from '../../../../utils/axios';
+  import { get, del } from '../../../../utils/axios';
   import Breadcrumb from '../../../../components/Breadcrumb.svelte';
   import { errorNormalizer } from '../../../../normalizer/errors';
   import ServerErrors from '../../../../components/ServerErrors.svelte';
@@ -34,6 +34,16 @@
       errors = errorNormalizer(e);
     }
   });
+
+  const handleDeleteProduct = async (event) => {
+    const productId = event.detail;
+    try {
+      await del(`schools/${id}/products/${productId}`);
+      schoolProducts = schoolProducts.filter((product) => product.id !== productId);
+    } catch (e) {
+      errors = errorNormalizer(e);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -51,7 +61,7 @@
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
   <div class="w-full overflow-x-auto">
-    <Table items="{schoolProducts}" schoolId="{id}" />
+    <Table items="{schoolProducts}" schoolId="{id}" on:delete={handleDeleteProduct} />
   </div>
 </div>
 <ServerErrors {errors} />
