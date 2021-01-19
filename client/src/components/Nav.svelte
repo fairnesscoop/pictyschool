@@ -24,9 +24,9 @@
     class:open={$settings.openMobileMenu}>
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
-        class="inline-flex ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+        class="inline-flex ml-4 text-lg font-bold text-gray-800 dark:text-gray-200"
         href="/">
-        <img src="images/logo.png" class="h-8" alt="Fairness" />
+        <img src="images/logo.png" class="h-6" alt="{$_('app')}" />
         <span class="ml-2">{$_('app')}</span>
       </a>
       <ul class="mt-6">
