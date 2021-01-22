@@ -40,7 +40,7 @@ describe('UpdateProfileCommandHandler', () => {
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(true);
 
     try {
-      await commandHandler.execute(command);
+      expect(await commandHandler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(EmailAlreadyExistException);
       expect(e.message).toBe('users.errors.email_already_exist');

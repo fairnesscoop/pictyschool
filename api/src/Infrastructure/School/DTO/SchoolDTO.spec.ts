@@ -9,6 +9,7 @@ describe('SchoolDTO', () => {
     dto.city = 'Paris';
     dto.zipCode = '75018';
     dto.name = 'Ecole élémentaire';
+    dto.schoolTypeId = 'df8910f9-ac0a-412b-b9a8-dbf299340abc';
 
     const validation = await validate(dto);
     expect(validation).toHaveLength(0);
@@ -18,7 +19,7 @@ describe('SchoolDTO', () => {
     const dto = new SchoolDTO();
 
     const validation = await validate(dto);
-    expect(validation).toHaveLength(5);
+    expect(validation).toHaveLength(6);
     expect(validation[0].constraints).toMatchObject({
       isNotEmpty: "reference should not be empty"
     });
@@ -34,6 +35,10 @@ describe('SchoolDTO', () => {
     expect(validation[4].constraints).toMatchObject({
       isNotEmpty: "zipCode should not be empty",
       maxLength: "zipCode must be shorter than or equal to 6 characters"
+    });
+    expect(validation[5].constraints).toMatchObject({
+      isNotEmpty: "schoolTypeId should not be empty", 
+      isUuid: "schoolTypeId must be an UUID"
     });
   });
 });

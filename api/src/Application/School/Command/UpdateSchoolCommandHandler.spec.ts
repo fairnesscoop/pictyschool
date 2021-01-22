@@ -6,28 +6,36 @@ import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAl
 import { School } from 'src/Domain/School/School.entity';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
+import { SchoolTypeRepository } from 'src/Infrastructure/School/Repository/SchoolTypeRepository';
+import { SchoolTypeNotFoundException } from 'src/Domain/School/Exception/SchoolTypeNotFoundException';
+import { SchoolType } from 'src/Domain/School/SchoolType.entity';
 
 describe('UpdateSchoolCommandHandler', () => {
   let schoolRepository: SchoolRepository;
+  let schoolTypeRepository: SchoolTypeRepository;
   let isSchoolAlreadyExist: IsSchoolAlreadyExist;
 
   let handler: UpdateSchoolCommandHandler;
 
   const school = mock(School);
+  const schoolType = mock(SchoolType);
   const command = new UpdateSchoolCommand(
     '8a9df044-94a7-4e6c-abd1-ecdd69d788d5',
     'Ecole élementaire Belliard',
     'xLKJSs',
     '127 Rue Belliard',
     'Paris',
-    '75010'
+    '75010',
+    'df8910f9-ac0a-412b-b9a8-dbf299340abc'
   );
 
   beforeEach(() => {
     schoolRepository = mock(SchoolRepository);
+    schoolTypeRepository = mock(SchoolTypeRepository);
     isSchoolAlreadyExist = mock(IsSchoolAlreadyExist);
     handler = new UpdateSchoolCommandHandler(
       instance(schoolRepository),
+      instance(schoolTypeRepository),
       instance(isSchoolAlreadyExist)
     );
   });
@@ -38,17 +46,20 @@ describe('UpdateSchoolCommandHandler', () => {
     ).thenResolve(null);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolNotFoundException);
       expect(e.message).toBe('schools.errors.not_found');
       verify(
         schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
       ).once();
+      verify(
+        schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
+      ).never();
       verify(isSchoolAlreadyExist.isSatisfiedBy(anything())).never();
       verify(schoolRepository.save(anything())).never();
       verify(
-        school.update(anything(), anything(), anything(), anything(), anything())
+        school.update(anything(), anything(), anything(), anything(), anything(), anything())
       ).never();
     }
   });
@@ -59,11 +70,14 @@ describe('UpdateSchoolCommandHandler', () => {
       schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(school));
     when(
+      schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
+    ).thenResolve(instance(schoolType));
+    when(
       isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')
     ).thenResolve(true);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolAlreadyExistException);
       expect(e.message).toBe('schools.errors.already_exist');
@@ -71,9 +85,36 @@ describe('UpdateSchoolCommandHandler', () => {
         isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')
       ).once();
       verify(
-        school.update(anything(), anything(), anything(), anything(), anything())
+        school.update(anything(), anything(), anything(), anything(), anything(), anything())
       ).never();
       verify(schoolRepository.save(anything())).never();
+    }
+  });
+
+  it('testSchoolTypeNotFound', async () => {
+    when(
+      schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
+    ).thenResolve(instance(school));
+    when(
+      schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
+    ).thenResolve(null);
+
+    try {
+      expect(await handler.execute(command)).toBeUndefined();
+    } catch (e) {
+      expect(e).toBeInstanceOf(SchoolTypeNotFoundException);
+      expect(e.message).toBe('schools.types.errors.not_found');
+      verify(
+        schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
+      ).once();
+      verify(
+        schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
+      ).once();
+      verify(isSchoolAlreadyExist.isSatisfiedBy(anything())).never();
+      verify(schoolRepository.save(anything())).never();
+      verify(
+        school.update(anything(), anything(), anything(), anything(), anything(), anything())
+      ).never();
     }
   });
 
@@ -83,6 +124,9 @@ describe('UpdateSchoolCommandHandler', () => {
     when(
       schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(school));
+    when(
+      schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
+    ).thenResolve(instance(schoolType));
 
     expect(await handler.execute(command)).toBe(
       '8a9df044-94a7-4e6c-abd1-ecdd69d788d5'
@@ -95,7 +139,8 @@ describe('UpdateSchoolCommandHandler', () => {
         'Ecole élementaire Belliard',
         '127 Rue Belliard',
         '75010',
-        'Paris'
+        'Paris',
+        instance(schoolType)
       )
     ).calledBefore(schoolRepository.save(instance(school)));
     verify(schoolRepository.save(instance(school))).once();

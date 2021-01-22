@@ -1,7 +1,6 @@
 import {
   Controller,
   Inject,
-  Post,
   Body,
   BadRequestException,
   UseGuards,

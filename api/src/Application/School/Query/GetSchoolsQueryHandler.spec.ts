@@ -5,10 +5,16 @@ import { GetSchoolsQuery } from 'src/Application/School/Query/GetSchoolsQuery';
 import { School } from 'src/Domain/School/School.entity';
 import { SchoolView } from 'src/Application/School/View/SchoolView';
 import { Pagination } from 'src/Application/Common/Pagination';
+import { SchoolType } from 'src/Domain/School/SchoolType.entity';
+import { SchoolTypeView } from '../View/SchoolTypeView';
 
 describe('GetSchoolsQueryHandler', () => {
   it('testGetSchools', async () => {
     const schoolRepository = mock(SchoolRepository);
+
+    const schoolType = mock(SchoolType);
+    when(schoolType.getId()).thenReturn('ad7e727c-3066-42bf-982b-7219d26aeabb');
+    when(schoolType.getName()).thenReturn('élementaire');
 
     const school1 = mock(School);
     when(school1.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -17,6 +23,7 @@ describe('GetSchoolsQueryHandler', () => {
     when(school1.getAddress()).thenReturn('127 Rue Belliard');
     when(school1.getCity()).thenReturn('Paris');
     when(school1.getZipCode()).thenReturn('75010');
+    when(school1.getSchoolType()).thenReturn(instance(schoolType));
 
     const school2 = mock(School);
     when(school2.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
@@ -41,7 +48,8 @@ describe('GetSchoolsQueryHandler', () => {
           'abcDes',
           '12 Rue des Lampes',
           'Paris',
-          '75018'
+          '75018',
+          null
         ),
         new SchoolView(
           'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
@@ -49,7 +57,8 @@ describe('GetSchoolsQueryHandler', () => {
           'xLKJSs',
           '127 Rue Belliard',
           'Paris',
-          '75010'
+          '75010',
+          new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élementaire')
         )
       ],
       2

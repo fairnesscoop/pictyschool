@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Photographer } from '../User/Photographer.entity';
+import { SchoolType } from './SchoolType.entity';
 
 @Entity()
 export class School {
@@ -27,13 +28,17 @@ export class School {
   @ManyToOne(() => Photographer, { nullable: true, onDelete: 'SET NULL' })
   private photographer: Photographer;
 
+  @ManyToOne(() => SchoolType, { nullable: true, onDelete: 'SET NULL' })
+  private schoolType: SchoolType;
+
   constructor(
     reference: string,
     name: string,
     address: string,
     zipCode: string,
     city: string,
-    photographer: Photographer
+    photographer: Photographer,
+    schoolType: SchoolType
   ) {
     this.reference = reference;
     this.name = name;
@@ -41,6 +46,7 @@ export class School {
     this.zipCode = zipCode;
     this.city = city;
     this.photographer = photographer;
+    this.schoolType = schoolType;
   }
 
   public getId(): string {
@@ -74,18 +80,24 @@ export class School {
   public getPhotographer(): Photographer {
     return this.photographer;
   }
+  
+  public getSchoolType(): SchoolType {
+    return this.schoolType;
+  }
 
   public update(
     reference: string,
     name: string,
     address: string,
     zipCode: string,
-    city: string
+    city: string,
+    schoolType: SchoolType,
   ): void {
     this.reference = reference;
     this.name = name;
     this.address = address;
     this.zipCode = zipCode;
     this.city = city;
+    this.schoolType = schoolType;
   }
 }

@@ -16,7 +16,14 @@ describe('IsSchoolAlreadyExist', () => {
 
   it('testSchoolAlreadyExist', async () => {
     when(schoolRepository.findOneByReference('xjsoi2')).thenResolve(
-      new School('xjsoi2', anything(), anything(), anything(), anything(), anything())
+      new School('xjsoi2',
+        anything(),
+        anything(),
+        anything(),
+        anything(),
+        anything(),
+        anything()
+      )
     );
     expect(await isSchoolAlreadyExist.isSatisfiedBy('xjsoi2')).toBe(
       true

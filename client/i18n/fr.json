@@ -63,6 +63,7 @@
     "breadcrumb": "Écoles",
     "list": {
       "reference": "Référence",
+      "school_type": "Type d'école",
       "name": "Nom de l'école",
       "address": "Adresse"
     },
@@ -71,6 +72,25 @@
     },
     "edit": {
       "title": "Edition de l'école"
+    },
+    "types": {
+      "breadcrumb": "Types d'école",
+      "list": {
+        "name": "Nom du type d'école"
+      },
+      "add": {
+        "title": "Ajouter un type d'école"
+      },
+      "edit": {
+        "title": "Edition du type \"{title}\""
+      },
+      "form": {
+        "name": "Type d'école"
+      },
+      "errors": {
+        "already_exist": "Un type d'école avec ce nom existe déjà.",
+        "not_found": "Le type rd'école echerché n'existe pas."
+      }
     },
     "dashboard": {
       "products": "Produits proposés",
@@ -82,7 +102,9 @@
       "name": "Nom de l'école",
       "address": "Adresse",
       "city": "Ville",
-      "zip_code": "Code postal"
+      "zip_code": "Code postal",
+      "school_type": "Type d'école",
+      "school_type_placeholder": "-- Choisir un type d'école --"
     },
     "errors": {
       "already_exist": "Une école avec cette référence existe déjà.",

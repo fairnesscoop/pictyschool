@@ -33,6 +33,17 @@ import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductA
 import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductsQueryHandler';
 import { CountSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/CountSchoolProductsQueryHandler';
 import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsAction';
+import { SchoolTypeRepository } from './Repository/SchoolTypeRepository';
+import { SchoolType } from 'src/Domain/School/SchoolType.entity';
+import { UpdateSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/UpdateSchoolTypeCommandHandler';
+import { CreateSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/CreateSchoolTypeCommandHandler';
+import { GetSchoolTypeByIdQueryHandler } from 'src/Application/School/Query/Type/GetSchoolTypeByIdQueryHandler';
+import { GetSchoolTypesQueryHandler } from 'src/Application/School/Query/Type/GetSchoolTypesQueryHandler';
+import { IsSchoolTypeAlreadyExist } from 'src/Domain/School/Specification/Type/IsSchoolTypeAlreadyExist';
+import { GetSchoolTypeAction } from './Action/Type/GetSchoolTypeAction';
+import { CreateSchoolTypeAction } from './Action/Type/CreateSchoolTypeAction';
+import { GetSchoolTypesAction } from './Action/Type/GetSchoolTypesAction';
+import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
 
 @Module({
   imports: [
@@ -42,7 +53,8 @@ import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsA
       Photo,
       AccessToken,
       SchoolProduct,
-      Product
+      Product,
+      SchoolType
     ])
   ],
   controllers: [
@@ -55,13 +67,18 @@ import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsA
     CountSchoolProductsAction,
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
-    RemoveSchoolProductAction
+    RemoveSchoolProductAction,
+    GetSchoolTypesAction,
+    CreateSchoolTypeAction,
+    GetSchoolTypeAction,
+    UpdateSchoolTypeAction
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
+    { provide: 'ISchoolTypeRepository', useClass: SchoolTypeRepository },
     { provide: 'IProductRepository', useClass: ProductRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
@@ -74,7 +91,12 @@ import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsA
     UpdateSchoolProductCommandHandler,
     GetSchoolProductByIdQueryHandler,
     RemoveSchoolProductCommandHandler,
-    CountSchoolProductsQueryHandler
+    CountSchoolProductsQueryHandler,
+    UpdateSchoolTypeCommandHandler,
+    CreateSchoolTypeCommandHandler,
+    GetSchoolTypeByIdQueryHandler,
+    GetSchoolTypesQueryHandler,
+    IsSchoolTypeAlreadyExist
   ]
 })
 export class SchoolModule {}

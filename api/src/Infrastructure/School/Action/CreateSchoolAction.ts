@@ -25,9 +25,9 @@ export class CreateSchoolAction {
   ) {}
 
   @Post()
-  @ApiOperation({summary: 'Create new school'})
+  @ApiOperation({ summary: 'Create new school' })
   public async index(@Body() dto: SchoolDTO, @LoggedPhotographer() photographer: Photographer) {
-    const { reference, name, address, zipCode, city } = dto;
+    const { reference, name, address, zipCode, city, schoolTypeId } = dto;
 
     try {
       const id = await this.commandBus.execute(
@@ -37,6 +37,7 @@ export class CreateSchoolAction {
           address,
           zipCode,
           city,
+          schoolTypeId,
           photographer
         )
       );

@@ -36,7 +36,7 @@ describe('UpdateProductCommandHandler', () => {
     ).thenResolve(null);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(ProductNotFoundException);
       expect(e.message).toBe('products.errors.not_found');
@@ -59,7 +59,7 @@ describe('UpdateProductCommandHandler', () => {
     when(isProductAlreadyExist.isSatisfiedBy('Mug')).thenResolve(true);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(ProductAlreadyExistException);
       expect(e.message).toBe('products.errors.already_exist');
