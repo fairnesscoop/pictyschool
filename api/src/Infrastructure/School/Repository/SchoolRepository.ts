@@ -35,8 +35,11 @@ export class SchoolRepository implements ISchoolRepository {
         'school.reference',
         'school.address',
         'school.city',
-        'school.zipCode'
+        'school.zipCode',
+        'schoolType.id',
+        'schoolType.name'
       ])
+      .leftJoin('school.schoolType', 'schoolType')
       .where('school.id = :id', { id })
       .getOne();
   }
@@ -50,8 +53,11 @@ export class SchoolRepository implements ISchoolRepository {
         'school.reference',
         'school.address',
         'school.city',
-        'school.zipCode'
+        'school.zipCode',
+        'schoolType.id',
+        'schoolType.name'
       ])
+      .leftJoin('school.schoolType', 'schoolType')
       .orderBy('school.name', 'ASC')
       .limit(MAX_ITEMS_PER_PAGE)
       .offset((page - 1) * MAX_ITEMS_PER_PAGE)

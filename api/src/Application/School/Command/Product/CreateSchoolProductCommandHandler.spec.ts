@@ -95,7 +95,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       .thenResolve(true);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolProductAlreadyExistException);
       expect(e.message).toBe('schools.products.errors.already_exist');
@@ -114,7 +114,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       .thenResolve(null);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolNotFoundException);
       expect(e.message).toBe('schools.errors.not_found');
@@ -133,7 +133,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       .thenResolve(instance(school));
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(ProductNotFoundException);
       expect(e.message).toBe('products.errors.not_found');

@@ -61,6 +61,7 @@
     reference={school.reference}
     name={school.name}
     address={school.address}
+    schoolTypeId={school.schoolType?.id}
     city={school.city}
     zipCode={school.zipCode}
     {loading} />

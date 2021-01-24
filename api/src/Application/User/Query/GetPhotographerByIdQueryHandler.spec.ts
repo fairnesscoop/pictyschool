@@ -49,7 +49,7 @@ describe('GetPhotographerByIdQueryHandler', () => {
     ).thenResolve(null);
 
     try {
-      await queryHandler.execute(query);
+      expect(await queryHandler.execute(query)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(PhotographerNotFoundException);
       expect(e.message).toBe('users.errors.not_found');

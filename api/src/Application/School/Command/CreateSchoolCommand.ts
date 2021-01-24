@@ -8,6 +8,7 @@ export class CreateSchoolCommand implements ICommand {
     public readonly address: string,
     public readonly zipCode: string,
     public readonly city: string,
+    public readonly schoolTypeId: string,
     public readonly photographer: Photographer
   ) {}
 }

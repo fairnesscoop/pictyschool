@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsUUID, MaxLength } from 'class-validator';
 
 export class SchoolDTO {
   @IsNotEmpty()
@@ -22,4 +22,9 @@ export class SchoolDTO {
   @IsNotEmpty()
   @MaxLength(6)
   public zipCode: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID()
+  public schoolTypeId: string;
 }

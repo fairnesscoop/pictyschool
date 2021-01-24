@@ -5,7 +5,6 @@ import { Product } from 'src/Domain/Product/Product.entity';
 import { CreateProductCommandHandler } from 'src/Application/Product/Command/CreateProductCommandHandler';
 import { CreateProductCommand } from 'src/Application/Product/Command/CreateProductCommand';
 import { ProductAlreadyExistException } from 'src/Domain/Product/Exception/ProductAlreadyExistException';
-import { Photographer } from 'src/Domain/User/Photographer.entity';
 
 describe('CreateProductCommandHandler', () => {
   let productRepository: ProductRepository;
@@ -13,7 +12,6 @@ describe('CreateProductCommandHandler', () => {
   let createdProduct: Product;
   let handler: CreateProductCommandHandler;
 
-  const photographer = mock(Photographer);
   const command = new CreateProductCommand(
     'Mug',
     'Mug portrait enfant',
@@ -71,7 +69,7 @@ describe('CreateProductCommandHandler', () => {
     when(isProductAlreadyExist.isSatisfiedBy('Mug')).thenResolve(true);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(ProductAlreadyExistException);
       expect(e.message).toBe('products.errors.already_exist');

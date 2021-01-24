@@ -44,7 +44,7 @@ describe('RemoveSchoolProductCommandHandler', () => {
       .thenResolve(null);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolProductNotFoundException);
       expect(e.message).toBe('schools.products.errors.not_found');

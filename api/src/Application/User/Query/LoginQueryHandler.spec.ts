@@ -29,7 +29,7 @@ describe('LoginQueryHandler', () => {
     when(photographerRepository.findOneByEmail(email)).thenResolve(null);
 
     try {
-      await queryHandler.execute(query);
+      expect(await queryHandler.execute(query)).toBeUndefined();
     } catch (e) {
       expect(e.message).toBe('users.errors.not_found');
       expect(e).toBeInstanceOf(PhotographerNotFoundException);
@@ -45,7 +45,7 @@ describe('LoginQueryHandler', () => {
     when(photographer.getPassword()).thenReturn('hash');
 
     try {
-      await queryHandler.execute(query);
+      expect(await queryHandler.execute(query)).toBeUndefined();
     } catch (e) {
       expect(e.message).toBe('users.errors.password_not_match');
       expect(e).toBeInstanceOf(PasswordNotMatchException);
