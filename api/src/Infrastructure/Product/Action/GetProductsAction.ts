@@ -6,11 +6,13 @@ import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetProductsQuery } from 'src/Application/Product/Query/GetProductsQuery';
 import { Pagination } from 'src/Application/Common/Pagination';
 import { PaginationDTO } from 'src/Infrastructure/Common/DTO/PaginationDTO';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('products')
 @ApiTags('Product')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetProductsAction {
   constructor(
     @Inject('IQueryBus')
@@ -18,6 +20,7 @@ export class GetProductsAction {
   ) {}
 
   @Get()
+  @Roles('photographer')
   @ApiOperation({summary: 'Get all products ordered by title'})
   public async index(
     @Query() { page }: PaginationDTO

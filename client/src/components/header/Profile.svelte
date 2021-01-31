@@ -12,7 +12,7 @@
   const handleLogout = async () => {
     $session.user = null;
     Cookies.remove('flashimages_token');
-    goto('/login');
+    goto('/admin/login');
     await fetch('/proxy/session', { method: 'DELETE' });
   };
 </script>

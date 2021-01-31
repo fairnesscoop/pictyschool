@@ -3,16 +3,17 @@ import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UpdateProfileCommandHandler } from 'src/Application/User/Command/UpdateProfileCommandHandler';
 import { GetPhotographerByIdQueryHandler } from 'src/Application/User/Query/GetPhotographerByIdQueryHandler';
-import { LoginQueryHandler } from 'src/Application/User/Query/LoginQueryHandler';
+import { PhotographerLoginQueryHandler } from 'src/Application/User/Query/PhotographerLoginQueryHandler';
 import { Photographer } from 'src/Domain/User/Photographer.entity';
 import { IsEmailAlreadyExist } from 'src/Domain/User/Specification/IsEmailAlreadyExist';
 import { PasswordEncoderAdapter } from '../Adapter/PasswordEncoderAdapter';
 import { BusModule } from '../bus.module';
 import { GetMeAction } from './Action/GetMeAction';
-import { LoginAction } from './Action/LoginAction';
+import { PhotographerLoginAction } from './Action/PhotographerLoginAction';
 import { UpdateMeAction } from './Action/UpdateMeAction';
 import { PhotographerRepository } from './Repository/PhotographerRepository';
-import { PhotographerStrategy } from './Security/PhotographerStrategy';
+import { BearerStrategy } from './Security/BearerStrategy';
+import { RolesGuard } from './Security/RolesGuard';
 
 @Module({
   imports: [
@@ -20,15 +21,16 @@ import { PhotographerStrategy } from './Security/PhotographerStrategy';
     PassportModule,
     TypeOrmModule.forFeature([Photographer])
   ],
-  controllers: [LoginAction, UpdateMeAction, GetMeAction],
+  controllers: [PhotographerLoginAction, UpdateMeAction, GetMeAction],
   providers: [
     { provide: 'IPhotographerRepository', useClass: PhotographerRepository },
     { provide: 'IPasswordEncoder', useClass: PasswordEncoderAdapter },
-    PhotographerStrategy,
-    LoginQueryHandler,
+    BearerStrategy,
+    PhotographerLoginQueryHandler,
     IsEmailAlreadyExist,
     UpdateProfileCommandHandler,
-    GetPhotographerByIdQueryHandler
+    GetPhotographerByIdQueryHandler,
+    RolesGuard
   ]
 })
 export class UserModule {}

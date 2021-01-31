@@ -12,12 +12,14 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { UpdateSchoolTypeCommand } from 'src/Application/School/Command/Type/UpdateSchoolTypeCommand';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { SchoolTypeDTO } from '../../DTO/SchoolTypeDTO';
 
 @Controller('school-types')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class UpdateSchoolTypeAction {
   constructor(
     @Inject('ICommandBus')
@@ -25,6 +27,7 @@ export class UpdateSchoolTypeAction {
   ) {}
 
   @Put(':id')
+  @Roles('photographer')
   @ApiOperation({ summary: 'Edit school type' })
   public async index(@Param() { id }: IdDTO, @Body() { name }: SchoolTypeDTO) {
     try {

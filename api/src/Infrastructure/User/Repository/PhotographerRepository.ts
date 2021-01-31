@@ -18,12 +18,7 @@ export class PhotographerRepository implements IPhotographerRepository {
   public findOneByApiToken(apiToken: string): Promise<Photographer | undefined> {
     return this.repository
       .createQueryBuilder('photographer')
-      .select([
-        'photographer.id',
-        'photographer.firstName',
-        'photographer.lastName',
-        'photographer.email'
-      ])
+      .select('photographer.id')
       .where('photographer.apiToken = :apiToken', { apiToken })
       .getOne();
   }

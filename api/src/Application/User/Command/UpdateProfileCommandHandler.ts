@@ -5,6 +5,7 @@ import { UpdateProfileCommand } from './UpdateProfileCommand';
 import { IPhotographerRepository } from 'src/Domain/User/Repository/IPhotographerRepository';
 import { IsEmailAlreadyExist } from 'src/Domain/User/Specification/IsEmailAlreadyExist';
 import { EmailAlreadyExistException } from 'src/Domain/User/Exception/EmailAlreadyExistException';
+import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
 
 @CommandHandler(UpdateProfileCommand)
 export class UpdateProfileCommandHandler {
@@ -17,8 +18,13 @@ export class UpdateProfileCommandHandler {
   ) {}
 
   public async execute(command: UpdateProfileCommand): Promise<void> {
-    const { firstName, lastName, password, photographer } = command;
+    const { firstName, lastName, password, id } = command;
     const email = command.email.toLowerCase();
+
+    const photographer = await this.photographerRepository.findOneById(id);
+    if (!photographer) {
+      throw new PhotographerNotFoundException();
+    }
 
     if (
       email !== photographer.getEmail() &&

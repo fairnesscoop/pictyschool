@@ -11,11 +11,13 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { RemoveSchoolProductCommand } from 'src/Application/School/Command/Product/RemoveSchoolProductCommand';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('schools/:schoolId/products')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class RemoveSchoolProductAction {
   constructor(
     @Inject('ICommandBus')
@@ -23,6 +25,7 @@ export class RemoveSchoolProductAction {
   ) {}
 
   @Delete(':id')
+  @Roles('photographer')
   @ApiOperation({summary: 'Remove school product'})
   public async index(@Param() { id }: IdDTO) {
     try {
