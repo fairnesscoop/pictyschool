@@ -28,7 +28,7 @@
     <div class="py-4 text-gray-500 dark:text-gray-400">
       <a
         class="inline-flex ml-4 text-lg font-bold text-gray-800 dark:text-gray-200"
-        href="/">
+        href="/admin">
         <img src="images/logo.png" class="h-6" alt="{$_('app')}" />
         <span class="ml-2">{$_('app')}</span>
       </a>
@@ -37,20 +37,20 @@
           {#if !segment}
             <span class={activeClass} aria-hidden="true"></span>
           {/if}
-          <a class={!segment ? activeLinkClass : linkClass} href="/">
+          <a class={!segment ? activeLinkClass : linkClass} href="/admin">
             <DashboardIcon className={'w-5 h-5'} />
             <span class="ml-4">{$_('dashboard.title')}</span>
           </a>
         </li>
         <li class="relative px-6 py-3">
           <button
-            class="{'crm' === segment ? activeLinkClass : linkClass}"
+            class={'schools' === segment ? activeLinkClass : linkClass}
             aria-haspopup="true">
             {#if 'schools' === segment}
               <span class="{activeClass}" aria-hidden="true"></span>
             {/if}
             <span class="inline-flex items-center">
-              <SchoolIcon className="{'w-5 h-5'}" />
+              <SchoolIcon className={'w-5 h-5'} />
               <span class="ml-4">{$_('schools.breadcrumb')}</span>
             </span>
             <ChevronDownIcon className="{'w-4 h-4'}" />
@@ -58,15 +58,15 @@
           <ul
             class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
             aria-label="submenu">
-            <li class="{subLinkClass}">
+            <li class={subLinkClass}>
               <a
                 class="w-full"
-                href="/schools">{$_('schools.breadcrumb')}</a>
+                href="/admin/schools">{$_('schools.breadcrumb')}</a>
             </li>
             <li class="{subLinkClass}">
               <a
                 class="w-full"
-                href="/schools/types">{$_('schools.types.breadcrumb')}</a>
+                href="/admin/schools/types">{$_('schools.types.breadcrumb')}</a>
             </li>
           </ul>
         </li>
@@ -74,7 +74,7 @@
           {#if segment === "products"}
             <span class={activeClass} aria-hidden="true"></span>
           {/if}
-          <a class={segment === "products" ? activeLinkClass : linkClass} href="/products">
+          <a class={segment === "products" ? activeLinkClass : linkClass} href="/admin/products">
             <FolderIcon className={'w-5 h-5'} />
             <span class="ml-4">{$_('products.breadcrumb')}</span>
           </a>

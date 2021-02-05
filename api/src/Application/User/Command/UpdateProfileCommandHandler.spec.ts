@@ -6,9 +6,17 @@ import { IsEmailAlreadyExist } from 'src/Domain/User/Specification/IsEmailAlread
 import { PhotographerRepository } from 'src/Infrastructure/User/Repository/PhotographerRepository';
 import { Photographer } from 'src/Domain/User/Photographer.entity';
 import { EmailAlreadyExistException } from 'src/Domain/User/Exception/EmailAlreadyExistException';
+import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
 
 describe('UpdateProfileCommandHandler', () => {
   const email = 'mathieu@fairness.coop';
+  const photographer = mock(Photographer);
+  const command = new UpdateProfileCommand(
+    '2bd10a90-ad92-47f7-9004-c0a493ed1e13',
+    'Mathieu',
+    'Marchois',
+    'mathieu@FAIRNESS.coop'
+  );
 
   let photographerRepository: PhotographerRepository;
   let passwordEncoder: PasswordEncoderAdapter;
@@ -27,15 +35,25 @@ describe('UpdateProfileCommandHandler', () => {
     );
   });
 
-  it('testEmailAlreadyExist', async () => {
-    const photographer = mock(Photographer);
-    const command = new UpdateProfileCommand(
-      instance(photographer),
-      'Mathieu',
-      'Marchois',
-      'mathieu@FAIRNESS.coop'
-    );
+  it('testPhotographerNotFound', async () => {
+    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(null);
 
+    try {
+      expect(await commandHandler.execute(command)).toBeUndefined();
+    } catch (e) {
+      expect(e).toBeInstanceOf(PhotographerNotFoundException);
+      expect(e.message).toBe('users.errors.not_found');
+      verify(isEmailAlreadyExist.isSatisfiedBy(anything())).never();
+      verify(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
+      verify(passwordEncoder.hash(anything())).never();
+      verify(photographerRepository.save(anything())).never();
+    }
+  });
+
+  it('testEmailAlreadyExist', async () => {
+    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(photographer));
     when(photographer.getEmail()).thenReturn('mathieu.marchois@fairess.coop');
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(true);
 
@@ -45,20 +63,15 @@ describe('UpdateProfileCommandHandler', () => {
       expect(e).toBeInstanceOf(EmailAlreadyExistException);
       expect(e.message).toBe('users.errors.email_already_exist');
       verify(isEmailAlreadyExist.isSatisfiedBy(email)).once();
+      verify(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
       verify(passwordEncoder.hash(anything())).never();
       verify(photographerRepository.save(anything())).never();
     }
   });
 
   it('testUpdateWithoutPassword', async () => {
-    const photographer = mock(Photographer);
-    const command = new UpdateProfileCommand(
-      instance(photographer),
-      'Mathieu',
-      'Marchois',
-      'mathieu@FAIRNESS.coop'
-    );
-
+    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(photographer));
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(false);
 
     // Command return nothing
@@ -74,9 +87,11 @@ describe('UpdateProfileCommandHandler', () => {
   });
 
   it('testUpdateWithPassword', async () => {
-    const photographer = mock(Photographer);
-    const command = new UpdateProfileCommand(
-      instance(photographer),
+    const photographer2 = mock(Photographer);
+    when(photographerRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(photographer2));
+    const command2 = new UpdateProfileCommand(
+      'a90-ad92-47f7-9004-c0a493ed1e13',
       'Mathieu',
       'Marchois',
       'mathieu@FAIRNESS.coop',
@@ -86,19 +101,19 @@ describe('UpdateProfileCommandHandler', () => {
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(false);
     when(passwordEncoder.hash('azerty')).thenResolve('azertyCrypted');
 
-    // Command return nothing
-    expect(await commandHandler.execute(command)).toBeUndefined();
+    expect(await commandHandler.execute(command2)).toBeUndefined();
 
-    verify(photographer.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
-    verify(photographer.updatePassword('azertyCrypted')).once();
-    verify(photographer.updatePassword('azertyCrypted')).calledBefore(
-      photographerRepository.save(instance(photographer))
+    verify(photographer2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
+    verify(photographer2.updatePassword('azertyCrypted')).once();
+    verify(photographerRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13')).once();
+    verify(photographer2.updatePassword('azertyCrypted')).calledBefore(
+      photographerRepository.save(instance(photographer2))
     );
     verify(passwordEncoder.hash('azerty')).once();
     verify(
-      photographer.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
-    ).calledBefore(photographerRepository.save(instance(photographer)));
+      photographer2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
+    ).calledBefore(photographerRepository.save(instance(photographer2)));
     verify(isEmailAlreadyExist.isSatisfiedBy(email)).once();
-    verify(photographerRepository.save(instance(photographer))).once();
+    verify(photographerRepository.save(instance(photographer2))).once();
   });
 });

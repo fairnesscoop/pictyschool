@@ -12,7 +12,7 @@
   const { page, session } = stores();
   const options = {
     routes,
-    deny: () => goto('/login'),
+    deny: () => goto('/admin/login'),
   };
 
   page.subscribe(async (v) => {
@@ -22,7 +22,7 @@
 </script>
 
 <div class={$settings.theme}>
-  {#if segment !== 'login'}
+  {#if $session.user}
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 dark-theme">
       <Nav segment={segment} />
       <div class="flex flex-col flex-1 w-full">

@@ -6,11 +6,13 @@ import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetSchoolsQuery } from 'src/Application/School/Query/GetSchoolsQuery';
 import { Pagination } from 'src/Application/Common/Pagination';
 import { PaginationDTO } from 'src/Infrastructure/Common/DTO/PaginationDTO';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 
 @Controller('schools')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolsAction {
   constructor(
     @Inject('IQueryBus')
@@ -18,6 +20,7 @@ export class GetSchoolsAction {
   ) {}
 
   @Get()
+  @Roles('photographer')
   @ApiOperation({summary: 'Get all schools ordered by name'})
   public async index(
     @Query() { page }: PaginationDTO

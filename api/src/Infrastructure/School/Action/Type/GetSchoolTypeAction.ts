@@ -12,11 +12,13 @@ import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetSchoolTypeByIdQuery } from 'src/Application/School/Query/Type/GetSchoolTypeByIdQuery';
 import { SchoolTypeView } from 'src/Application/School/View/SchoolTypeView';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('school-types')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolTypeAction {
   constructor(
     @Inject('IQueryBus')
@@ -24,6 +26,7 @@ export class GetSchoolTypeAction {
   ) {}
 
   @Get(':id')
+  @Roles('photographer')
   @ApiOperation({ summary: 'Get school type' })
   public async index(@Param() { id }: IdDTO): Promise<SchoolTypeView> {
     try {

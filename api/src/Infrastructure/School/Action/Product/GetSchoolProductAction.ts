@@ -12,11 +12,13 @@ import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetSchoolProductByIdQuery } from 'src/Application/School/Query/Product/GetSchoolProductByIdQuery';
 import { SchoolProductView } from 'src/Application/School/View/SchoolProductView';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('schools/:schoolId/products')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolProductAction {
   constructor(
     @Inject('IQueryBus')
@@ -24,6 +26,7 @@ export class GetSchoolProductAction {
   ) {}
 
   @Get(':id')
+  @Roles('photographer')
   @ApiOperation({ summary: 'Get school product' })
   public async index(@Param() { id }: IdDTO): Promise<SchoolProductView> {
     try {

@@ -4,11 +4,13 @@ import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { IQueryBus } from 'src/Application/IQueryBus';
 import { SchoolTypeView } from 'src/Application/School/View/SchoolTypeView';
 import { GetSchoolTypesQuery } from 'src/Application/School/Query/Type/GetSchoolTypesQuery';
+import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
+import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 
 @Controller('school-types')
 @ApiTags('School')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('bearer'))
+@UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolTypesAction {
   constructor(
     @Inject('IQueryBus')
@@ -16,7 +18,8 @@ export class GetSchoolTypesAction {
   ) {}
 
   @Get()
-  @ApiOperation({summary: 'Get school types'})
+  @Roles('photographer')
+  @ApiOperation({ summary: 'Get school types' })
   public async index(): Promise<SchoolTypeView[]> {
     try {
       return await this.queryBus.execute(new GetSchoolTypesQuery());
