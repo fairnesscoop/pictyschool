@@ -31,16 +31,40 @@ export class UpdateSchoolAction {
   @ApiOperation({ summary: 'Update school' })
   public async index(@Param() idDto: IdDTO, @Body() dto: SchoolDTO) {
     try {
-      const { name, address, city, zipCode, reference, schoolTypeId } = dto;
+      const {
+        reference,
+        name,
+        address,
+        zipCode,
+        city,
+        schoolTypeId,
+        phoneNumber,
+        director,
+        directorCivility,
+        email,
+        numberOfClasses,
+        numberOfStudents,
+        observation,
+        pdv
+      } = dto;
+
       const id = await this.commandBus.execute(
         new UpdateSchoolCommand(
           idDto.id,
-          name,
           reference,
+          name,
           address,
           city,
           zipCode,
-          schoolTypeId
+          schoolTypeId,
+          phoneNumber,
+          director,
+          directorCivility,
+          email,
+          numberOfStudents,
+          numberOfClasses,
+          observation,
+          pdv
         )
       );
 

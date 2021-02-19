@@ -35,7 +35,7 @@
     try {
       loading = true;
       await put(`products/${id}`, e.detail);
-      goto('/products');
+      goto('/admin/products');
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {

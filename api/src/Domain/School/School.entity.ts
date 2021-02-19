@@ -1,6 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Photographer } from '../User/Photographer.entity';
 import { SchoolType } from './SchoolType.entity';
+
+export enum Civility {
+  MR = 'mr',
+  MME = 'mme'
+}
 
 @Entity()
 export class School {
@@ -22,11 +26,32 @@ export class School {
   @Column({ type: 'varchar', nullable: false })
   private city: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  private createdAt: Date;
+  @Column({ type: 'varchar', nullable: true })
+  private phoneNumber: string;
 
-  @ManyToOne(() => Photographer, { nullable: true, onDelete: 'SET NULL' })
-  private photographer: Photographer;
+  @Column({ type: 'varchar', nullable: true })
+  private director: string;
+
+  @Column('enum', { enum: Civility, nullable: true })
+  private directorCivility: Civility;
+
+  @Column({ type: 'varchar', nullable: true })
+  private email: string;
+
+  @Column({ type: 'integer', nullable: true, default: 0 })
+  private numberOfStudents: number;
+
+  @Column({ type: 'integer', nullable: true, default: 0 })
+  private numberOfClasses: number;
+
+  @Column({ type: 'text', nullable: true })
+  private observation: string;
+
+  @Column({ type: 'timestamp', nullable: true })
+  private pdv: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  private createdAt: number;
 
   @ManyToOne(() => SchoolType, { nullable: true, onDelete: 'SET NULL' })
   private schoolType: SchoolType;
@@ -37,15 +62,29 @@ export class School {
     address: string,
     zipCode: string,
     city: string,
-    photographer: Photographer,
-    schoolType: SchoolType
+    phoneNumber?: string,
+    director?: string,
+    directorCivility?: Civility,
+    email?: string,
+    numberOfStudents?: number,
+    numberOfClasses?: number,
+    observation?: string,
+    pdv?: string,
+    schoolType?: SchoolType
   ) {
     this.reference = reference;
     this.name = name;
     this.address = address;
     this.zipCode = zipCode;
     this.city = city;
-    this.photographer = photographer;
+    this.phoneNumber = phoneNumber;
+    this.director = director;
+    this.directorCivility = directorCivility;
+    this.email = email;
+    this.numberOfStudents = numberOfStudents;
+    this.numberOfClasses = numberOfClasses;
+    this.observation = observation;
+    this.pdv = pdv;
     this.schoolType = schoolType;
   }
 
@@ -73,14 +112,42 @@ export class School {
     return this.city;
   }
 
-  public getCreatedAt(): Date {
+  public getPhoneNumber(): string {
+    return this.phoneNumber;
+  }
+
+  public getDirector(): string {
+    return this.director;
+  }
+
+  public getDirectorCivility(): Civility {
+    return this.directorCivility;
+  }
+
+  public getEmail(): string {
+    return this.email;
+  }
+
+  public getNumberOfStudents(): number {
+    return this.numberOfStudents;
+  }
+
+  public getNumberOfClasses(): number {
+    return this.numberOfClasses;
+  }
+
+  public getObservation(): string {
+    return this.observation;
+  }
+
+  public getPdv(): string {
+    return this.pdv;
+  }
+
+  public getCreatedAt(): number {
     return this.createdAt;
   }
 
-  public getPhotographer(): Photographer {
-    return this.photographer;
-  }
-  
   public getSchoolType(): SchoolType {
     return this.schoolType;
   }
@@ -91,13 +158,29 @@ export class School {
     address: string,
     zipCode: string,
     city: string,
-    schoolType: SchoolType,
+    phoneNumber?: string,
+    director?: string,
+    directorCivility?: Civility,
+    email?: string,
+    numberOfStudents?: number,
+    numberOfClasses?: number,
+    observation?: string,
+    pdv?: string,
+    schoolType?: SchoolType
   ): void {
     this.reference = reference;
     this.name = name;
     this.address = address;
     this.zipCode = zipCode;
     this.city = city;
+    this.phoneNumber = phoneNumber;
+    this.director = director;
+    this.directorCivility = directorCivility;
+    this.email = email;
+    this.numberOfStudents = numberOfStudents;
+    this.numberOfClasses = numberOfClasses;
+    this.observation = observation;
+    this.pdv = pdv;
     this.schoolType = schoolType;
   }
 }

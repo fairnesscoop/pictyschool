@@ -43,9 +43,25 @@
       {required}
       class={className}
       bind:value />
+  {:else if type === 'number'}
+    <input
+      type="number"
+      min="0"
+      {id}
+      {required}
+      class={className}
+      bind:value />
   {:else if type === 'date'}
     <input
       type="date"
+      {id}
+      {required}
+      {placeholder}
+      class={className}
+      bind:value />
+  {:else if type === 'datetime'}
+    <input
+      type="datetime-local"
       {id}
       {required}
       {placeholder}

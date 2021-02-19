@@ -36,6 +36,14 @@ export class SchoolRepository implements ISchoolRepository {
         'school.address',
         'school.city',
         'school.zipCode',
+        'school.phoneNumber',
+        'school.email',
+        'school.director',
+        'school.directorCivility',
+        'school.numberOfClasses',
+        'school.numberOfStudents',
+        'school.pdv',
+        'school.observation',
         'schoolType.id',
         'schoolType.name'
       ])

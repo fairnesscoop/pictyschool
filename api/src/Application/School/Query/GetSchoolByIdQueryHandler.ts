@@ -2,9 +2,9 @@ import { QueryHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
-import { SchoolView } from '../View/SchoolView';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolTypeView } from '../View/SchoolTypeView';
+import { SchoolDetailView } from '../View/SchoolDetailView';
 
 @QueryHandler(GetSchoolByIdQuery)
 export class GetSchoolByIdQueryHandler {
@@ -13,7 +13,7 @@ export class GetSchoolByIdQueryHandler {
     private readonly schoolRepository: ISchoolRepository
   ) {}
 
-  public async execute(query: GetSchoolByIdQuery): Promise<SchoolView> {
+  public async execute(query: GetSchoolByIdQuery): Promise<SchoolDetailView> {
     const school = await this.schoolRepository.findOneById(query.id);
 
     if (!school) {
@@ -25,13 +25,21 @@ export class GetSchoolByIdQueryHandler {
       new SchoolTypeView(schoolType.getId(), schoolType.getName()) :
       null;
 
-    return new SchoolView(
+    return new SchoolDetailView(
       school.getId(),
       school.getName(),
       school.getReference(),
       school.getAddress(),
       school.getCity(),
       school.getZipCode(),
+      school.getPhoneNumber(),
+      school.getEmail(),
+      school.getDirector(),
+      school.getDirectorCivility(),
+      school.getNumberOfClasses(),
+      school.getNumberOfStudents(),
+      school.getPdv(),
+      school.getObservation(),
       schoolTypeView
     );
   }

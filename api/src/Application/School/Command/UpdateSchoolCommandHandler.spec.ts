@@ -3,7 +3,7 @@ import { UpdateSchoolCommandHandler } from './UpdateSchoolCommandHandler';
 import { UpdateSchoolCommand } from './UpdateSchoolCommand';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
 import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAlreadyExist';
-import { School } from 'src/Domain/School/School.entity';
+import { Civility, School } from 'src/Domain/School/School.entity';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolTypeRepository } from 'src/Infrastructure/School/Repository/SchoolTypeRepository';
@@ -21,12 +21,20 @@ describe('UpdateSchoolCommandHandler', () => {
   const schoolType = mock(SchoolType);
   const command = new UpdateSchoolCommand(
     '8a9df044-94a7-4e6c-abd1-ecdd69d788d5',
-    'Ecole élementaire Belliard',
-    'xLKJSs',
+    'LM120I',
+    'Belliard',
     '127 Rue Belliard',
+    '75018',
     'Paris',
-    '75010',
-    'df8910f9-ac0a-412b-b9a8-dbf299340abc'
+    'df8910f9-ac0a-412b-b9a8-dbf299340abc',
+    '010101010101',
+    'Chaullet',
+    Civility.MR,
+    'chaullet@mail.com',
+    200,
+    10,
+    'Observation',
+    '12/12/2020',
   );
 
   beforeEach(() => {
@@ -73,7 +81,7 @@ describe('UpdateSchoolCommandHandler', () => {
       schoolTypeRepository.findOneById('df8910f9-ac0a-412b-b9a8-dbf299340abc')
     ).thenResolve(instance(schoolType));
     when(
-      isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')
+      isSchoolAlreadyExist.isSatisfiedBy('LM120I')
     ).thenResolve(true);
 
     try {
@@ -82,7 +90,7 @@ describe('UpdateSchoolCommandHandler', () => {
       expect(e).toBeInstanceOf(SchoolAlreadyExistException);
       expect(e.message).toBe('schools.errors.already_exist');
       verify(
-        isSchoolAlreadyExist.isSatisfiedBy('xLKJSs')
+        isSchoolAlreadyExist.isSatisfiedBy('LM120I')
       ).once();
       verify(
         school.update(anything(), anything(), anything(), anything(), anything(), anything())
@@ -113,14 +121,14 @@ describe('UpdateSchoolCommandHandler', () => {
       verify(isSchoolAlreadyExist.isSatisfiedBy(anything())).never();
       verify(schoolRepository.save(anything())).never();
       verify(
-        school.update(anything(), anything(), anything(), anything(), anything(), anything())
+        school.update(anything(), anything(), anything(), anything(), anything())
       ).never();
     }
   });
 
   it('testSuccessfullyUpdated', async () => {
     when(school.getId()).thenReturn('8a9df044-94a7-4e6c-abd1-ecdd69d788d5');
-    when(school.getReference()).thenReturn('xLKJSs');
+    when(school.getReference()).thenReturn('LM120I');
     when(
       schoolRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(school));
@@ -135,11 +143,19 @@ describe('UpdateSchoolCommandHandler', () => {
     verify(isSchoolAlreadyExist.isSatisfiedBy(anything())).never();
     verify(
       school.update(
-        'xLKJSs',
-        'Ecole élementaire Belliard',
+        'LM120I',
+        'Belliard',
         '127 Rue Belliard',
-        '75010',
+        '75018',
         'Paris',
+        '010101010101',
+        'Chaullet',
+        Civility.MR,
+        'chaullet@mail.com',
+        200,
+        10,
+        'Observation',
+        '12/12/2020',
         instance(schoolType)
       )
     ).calledBefore(schoolRepository.save(instance(school)));
