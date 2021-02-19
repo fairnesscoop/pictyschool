@@ -19,7 +19,23 @@ export class UpdateSchoolCommandHandler {
   ) {}
 
   public async execute(command: UpdateSchoolCommand): Promise<string> {
-    const { id, schoolTypeId, reference, name, address, city, zipCode } = command;
+    const {
+      id,
+      reference,
+      address,
+      city,
+      schoolTypeId,
+      name,
+      zipCode,
+      director,
+      directorCivility,
+      email,
+      numberOfClasses,
+      numberOfStudents, 
+      observation,
+      pdv,
+      phoneNumber
+    } = command;
 
     const school = await this.schoolRepository.findOneById(id);
     if (!school) {
@@ -38,7 +54,22 @@ export class UpdateSchoolCommandHandler {
       throw new SchoolAlreadyExistException();
     }
 
-    school.update(reference, name, address, zipCode, city, schoolType);
+    school.update(
+      reference,
+      name,
+      address,
+      zipCode,
+      city,
+      phoneNumber,
+      director,
+      directorCivility,
+      email,
+      numberOfStudents,
+      numberOfClasses,
+      observation,
+      pdv,
+      schoolType
+    );
 
     await this.schoolRepository.save(school);
 

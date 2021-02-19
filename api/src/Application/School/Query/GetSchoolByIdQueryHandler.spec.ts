@@ -1,12 +1,12 @@
 import { mock, instance, when, verify } from 'ts-mockito';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
-import { School } from 'src/Domain/School/School.entity';
-import { SchoolView } from 'src/Application/School/View/SchoolView';
+import { Civility, School } from 'src/Domain/School/School.entity';
 import { GetSchoolByIdQueryHandler } from './GetSchoolByIdQueryHandler';
 import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolType } from 'src/Domain/School/SchoolType.entity';
 import { SchoolTypeView } from '../View/SchoolTypeView';
+import { SchoolDetailView } from '../View/SchoolDetailView';
 
 describe('GetSchoolByIdQueryHandler', () => {
   const query = new GetSchoolByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -14,13 +14,21 @@ describe('GetSchoolByIdQueryHandler', () => {
   it('testGetSchool', async () => {
     const schoolRepository = mock(SchoolRepository);
     const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
-    const expectedResult = new SchoolView(
+    const expectedResult = new SchoolDetailView(
       'd54f15d6-1a1d-47e8-8672-9f46018f9960',
-      'Ecole Primaire les Landes',
-      'abcDes',
-      '12 Rue des Lampes',
+      'Belliard',
+      'LM120I',
+      '127 Rue Belliard',
       'Paris',
       '75018',
+      '010101010101',
+      'chaullet@mail.com',
+      'Chaullet',
+      Civility.MR,
+      10,
+      200,
+      '12/12/2020',
+      'Observation',
       new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élémentaire')
     );
 
@@ -29,12 +37,20 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(schoolType.getName()).thenReturn('élémentaire');
 
     const school = mock(School);
+    when(school.getName()).thenReturn('Belliard');
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
-    when(school.getName()).thenReturn('Ecole Primaire les Landes');
-    when(school.getReference()).thenReturn('abcDes');
-    when(school.getAddress()).thenReturn('12 Rue des Lampes');
+    when(school.getReference()).thenReturn('LM120I');
+    when(school.getAddress()).thenReturn('127 Rue Belliard');
     when(school.getCity()).thenReturn('Paris');
     when(school.getZipCode()).thenReturn('75018');
+    when(school.getPhoneNumber()).thenReturn('010101010101');
+    when(school.getEmail()).thenReturn('chaullet@mail.com');
+    when(school.getDirector()).thenReturn('Chaullet');
+    when(school.getDirectorCivility()).thenReturn(Civility.MR);
+    when(school.getNumberOfClasses()).thenReturn(10);
+    when(school.getNumberOfStudents()).thenReturn(200);
+    when(school.getPdv()).thenReturn('12/12/2020');
+    when(school.getObservation()).thenReturn('Observation');
     when(school.getSchoolType()).thenReturn(instance(schoolType));
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
@@ -50,23 +66,40 @@ describe('GetSchoolByIdQueryHandler', () => {
   it('testGetSchoolWithoutSchoolType', async () => {
     const schoolRepository = mock(SchoolRepository);
     const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
-    const expectedResult = new SchoolView(
+    const expectedResult = new SchoolDetailView(
       'd54f15d6-1a1d-47e8-8672-9f46018f9960',
-      'Ecole Primaire les Landes',
-      'abcDes',
-      '12 Rue des Lampes',
+      'Belliard',
+      'LM120I',
+      '127 Rue Belliard',
       'Paris',
       '75018',
+      '010101010101',
+      'chaullet@mail.com',
+      'Chaullet',
+      Civility.MR,
+      10,
+      200,
+      '12/12/2020',
+      'Observation',
       null
     );
 
     const school = mock(School);
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
-    when(school.getName()).thenReturn('Ecole Primaire les Landes');
-    when(school.getReference()).thenReturn('abcDes');
-    when(school.getAddress()).thenReturn('12 Rue des Lampes');
+    when(school.getName()).thenReturn('Belliard');
+    when(school.getReference()).thenReturn('LM120I');
+    when(school.getAddress()).thenReturn('127 Rue Belliard');
     when(school.getCity()).thenReturn('Paris');
     when(school.getZipCode()).thenReturn('75018');
+    when(school.getPhoneNumber()).thenReturn('010101010101');
+    when(school.getEmail()).thenReturn('chaullet@mail.com');
+    when(school.getDirector()).thenReturn('Chaullet');
+    when(school.getDirectorCivility()).thenReturn(Civility.MR);
+    when(school.getNumberOfClasses()).thenReturn(10);
+    when(school.getNumberOfStudents()).thenReturn(200);
+    when(school.getPdv()).thenReturn('12/12/2020');
+    when(school.getObservation()).thenReturn('Observation');
+    when(school.getSchoolType()).thenReturn(null);
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(instance(school));

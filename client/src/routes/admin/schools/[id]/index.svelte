@@ -15,6 +15,7 @@
   import CardPhoto from './_CardPhoto.svelte';
   import CardProduct from './_CardProduct.svelte';
   import CardOrder from './_CardOrder.svelte';
+  import Detail from './_Detail.svelte';
   import Link from '../../../../components/links/Link.svelte';
 
   export let id;
@@ -44,8 +45,11 @@
 </div>
 <ServerErrors {errors} />
 
-<div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
+<div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-3">
   <CardPhoto />
   <CardOrder />
   <CardProduct {id} />
 </div>
+{#if school}
+  <Detail {school} />
+{/if}

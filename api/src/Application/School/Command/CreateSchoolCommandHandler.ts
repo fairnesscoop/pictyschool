@@ -19,7 +19,22 @@ export class CreateSchoolCommandHandler {
   ) {}
 
   public async execute(command: CreateSchoolCommand): Promise<string> {
-    const { reference, address, city, schoolTypeId, name, photographer, zipCode } = command;
+    const {
+      reference,
+      address,
+      city,
+      schoolTypeId,
+      name,
+      zipCode,
+      director,
+      directorCivility,
+      email,
+      numberOfClasses,
+      numberOfStudents, 
+      observation,
+      pdv,
+      phoneNumber
+    } = command;
 
     const schoolType = await this.schoolTypeRepository.findOneById(schoolTypeId);
     if (!schoolType) {
@@ -37,7 +52,14 @@ export class CreateSchoolCommandHandler {
         address,
         zipCode,
         city,
-        photographer,
+        phoneNumber,
+        director,
+        directorCivility,
+        email,
+        numberOfStudents,
+        numberOfClasses,
+        observation,
+        pdv,
         schoolType
       )
     );
