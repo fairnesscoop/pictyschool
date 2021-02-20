@@ -15,6 +15,10 @@ export class SchoolTypeRepository implements ISchoolTypeRepository {
     return this.repository.save(schoolType);
   }
 
+  public remove(schoolType: SchoolType): void {
+    this.repository.delete(schoolType.getId());
+  }
+
   public findAll(): Promise<SchoolType[]> {
     return this.repository
       .createQueryBuilder('schoolType')

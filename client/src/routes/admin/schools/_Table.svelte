@@ -20,7 +20,7 @@
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
     {#each items as { id, schoolType, name, reference, address, city, zipCode } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
-        <td class="px-4 py-3 text-sm">{schoolType?.name}</td>
+        <td class="px-4 py-3 text-sm">{#if schoolType}{schoolType.name}{/if}</td>
         <td class="px-4 py-3 text-sm">{reference}</td>
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">{address} - {city} {zipCode}</td>
