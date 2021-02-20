@@ -87,6 +87,9 @@
       "form": {
         "name": "Type d'école"
       },
+      "delete": {
+        "confirm": "Êtes-vous sûr de vouloir supprimer ce type d'école ?"
+      },
       "errors": {
         "already_exist": "Un type d'école avec ce nom existe déjà.",
         "not_found": "Le type rd'école echerché n'existe pas."

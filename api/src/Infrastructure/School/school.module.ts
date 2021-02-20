@@ -44,6 +44,8 @@ import { GetSchoolTypeAction } from './Action/Type/GetSchoolTypeAction';
 import { CreateSchoolTypeAction } from './Action/Type/CreateSchoolTypeAction';
 import { GetSchoolTypesAction } from './Action/Type/GetSchoolTypesAction';
 import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
+import { RemoveSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/RemoveSchoolTypeCommandHandler';
+import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
 
 @Module({
   imports: [
@@ -71,7 +73,8 @@ import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
     GetSchoolTypesAction,
     CreateSchoolTypeAction,
     GetSchoolTypeAction,
-    UpdateSchoolTypeAction
+    UpdateSchoolTypeAction,
+    RemoveSchoolTypeAction
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
@@ -96,7 +99,8 @@ import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
     CreateSchoolTypeCommandHandler,
     GetSchoolTypeByIdQueryHandler,
     GetSchoolTypesQueryHandler,
-    IsSchoolTypeAlreadyExist
+    IsSchoolTypeAlreadyExist,
+    RemoveSchoolTypeCommandHandler
   ]
 })
 export class SchoolModule {}

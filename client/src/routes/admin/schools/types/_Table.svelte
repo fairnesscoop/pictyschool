@@ -1,8 +1,12 @@
 <script>
   import { _ } from 'svelte-i18n';
+  import { createEventDispatcher } from 'svelte';
   import EditLink from '../../../../components/links/EditLink.svelte';
+  import DeleteLink from '../../../../components/links/DeleteLink.svelte';
 
   export let items;
+
+  const dispatch = createEventDispatcher();
 </script>
 
 <table class="w-full whitespace-no-wrap">
@@ -19,6 +23,7 @@
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
             <EditLink href={`/admin/schools/types/${id}/edit`} />
+            <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"schools.types.delete.confirm"} />
           </div>
         </td>
       </tr>
