@@ -12,16 +12,19 @@ export class UpdateSchoolProductCommandHandler {
   ) {}
 
   public async execute(command: UpdateSchoolProductCommand): Promise<string> {
-    const { unitPrice, id } = command;
+    const { parentUnitPrice, photographerUnitPrice, id } = command;
 
     const schoolProduct = await this.schoolProductRepository.findOneById(id);
-
     if (!schoolProduct) {
       throw new SchoolProductNotFoundException();
     }
 
-    schoolProduct.updateUnitPrice(Math.round(unitPrice * 100));
-    this.schoolProductRepository.save(schoolProduct);
+    schoolProduct.updatePrices(
+      Math.round(parentUnitPrice * 100),
+      Math.round(photographerUnitPrice * 100),
+    );
+
+    await this.schoolProductRepository.save(schoolProduct);
 
     return schoolProduct.getId();
   }

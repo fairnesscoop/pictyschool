@@ -20,7 +20,7 @@
           <td class="px-4 py-3 text-sm">{school.schoolType.name}</td>
         </tr>
       {/if}
-      {#if school.directorCivility || school.director}
+      {#if school.directorCivility && school.director}
         <tr class="text-gray-700 dark:text-gray-400">
           <td class="px-4 py-3 text-sm">{$_('schools.dashboard.director')}</td>
           <td class="px-4 py-3 text-sm">{school.directorCivility} {school.director}</td>

@@ -76,5 +76,9 @@
     }
   })}/>
   
-  <Form on:save={onSave} {loading} unitPrice={schoolProduct.unitPrice} />
+  <Form
+    on:save={onSave}
+    {loading}
+    parentUnitPrice={schoolProduct.parentUnitPrice}
+    photographerUnitPrice={schoolProduct.photographerUnitPrice} />
 {/if}

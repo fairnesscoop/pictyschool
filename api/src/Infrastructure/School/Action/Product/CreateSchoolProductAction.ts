@@ -30,11 +30,16 @@ export class CreateSchoolProductAction {
   @Roles('photographer')
   @ApiOperation({summary: 'Assign a product to a specific school'})
   public async index(@Param() idDto: IdDTO, @Body() dto: SchoolProductDTO) {
-    const { unitPrice, productId } = dto;
+    const { parentUnitPrice, photographerUnitPrice, productId } = dto;
 
     try {
       const id = await this.commandBus.execute(
-        new CreateSchoolProductCommand(unitPrice, idDto.id, productId)
+        new CreateSchoolProductCommand(
+          parentUnitPrice,
+          photographerUnitPrice,
+          idDto.id,
+          productId
+        )
       );
 
       return { id };

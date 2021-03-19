@@ -12,6 +12,7 @@ describe('UpdateSchoolProductCommandHandler', () => {
 
   const command = new UpdateSchoolProductCommand(
     '17efcbee-bd2f-410e-9e99-51684b592bad',
+    3.99,
     9.99,
   );
 
@@ -42,7 +43,7 @@ describe('UpdateSchoolProductCommandHandler', () => {
       schoolProductRepository.save(instance(updatedSchoolProduct))
     ).once();
     verify(updatedSchoolProduct.getId()).once();
-    verify(updatedSchoolProduct.updateUnitPrice(999)).once();
+    verify(updatedSchoolProduct.updatePrices(399, 999)).once();
     verify(schoolProductRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad')).once();
   });
 

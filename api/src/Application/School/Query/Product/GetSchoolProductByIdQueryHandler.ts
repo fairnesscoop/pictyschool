@@ -22,7 +22,8 @@ export class GetSchoolProductByIdQueryHandler {
 
     return new SchoolProductView(
       schoolProduct.getId(),
-      schoolProduct.getUnitPrice() / 100,
+      schoolProduct.getParentUnitPrice() / 100,
+      schoolProduct.getPhotographerUnitPrice() / 100,
       new ProductSummaryView(
         schoolProduct.getProduct().getTitle(),
         schoolProduct.getProduct().getUnitPrice() / 100

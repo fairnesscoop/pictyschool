@@ -20,7 +20,8 @@ describe('GetSchoolsQueryHandler', () => {
       '4de2ffc4-e835-44c8-95b7-17c171c09873'
     );
     when(schoolProduct1.getProduct()).thenReturn(instance(product1));
-    when(schoolProduct1.getUnitPrice()).thenReturn(1200);
+    when(schoolProduct1.getParentUnitPrice()).thenReturn(1200);
+    when(schoolProduct1.getPhotographerUnitPrice()).thenReturn(1800);
 
     const product2 = mock(Product);
     when(product2.getTitle()).thenReturn('1 page individuelle');
@@ -31,7 +32,8 @@ describe('GetSchoolsQueryHandler', () => {
       '12b4aa8a-ece7-45f0-a07e-ca755e67be1e'
     );
     when(schoolProduct2.getProduct()).thenReturn(instance(product2));
-    when(schoolProduct2.getUnitPrice()).thenReturn(1500);
+    when(schoolProduct2.getParentUnitPrice()).thenReturn(1500);
+    when(schoolProduct2.getPhotographerUnitPrice()).thenReturn(1900);
 
     when(
       schoolProductRepository.findBySchoolId(
@@ -47,11 +49,13 @@ describe('GetSchoolsQueryHandler', () => {
       new SchoolProductView(
         '4de2ffc4-e835-44c8-95b7-17c171c09873',
         12,
+        18,
         new ProductSummaryView('Photo de classe traditionnelle', 15),
       ),
       new SchoolProductView(
         '12b4aa8a-ece7-45f0-a07e-ca755e67be1e',
         15,
+        19,
         new ProductSummaryView('1 page individuelle', 15),
       )
     ];
