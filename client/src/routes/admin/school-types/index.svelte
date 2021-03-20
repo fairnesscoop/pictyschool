@@ -1,12 +1,12 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import { get, del } from '../../../../utils/axios';
-  import { errorNormalizer } from '../../../../normalizer/errors';
-  import Breadcrumb from '../../../../components/Breadcrumb.svelte';
-  import H4Title from '../../../../components/H4Title.svelte';
-  import AddLink from '../../../../components/links/AddLink.svelte';
-  import ServerErrors from '../../../../components/ServerErrors.svelte';
+  import { get, del } from '../../../utils/axios';
+  import { errorNormalizer } from '../../../normalizer/errors';
+  import Breadcrumb from '../../../components/Breadcrumb.svelte';
+  import H4Title from '../../../components/H4Title.svelte';
+  import AddLink from '../../../components/links/AddLink.svelte';
+  import ServerErrors from '../../../components/ServerErrors.svelte';
   import Table from './_Table.svelte';
 
   let title = $_('schools.types.breadcrumb');
@@ -41,7 +41,7 @@
 <ServerErrors {errors} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  <AddLink href={'/admin/schools/types/add'} value={$_('common.form.add')} />
+  <AddLink href={'/admin/school-types/add'} value={$_('common.form.add')} />
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
   <div class="w-full overflow-x-auto">

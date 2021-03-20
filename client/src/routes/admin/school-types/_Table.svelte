@@ -1,8 +1,8 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
-  import EditLink from '../../../../components/links/EditLink.svelte';
-  import DeleteLink from '../../../../components/links/DeleteLink.svelte';
+  import EditLink from '../../../components/links/EditLink.svelte';
+  import DeleteLink from '../../../components/links/DeleteLink.svelte';
 
   export let items;
 
@@ -22,7 +22,7 @@
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
-            <EditLink href={`/admin/schools/types/${id}/edit`} />
+            <EditLink href={`/admin/school-types/${id}/edit`} />
             <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"schools.types.delete.confirm"} />
           </div>
         </td>

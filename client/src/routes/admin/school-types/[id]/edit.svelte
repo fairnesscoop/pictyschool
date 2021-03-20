@@ -8,12 +8,12 @@
   import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, put } from '../../../../../utils/axios';
-  import Breadcrumb from '../../../../../components/Breadcrumb.svelte';
+  import { get, put } from '../../../../utils/axios';
+  import Breadcrumb from '../../../../components/Breadcrumb.svelte';
   import Form from '../_Form.svelte';
-  import { errorNormalizer } from '../../../../../normalizer/errors';
-  import ServerErrors from '../../../../../components/ServerErrors.svelte';
-  import H4Title from '../../../../../components/H4Title.svelte';
+  import { errorNormalizer } from '../../../../normalizer/errors';
+  import ServerErrors from '../../../../components/ServerErrors.svelte';
+  import H4Title from '../../../../components/H4Title.svelte';
 
   export let id;
 
@@ -35,7 +35,7 @@
     try {
       loading = true;
       await put(`school-types/${id}`, e.detail);
-      goto('/admin/schools/types');
+      goto('/admin/school-types');
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {
@@ -48,7 +48,7 @@
   <title>{title} - {$_('app')}</title>
 </svelte:head>
 
-<Breadcrumb items={[{ title: $_('schools.types.breadcrumb'), path: '/admin/schools/types' }, { title }]} />
+<Breadcrumb items={[{ title: $_('schools.types.breadcrumb'), path: '/admin/school-types' }, { title }]} />
 <H4Title {title} />
 <ServerErrors {errors} />
 {#if schoolType}
