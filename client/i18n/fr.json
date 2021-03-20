@@ -104,6 +104,7 @@
     },
     "dashboard": {
       "products": "Produits proposés",
+      "director": "Directeur",
       "orders": "Commandes",
       "photos": "Photos",
       "school_type": "Type d'école",

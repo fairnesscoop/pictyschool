@@ -15,8 +15,8 @@
   const onSave = async (e) => {
     try {
       loading = true;
-      await post('schools', e.detail);
-      goto('/admin/schools');
+      const { data } = await post('schools', e.detail);
+      goto(`/admin/schools/${data.id}`);
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {
