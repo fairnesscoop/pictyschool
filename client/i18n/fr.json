@@ -126,8 +126,7 @@
       "complementary_informations": "Informations complémentaires",
       "pdv": "Date et heure de PDV",
       "observation": "Observation",
-      "director_civility": "Civilité du Directeur",
-      "director_civility_placeholder": "-- Choisir une civilité --"
+      "director_civility": "Civilité du Directeur"
     },
     "errors": {
       "already_exist": "Une école avec cette référence existe déjà.",
@@ -137,7 +136,8 @@
       "title": "Produits proposés",
       "list": {
         "product": "Nom du produit",
-        "unit_price": "Prix unitaire TTC"
+        "parent_unit_price": "Prix parents TTC",
+        "photographer_unit_price": "Prix photographe TTC"
       },
       "add": {
         "title": "Associer un nouveau produit"
@@ -152,7 +152,8 @@
       "form": {
         "product": "Produit",
         "product_placeholder": "-- Choisir un produit --",
-        "unit_price": "Prix unitaire TTC"
+        "photographer_unit_price": "Prix photographe TTC",
+        "parent_unit_price": "Prix parents TTC"
       },
       "errors": {
         "already_exist": "Ce produit a déjà été associé à l'école",

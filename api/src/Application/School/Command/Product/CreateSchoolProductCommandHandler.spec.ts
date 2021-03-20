@@ -23,6 +23,7 @@ describe('CreateSchoolProductCommandHandler', () => {
   const product = mock(Product);
   const school = mock(School);
   const command = new CreateSchoolProductCommand(
+    3.99,
     9.99,
     '553e2b3c-eb11-42b1-8f76-903add071ca7',
     '17efcbee-bd2f-410e-9e99-51684b592bad'
@@ -57,6 +58,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       schoolProductRepository.save(
         deepEqual(
           new SchoolProduct(
+            399,
             999,
             instance(school),
             instance(product)
@@ -74,6 +76,7 @@ describe('CreateSchoolProductCommandHandler', () => {
       schoolProductRepository.save(
         deepEqual(
           new SchoolProduct(
+            399,
             999,
             instance(school),
             instance(product)

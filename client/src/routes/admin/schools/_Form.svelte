@@ -13,7 +13,7 @@
   export let reference = '';
   export let phoneNumber;
   export let director;
-  export let directorCivility;
+  export let directorCivility = 'mr';
   export let numberOfStudents;
   export let numberOfClasses;
   export let email;
@@ -91,7 +91,6 @@
           label={$_('schools.form.director_civility')}
           required={false}
           bind:value={directorCivility}>
-          <option>{$_('schools.form.director_civility_placeholder')}</option>
           {#each ['mr', 'mme'] as civility}
             <option value={civility}>{civility}</option>
           {/each}

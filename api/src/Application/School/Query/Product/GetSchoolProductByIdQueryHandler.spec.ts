@@ -16,6 +16,7 @@ describe('GetSchoolProductByIdQueryHandler', () => {
     const queryHandler = new GetSchoolProductByIdQueryHandler(instance(schoolproductRepository));
     const expectedResult = new SchoolProductView(
       'eb9e1d9b-dce2-48a9-B64F-f0872f3157d2',
+      3.99,
       9.99,
       new ProductSummaryView('Tasse à café', 9)
     );
@@ -26,7 +27,8 @@ describe('GetSchoolProductByIdQueryHandler', () => {
 
     const schoolproduct = mock(SchoolProduct);
     when(schoolproduct.getId()).thenReturn('eb9e1d9b-dce2-48a9-B64F-f0872f3157d2');
-    when(schoolproduct.getUnitPrice()).thenReturn(999);
+    when(schoolproduct.getParentUnitPrice()).thenReturn(399);
+    when(schoolproduct.getPhotographerUnitPrice()).thenReturn(999);
     when(schoolproduct.getProduct()).thenReturn(instance(product));
     when(
       schoolproductRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

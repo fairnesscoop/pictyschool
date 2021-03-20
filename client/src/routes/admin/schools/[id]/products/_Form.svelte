@@ -7,7 +7,8 @@
   import Button from '../../../../../components/inputs/Button.svelte';
   import SelectInput from '../../../../../components/inputs/SelectInput.svelte';
 
-  export let unitPrice = '';
+  export let photographerUnitPrice = '';
+  export let parentUnitPrice = '';
   export let productId = '';
   export let loading;
 
@@ -20,7 +21,7 @@
   const dispatch = createEventDispatcher();
 
   const submit = () => {
-    dispatch('save', { productId, unitPrice });
+    dispatch('save', { productId, parentUnitPrice, photographerUnitPrice });
   };
 </script>
 
@@ -37,10 +38,14 @@
   </SelectInput>
   <Input
     type={'money'}
-    label={$_('schools.products.form.unit_price')}
-    bind:value={unitPrice} />
+    label={$_('schools.products.form.photographer_unit_price')}
+    bind:value={photographerUnitPrice} />
+    <Input
+    type={'money'}
+    label={$_('schools.products.form.parent_unit_price')}
+    bind:value={parentUnitPrice} />
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!productId || !unitPrice || loading} />
+    disabled={!productId || !parentUnitPrice || !photographerUnitPrice || loading} />
 </form>

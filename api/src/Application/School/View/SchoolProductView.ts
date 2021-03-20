@@ -3,7 +3,8 @@ import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryV
 export class SchoolProductView {
   constructor(
     public readonly id: string,
-    public readonly unitPrice: number,
+    public readonly parentUnitPrice: number,
+    public readonly photographerUnitPrice: number,
     public readonly product: ProductSummaryView
   ) {}
 }

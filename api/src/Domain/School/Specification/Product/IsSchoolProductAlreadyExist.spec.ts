@@ -21,7 +21,7 @@ describe('IsSchoolProductAlreadyExist', () => {
 
   it('testSchoolProductAlreadyExist', async () => {
     when(schoolproductRepository.findOneBySchoolAndProduct(instance(school), instance(product)))
-      .thenResolve(new SchoolProduct(999, instance(school), instance(product)));
+      .thenResolve(new SchoolProduct(333, 999, instance(school), instance(product)));
     expect(await isSchoolProductAlreadyExist.isSatisfiedBy(instance(school), instance(product))).toBe(
       true
     );

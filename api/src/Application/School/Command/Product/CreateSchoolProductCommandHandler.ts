@@ -25,7 +25,7 @@ export class CreateSchoolProductCommandHandler {
   ) {}
 
   public async execute(command: CreateSchoolProductCommand): Promise<string> {
-    const { unitPrice, schoolId, productId } = command;
+    const { parentUnitPrice, photographerUnitPrice, schoolId, productId } = command;
 
     const [ school, product ] = await Promise.all([
       this.getSchool(schoolId),
@@ -37,7 +37,12 @@ export class CreateSchoolProductCommandHandler {
     }
 
     const schoolProduct = await this.schoolProductRepository.save(
-      new SchoolProduct(Math.round(unitPrice * 100), school, product)
+      new SchoolProduct(
+        Math.round(parentUnitPrice * 100),
+        Math.round(photographerUnitPrice * 100),
+        school,
+        product
+      )
     );
 
     return schoolProduct.getId();
