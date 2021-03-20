@@ -1,11 +1,11 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import UserIcon from '../../../../components/icons/UserIcon.svelte';
+  import DirectorIcon from '../../../../components/icons/DirectorIcon.svelte';
 </script>
 
 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-  <div class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500">
-    <UserIcon className={'w-5 h-5'}/>
+  <div class="p-3 mr-4 text-red-500 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-500">
+    <DirectorIcon className={'w-5 h-5'}/>
   </div>
   <div>
     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
