@@ -20,7 +20,7 @@
       loading = true;
       const {
         data: { id, firstName, lastName, apiToken },
-      } = await post('login/photographer', { email, password });
+      } = await post('login', { email, password });
       $session.user = { id, firstName, lastName, email, scope: 'photographer' };
       Cookies.set('photoschool_token', apiToken, {
         expires: 365,

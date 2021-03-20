@@ -25,7 +25,7 @@ export class RemoveSchoolTypeAction {
   ) {}
 
   @Delete(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({summary: 'Remove school type'})
   public async index(@Param() { id }: IdDTO) {
     try {

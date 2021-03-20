@@ -1,16 +1,16 @@
 import { Inject } from '@nestjs/common';
-import { Photographer } from '../Photographer.entity';
-import { IPhotographerRepository } from '../Repository/IPhotographerRepository';
+import { User } from '../User.entity';
+import { IUserRepository } from '../Repository/IUserRepository';
 
 export class IsEmailAlreadyExist {
   constructor(
-    @Inject('IPhotographerRepository')
-    private readonly photographerRepository: IPhotographerRepository
+    @Inject('IUserRepository')
+    private readonly userRepository: IUserRepository
   ) {}
 
   public async isSatisfiedBy(email: string): Promise<boolean> {
     return (
-      await this.photographerRepository.findOneByEmail(email)
-    ) instanceof Photographer;
+      await this.userRepository.findOneByEmail(email)
+    ) instanceof User;
   }
 }

@@ -4,7 +4,7 @@ export class SchoolProductView {
   constructor(
     public readonly id: string,
     public readonly parentUnitPrice: number,
-    public readonly photographerUnitPrice: number,
+    public readonly userUnitPrice: number,
     public readonly product: ProductSummaryView
   ) {}
 }

@@ -27,15 +27,15 @@ export class UpdateSchoolProductAction {
   ) {}
 
   @Put(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Edit school product unit price' })
   public async index(
     @Param() { id }: IdDTO,
-    @Body() { parentUnitPrice, photographerUnitPrice }: UnitPriceDTO
+    @Body() { parentUnitPrice, userUnitPrice }: UnitPriceDTO
   ) {
     try {
       await this.commandBus.execute(
-        new UpdateSchoolProductCommand(id, parentUnitPrice, photographerUnitPrice)
+        new UpdateSchoolProductCommand(id, parentUnitPrice, userUnitPrice)
       );
 
       return { id };

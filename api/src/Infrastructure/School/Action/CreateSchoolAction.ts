@@ -25,7 +25,7 @@ export class CreateSchoolAction {
   ) {}
 
   @Post()
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Create new school' })
   public async index(@Body() dto: SchoolDTO) {
     const {
@@ -36,9 +36,6 @@ export class CreateSchoolAction {
       city,
       schoolTypeId,
       phoneNumber,
-      director,
-      directorCivility,
-      email,
       numberOfClasses,
       numberOfStudents,
       observation,
@@ -55,9 +52,6 @@ export class CreateSchoolAction {
           city,
           schoolTypeId,
           phoneNumber,
-          director,
-          directorCivility,
-          email,
           numberOfStudents,
           numberOfClasses,
           observation,

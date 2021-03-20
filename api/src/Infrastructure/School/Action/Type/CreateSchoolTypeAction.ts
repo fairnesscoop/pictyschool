@@ -25,7 +25,7 @@ export class CreateSchoolTypeAction {
   ) {}
 
   @Post()
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Add a school type' })
   public async index(@Body() dto: SchoolTypeDTO) {
     try {

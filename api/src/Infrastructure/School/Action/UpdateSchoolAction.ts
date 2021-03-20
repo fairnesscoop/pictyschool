@@ -27,7 +27,7 @@ export class UpdateSchoolAction {
   ) {}
 
   @Put(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Update school' })
   public async index(@Param() idDto: IdDTO, @Body() dto: SchoolDTO) {
     try {
@@ -39,9 +39,6 @@ export class UpdateSchoolAction {
         city,
         schoolTypeId,
         phoneNumber,
-        director,
-        directorCivility,
-        email,
         numberOfClasses,
         numberOfStudents,
         observation,
@@ -58,9 +55,6 @@ export class UpdateSchoolAction {
           zipCode,
           schoolTypeId,
           phoneNumber,
-          director,
-          directorCivility,
-          email,
           numberOfStudents,
           numberOfClasses,
           observation,

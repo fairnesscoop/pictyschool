@@ -3,7 +3,7 @@ import { UpdateSchoolCommandHandler } from './UpdateSchoolCommandHandler';
 import { UpdateSchoolCommand } from './UpdateSchoolCommand';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
 import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAlreadyExist';
-import { Civility, School } from 'src/Domain/School/School.entity';
+import { School } from 'src/Domain/School/School.entity';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolTypeRepository } from 'src/Infrastructure/School/Repository/SchoolTypeRepository';
@@ -28,9 +28,6 @@ describe('UpdateSchoolCommandHandler', () => {
     'Paris',
     'df8910f9-ac0a-412b-b9a8-dbf299340abc',
     '010101010101',
-    'Chaullet',
-    Civility.MR,
-    'chaullet@mail.com',
     200,
     10,
     'Observation',
@@ -149,9 +146,6 @@ describe('UpdateSchoolCommandHandler', () => {
         '75018',
         'Paris',
         '010101010101',
-        'Chaullet',
-        Civility.MR,
-        'chaullet@mail.com',
         200,
         10,
         'Observation',

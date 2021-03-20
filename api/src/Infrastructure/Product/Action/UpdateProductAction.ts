@@ -27,7 +27,7 @@ export class UpdateProductAction {
   ) {}
 
   @Put(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Update product' })
   public async index(@Param() idDto: IdDTO, @Body() dto: ProductDTO) {
     try {

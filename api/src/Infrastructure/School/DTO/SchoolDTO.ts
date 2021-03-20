@@ -1,6 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsUUID, MaxLength } from 'class-validator';
-import { Civility } from 'src/Domain/School/School.entity';
+import { IsDateString, IsNotEmpty, IsNumber, IsOptional, IsUUID, MaxLength } from 'class-validator';
 
 export class SchoolDTO {
   @IsNotEmpty()
@@ -32,20 +31,6 @@ export class SchoolDTO {
   @ApiPropertyOptional()
   @IsOptional()
   public phoneNumber: string;
-
-  @ApiPropertyOptional()
-  @IsOptional()
-  public director: string;
-
-  @ApiPropertyOptional({ enum: Civility })
-  @IsOptional()
-  @IsEnum(Civility)
-  public directorCivility: Civility;
-
-  @ApiPropertyOptional()
-  @IsOptional()
-  @IsEmail()
-  public email: string;
 
   @ApiPropertyOptional()
   @IsOptional()

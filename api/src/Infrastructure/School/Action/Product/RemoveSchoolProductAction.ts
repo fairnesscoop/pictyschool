@@ -25,7 +25,7 @@ export class RemoveSchoolProductAction {
   ) {}
 
   @Delete(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({summary: 'Remove school product'})
   public async index(@Param() { id }: IdDTO) {
     try {

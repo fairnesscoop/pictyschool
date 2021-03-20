@@ -1,10 +1,8 @@
 import { mock, instance } from 'ts-mockito';
-import { Civility, School } from './School.entity';
-import { Photographer } from '../User/Photographer.entity';
+import { School } from './School.entity';
 import { SchoolType } from './SchoolType.entity';
 
 describe('School', () => {
-  const photographer = mock(Photographer);
   const schoolType = mock(SchoolType);
 
   it('testGetters', () => {
@@ -15,9 +13,6 @@ describe('School', () => {
       '75018',
       'Paris',
       '010101010101',
-      'Chaullet',
-      Civility.MR,
-      'chaullet@mail.com',
       200,
       10,
       'Observation',
@@ -30,9 +25,6 @@ describe('School', () => {
     expect(school.getCity()).toBe('Paris');
     expect(school.getZipCode()).toBe('75018');
     expect(school.getAddress()).toBe('127 Rue Belliard');
-    expect(school.getDirector()).toBe('Chaullet');
-    expect(school.getDirectorCivility()).toBe(Civility.MR);
-    expect(school.getEmail()).toBe('chaullet@mail.com');
     expect(school.getPhoneNumber()).toBe('010101010101');
     expect(school.getObservation()).toBe('Observation');
     expect(school.getPdv()).toBe('10/10/2020');
@@ -51,9 +43,6 @@ describe('School', () => {
       '75018',
       'Paris',
       '010101010101',
-      'Chaullet',
-      Civility.MR,
-      'chaullet@mail.com',
       200,
       10,
       'Observation',
@@ -67,9 +56,6 @@ describe('School', () => {
       'zipCode',
       'city',
       'phone',
-      'director',
-      Civility.MME,
-      'email',
       1,
       1,
       'obs',
@@ -82,9 +68,6 @@ describe('School', () => {
     expect(school.getCity()).toBe('city');
     expect(school.getZipCode()).toBe('zipCode');
     expect(school.getAddress()).toBe('address');
-    expect(school.getDirector()).toBe('director');
-    expect(school.getDirectorCivility()).toBe(Civility.MME);
-    expect(school.getEmail()).toBe('email');
     expect(school.getPhoneNumber()).toBe('phone');
     expect(school.getObservation()).toBe('obs');
     expect(school.getPdv()).toBe('11/10/2020');

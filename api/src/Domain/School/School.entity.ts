@@ -1,11 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { SchoolType } from './SchoolType.entity';
 
-export enum Civility {
-  MR = 'mr',
-  MME = 'mme'
-}
-
 @Entity()
 export class School {
   @PrimaryGeneratedColumn('uuid')
@@ -28,15 +23,6 @@ export class School {
 
   @Column({ type: 'varchar', nullable: true })
   private phoneNumber: string;
-
-  @Column({ type: 'varchar', nullable: true })
-  private director: string;
-
-  @Column('enum', { enum: Civility, nullable: true })
-  private directorCivility: Civility;
-
-  @Column({ type: 'varchar', nullable: true })
-  private email: string;
 
   @Column({ type: 'integer', nullable: true, default: 0 })
   private numberOfStudents: number;
@@ -63,9 +49,6 @@ export class School {
     zipCode: string,
     city: string,
     phoneNumber?: string,
-    director?: string,
-    directorCivility?: Civility,
-    email?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
     observation?: string,
@@ -78,9 +61,6 @@ export class School {
     this.zipCode = zipCode;
     this.city = city;
     this.phoneNumber = phoneNumber;
-    this.director = director;
-    this.directorCivility = directorCivility;
-    this.email = email;
     this.numberOfStudents = numberOfStudents;
     this.numberOfClasses = numberOfClasses;
     this.observation = observation;
@@ -116,18 +96,6 @@ export class School {
     return this.phoneNumber;
   }
 
-  public getDirector(): string {
-    return this.director;
-  }
-
-  public getDirectorCivility(): Civility {
-    return this.directorCivility;
-  }
-
-  public getEmail(): string {
-    return this.email;
-  }
-
   public getNumberOfStudents(): number {
     return this.numberOfStudents;
   }
@@ -159,9 +127,6 @@ export class School {
     zipCode: string,
     city: string,
     phoneNumber?: string,
-    director?: string,
-    directorCivility?: Civility,
-    email?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
     observation?: string,
@@ -174,9 +139,6 @@ export class School {
     this.zipCode = zipCode;
     this.city = city;
     this.phoneNumber = phoneNumber;
-    this.director = director;
-    this.directorCivility = directorCivility;
-    this.email = email;
     this.numberOfStudents = numberOfStudents;
     this.numberOfClasses = numberOfClasses;
     this.observation = observation;

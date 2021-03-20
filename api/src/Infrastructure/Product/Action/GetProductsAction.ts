@@ -20,7 +20,7 @@ export class GetProductsAction {
   ) {}
 
   @Get()
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({summary: 'Get all products ordered by title'})
   public async index(
     @Query() { page }: PaginationDTO

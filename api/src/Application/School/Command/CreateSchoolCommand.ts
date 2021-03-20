@@ -1,5 +1,4 @@
 import { ICommand } from 'src/Application/ICommand';
-import { Civility } from 'src/Domain/School/School.entity';
 
 export class CreateSchoolCommand implements ICommand {
   constructor(
@@ -10,9 +9,6 @@ export class CreateSchoolCommand implements ICommand {
     public readonly city: string,
     public readonly schoolTypeId: string,
     public readonly phoneNumber?: string,
-    public readonly director?: string,
-    public readonly directorCivility?: Civility,
-    public readonly email?: string,
     public readonly numberOfStudents?: number,
     public readonly numberOfClasses?: number,
     public readonly observation?: string,
