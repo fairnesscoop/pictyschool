@@ -11,7 +11,7 @@
   const { session } = stores();
   const handleLogout = async () => {
     $session.user = null;
-    Cookies.remove('flashimages_token');
+    Cookies.remove('photoschool_token');
     goto('/admin/login');
   };
 </script>

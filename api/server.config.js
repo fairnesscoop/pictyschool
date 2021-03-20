@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'Flashimages API',
+      name: 'Photoschool API',
       script: './dist/src/main.js',
       instances: 2,
       exec_mode: 'cluster',

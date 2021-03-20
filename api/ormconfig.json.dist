@@ -4,7 +4,7 @@
   "port": 5432,
   "password": "docker",
   "username": "docker",
-  "database": "flashimages",
+  "database": "photoschool",
   "synchronize": false,
   "logging": ["error"],
   "entities": ["dist/src/Domain/**/*.entity{.ts,.js}"],

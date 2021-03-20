@@ -6,7 +6,7 @@ export default async (req, res, next) => {
     return next();
   }
 
-  const token = req.cookies?.flashimages_token;
+  const token = req.cookies?.photoschool_token;
 
   if (!token) {
     return next();

@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: docker
       POSTGRES_PASSWORD: docker
-      POSTGRES_DB: flashimages
+      POSTGRES_DB: photoschool
       PGUSER: docker
       PGPASSWORD: docker
     volumes:

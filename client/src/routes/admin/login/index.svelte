@@ -22,7 +22,7 @@
         data: { id, firstName, lastName, apiToken },
       } = await post('login/photographer', { email, password });
       $session.user = { id, firstName, lastName, email, scope: 'photographer' };
-      Cookies.set('flashimages_token', apiToken, {
+      Cookies.set('photoschool_token', apiToken, {
         expires: 365,
         secure: process.env.NODE_ENV === 'production',
       });

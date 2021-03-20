@@ -1,13 +1,11 @@
-<h1 align="center"><img src="./logo_full.png" alt="Flash'images"></h1>
+PhotoSchool is an open source and eco design school photo management software
 
-Flash'images is an open source and eco design school photo management software
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/flashimages/CI)
-[![codecov](https://codecov.io/gh/fairnesscoop/flashimages/branch/master/graph/badge.svg)](https://codecov.io/gh/fairnesscoop/flashimages)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fairnesscoop/flashimages/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fairnesscoop/flashimages/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/flashimages?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/flashimages&utm_campaign=Badge_Grade)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/fairnesscoop/flashimages)
-[![GitHub license](https://img.shields.io/github/license/fairnesscoop/flashimages.svg)](https://github.com/fairnesscoop/flashimages)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/photoschool/CI)
+[![codecov](https://codecov.io/gh/fairnesscoop/photoschool/branch/master/graph/badge.svg)](https://codecov.io/gh/fairnesscoop/photoschool)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fairnesscoop/photoschool/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fairnesscoop/photoschool/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/photoschool?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/photoschool&utm_campaign=Badge_Grade)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/fairnesscoop/photoschool)
+[![GitHub license](https://img.shields.io/github/license/fairnesscoop/photoschool.svg)](https://github.com/fairnesscoop/photoschool)
 
 ## Technical stack
 

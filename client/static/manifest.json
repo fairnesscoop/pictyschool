@@ -1,8 +1,8 @@
 {
   "background_color": "#ffffff",
   "theme_color": "#343a40",
-  "name": "Flashimages",
-  "short_name": "Flashimages",
+  "name": "Photoschool",
+  "short_name": "Photoschool",
   "display": "standalone",
   "start_url": "/",
   "icons": [

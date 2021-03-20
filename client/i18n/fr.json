@@ -1,5 +1,5 @@
 {
-  "app": "Flash'images",
+  "app": "PhotoSchool",
   "error": "Erreur",
   "error_generic": "Une erreur est survenue",
   "pagination": "Affichage {start}-{from} sur {totalItems}",

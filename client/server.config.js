@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'Flashimages client',
+      name: 'Photoschool client',
       script: './__sapper__/build',
       instances: 2,
       exec_mode: 'cluster',
