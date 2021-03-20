@@ -26,7 +26,7 @@ export class GetSchoolAction {
   ) {}
 
   @Get(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Get school' })
   public async index(@Param() dto: IdDTO): Promise<SchoolView> {
     try {

@@ -2,16 +2,16 @@ import { CommandHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { IPasswordEncoder } from 'src/Application/IPasswordEncoder';
 import { UpdateProfileCommand } from './UpdateProfileCommand';
-import { IPhotographerRepository } from 'src/Domain/User/Repository/IPhotographerRepository';
+import { IUserRepository } from 'src/Domain/User/Repository/IUserRepository';
 import { IsEmailAlreadyExist } from 'src/Domain/User/Specification/IsEmailAlreadyExist';
 import { EmailAlreadyExistException } from 'src/Domain/User/Exception/EmailAlreadyExistException';
-import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
+import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
 
 @CommandHandler(UpdateProfileCommand)
 export class UpdateProfileCommandHandler {
   constructor(
-    @Inject('IPhotographerRepository')
-    private readonly photographerRepository: IPhotographerRepository,
+    @Inject('IUserRepository')
+    private readonly userRepository: IUserRepository,
     @Inject('IPasswordEncoder')
     private readonly passwordEncoder: IPasswordEncoder,
     private readonly isEmailAlreadyExist: IsEmailAlreadyExist
@@ -21,24 +21,24 @@ export class UpdateProfileCommandHandler {
     const { firstName, lastName, password, id } = command;
     const email = command.email.toLowerCase();
 
-    const photographer = await this.photographerRepository.findOneById(id);
-    if (!photographer) {
-      throw new PhotographerNotFoundException();
+    const user = await this.userRepository.findOneById(id);
+    if (!user) {
+      throw new UserNotFoundException();
     }
 
     if (
-      email !== photographer.getEmail() &&
+      email !== user.getEmail() &&
       true === (await this.isEmailAlreadyExist.isSatisfiedBy(email))
     ) {
       throw new EmailAlreadyExistException();
     }
 
-    photographer.update(firstName, lastName, email);
+    user.update(firstName, lastName, email);
 
     if (password) {
-      photographer.updatePassword(await this.passwordEncoder.hash(password));
+      user.updatePassword(await this.passwordEncoder.hash(password));
     }
 
-    await this.photographerRepository.save(photographer);
+    await this.userRepository.save(user);
   }
 }

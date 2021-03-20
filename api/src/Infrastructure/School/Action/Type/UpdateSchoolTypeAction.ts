@@ -27,7 +27,7 @@ export class UpdateSchoolTypeAction {
   ) {}
 
   @Put(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Edit school type' })
   public async index(@Param() { id }: IdDTO, @Body() { name }: SchoolTypeDTO) {
     try {

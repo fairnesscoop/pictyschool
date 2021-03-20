@@ -14,7 +14,7 @@ describe('SchoolProductProduct', () => {
       instance(product)
     );
     expect(schoolproduct.getId()).toBeUndefined();
-    expect(schoolproduct.getPhotographerUnitPrice()).toBe(999);
+    expect(schoolproduct.getUserUnitPrice()).toBe(999);
     expect(schoolproduct.getParentUnitPrice()).toBe(333);
     expect(schoolproduct.getProduct()).toBe(instance(product));
     expect(schoolproduct.getSchool()).toBe(instance(school));
@@ -29,10 +29,10 @@ describe('SchoolProductProduct', () => {
       instance(school),
       instance(product)
     );
-    expect(schoolproduct.getPhotographerUnitPrice()).toBe(999);
+    expect(schoolproduct.getUserUnitPrice()).toBe(999);
     expect(schoolproduct.getParentUnitPrice()).toBe(333);
     schoolproduct.updatePrices(111, 444);
-    expect(schoolproduct.getPhotographerUnitPrice()).toBe(444);
+    expect(schoolproduct.getUserUnitPrice()).toBe(444);
     expect(schoolproduct.getParentUnitPrice()).toBe(111);
   });
 });

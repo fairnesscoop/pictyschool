@@ -15,5 +15,5 @@ export class SchoolProductDTO {
   @ApiProperty()
   @IsPositive()
   @IsNotEmpty()
-  public photographerUnitPrice: number;
+  public userUnitPrice: number;
 }

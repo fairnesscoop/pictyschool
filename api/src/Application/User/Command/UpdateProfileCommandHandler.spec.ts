@@ -3,14 +3,14 @@ import { PasswordEncoderAdapter } from 'src/Infrastructure/Adapter/PasswordEncod
 import { UpdateProfileCommandHandler } from './UpdateProfileCommandHandler';
 import { UpdateProfileCommand } from './UpdateProfileCommand';
 import { IsEmailAlreadyExist } from 'src/Domain/User/Specification/IsEmailAlreadyExist';
-import { PhotographerRepository } from 'src/Infrastructure/User/Repository/PhotographerRepository';
-import { Photographer } from 'src/Domain/User/Photographer.entity';
+import { UserRepository } from 'src/Infrastructure/User/Repository/UserRepository';
+import { User } from 'src/Domain/User/User.entity';
 import { EmailAlreadyExistException } from 'src/Domain/User/Exception/EmailAlreadyExistException';
-import { PhotographerNotFoundException } from 'src/Domain/User/Exception/PhotographerNotFoundException';
+import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
 
 describe('UpdateProfileCommandHandler', () => {
   const email = 'mathieu@fairness.coop';
-  const photographer = mock(Photographer);
+  const user = mock(User);
   const command = new UpdateProfileCommand(
     '2bd10a90-ad92-47f7-9004-c0a493ed1e13',
     'Mathieu',
@@ -18,43 +18,43 @@ describe('UpdateProfileCommandHandler', () => {
     'mathieu@FAIRNESS.coop'
   );
 
-  let photographerRepository: PhotographerRepository;
+  let userRepository: UserRepository;
   let passwordEncoder: PasswordEncoderAdapter;
   let isEmailAlreadyExist: IsEmailAlreadyExist;
   let commandHandler: UpdateProfileCommandHandler;
 
   beforeEach(() => {
-    photographerRepository = mock(PhotographerRepository);
+    userRepository = mock(UserRepository);
     passwordEncoder = mock(PasswordEncoderAdapter);
     isEmailAlreadyExist = mock(IsEmailAlreadyExist);
 
     commandHandler = new UpdateProfileCommandHandler(
-      instance(photographerRepository),
+      instance(userRepository),
       instance(passwordEncoder),
       instance(isEmailAlreadyExist)
     );
   });
 
-  it('testPhotographerNotFound', async () => {
-    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+  it('testUserNotFound', async () => {
+    when(userRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
       .thenResolve(null);
 
     try {
       expect(await commandHandler.execute(command)).toBeUndefined();
     } catch (e) {
-      expect(e).toBeInstanceOf(PhotographerNotFoundException);
+      expect(e).toBeInstanceOf(UserNotFoundException);
       expect(e.message).toBe('users.errors.not_found');
       verify(isEmailAlreadyExist.isSatisfiedBy(anything())).never();
-      verify(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
+      verify(userRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
       verify(passwordEncoder.hash(anything())).never();
-      verify(photographerRepository.save(anything())).never();
+      verify(userRepository.save(anything())).never();
     }
   });
 
   it('testEmailAlreadyExist', async () => {
-    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
-      .thenResolve(instance(photographer));
-    when(photographer.getEmail()).thenReturn('mathieu.marchois@fairess.coop');
+    when(userRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(user));
+    when(user.getEmail()).thenReturn('mathieu.marchois@fairess.coop');
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(true);
 
     try {
@@ -63,33 +63,33 @@ describe('UpdateProfileCommandHandler', () => {
       expect(e).toBeInstanceOf(EmailAlreadyExistException);
       expect(e.message).toBe('users.errors.email_already_exist');
       verify(isEmailAlreadyExist.isSatisfiedBy(email)).once();
-      verify(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
+      verify(userRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13')).once();
       verify(passwordEncoder.hash(anything())).never();
-      verify(photographerRepository.save(anything())).never();
+      verify(userRepository.save(anything())).never();
     }
   });
 
   it('testUpdateWithoutPassword', async () => {
-    when(photographerRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
-      .thenResolve(instance(photographer));
+    when(userRepository.findOneById('2bd10a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(user));
     when(isEmailAlreadyExist.isSatisfiedBy(email)).thenResolve(false);
 
     // Command return nothing
     expect(await commandHandler.execute(command)).toBeUndefined();
 
-    verify(photographer.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
+    verify(user.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
     verify(
-      photographer.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
-    ).calledBefore(photographerRepository.save(instance(photographer)));
-    verify(photographer.updatePassword(anyString())).never();
+      user.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
+    ).calledBefore(userRepository.save(instance(user)));
+    verify(user.updatePassword(anyString())).never();
     verify(isEmailAlreadyExist.isSatisfiedBy(email)).once();
-    verify(photographerRepository.save(instance(photographer))).once();
+    verify(userRepository.save(instance(user))).once();
   });
 
   it('testUpdateWithPassword', async () => {
-    const photographer2 = mock(Photographer);
-    when(photographerRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13'))
-      .thenResolve(instance(photographer2));
+    const user2 = mock(User);
+    when(userRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13'))
+      .thenResolve(instance(user2));
     const command2 = new UpdateProfileCommand(
       'a90-ad92-47f7-9004-c0a493ed1e13',
       'Mathieu',
@@ -103,17 +103,17 @@ describe('UpdateProfileCommandHandler', () => {
 
     expect(await commandHandler.execute(command2)).toBeUndefined();
 
-    verify(photographer2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
-    verify(photographer2.updatePassword('azertyCrypted')).once();
-    verify(photographerRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13')).once();
-    verify(photographer2.updatePassword('azertyCrypted')).calledBefore(
-      photographerRepository.save(instance(photographer2))
+    verify(user2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')).once();
+    verify(user2.updatePassword('azertyCrypted')).once();
+    verify(userRepository.findOneById('a90-ad92-47f7-9004-c0a493ed1e13')).once();
+    verify(user2.updatePassword('azertyCrypted')).calledBefore(
+      userRepository.save(instance(user2))
     );
     verify(passwordEncoder.hash('azerty')).once();
     verify(
-      photographer2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
-    ).calledBefore(photographerRepository.save(instance(photographer2)));
+      user2.update('Mathieu', 'Marchois', 'mathieu@fairness.coop')
+    ).calledBefore(userRepository.save(instance(user2)));
     verify(isEmailAlreadyExist.isSatisfiedBy(email)).once();
-    verify(photographerRepository.save(instance(photographer2))).once();
+    verify(userRepository.save(instance(user2))).once();
   });
 });

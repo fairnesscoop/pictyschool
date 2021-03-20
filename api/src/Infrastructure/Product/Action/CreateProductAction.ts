@@ -25,7 +25,7 @@ export class CreateProductAction {
   ) {}
 
   @Post()
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Create new product' })
   public async index(@Body() dto: ProductDTO) {
     const { title, description, unitPrice } = dto;

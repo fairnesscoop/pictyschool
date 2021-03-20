@@ -21,7 +21,7 @@ describe('GetSchoolsQueryHandler', () => {
     );
     when(schoolProduct1.getProduct()).thenReturn(instance(product1));
     when(schoolProduct1.getParentUnitPrice()).thenReturn(1200);
-    when(schoolProduct1.getPhotographerUnitPrice()).thenReturn(1800);
+    when(schoolProduct1.getUserUnitPrice()).thenReturn(1800);
 
     const product2 = mock(Product);
     when(product2.getTitle()).thenReturn('1 page individuelle');
@@ -33,7 +33,7 @@ describe('GetSchoolsQueryHandler', () => {
     );
     when(schoolProduct2.getProduct()).thenReturn(instance(product2));
     when(schoolProduct2.getParentUnitPrice()).thenReturn(1500);
-    when(schoolProduct2.getPhotographerUnitPrice()).thenReturn(1900);
+    when(schoolProduct2.getUserUnitPrice()).thenReturn(1900);
 
     when(
       schoolProductRepository.findBySchoolId(

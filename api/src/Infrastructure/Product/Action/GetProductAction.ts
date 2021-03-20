@@ -26,7 +26,7 @@ export class GetProductAction {
   ) {}
 
   @Get(':id')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Get product' })
   public async index(@Param() dto: IdDTO): Promise<ProductView> {
     try {

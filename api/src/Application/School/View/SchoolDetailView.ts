@@ -1,4 +1,3 @@
-import { Civility } from 'src/Domain/School/School.entity';
 import { SchoolTypeView } from './SchoolTypeView';
 
 export class SchoolDetailView {
@@ -10,9 +9,6 @@ export class SchoolDetailView {
     public readonly city: string,
     public readonly zipCode: string,
     public readonly phoneNumber?: string,
-    public readonly email?: string,
-    public readonly director?: string,
-    public readonly directorCivility?: Civility,
     public readonly numberOfClasses?: number,
     public readonly numberOfStudents?: number,
     public readonly pdv?: string,

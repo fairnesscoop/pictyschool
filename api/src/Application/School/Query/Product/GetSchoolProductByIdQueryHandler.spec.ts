@@ -28,7 +28,7 @@ describe('GetSchoolProductByIdQueryHandler', () => {
     const schoolproduct = mock(SchoolProduct);
     when(schoolproduct.getId()).thenReturn('eb9e1d9b-dce2-48a9-B64F-f0872f3157d2');
     when(schoolproduct.getParentUnitPrice()).thenReturn(399);
-    when(schoolproduct.getPhotographerUnitPrice()).thenReturn(999);
+    when(schoolproduct.getUserUnitPrice()).thenReturn(999);
     when(schoolproduct.getProduct()).thenReturn(instance(product));
     when(
       schoolproductRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

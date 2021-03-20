@@ -4,6 +4,6 @@ export class UpdateSchoolProductCommand implements ICommand {
   constructor(
     public readonly id: string,
     public readonly parentUnitPrice: number,
-    public readonly photographerUnitPrice: number
+    public readonly userUnitPrice: number
   ) {}
 }

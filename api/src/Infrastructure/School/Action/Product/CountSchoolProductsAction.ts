@@ -18,7 +18,7 @@ export class CountSchoolProductsAction {
   ) {}
 
   @Get(':id/count-products')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Count products for a specific school' })
   public async index(@Param() { id }: IdDTO): Promise<any> {
     try {

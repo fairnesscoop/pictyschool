@@ -17,7 +17,7 @@
   let data = {};
 
   onMount(async () => {
-    ({ data } = await get('photographers/me'));
+    ({ data } = await get('users/me'));
   });
 
   const onSave = async (e) => {
@@ -25,7 +25,7 @@
       loading = true;
       const {
         data: { firstName, lastName, email },
-      } = await put('photographers/me', e.detail);
+      } = await put('users/me', e.detail);
       $session.user = {
         ...$session.user,
         firstName,

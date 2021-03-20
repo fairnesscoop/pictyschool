@@ -1,4 +1,4 @@
-export class PhotographerView {
+export class UserView {
   constructor(
     public readonly id: string,
     public readonly firstName: string,

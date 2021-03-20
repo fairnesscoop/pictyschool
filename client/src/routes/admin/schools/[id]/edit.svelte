@@ -65,10 +65,7 @@
     city={school.city}
     zipCode={school.zipCode}
     phoneNumber={school.phoneNumber}
-    director={school.director}
-    directorCivility={school.directorCivility}
     pdv={school.pdv}
-    email={school.email}
     observation={school.observation}
     numberOfClasses={school.numberOfClasses}
     numberOfStudents={school.numberOfStudents}

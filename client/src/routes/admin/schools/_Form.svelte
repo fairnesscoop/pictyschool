@@ -12,11 +12,8 @@
   export let zipCode = '';
   export let reference = '';
   export let phoneNumber;
-  export let director;
-  export let directorCivility = 'mr';
   export let numberOfStudents;
   export let numberOfClasses;
-  export let email;
   export let pdv;
   export let observation;
   export let schoolTypeId = '';
@@ -40,11 +37,8 @@
       name,
       address,
       phoneNumber,
-      director,
-      directorCivility,
       numberOfStudents,
       numberOfClasses,
-      email,
       pdv: pdv ? new Date(pdv) : null,
       observation
     });
@@ -87,19 +81,6 @@
   <div class="px-4 py-3 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
     <div class="flex">
       <div class="w-1/2 pr-2">
-        <SelectInput
-          label={$_('schools.form.director_civility')}
-          required={false}
-          bind:value={directorCivility}>
-          {#each ['mr', 'mme'] as civility}
-            <option value={civility}>{civility}</option>
-          {/each}
-        </SelectInput>
-        <Input
-          type={"email"}
-          required={false}
-          label={$_('schools.form.email')}
-          bind:value={email} />
         <Input
           label={$_('schools.form.number_of_students')}
           required={false}
@@ -113,24 +94,20 @@
       </div>
       <div class="w-1/2 pl-2">
         <Input
-          label={$_('schools.form.director')}
-          required={false}
-          bind:value={director} />
-        <Input
-          label={$_('schools.form.phone_number')}
-          required={false}
-          bind:value={phoneNumber} />
-        <Input
           label={$_('schools.form.number_of_classes')}
           required={false}
           type={'number'}
           bind:value={numberOfClasses} />
         <Input
-          label={$_('schools.form.observation')}
+          label={$_('schools.form.phone_number')}
           required={false}
-          bind:value={observation} />
+          bind:value={phoneNumber} />
       </div>
     </div>
+    <Input
+      label={$_('schools.form.observation')}
+      required={false}
+      bind:value={observation} />
   </div>
   <Button
     value={$_('common.form.save')}

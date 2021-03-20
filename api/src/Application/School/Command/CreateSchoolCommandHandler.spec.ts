@@ -1,7 +1,7 @@
 import { mock, instance, when, verify, deepEqual, anything } from 'ts-mockito';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
 import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAlreadyExist';
-import { Civility, School } from 'src/Domain/School/School.entity';
+import { School } from 'src/Domain/School/School.entity';
 import { CreateSchoolCommandHandler } from 'src/Application/School/Command/CreateSchoolCommandHandler';
 import { CreateSchoolCommand } from 'src/Application/School/Command/CreateSchoolCommand';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
@@ -25,9 +25,6 @@ describe('CreateSchoolCommandHandler', () => {
     'Paris',
     'df8910f9-ac0a-412b-b9a8-dbf299340abc',
     '010101010101',
-    'Chaullet',
-    Civility.MR,
-    'chaullet@mail.com',
     200,
     10,
     'Observation',
@@ -64,9 +61,6 @@ describe('CreateSchoolCommandHandler', () => {
             '75018',
             'Paris',
             '010101010101',
-            'Chaullet',
-            Civility.MR,
-            'chaullet@mail.com',
             200,
             10,
             'Observation',
@@ -93,9 +87,6 @@ describe('CreateSchoolCommandHandler', () => {
             '75018',
             'Paris',
             '010101010101',
-            'Chaullet',
-            Civility.MR,
-            'chaullet@mail.com',
             200,
             10,
             'Observation',

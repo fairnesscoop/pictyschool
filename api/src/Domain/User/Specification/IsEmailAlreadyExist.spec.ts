@@ -1,28 +1,28 @@
-import { PhotographerRepository } from 'src/Infrastructure/User/Repository/PhotographerRepository';
+import { UserRepository } from 'src/Infrastructure/User/Repository/UserRepository';
 import { mock, instance, when, verify } from 'ts-mockito';
-import { Photographer } from '../Photographer.entity';
+import { User } from '../User.entity';
 import { IsEmailAlreadyExist } from './IsEmailAlreadyExist';
 
 describe('IsEmailAlreadyExist', () => {
   const email = 'mathieu@fairness.coop';
 
-  let photographerRepository: PhotographerRepository;
+  let userRepository: UserRepository;
   let isEmailAlreadyExist: IsEmailAlreadyExist;
 
   beforeEach(() => {
-    photographerRepository = mock(PhotographerRepository);
-    isEmailAlreadyExist = new IsEmailAlreadyExist(instance(photographerRepository));
+    userRepository = mock(UserRepository);
+    isEmailAlreadyExist = new IsEmailAlreadyExist(instance(userRepository));
   });
 
-  it('testPhotographerCanRegister', async () => {
-    when(photographerRepository.findOneByEmail(email)).thenResolve(null);
+  it('testUserCanRegister', async () => {
+    when(userRepository.findOneByEmail(email)).thenResolve(null);
     expect(await isEmailAlreadyExist.isSatisfiedBy(email)).toBe(false);
-    verify(photographerRepository.findOneByEmail(email)).once();
+    verify(userRepository.findOneByEmail(email)).once();
   });
 
-  it('testPhotographerCannotRegister', async () => {
-    when(photographerRepository.findOneByEmail(email)).thenResolve(
-      new Photographer(
+  it('testUserCannotRegister', async () => {
+    when(userRepository.findOneByEmail(email)).thenResolve(
+      new User(
         'Mathieu',
         'MARCHOIS',
         email,
@@ -31,6 +31,6 @@ describe('IsEmailAlreadyExist', () => {
       )
     );
     expect(await isEmailAlreadyExist.isSatisfiedBy(email)).toBe(true);
-    verify(photographerRepository.findOneByEmail(email)).once();
+    verify(userRepository.findOneByEmail(email)).once();
   });
 });

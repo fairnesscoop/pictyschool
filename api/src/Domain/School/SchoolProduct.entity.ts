@@ -11,7 +11,7 @@ export class SchoolProduct {
   private parentUnitPrice: number;
 
   @Column({ type: 'integer', nullable: false, default: 0 })
-  private photographerUnitPrice: number;
+  private userUnitPrice: number;
 
   @ManyToOne(() => School, { nullable: false, onDelete: 'CASCADE' })
   private school: School;
@@ -21,27 +21,27 @@ export class SchoolProduct {
 
   constructor(
     parentUnitPrice: number,
-    photographerUnitPrice: number,
+    userUnitPrice: number,
     school: School,
     product: Product
   ) {
     this.parentUnitPrice = parentUnitPrice;
-    this.photographerUnitPrice = photographerUnitPrice;
+    this.userUnitPrice = userUnitPrice;
     this.school = school;
     this.product = product;
   }
 
-  public updatePrices(parentUnitPrice: number, photographerUnitPrice: number): void {
+  public updatePrices(parentUnitPrice: number, userUnitPrice: number): void {
     this.parentUnitPrice = parentUnitPrice;
-    this.photographerUnitPrice = photographerUnitPrice;
+    this.userUnitPrice = userUnitPrice;
   }
 
   public getId(): string {
     return this.id;
   }
 
-  public getPhotographerUnitPrice(): number {
-    return this.photographerUnitPrice;
+  public getUserUnitPrice(): number {
+    return this.userUnitPrice;
   }
 
   public getParentUnitPrice(): number {

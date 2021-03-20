@@ -5,7 +5,7 @@ describe('UnitPriceDTO', () => {
   it('testValidDTO', async () => {
     const dto = new UnitPriceDTO();
     dto.parentUnitPrice = 333;
-    dto.photographerUnitPrice = 999;
+    dto.userUnitPrice = 999;
 
     const validation = await validate(dto);
     expect(validation).toHaveLength(0);
@@ -21,8 +21,8 @@ describe('UnitPriceDTO', () => {
       isPositive: 'parentUnitPrice must be a positive number'
     });
     expect(validation[1].constraints).toMatchObject({
-      isNotEmpty: 'photographerUnitPrice should not be empty',
-      isPositive: 'photographerUnitPrice must be a positive number'
+      isNotEmpty: 'userUnitPrice should not be empty',
+      isPositive: 'userUnitPrice must be a positive number'
     });
   });
 });

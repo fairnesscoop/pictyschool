@@ -19,9 +19,7 @@ export class SchoolRepository implements ISchoolRepository {
   public findOneByReference(reference: string): Promise<School | undefined> {
     return this.repository
       .createQueryBuilder('school')
-      .select([
-        'school.id'
-      ])
+      .select([ 'school.id' ])
       .where('lower(school.reference) = :reference', { reference: reference.toLowerCase() })
       .getOne();
   }
@@ -37,9 +35,6 @@ export class SchoolRepository implements ISchoolRepository {
         'school.city',
         'school.zipCode',
         'school.phoneNumber',
-        'school.email',
-        'school.director',
-        'school.directorCivility',
         'school.numberOfClasses',
         'school.numberOfStudents',
         'school.pdv',

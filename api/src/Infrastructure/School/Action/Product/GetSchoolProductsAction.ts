@@ -19,7 +19,7 @@ export class GetSchoolProductsAction {
   ) {}
 
   @Get(':id/products')
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({summary: 'Get all products for a specific school'})
   public async index(@Param() dto: IdDTO): Promise<SchoolProductView[]> {
     try {

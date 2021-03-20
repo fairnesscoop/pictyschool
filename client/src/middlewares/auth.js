@@ -15,7 +15,7 @@ export default async (req, res, next) => {
   try {
     const {
       data: { id, firstName, lastName, email },
-    } = await get('photographers/me', {}, decodeURIComponent(token));
+    } = await get('users/me', {}, decodeURIComponent(token));
     req.user = {
       id,
       firstName,
@@ -24,8 +24,8 @@ export default async (req, res, next) => {
       scope: 'photographer'
     };
 
-   return next();
+    return next();
   } catch (e) {
-   return next();
+    return next();
   }
 };

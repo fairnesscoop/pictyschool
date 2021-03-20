@@ -1,6 +1,6 @@
 import { mock, instance, when, verify } from 'ts-mockito';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
-import { Civility, School } from 'src/Domain/School/School.entity';
+import { School } from 'src/Domain/School/School.entity';
 import { GetSchoolByIdQueryHandler } from './GetSchoolByIdQueryHandler';
 import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
@@ -22,9 +22,6 @@ describe('GetSchoolByIdQueryHandler', () => {
       'Paris',
       '75018',
       '010101010101',
-      'chaullet@mail.com',
-      'Chaullet',
-      Civility.MR,
       10,
       200,
       '12/12/2020',
@@ -44,9 +41,6 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getCity()).thenReturn('Paris');
     when(school.getZipCode()).thenReturn('75018');
     when(school.getPhoneNumber()).thenReturn('010101010101');
-    when(school.getEmail()).thenReturn('chaullet@mail.com');
-    when(school.getDirector()).thenReturn('Chaullet');
-    when(school.getDirectorCivility()).thenReturn(Civility.MR);
     when(school.getNumberOfClasses()).thenReturn(10);
     when(school.getNumberOfStudents()).thenReturn(200);
     when(school.getPdv()).thenReturn('12/12/2020');
@@ -74,9 +68,6 @@ describe('GetSchoolByIdQueryHandler', () => {
       'Paris',
       '75018',
       '010101010101',
-      'chaullet@mail.com',
-      'Chaullet',
-      Civility.MR,
       10,
       200,
       '12/12/2020',
@@ -92,9 +83,6 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getCity()).thenReturn('Paris');
     when(school.getZipCode()).thenReturn('75018');
     when(school.getPhoneNumber()).thenReturn('010101010101');
-    when(school.getEmail()).thenReturn('chaullet@mail.com');
-    when(school.getDirector()).thenReturn('Chaullet');
-    when(school.getDirectorCivility()).thenReturn(Civility.MR);
     when(school.getNumberOfClasses()).thenReturn(10);
     when(school.getNumberOfStudents()).thenReturn(200);
     when(school.getPdv()).thenReturn('12/12/2020');

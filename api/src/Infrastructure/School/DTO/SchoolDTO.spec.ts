@@ -1,6 +1,5 @@
 import { SchoolDTO } from './SchoolDTO';
 import { validate } from 'class-validator';
-import { Civility } from 'src/Domain/School/School.entity';
 
 describe('SchoolDTO', () => {
   it('testValidDTO', async () => {
@@ -12,9 +11,6 @@ describe('SchoolDTO', () => {
     dto.name = 'Ecole élémentaire';
     dto.schoolTypeId = 'df8910f9-ac0a-412b-b9a8-dbf299340abc';
     dto.pdv = '2019-12-19T11:20:04.568Z';
-    dto.director = 'director';
-    dto.directorCivility = Civility.MME;
-    dto.email = 'mail@mail.com';
     dto.numberOfClasses = 10;
     dto.numberOfStudents = 10;
     dto.observation = 'observation';
@@ -60,14 +56,10 @@ describe('SchoolDTO', () => {
     dto.name = 'Ecole élémentaire';
     dto.schoolTypeId = 'df8910f9-ac0a-412b-b9a8-dbf299340abc';
     dto.pdv = 'date';
-    dto.email = 'mail';
 
     const validation = await validate(dto);
-    expect(validation).toHaveLength(2);
+    expect(validation).toHaveLength(1);
     expect(validation[0].constraints).toMatchObject({
-      isEmail: "email must be an email"
-    });
-    expect(validation[1].constraints).toMatchObject({
       isDateString: "pdv must be a ISOString"
     });
   });

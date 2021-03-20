@@ -18,7 +18,7 @@ export class GetSchoolTypesAction {
   ) {}
 
   @Get()
-  @Roles('photographer')
+  @Roles('user')
   @ApiOperation({ summary: 'Get school types' })
   public async index(): Promise<SchoolTypeView[]> {
     try {

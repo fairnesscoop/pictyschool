@@ -13,14 +13,14 @@ import { IQueryBus } from 'src/Application/IQueryBus';
 import { ProfileDTO } from '../DTO/ProfileDTO';
 import { LoggedUser } from '../Decorator/LoggedUser';
 import { UpdateProfileCommand } from 'src/Application/User/Command/UpdateProfileCommand';
-import { PhotographerView } from 'src/Application/User/View/PhotographerView';
-import { GetPhotographerByIdQuery } from 'src/Application/User/Query/GetPhotographerByIdQuery';
+import { UserView } from 'src/Application/User/View/UserView';
+import { GetUserByIdQuery } from 'src/Application/User/Query/GetUserByIdQuery';
 import { Roles } from '../Decorator/Roles';
 import { RolesGuard } from '../Security/RolesGuard';
 import { UserAuthView } from '../Security/UserAuthView';
 
-@Controller('photographers')
-@ApiTags('Photographer')
+@Controller('users')
+@ApiTags('User')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class UpdateMeAction {
@@ -32,12 +32,12 @@ export class UpdateMeAction {
   ) {}
 
   @Put('me')
-  @Roles('photographer')
-  @ApiOperation({ summary: 'Update current photographer' })
+  @Roles('user')
+  @ApiOperation({ summary: 'Update current user' })
   public async index(
     @Body() dto: ProfileDTO,
     @LoggedUser() { id }: UserAuthView
-  ): Promise<PhotographerView> {
+  ): Promise<UserView> {
     try {
       const { firstName, lastName, email, password } = dto;
 
@@ -45,7 +45,7 @@ export class UpdateMeAction {
         new UpdateProfileCommand(id, firstName, lastName, email, password)
       );
 
-      return await this.queryBus.execute(new GetPhotographerByIdQuery(id));
+      return await this.queryBus.execute(new GetUserByIdQuery(id));
     } catch (e) {
       throw new BadRequestException(e.message);
     }
