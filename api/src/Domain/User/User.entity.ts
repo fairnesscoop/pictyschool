@@ -1,5 +1,10 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
+export enum UserRole {
+  PHOTOGRAPHER = 'photographer',
+  DIRECTOR = 'director'
+}
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
@@ -21,18 +26,23 @@ export class User {
   @Column({ type: 'varchar', nullable: false })
   private password: string;
 
+  @Column('enum', { enum: UserRole, nullable: false })
+  private role: UserRole;
+
   constructor(
     firstName: string,
     lastName: string,
     email: string,
     apiToken: string,
-    password: string
+    password: string,
+    role: UserRole
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.apiToken = apiToken;
     this.password = password;
+    this.role = role;
   }
 
   public getId(): string {
@@ -57,6 +67,11 @@ export class User {
 
   public getPassword(): string {
     return this.password;
+  }
+
+  public getRole(): UserRole
+  {
+    return this.role;
   }
 
   public update(firstName: string, lastName: string, email: string): void {

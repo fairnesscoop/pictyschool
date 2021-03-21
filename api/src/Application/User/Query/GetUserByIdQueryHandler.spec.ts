@@ -2,7 +2,7 @@ import { mock, instance, when, verify } from 'ts-mockito';
 import { GetUserByIdQueryHandler } from './GetUserByIdQueryHandler';
 import { GetUserByIdQuery } from './GetUserByIdQuery';
 import { UserRepository } from 'src/Infrastructure/User/Repository/UserRepository';
-import { User } from 'src/Domain/User/User.entity';
+import { User, UserRole } from 'src/Domain/User/User.entity';
 import { UserView } from '../View/UserView';
 import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
 
@@ -18,6 +18,7 @@ describe('GetUserByIdQueryHandler', () => {
     when(user.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
     when(user.getFirstName()).thenReturn('Mathieu');
     when(user.getLastName()).thenReturn('MARCHOIS');
+    when(user.getRole()).thenReturn(UserRole.PHOTOGRAPHER);
     when(user.getEmail()).thenReturn('mathieu@fairness.coop');
     when(
       userRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
@@ -28,7 +29,8 @@ describe('GetUserByIdQueryHandler', () => {
         'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
         'Mathieu',
         'MARCHOIS',
-        'mathieu@fairness.coop'
+        'mathieu@fairness.coop',
+        UserRole.PHOTOGRAPHER
       )
     );
 
@@ -38,6 +40,7 @@ describe('GetUserByIdQueryHandler', () => {
     verify(user.getId()).once();
     verify(user.getFirstName()).once();
     verify(user.getLastName()).once();
+    verify(user.getRole()).once();
     verify(user.getEmail()).once();
   });
 

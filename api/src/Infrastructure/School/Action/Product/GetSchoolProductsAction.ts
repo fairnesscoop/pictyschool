@@ -7,6 +7,7 @@ import { SchoolProductView } from 'src/Application/School/View/SchoolProductView
 import { GetSchoolProductsQuery } from 'src/Application/School/Query/Product/GetSchoolProductsQuery';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
+import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('schools')
 @ApiTags('School')
@@ -19,7 +20,7 @@ export class GetSchoolProductsAction {
   ) {}
 
   @Get(':id/products')
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({summary: 'Get all products for a specific school'})
   public async index(@Param() dto: IdDTO): Promise<SchoolProductView[]> {
     try {

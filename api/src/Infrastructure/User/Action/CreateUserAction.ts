@@ -1,7 +1,7 @@
 import {
   Controller,
   Inject,
-  Put,
+  Post,
   Body,
   BadRequestException,
   UseGuards
@@ -9,22 +9,20 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
-import { IQueryBus } from 'src/Application/IQueryBus';
-import { ProfileDTO } from '../DTO/ProfileDTO';
-import { LoggedUser } from '../Decorator/LoggedUser';
-import { UpdateProfileCommand } from 'src/Application/User/Command/UpdateProfileCommand';
+import { CreateUserCommand } from 'src/Application/User/Command/CreateUserCommand';
 import { UserView } from 'src/Application/User/View/UserView';
+import { UserDTO } from '../DTO/UserDTO';
+import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetUserByIdQuery } from 'src/Application/User/Query/GetUserByIdQuery';
 import { Roles } from '../Decorator/Roles';
 import { RolesGuard } from '../Security/RolesGuard';
-import { UserAuthView } from '../Security/UserAuthView';
 import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('users')
 @ApiTags('User')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
-export class UpdateMeAction {
+export class CreateUserAction {
   constructor(
     @Inject('ICommandBus')
     private readonly commandBus: ICommandBus,
@@ -32,18 +30,21 @@ export class UpdateMeAction {
     private readonly queryBus: IQueryBus
   ) {}
 
-  @Put('me')
-  @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
-  @ApiOperation({ summary: 'Update current user' })
-  public async index(
-    @Body() dto: ProfileDTO,
-    @LoggedUser() { id }: UserAuthView
-  ): Promise<UserView> {
+  @Post()
+  @Roles(UserRole.PHOTOGRAPHER)
+  @ApiOperation({summary: 'Create new user'})
+  public async index(@Body() userDto: UserDTO): Promise<UserView> {
     try {
-      const { firstName, lastName, email, password } = dto;
+      const { firstName, lastName, email, password, role } = userDto;
 
-      await this.commandBus.execute(
-        new UpdateProfileCommand(id, firstName, lastName, email, password)
+      const id = await this.commandBus.execute(
+        new CreateUserCommand(
+          firstName,
+          lastName,
+          email,
+          password,
+          role
+        )
       );
 
       return await this.queryBus.execute(new GetUserByIdQuery(id));

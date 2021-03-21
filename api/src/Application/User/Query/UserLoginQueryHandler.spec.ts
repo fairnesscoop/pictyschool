@@ -6,7 +6,7 @@ import { UserLoginQuery } from 'src/Application/User/Query/UserLoginQuery';
 import { PasswordNotMatchException } from 'src/Domain/User/Exception/PasswordNotMatchException';
 import { UserView } from 'src/Application/User/View/UserView';
 import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
-import { User } from 'src/Domain/User/User.entity';
+import { User, UserRole } from 'src/Domain/User/User.entity';
 
 describe('UserLoginQueryHandler', () => {
   const email = 'mathieu@fairness.coop';
@@ -65,6 +65,7 @@ describe('UserLoginQueryHandler', () => {
     when(user.getEmail()).thenReturn(email);
     when(user.getPassword()).thenReturn('hash');
     when(user.getApiToken()).thenReturn('apiToken');
+    when(user.getRole()).thenReturn(UserRole.PHOTOGRAPHER);
 
     expect(await queryHandler.execute(query)).toMatchObject(
       new UserView(
@@ -72,6 +73,7 @@ describe('UserLoginQueryHandler', () => {
         'Mathieu',
         'MARCHOIS',
         email,
+        UserRole.PHOTOGRAPHER,
         'apiToken'
       )
     );
@@ -82,6 +84,7 @@ describe('UserLoginQueryHandler', () => {
     verify(user.getFirstName()).once();
     verify(user.getLastName()).once();
     verify(user.getEmail()).once();
+    verify(user.getRole()).once();
     verify(user.getPassword()).once();
     verify(user.getApiToken()).once();
   });

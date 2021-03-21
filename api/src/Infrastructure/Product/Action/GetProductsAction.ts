@@ -8,6 +8,7 @@ import { Pagination } from 'src/Application/Common/Pagination';
 import { PaginationDTO } from 'src/Infrastructure/Common/DTO/PaginationDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
+import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('products')
 @ApiTags('Product')
@@ -20,7 +21,7 @@ export class GetProductsAction {
   ) {}
 
   @Get()
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({summary: 'Get all products ordered by title'})
   public async index(
     @Query() { page }: PaginationDTO

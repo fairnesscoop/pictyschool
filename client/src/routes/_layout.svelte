@@ -24,7 +24,7 @@
 </script>
 
 <div class={$settings.theme}>
-  {#if $session.user}
+  {#if $session.user && $currentPath.includes('/admin')}
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 dark-theme">
       <Nav />
       <div class="flex flex-col flex-1 w-full">

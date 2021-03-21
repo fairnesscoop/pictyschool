@@ -19,9 +19,9 @@
     try {
       loading = true;
       const {
-        data: { id, firstName, lastName, apiToken },
+        data: { id, firstName, lastName, apiToken, role },
       } = await post('login', { email, password });
-      $session.user = { id, firstName, lastName, email, scope: 'photographer' };
+      $session.user = { id, firstName, lastName, email, scope: role };
       Cookies.set('photoschool_token', apiToken, {
         expires: 365,
         secure: process.env.NODE_ENV === 'production',

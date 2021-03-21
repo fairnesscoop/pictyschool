@@ -23,7 +23,7 @@ export class GetSchoolProductsQueryHandler {
         new SchoolProductView(
           schoolProduct.getId(),
           schoolProduct.getParentUnitPrice() / 100,
-          schoolProduct.getUserUnitPrice() / 100,
+          schoolProduct.getPhotographerUnitPrice() / 100,
           new ProductSummaryView(
             schoolProduct.getProduct().getTitle(),
             schoolProduct.getProduct().getUnitPrice() / 100

@@ -18,7 +18,7 @@ export class UserRepository implements IUserRepository {
   public findOneByApiToken(apiToken: string): Promise<User | undefined> {
     return this.repository
       .createQueryBuilder('user')
-      .select('user.id')
+      .select(['user.id', 'user.role'])
       .where('user.apiToken = :apiToken', { apiToken })
       .getOne();
   }
@@ -33,6 +33,7 @@ export class UserRepository implements IUserRepository {
         'user.email',
         'user.apiToken',
         'user.password',
+        'user.role'
       ])
       .where('user.email = :email', { email })
       .getOne();
@@ -45,7 +46,8 @@ export class UserRepository implements IUserRepository {
         'user.id',
         'user.firstName',
         'user.lastName',
-        'user.email'
+        'user.email',
+        'user.role'
       ])
       .where('user.id = :id', { id })
       .getOne();

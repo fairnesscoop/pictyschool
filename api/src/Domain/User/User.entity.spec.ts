@@ -1,4 +1,4 @@
-import { User } from './User.entity';
+import { User, UserRole } from './User.entity';
 
 describe('User', () => {
   it('testGetters', () => {
@@ -7,7 +7,8 @@ describe('User', () => {
       'MARCHOIS',
       'mathieu@fairness.coop',
       'apiToken',
-      'password'
+      'password',
+      UserRole.PHOTOGRAPHER
     );
     expect(user.getId()).toBeUndefined();
     expect(user.getFirstName()).toBe('Mathieu');
@@ -15,6 +16,7 @@ describe('User', () => {
     expect(user.getEmail()).toBe('mathieu@fairness.coop');
     expect(user.getApiToken()).toBe('apiToken');
     expect(user.getPassword()).toBe('password');
+    expect(user.getRole()).toBe(UserRole.PHOTOGRAPHER);
   });
 
   it('testUpdate', () => {
@@ -23,7 +25,8 @@ describe('User', () => {
       'MARCHOIS',
       'mathieu@fairness.coop',
       'hashToken',
-      'hashPassword'
+      'hashPassword',
+      UserRole.PHOTOGRAPHER
     );
     user.update('firstName', 'lastName', 'email@email.com');
     user.updatePassword('password');

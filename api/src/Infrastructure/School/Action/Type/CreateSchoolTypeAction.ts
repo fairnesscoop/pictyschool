@@ -10,6 +10,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { CreateSchoolTypeCommand } from 'src/Application/School/Command/Type/CreateSchoolTypeCommand';
+import { UserRole } from 'src/Domain/User/User.entity';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { SchoolTypeDTO } from '../../DTO/SchoolTypeDTO';
@@ -25,7 +26,7 @@ export class CreateSchoolTypeAction {
   ) {}
 
   @Post()
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Add a school type' })
   public async index(@Body() dto: SchoolTypeDTO) {
     try {
