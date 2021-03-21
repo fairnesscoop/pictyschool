@@ -11,6 +11,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { UpdateSchoolCommand } from 'src/Application/School/Command/UpdateSchoolCommand';
+import { UserRole } from 'src/Domain/User/User.entity';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
@@ -27,7 +28,7 @@ export class UpdateSchoolAction {
   ) {}
 
   @Put(':id')
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Update school' })
   public async index(@Param() idDto: IdDTO, @Body() dto: SchoolDTO) {
     try {

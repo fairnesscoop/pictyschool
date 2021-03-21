@@ -5,7 +5,7 @@ describe('SchoolProductDTO', () => {
   it('testValidDTO', async () => {
     const dto = new SchoolProductDTO();
     dto.productId = '401e3e39-f367-4f95-863b-69f750fff8bb';
-    dto.userUnitPrice = 999;
+    dto.photographerUnitPrice = 999;
     dto.parentUnitPrice = 333;
 
     const validation = await validate(dto);
@@ -26,8 +26,8 @@ describe('SchoolProductDTO', () => {
       isPositive: 'parentUnitPrice must be a positive number'
     });
     expect(validation[2].constraints).toMatchObject({
-      isNotEmpty: 'userUnitPrice should not be empty',
-      isPositive: 'userUnitPrice must be a positive number'
+      isNotEmpty: 'photographerUnitPrice should not be empty',
+      isPositive: 'photographerUnitPrice must be a positive number'
     });
   });
 });

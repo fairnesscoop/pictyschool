@@ -14,6 +14,8 @@ import { UpdateMeAction } from './Action/UpdateMeAction';
 import { UserRepository } from './Repository/UserRepository';
 import { BearerStrategy } from './Security/BearerStrategy';
 import { RolesGuard } from './Security/RolesGuard';
+import { CreateUserCommandHandler } from 'src/Application/User/Command/CreateUserCommandHandler';
+import { CreateUserAction } from './Action/CreateUserAction';
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { RolesGuard } from './Security/RolesGuard';
     PassportModule,
     TypeOrmModule.forFeature([User])
   ],
-  controllers: [UserLoginAction, UpdateMeAction, GetMeAction],
+  controllers: [UserLoginAction, UpdateMeAction, GetMeAction, CreateUserAction],
   providers: [
     { provide: 'IUserRepository', useClass: UserRepository },
     { provide: 'IPasswordEncoder', useClass: PasswordEncoderAdapter },
@@ -30,7 +32,8 @@ import { RolesGuard } from './Security/RolesGuard';
     IsEmailAlreadyExist,
     UpdateProfileCommandHandler,
     GetUserByIdQueryHandler,
-    RolesGuard
+    RolesGuard,
+    CreateUserCommandHandler
   ]
 })
 export class UserModule {}

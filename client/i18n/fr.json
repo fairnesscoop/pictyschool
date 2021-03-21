@@ -60,6 +60,16 @@
     }
   },
   "users": {
+    "breadcrumb": "Photographes",
+    "add": {
+      "title": "Ajouter un photographe"
+    },
+    "form": {
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Adresse email",
+      "password": "Mot de passe"
+    },
     "errors": {
       "password_not_match": "Adresse email ou mot de passe incorrect.",
       "email_already_exist": "Cette adresse email est déjà utilisée.",
@@ -103,7 +113,7 @@
       }
     },
     "dashboard": {
-      "products": "Produits proposés",
+      "products": "Produits",
       "director": "Directeur",
       "orders": "Commandes",
       "photos": "Photos",
@@ -137,7 +147,7 @@
       "not_found": "L'école recherchée n'existe pas."
     },
     "products": {
-      "title": "Produits proposés",
+      "title": "Produits",
       "list": {
         "product": "Nom du produit",
         "parent_unit_price": "Prix parents TTC",

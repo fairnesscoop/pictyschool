@@ -19,6 +19,6 @@ export class BearerStrategy extends PassportStrategy(Strategy, 'bearer') {
       throw new UnauthorizedException();
     }
 
-    return new UserAuthView(user.getId(), 'user');
+    return new UserAuthView(user.getId(), user.getRole());
   }
 }

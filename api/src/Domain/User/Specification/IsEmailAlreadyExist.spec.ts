@@ -1,6 +1,6 @@
 import { UserRepository } from 'src/Infrastructure/User/Repository/UserRepository';
 import { mock, instance, when, verify } from 'ts-mockito';
-import { User } from '../User.entity';
+import { User, UserRole } from '../User.entity';
 import { IsEmailAlreadyExist } from './IsEmailAlreadyExist';
 
 describe('IsEmailAlreadyExist', () => {
@@ -27,7 +27,8 @@ describe('IsEmailAlreadyExist', () => {
         'MARCHOIS',
         email,
         'token',
-        'password'
+        'password',
+        UserRole.PHOTOGRAPHER
       )
     );
     expect(await isEmailAlreadyExist.isSatisfiedBy(email)).toBe(true);

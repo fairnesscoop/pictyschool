@@ -11,6 +11,7 @@ import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetProductByIdQuery } from 'src/Application/Product/Query/GetProductByIdQuery';
 import { ProductView } from 'src/Application/Product/View/ProductView';
+import { UserRole } from 'src/Domain/User/User.entity';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
@@ -26,7 +27,7 @@ export class GetProductAction {
   ) {}
 
   @Get(':id')
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Get product' })
   public async index(@Param() dto: IdDTO): Promise<ProductView> {
     try {

@@ -6,6 +6,7 @@ import { SchoolTypeView } from 'src/Application/School/View/SchoolTypeView';
 import { GetSchoolTypesQuery } from 'src/Application/School/Query/Type/GetSchoolTypesQuery';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('school-types')
 @ApiTags('School')
@@ -18,7 +19,7 @@ export class GetSchoolTypesAction {
   ) {}
 
   @Get()
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Get school types' })
   public async index(): Promise<SchoolTypeView[]> {
     try {

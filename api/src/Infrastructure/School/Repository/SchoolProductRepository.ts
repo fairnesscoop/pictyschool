@@ -27,7 +27,7 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .select([
         'schoolProduct.id',
         'schoolProduct.parentUnitPrice',
-        'schoolProduct.userUnitPrice',
+        'schoolProduct.photographerUnitPrice',
         'product.title',
         'product.unitPrice'
       ])
@@ -66,7 +66,7 @@ export class SchoolProductRepository implements ISchoolProductRepository {
       .select([
         'schoolProduct.id',
         'schoolProduct.parentUnitPrice',
-        'schoolProduct.userUnitPrice',
+        'schoolProduct.photographerUnitPrice',
         'product.title',
         'product.unitPrice'
       ])

@@ -11,6 +11,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { UpdateSchoolProductCommand } from 'src/Application/School/Command/Product/UpdateSchoolProductCommand';
+import { UserRole } from 'src/Domain/User/User.entity';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
@@ -27,15 +28,15 @@ export class UpdateSchoolProductAction {
   ) {}
 
   @Put(':id')
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Edit school product unit price' })
   public async index(
     @Param() { id }: IdDTO,
-    @Body() { parentUnitPrice, userUnitPrice }: UnitPriceDTO
+    @Body() { parentUnitPrice, photographerUnitPrice }: UnitPriceDTO
   ) {
     try {
       await this.commandBus.execute(
-        new UpdateSchoolProductCommand(id, parentUnitPrice, userUnitPrice)
+        new UpdateSchoolProductCommand(id, parentUnitPrice, photographerUnitPrice)
       );
 
       return { id };

@@ -8,6 +8,7 @@ import { Pagination } from 'src/Application/Common/Pagination';
 import { PaginationDTO } from 'src/Infrastructure/Common/DTO/PaginationDTO';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
+import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('schools')
 @ApiTags('School')
@@ -20,7 +21,7 @@ export class GetSchoolsAction {
   ) {}
 
   @Get()
-  @Roles('user')
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({summary: 'Get all schools ordered by name'})
   public async index(
     @Query() { page }: PaginationDTO

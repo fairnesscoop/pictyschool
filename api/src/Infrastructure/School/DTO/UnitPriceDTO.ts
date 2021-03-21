@@ -10,5 +10,5 @@ export class UnitPriceDTO {
   @ApiProperty()
   @IsPositive()
   @IsNotEmpty()
-  public userUnitPrice: number;
+  public photographerUnitPrice: number;
 }
