@@ -4,6 +4,7 @@ export const settings = writable({
   theme: '',
   openMobileMenu: false
 });
+export const currentPath = writable('');
 
 export const useLocalStorage = (key, store) => {
   const currentValue = localStorage.getItem(key);

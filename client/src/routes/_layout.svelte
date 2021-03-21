@@ -6,6 +6,7 @@
   import routes from '../routes';
   import Nav from './../components/Nav.svelte';
   import Header from './../components/header/Header.svelte';
+  import { currentPath } from '../store';
 
   export let segment;
 
@@ -16,15 +17,16 @@
   };
 
   page.subscribe(async (v) => {
+    $currentPath = v.path;
     await tick();
-    guard(v.path, $session.user, options);
+    guard($currentPath, $session.user, options);
   });
 </script>
 
 <div class={$settings.theme}>
   {#if $session.user}
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 dark-theme">
-      <Nav segment={segment} />
+      <Nav />
       <div class="flex flex-col flex-1 w-full">
         <Header />
         <main class="h-full overflow-y-auto">
