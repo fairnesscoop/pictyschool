@@ -16,6 +16,8 @@ import { BearerStrategy } from './Security/BearerStrategy';
 import { RolesGuard } from './Security/RolesGuard';
 import { CreateUserCommandHandler } from 'src/Application/User/Command/CreateUserCommandHandler';
 import { CreateUserAction } from './Action/CreateUserAction';
+import { GetUsersByRoleQueryHandler } from 'src/Application/User/Query/GetUsersByRoleQueryHandler';
+import { GetPhotographersAction } from './Action/GetPhotographersAction';
 
 @Module({
   imports: [
@@ -23,7 +25,13 @@ import { CreateUserAction } from './Action/CreateUserAction';
     PassportModule,
     TypeOrmModule.forFeature([User])
   ],
-  controllers: [UserLoginAction, UpdateMeAction, GetMeAction, CreateUserAction],
+  controllers: [
+    UserLoginAction,
+    UpdateMeAction,
+    GetMeAction,
+    CreateUserAction,
+    GetPhotographersAction
+  ],
   providers: [
     { provide: 'IUserRepository', useClass: UserRepository },
     { provide: 'IPasswordEncoder', useClass: PasswordEncoderAdapter },
@@ -33,7 +41,8 @@ import { CreateUserAction } from './Action/CreateUserAction';
     UpdateProfileCommandHandler,
     GetUserByIdQueryHandler,
     RolesGuard,
-    CreateUserCommandHandler
+    CreateUserCommandHandler,
+    GetUsersByRoleQueryHandler
   ]
 })
 export class UserModule {}
