@@ -8,12 +8,13 @@
   import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, post, put } from '../../../../../utils/axios';
-  import Breadcrumb from '../../../../../components/Breadcrumb.svelte';
-  import { errorNormalizer } from '../../../../../normalizer/errors';
-  import ServerErrors from '../../../../../components/ServerErrors.svelte';
-  import H4Title from '../../../../../components/H4Title.svelte';
-  import Form from '../../../../../components/form/UserForm.svelte';
+  import { get, post, put } from 'utils/axios';
+  import Breadcrumb from 'components/Breadcrumb.svelte';
+  import { errorNormalizer } from 'normalizer/errors';
+  import ServerErrors from 'components/ServerErrors.svelte';
+  import H4Title from 'components/H4Title.svelte';
+  import Form from 'components/form/UserForm.svelte';
+  import { ROLE_DIRECTOR } from 'constants/roles';
 
   export let id;
 
@@ -35,7 +36,7 @@
       loading = true;
       const { data } = await post('users', {
         ...e.detail, 
-        role: 'director'
+        role: ROLE_DIRECTOR
       });
 
       if (data.id) {

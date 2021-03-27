@@ -1,4 +1,4 @@
-import { get } from '../utils/axios';
+import { get } from 'utils/axios';
 
 export default async (req, res, next) => {
   // Catch only sapper routing
@@ -14,14 +14,14 @@ export default async (req, res, next) => {
 
   try {
     const {
-      data: { id, firstName, lastName, email },
+      data: { id, firstName, lastName, email, role },
     } = await get('users/me', {}, decodeURIComponent(token));
     req.user = {
       id,
       firstName,
       lastName,
       email,
-      scope: 'photographer'
+      scope: role
     };
 
     return next();

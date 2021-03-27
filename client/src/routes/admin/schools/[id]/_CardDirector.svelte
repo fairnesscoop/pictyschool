@@ -1,6 +1,6 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import DirectorIcon from '../../../../components/icons/DirectorIcon.svelte';
+  import DirectorIcon from 'components/icons/DirectorIcon.svelte';
 
   export let id;
   export let director;

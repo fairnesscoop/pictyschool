@@ -21,7 +21,7 @@ export class GetSchoolsAction {
   ) {}
 
   @Get()
-  @Roles(UserRole.PHOTOGRAPHER)
+  @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
   @ApiOperation({summary: 'Get all schools ordered by name'})
   public async index(
     @Query() { page }: PaginationDTO
