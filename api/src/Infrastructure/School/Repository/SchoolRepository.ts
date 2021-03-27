@@ -40,14 +40,19 @@ export class SchoolRepository implements ISchoolRepository {
         'school.pdv',
         'school.observation',
         'schoolType.id',
-        'schoolType.name'
+        'schoolType.name',
+        'director.id',
+        'director.firstName',
+        'director.lastName',
+        'director.email'
       ])
       .leftJoin('school.schoolType', 'schoolType')
+      .leftJoin('school.director', 'director')
       .where('school.id = :id', { id })
       .getOne();
   }
 
-  public findSchools(page: number = 1): Promise<[School[], number]> {
+  public findSchools(page = 1): Promise<[School[], number]> {
     return this.repository
       .createQueryBuilder('school')
       .select([

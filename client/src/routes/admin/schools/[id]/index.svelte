@@ -46,12 +46,12 @@
 </div>
 <ServerErrors {errors} />
 
-<div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
-  <CardPhoto />
-  <CardOrder />
-  <CardProduct {id} />
-  <CardDirector />
-</div>
 {#if school}
+  <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
+    <CardPhoto />
+    <CardOrder />
+    <CardProduct {id} />
+    <CardDirector {id} director={school.director} />
+  </div>
   <Detail {school} />
 {/if}

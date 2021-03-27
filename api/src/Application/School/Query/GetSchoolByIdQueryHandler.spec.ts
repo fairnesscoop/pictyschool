@@ -7,6 +7,8 @@ import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFo
 import { SchoolType } from 'src/Domain/School/SchoolType.entity';
 import { SchoolTypeView } from '../View/SchoolTypeView';
 import { SchoolDetailView } from '../View/SchoolDetailView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
+import { User } from 'src/Domain/User/User.entity';
 
 describe('GetSchoolByIdQueryHandler', () => {
   const query = new GetSchoolByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -26,12 +28,19 @@ describe('GetSchoolByIdQueryHandler', () => {
       200,
       '12/12/2020',
       'Observation',
-      new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élémentaire')
+      new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élémentaire'),
+      new UserSummaryView('551d848f-a1d5-4067-9a12-5f918b69d077', 'Mathieu', 'MARCHOIS', 'mathieu@fairness.coop')
     );
 
     const schoolType = mock(SchoolType);
     when(schoolType.getId()).thenReturn('ad7e727c-3066-42bf-982b-7219d26aeabb');
     when(schoolType.getName()).thenReturn('élémentaire');
+
+    const director = mock(User);
+    when(director.getId()).thenReturn('551d848f-a1d5-4067-9a12-5f918b69d077');
+    when(director.getFirstName()).thenReturn('Mathieu');
+    when(director.getLastName()).thenReturn('MARCHOIS');
+    when(director.getEmail()).thenReturn('mathieu@fairness.coop');
 
     const school = mock(School);
     when(school.getName()).thenReturn('Belliard');
@@ -46,6 +55,7 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
     when(school.getSchoolType()).thenReturn(instance(schoolType));
+    when(school.getDirector()).thenReturn(instance(director));
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(instance(school));
@@ -57,7 +67,7 @@ describe('GetSchoolByIdQueryHandler', () => {
     ).once();
   });
 
-  it('testGetSchoolWithoutSchoolType', async () => {
+  it('testGetSchoolWithoutSchoolTypeAndDirector', async () => {
     const schoolRepository = mock(SchoolRepository);
     const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
     const expectedResult = new SchoolDetailView(
@@ -72,6 +82,7 @@ describe('GetSchoolByIdQueryHandler', () => {
       200,
       '12/12/2020',
       'Observation',
+      null,
       null
     );
 
@@ -88,6 +99,7 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
     when(school.getSchoolType()).thenReturn(null);
+    when(school.getDirector()).thenReturn(null);
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(instance(school));

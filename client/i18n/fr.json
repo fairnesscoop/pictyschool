@@ -28,13 +28,10 @@
   },
   "profile": {
     "title": "Mon compte",
-    "logout": "Se déconnecter",
-    "form": {
-      "first_name": "Prénom",
-      "last_name": "Nom",
-      "email": "Adresse email",
-      "password": "Mot de passe"
-    }
+    "logout": "Se déconnecter"
+  },
+  "prospects": {
+    "breadcrumb": "Prospects"
   },
   "products": {
     "breadcrumb": "Produits",
@@ -77,8 +74,9 @@
     },
     "errors": {
       "password_not_match": "Adresse email ou mot de passe incorrect.",
-      "email_already_exist": "Cette adresse email est déjà utilisée.",
-      "not_found": "Adresse email ou mot de passe incorrect."
+      "email_already_exist": "Cette adresse email est déjà utilisée par un autre compte.",
+      "not_found": "Adresse email ou mot de passe incorrect.",
+      "should_be_director": "Le compte doit avoir le rôle directeur."
     }
   },
   "schools": {
@@ -94,6 +92,17 @@
     },
     "edit": {
       "title": "Edition de l'école"
+    },
+    "director": {
+      "title": "Directeur",
+      "empty": "Aucun directeur n'est associé à l'école",
+      "informations": "Informations directeur",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "Adresse email",
+      "add": {
+        "title": "Créer un compte directeur"
+      }
     },
     "types": {
       "breadcrumb": "Types d'école",

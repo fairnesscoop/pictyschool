@@ -3,7 +3,7 @@
   import { _ } from 'svelte-i18n';
   import Breadcrumb from '../../../components/Breadcrumb.svelte';
   import { post } from '../../../utils/axios';
-  import Form from './_Form.svelte';
+  import Form from '../../../components/form/UserForm.svelte';
   import { errorNormalizer } from '../../../normalizer/errors';
   import ServerErrors from '../../../components/ServerErrors.svelte';
   import H4Title from '../../../components/H4Title.svelte';
@@ -15,7 +15,10 @@
   const onSave = async (e) => {
     try {
       loading = true;
-      await post('users', e.detail);
+      await post('users', {
+        ...e.detail, 
+        role: 'photographer'
+      });
       goto('/admin/users');
     } catch (e) {
       errors = errorNormalizer(e);

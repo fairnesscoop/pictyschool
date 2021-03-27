@@ -5,7 +5,7 @@
   import Breadcrumb from '../../../components/Breadcrumb.svelte';
   import H4Title from '../../../components/H4Title.svelte';
   import { get, put } from '../../../utils/axios';
-  import Form from './_Form.svelte';
+  import Form from '../../../components/form/UserForm.svelte';
   import { errorNormalizer } from '../../../normalizer/errors';
   import ServerErrors from '../../../components/ServerErrors.svelte';
 

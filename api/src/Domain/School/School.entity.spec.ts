@@ -1,9 +1,11 @@
 import { mock, instance } from 'ts-mockito';
+import { User } from '../User/User.entity';
 import { School } from './School.entity';
 import { SchoolType } from './SchoolType.entity';
 
 describe('School', () => {
   const schoolType = mock(SchoolType);
+  const director = mock(User);
 
   it('testGetters', () => {
     const school = new School(
@@ -17,7 +19,7 @@ describe('School', () => {
       10,
       'Observation',
       '10/10/2020',
-      instance(schoolType)
+      instance(schoolType),
     );
     expect(school.getId()).toBeUndefined();
     expect(school.getName()).toBe('Belliard');
@@ -31,6 +33,7 @@ describe('School', () => {
     expect(school.getNumberOfClasses()).toBe(10);
     expect(school.getNumberOfStudents()).toBe(200);
     expect(school.getSchoolType()).toBe(instance(schoolType));
+    expect(school.getDirector()).toBeUndefined();
     expect(school.getCreatedAt()).toBeUndefined();
   });
 
@@ -63,6 +66,8 @@ describe('School', () => {
       instance(schoolType2)
     );
 
+    school.updateDirector(instance(director));
+
     expect(school.getName()).toBe('name');
     expect(school.getReference()).toBe('ref');
     expect(school.getCity()).toBe('city');
@@ -74,5 +79,6 @@ describe('School', () => {
     expect(school.getNumberOfClasses()).toBe(1);
     expect(school.getNumberOfStudents()).toBe(1);
     expect(school.getSchoolType()).toBe(instance(schoolType2));
+    expect(school.getDirector()).toBe(instance(director));
   });
 });

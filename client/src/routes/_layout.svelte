@@ -8,8 +8,6 @@
   import Header from './../components/header/Header.svelte';
   import { currentPath } from '../store';
 
-  export let segment;
-
   const { page, session } = stores();
   const options = {
     routes,

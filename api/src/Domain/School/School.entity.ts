@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from '../User/User.entity';
 import { SchoolType } from './SchoolType.entity';
 
 @Entity()
@@ -41,6 +42,9 @@ export class School {
 
   @ManyToOne(() => SchoolType, { nullable: true, onDelete: 'SET NULL' })
   private schoolType: SchoolType;
+
+  @ManyToOne(() => User, { nullable: true, onDelete: 'SET NULL' })
+  private director: User;
 
   constructor(
     reference: string,
@@ -120,6 +124,10 @@ export class School {
     return this.schoolType;
   }
 
+  public getDirector(): User {
+    return this.director;
+  }
+
   public update(
     reference: string,
     name: string,
@@ -144,5 +152,9 @@ export class School {
     this.observation = observation;
     this.pdv = pdv;
     this.schoolType = schoolType;
+  }
+
+  public updateDirector(director: User): void {
+    this.director = director;
   }
 }
