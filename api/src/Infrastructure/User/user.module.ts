@@ -42,7 +42,7 @@ import { GetPhotographersAction } from './Action/GetPhotographersAction';
     GetUserByIdQueryHandler,
     RolesGuard,
     CreateUserCommandHandler,
-    GetUsersByRoleQueryHandler
+    GetUsersByRoleQueryHandler,
   ]
 })
 export class UserModule {}

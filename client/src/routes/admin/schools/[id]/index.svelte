@@ -46,7 +46,7 @@
 <Breadcrumb items={[{ title: $_('schools.breadcrumb'), path: '/admin/schools' }, { title }]} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  {#if $session.user.role === ROLE_PHOTOGRAPHER}
+  {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
     <Link href={`/admin/schools/${id}/edit`} value={$_('common.form.edit')} />
   {/if}
 </div>

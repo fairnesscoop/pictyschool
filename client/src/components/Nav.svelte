@@ -56,7 +56,7 @@
             <span class="ml-4">{$_('schools.breadcrumb')}</span>
           </a>
         </li>
-        {#if $session.user.role === ROLE_PHOTOGRAPHER}
+        {#if $session.user.scope === ROLE_PHOTOGRAPHER}
           <li class="relative px-6 py-3">
             {#if $currentPath.includes(schoolTypesPath)}
               <span class={activeClass} aria-hidden="true"></span>

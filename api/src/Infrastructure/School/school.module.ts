@@ -50,6 +50,7 @@ import { User } from 'src/Domain/User/User.entity';
 import { AssignDirectorToSchoolCommandHandler } from 'src/Application/School/Command/AssignDirectorToSchoolCommandHandler';
 import { UserRepository } from '../User/Repository/UserRepository';
 import { AssignDirectorToSchoolAction } from './Action/AssignDirectorToSchoolAction';
+import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
 
 @Module({
   imports: [
@@ -108,7 +109,8 @@ import { AssignDirectorToSchoolAction } from './Action/AssignDirectorToSchoolAct
     GetSchoolTypesQueryHandler,
     IsSchoolTypeAlreadyExist,
     RemoveSchoolTypeCommandHandler,
-    AssignDirectorToSchoolCommandHandler
+    AssignDirectorToSchoolCommandHandler,
+    CanUserAccessToSchool,
   ]
 })
 export class SchoolModule {}

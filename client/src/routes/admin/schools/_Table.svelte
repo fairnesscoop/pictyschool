@@ -31,7 +31,7 @@
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
             <SeeLink href={`/admin/schools/${id}`} />
-            {#if $session.user.role === ROLE_PHOTOGRAPHER}
+            {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
               <EditLink href={`/admin/schools/${id}/edit`} />
             {/if}
           </div>

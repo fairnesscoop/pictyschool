@@ -13,8 +13,11 @@ import { GetSchoolByIdQuery } from 'src/Application/School/Query/GetSchoolByIdQu
 import { SchoolView } from 'src/Application/School/View/SchoolView';
 import { UserRole } from 'src/Domain/User/User.entity';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
+import { LoggedUser } from 'src/Infrastructure/User/Decorator/LoggedUser';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
+import { UserAuthView } from 'src/Infrastructure/User/Security/UserAuthView';
+
 
 @Controller('schools')
 @ApiTags('School')
@@ -29,9 +32,12 @@ export class GetSchoolAction {
   @Get(':id')
   @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
   @ApiOperation({ summary: 'Get school' })
-  public async index(@Param() dto: IdDTO): Promise<SchoolView> {
+  public async index(
+    @Param() dto: IdDTO,
+    @LoggedUser() { id }: UserAuthView
+  ): Promise<SchoolView> {
     try {
-      return await this.queryBus.execute(new GetSchoolByIdQuery(dto.id));
+      return await this.queryBus.execute(new GetSchoolByIdQuery(dto.id, id));
     } catch (e) {
       throw new NotFoundException(e.message);
     }

@@ -52,8 +52,8 @@ export class SchoolRepository implements ISchoolRepository {
       .getOne();
   }
 
-  public findSchools(page = 1): Promise<[School[], number]> {
-    return this.repository
+  public findSchools(page = 1, directorId: string | null): Promise<[School[], number]> {
+    const query = this.repository
       .createQueryBuilder('school')
       .select([
         'school.id',
@@ -66,9 +66,16 @@ export class SchoolRepository implements ISchoolRepository {
         'schoolType.name'
       ])
       .leftJoin('school.schoolType', 'schoolType')
-      .orderBy('school.name', 'ASC')
+      .orderBy('school.createdAt', 'DESC')
       .limit(MAX_ITEMS_PER_PAGE)
-      .offset((page - 1) * MAX_ITEMS_PER_PAGE)
-      .getManyAndCount();
+      .offset((page - 1) * MAX_ITEMS_PER_PAGE);
+
+      if (directorId) {
+        query
+          .innerJoin('school.director', 'director')
+          .where('director.id = :directorId', { directorId });
+      }
+
+      return query.getManyAndCount();
   }
 }

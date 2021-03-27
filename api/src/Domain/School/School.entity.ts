@@ -124,7 +124,7 @@ export class School {
     return this.schoolType;
   }
 
-  public getDirector(): User {
+  public getDirector(): User | null {
     return this.director;
   }
 

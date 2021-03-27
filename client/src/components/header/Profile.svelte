@@ -12,7 +12,7 @@
   const handleLogout = async () => {
     $session.user = null;
     Cookies.remove('photoschool_token');
-    goto('/admin/login');
+    return goto('/admin/login');
   };
 </script>
 

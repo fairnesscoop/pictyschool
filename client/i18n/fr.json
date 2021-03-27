@@ -76,7 +76,8 @@
       "password_not_match": "Adresse email ou mot de passe incorrect.",
       "email_already_exist": "Cette adresse email est déjà utilisée par un autre compte.",
       "not_found": "Adresse email ou mot de passe incorrect.",
-      "should_be_director": "Le compte doit avoir le rôle directeur."
+      "should_be_director": "Le compte doit avoir le rôle directeur.",
+      "cant_access_to_school": "Vous n'avez pas les droits pour accéder à cette école."
     }
   },
   "schools": {

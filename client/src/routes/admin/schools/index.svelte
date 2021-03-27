@@ -58,7 +58,7 @@
 <ServerErrors {errors} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  {#if $session.user.role === ROLE_PHOTOGRAPHER}
+  {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
     <AddLink href={'/admin/schools/add'} value={$_('common.form.add')} />
   {/if}
 </div>

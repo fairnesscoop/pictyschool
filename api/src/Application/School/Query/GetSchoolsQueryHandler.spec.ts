@@ -7,9 +7,10 @@ import { SchoolView } from 'src/Application/School/View/SchoolView';
 import { Pagination } from 'src/Application/Common/Pagination';
 import { SchoolType } from 'src/Domain/School/SchoolType.entity';
 import { SchoolTypeView } from '../View/SchoolTypeView';
+import { UserRole } from 'src/Domain/User/User.entity';
 
 describe('GetSchoolsQueryHandler', () => {
-  it('testGetSchools', async () => {
+  it('testGetSchoolsWithPhotographerRole', async () => {
     const schoolRepository = mock(SchoolRepository);
 
     const schoolType = mock(SchoolType);
@@ -33,13 +34,12 @@ describe('GetSchoolsQueryHandler', () => {
     when(school2.getCity()).thenReturn('Paris');
     when(school2.getZipCode()).thenReturn('75018');
 
-    when(schoolRepository.findSchools(1)).thenResolve([
+    when(schoolRepository.findSchools(1, null)).thenResolve([
       [instance(school2), instance(school1)],
       2
     ]);
 
     const queryHandler = new GetSchoolsQueryHandler(instance(schoolRepository));
-
     const expectedResult = new Pagination<SchoolView>(
       [
         new SchoolView(
@@ -64,9 +64,49 @@ describe('GetSchoolsQueryHandler', () => {
       2
     );
 
-    expect(await queryHandler.execute(new GetSchoolsQuery(1))).toMatchObject(
-      expectedResult
+    expect(
+      await queryHandler.execute(
+        new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.PHOTOGRAPHER)
+      )).toMatchObject(expectedResult);
+    verify(schoolRepository.findSchools(1, null)).once();
+  });
+
+  it('testGetSchoolsWithDirectorRole', async () => {
+    const schoolRepository = mock(SchoolRepository);
+
+    const school3 = mock(School);
+    when(school3.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
+    when(school3.getName()).thenReturn('Ecole élementaire Belliard');
+    when(school3.getReference()).thenReturn('xLKJSs');
+    when(school3.getAddress()).thenReturn('127 Rue Belliard');
+    when(school3.getCity()).thenReturn('Paris');
+    when(school3.getZipCode()).thenReturn('75010');
+
+    when(schoolRepository.findSchools(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64')).thenResolve([
+      [instance(school3)],
+      1
+    ]);
+
+    const queryHandler = new GetSchoolsQueryHandler(instance(schoolRepository));
+    const expectedResult = new Pagination<SchoolView>(
+      [
+        new SchoolView(
+          'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
+          'Ecole élementaire Belliard',
+          'xLKJSs',
+          '127 Rue Belliard',
+          'Paris',
+          '75010',
+          null
+        )
+      ],
+      1
     );
-    verify(schoolRepository.findSchools(1)).once();
+
+    expect(
+      await queryHandler.execute(
+        new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.DIRECTOR)
+      )).toMatchObject(expectedResult);
+    verify(schoolRepository.findSchools(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64')).once();
   });
 });
