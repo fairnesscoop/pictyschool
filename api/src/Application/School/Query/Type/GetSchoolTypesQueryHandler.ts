@@ -11,7 +11,7 @@ export class GetSchoolTypesQueryHandler {
     private readonly schoolTypeRepository: ISchoolTypeRepository
   ) {}
 
-  public async execute(): Promise<SchoolTypeView[]> {
+  public async execute(query: GetSchoolTypesQuery): Promise<SchoolTypeView[]> {
     const schoolTypeViews: SchoolTypeView[] = [];
     const schoolTypes = await this.schoolTypeRepository.findAll();
 
