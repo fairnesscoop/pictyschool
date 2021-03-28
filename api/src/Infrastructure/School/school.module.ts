@@ -46,6 +46,11 @@ import { GetSchoolTypesAction } from './Action/Type/GetSchoolTypesAction';
 import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
 import { RemoveSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/RemoveSchoolTypeCommandHandler';
 import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
+import { User } from 'src/Domain/User/User.entity';
+import { AssignDirectorToSchoolCommandHandler } from 'src/Application/School/Command/AssignDirectorToSchoolCommandHandler';
+import { UserRepository } from '../User/Repository/UserRepository';
+import { AssignDirectorToSchoolAction } from './Action/AssignDirectorToSchoolAction';
+import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
 
 @Module({
   imports: [
@@ -56,7 +61,8 @@ import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
       AccessToken,
       SchoolProduct,
       Product,
-      SchoolType
+      SchoolType,
+      User
     ])
   ],
   controllers: [
@@ -64,6 +70,7 @@ import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
     CreateSchoolAction,
     GetSchoolAction,
     UpdateSchoolAction,
+    AssignDirectorToSchoolAction,
     CreateSchoolProductAction,
     GetSchoolProductAction,
     CountSchoolProductsAction,
@@ -74,10 +81,11 @@ import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
     CreateSchoolTypeAction,
     GetSchoolTypeAction,
     UpdateSchoolTypeAction,
-    RemoveSchoolTypeAction
+    RemoveSchoolTypeAction,
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
+    { provide: 'IUserRepository', useClass: UserRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
@@ -100,7 +108,9 @@ import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
     GetSchoolTypeByIdQueryHandler,
     GetSchoolTypesQueryHandler,
     IsSchoolTypeAlreadyExist,
-    RemoveSchoolTypeCommandHandler
+    RemoveSchoolTypeCommandHandler,
+    AssignDirectorToSchoolCommandHandler,
+    CanUserAccessToSchool,
   ]
 })
 export class SchoolModule {}

@@ -1,4 +1,4 @@
-import { mock, instance, when, verify } from 'ts-mockito';
+import { mock, instance, when, verify, anything } from 'ts-mockito';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
 import { School } from 'src/Domain/School/School.entity';
 import { GetSchoolByIdQueryHandler } from './GetSchoolByIdQueryHandler';
@@ -7,13 +7,26 @@ import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFo
 import { SchoolType } from 'src/Domain/School/SchoolType.entity';
 import { SchoolTypeView } from '../View/SchoolTypeView';
 import { SchoolDetailView } from '../View/SchoolDetailView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
+import { User } from 'src/Domain/User/User.entity';
+import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
+import { UserCantAccessToSchoolException } from 'src/Domain/User/Exception/UserCantAccessToSchoolException';
 
 describe('GetSchoolByIdQueryHandler', () => {
-  const query = new GetSchoolByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
+  const query = new GetSchoolByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2', '551d848f-a1d5-4067-9a12-5f918b69d077');
+  let schoolRepository: SchoolRepository;
+  let canUserAccessToSchool: CanUserAccessToSchool;
+  let queryHandler: GetSchoolByIdQueryHandler;
+  let school: School;
+
+  beforeEach(() => {
+    school = mock(School);
+    schoolRepository = mock(SchoolRepository);
+    canUserAccessToSchool = mock(CanUserAccessToSchool);
+    queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository), instance(canUserAccessToSchool));
+  });
 
   it('testGetSchool', async () => {
-    const schoolRepository = mock(SchoolRepository);
-    const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
     const expectedResult = new SchoolDetailView(
       'd54f15d6-1a1d-47e8-8672-9f46018f9960',
       'Belliard',
@@ -26,14 +39,20 @@ describe('GetSchoolByIdQueryHandler', () => {
       200,
       '12/12/2020',
       'Observation',
-      new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élémentaire')
+      new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élémentaire'),
+      new UserSummaryView('551d848f-a1d5-4067-9a12-5f918b69d077', 'Mathieu', 'MARCHOIS', 'mathieu@fairness.coop')
     );
 
     const schoolType = mock(SchoolType);
     when(schoolType.getId()).thenReturn('ad7e727c-3066-42bf-982b-7219d26aeabb');
     when(schoolType.getName()).thenReturn('élémentaire');
 
-    const school = mock(School);
+    const director = mock(User);
+    when(director.getId()).thenReturn('551d848f-a1d5-4067-9a12-5f918b69d077');
+    when(director.getFirstName()).thenReturn('Mathieu');
+    when(director.getLastName()).thenReturn('MARCHOIS');
+    when(director.getEmail()).thenReturn('mathieu@fairness.coop');
+
     when(school.getName()).thenReturn('Belliard');
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
     when(school.getReference()).thenReturn('LM120I');
@@ -46,20 +65,24 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
     when(school.getSchoolType()).thenReturn(instance(schoolType));
+    when(school.getDirector()).thenReturn(instance(director));
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(instance(school));
-
+    when(
+      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
+    ).thenResolve(true);
     expect(await queryHandler.execute(query)).toMatchObject(expectedResult);
 
     verify(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).once();
+    verify(
+      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
+    ).once();
   });
 
-  it('testGetSchoolWithoutSchoolType', async () => {
-    const schoolRepository = mock(SchoolRepository);
-    const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
+  it('testGetSchoolWithoutSchoolTypeAndDirector', async () => {
     const expectedResult = new SchoolDetailView(
       'd54f15d6-1a1d-47e8-8672-9f46018f9960',
       'Belliard',
@@ -72,10 +95,10 @@ describe('GetSchoolByIdQueryHandler', () => {
       200,
       '12/12/2020',
       'Observation',
+      null,
       null
     );
 
-    const school = mock(School);
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
     when(school.getName()).thenReturn('Belliard');
     when(school.getReference()).thenReturn('LM120I');
@@ -88,20 +111,25 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
     when(school.getSchoolType()).thenReturn(null);
+    when(school.getDirector()).thenReturn(null);
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(instance(school));
+    when(
+      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
+    ).thenResolve(true);
 
     expect(await queryHandler.execute(query)).toMatchObject(expectedResult);
 
     verify(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).once();
+    verify(
+      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
+    ).once();
   });
 
   it('testGetSchoolNotFound', async () => {
-    const schoolRepository = mock(SchoolRepository);
-    const queryHandler = new GetSchoolByIdQueryHandler(instance(schoolRepository));
     when(
       schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
     ).thenResolve(null);
@@ -113,6 +141,29 @@ describe('GetSchoolByIdQueryHandler', () => {
       expect(e.message).toBe('schools.errors.not_found');
       verify(
         schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
+      ).once();
+      verify(canUserAccessToSchool.isSatisfiedBy(anything(), anything())).never();
+    }
+  });
+
+  it('testUserCantAccessToSchool', async () => {
+    when(
+      schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
+    ).thenResolve(instance(school));
+    when(
+      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
+    ).thenResolve(false);
+
+    try {
+      expect(await queryHandler.execute(query)).toBeUndefined();
+    } catch (e) {
+      expect(e).toBeInstanceOf(UserCantAccessToSchoolException);
+      expect(e.message).toBe('users.errors.cant_access_to_school');
+      verify(
+        schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
+      ).once();
+      verify(
+        canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
       ).once();
     }
   });

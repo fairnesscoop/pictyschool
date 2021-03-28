@@ -1,6 +1,6 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import OrderIcon from '../../../../components/icons/OrderIcon.svelte';
+  import OrderIcon from 'components/icons/OrderIcon.svelte';
 </script>
 
 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

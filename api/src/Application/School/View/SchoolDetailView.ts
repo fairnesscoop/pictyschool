@@ -1,3 +1,4 @@
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 import { SchoolTypeView } from './SchoolTypeView';
 
 export class SchoolDetailView {
@@ -13,6 +14,7 @@ export class SchoolDetailView {
     public readonly numberOfStudents?: number,
     public readonly pdv?: string,
     public readonly observation?: string,
-    public readonly schoolType?: SchoolTypeView
+    public readonly schoolType?: SchoolTypeView,
+    public readonly director?: UserSummaryView,
   ) {}
 }

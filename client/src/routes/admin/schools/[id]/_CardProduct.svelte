@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import FolderIcon from '../../../../components/icons/FolderIcon.svelte';
-  import { get } from '../../../../utils/axios';
+  import FolderIcon from 'components/icons/FolderIcon.svelte';
+  import { get } from 'utils/axios';
   
   export let id;
 
@@ -28,9 +28,7 @@
       <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
         {$_('schools.dashboard.products')}
       </p>
-      <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-        {total}
-      </p>
+      <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">{total}</p>
     </a>
   </div>
 </div>

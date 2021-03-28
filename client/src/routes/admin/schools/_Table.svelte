@@ -1,10 +1,14 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import SeeLink from '../../../components/links/SeeLink.svelte';
-  import EditLink from '../../../components/links/EditLink.svelte';
-  import PhotoIcon from '../../../components/icons/PhotoIcon.svelte';
+  import { stores } from '@sapper/app';
+  import SeeLink from 'components/links/SeeLink.svelte';
+  import EditLink from 'components/links/EditLink.svelte';
+  import PhotoIcon from 'components/icons/PhotoIcon.svelte';
+  import { ROLE_PHOTOGRAPHER } from 'constants/roles';
 
   export let items;
+
+  const { session } = stores();
 </script>
 
 <table class="w-full whitespace-no-wrap">
@@ -27,7 +31,9 @@
         <td class="px-4 py-3">
           <div class="flex items-center space-x-4 text-sm">
             <SeeLink href={`/admin/schools/${id}`} />
-            <EditLink href="{`/admin/schools/${id}/edit`}" />
+            {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
+              <EditLink href={`/admin/schools/${id}/edit`} />
+            {/if}
           </div>
         </td>
       </tr>

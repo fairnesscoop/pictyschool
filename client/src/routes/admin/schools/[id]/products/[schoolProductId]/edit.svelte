@@ -8,13 +8,13 @@
   import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, put } from '../../../../../../utils/axios';
-  import Breadcrumb from '../../../../../../components/Breadcrumb.svelte';
-  import { errorNormalizer } from '../../../../../../normalizer/errors';
-  import ServerErrors from '../../../../../../components/ServerErrors.svelte';
-  import Notice from '../../../../../../components/Notice.svelte';
-  import { format } from '../../../../../../normalizer/money';
-  import H4Title from '../../../../../../components/H4Title.svelte';
+  import { get, put } from 'utils/axios';
+  import Breadcrumb from 'components/Breadcrumb.svelte';
+  import { errorNormalizer } from 'normalizer/errors';
+  import ServerErrors from 'components/ServerErrors.svelte';
+  import Notice from 'components/Notice.svelte';
+  import { format } from 'normalizer/money';
+  import H4Title from 'components/H4Title.svelte';
   import Form from './_Form.svelte';
 
   export let id;

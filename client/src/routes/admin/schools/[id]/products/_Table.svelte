@@ -1,9 +1,9 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
-  import { format } from '../../../../../normalizer/money';
-  import EditLink from '../../../../../components/links/EditLink.svelte';
-  import DeleteLink from '../../../../../components/links/DeleteLink.svelte';
+  import { format } from 'normalizer/money';
+  import EditLink from 'components/links/EditLink.svelte';
+  import DeleteLink from 'components/links/DeleteLink.svelte';
 
   export let schoolId;
   export let items;

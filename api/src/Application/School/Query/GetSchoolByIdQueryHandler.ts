@@ -5,25 +5,46 @@ import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepositor
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolTypeView } from '../View/SchoolTypeView';
 import { SchoolDetailView } from '../View/SchoolDetailView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
+import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
+import { UserCantAccessToSchoolException } from 'src/Domain/User/Exception/UserCantAccessToSchoolException';
 
 @QueryHandler(GetSchoolByIdQuery)
 export class GetSchoolByIdQueryHandler {
   constructor(
     @Inject('ISchoolRepository')
-    private readonly schoolRepository: ISchoolRepository
+    private readonly schoolRepository: ISchoolRepository,
+    private readonly canUserAccessToSchool: CanUserAccessToSchool
   ) {}
 
   public async execute(query: GetSchoolByIdQuery): Promise<SchoolDetailView> {
-    const school = await this.schoolRepository.findOneById(query.id);
+    const { id, userId } = query;
+    const school = await this.schoolRepository.findOneById(id);
 
     if (!school) {
       throw new SchoolNotFoundException();
     }
 
+    if (false === await this.canUserAccessToSchool.isSatisfiedBy(school, userId)) {
+      throw new UserCantAccessToSchoolException();
+    }
+
     const schoolType = school.getSchoolType();
     const schoolTypeView = schoolType ?
-      new SchoolTypeView(schoolType.getId(), schoolType.getName()) :
-      null;
+      new SchoolTypeView(
+        schoolType.getId(),
+        schoolType.getName()
+      ) : null;
+
+    const director = school.getDirector();
+    const directorView = director ?
+      new UserSummaryView(
+        director.getId(),
+        director.getFirstName(),
+        director.getLastName(),
+        director.getEmail()
+      ) : null;
+    
 
     return new SchoolDetailView(
       school.getId(),
@@ -37,7 +58,8 @@ export class GetSchoolByIdQueryHandler {
       school.getNumberOfStudents(),
       school.getPdv(),
       school.getObservation(),
-      schoolTypeView
+      schoolTypeView,
+      directorView
     );
   }
 }

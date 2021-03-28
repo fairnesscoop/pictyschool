@@ -1,12 +1,13 @@
 <script>
   import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
-  import Breadcrumb from '../../../components/Breadcrumb.svelte';
-  import { post } from '../../../utils/axios';
-  import Form from './_Form.svelte';
-  import { errorNormalizer } from '../../../normalizer/errors';
-  import ServerErrors from '../../../components/ServerErrors.svelte';
-  import H4Title from '../../../components/H4Title.svelte';
+  import Breadcrumb from 'components/Breadcrumb.svelte';
+  import { post } from 'utils/axios';
+  import Form from 'components/form/UserForm.svelte';
+  import { errorNormalizer } from 'normalizer/errors';
+  import ServerErrors from 'components/ServerErrors.svelte';
+  import H4Title from 'components/H4Title.svelte';
+  import { ROLE_PHOTOGRAPHER } from 'constants/roles';
 
   let loading = false;
   let title = $_('users.add.title');
@@ -15,7 +16,10 @@
   const onSave = async (e) => {
     try {
       loading = true;
-      await post('users', e.detail);
+      await post('users', {
+        ...e.detail, 
+        role: ROLE_PHOTOGRAPHER
+      });
       goto('/admin/users');
     } catch (e) {
       errors = errorNormalizer(e);

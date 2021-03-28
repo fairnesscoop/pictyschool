@@ -1,11 +1,11 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher, onMount } from 'svelte';
-  import { get } from '../../../utils/axios';
-  import Input from '../../../components/inputs/Input.svelte';
-  import Button from '../../../components/inputs/Button.svelte';
-  import SelectInput from '../../../components/inputs/SelectInput.svelte';
-  import H4Title from '../../../components/H4Title.svelte';
+  import { get } from 'utils/axios';
+  import Input from 'components/inputs/Input.svelte';
+  import Button from 'components/inputs/Button.svelte';
+  import SelectInput from 'components/inputs/SelectInput.svelte';
+  import H4Title from 'components/H4Title.svelte';
 
   export let address = '';
   export let city = '';

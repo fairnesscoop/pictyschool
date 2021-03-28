@@ -1,14 +1,15 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
-  import Input from '../../../components/inputs/Input.svelte';
-  import Button from '../../../components/inputs/Button.svelte';
+  import Input from '../inputs/Input.svelte';
+  import Button from '../inputs/Button.svelte';
 
   export let firstName = '';
   export let lastName = '';
   export let email = '';
-  export let password = '';
   export let loading;
+
+  let password = '';  
 
   const dispatch = createEventDispatcher();
   const submit = () => {
@@ -17,7 +18,6 @@
       lastName,
       email,
       password,
-      role: 'photographer'
     });
   };
 </script>

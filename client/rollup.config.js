@@ -7,7 +7,9 @@ import svelte from 'rollup-plugin-svelte';
 import babel from 'rollup-plugin-babel';
 import {terser} from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
+import alias from '@rollup/plugin-alias';
 import pkg from './package.json';
+import path from 'path';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -19,6 +21,15 @@ const onwarn = (warning, onwarn) =>
   onwarn(warning);
 const dedupe = (importee) =>
   importee === 'svelte' || importee.startsWith('svelte/');
+
+const aliases = [
+  { find: 'src', replacement: path.resolve(__dirname, 'src') },
+  { find: 'components', replacement: path.resolve(__dirname, 'src/components') },
+  { find: 'normalizer', replacement: path.resolve(__dirname, 'src/normalizer') },
+  { find: 'utils', replacement: path.resolve(__dirname, 'src/utils') },
+  { find: 'store', replacement: path.resolve(__dirname, 'src/store') },
+  { find: 'constants', replacement: path.resolve(__dirname, 'src/constants') },
+];
 
 export default {
   client: {
@@ -40,7 +51,7 @@ export default {
       }),
       json(),
       commonjs(),
-
+      alias({ entries: aliases }),
       legacy &&
         babel({
           extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -91,7 +102,8 @@ export default {
         dedupe
       }),
       json(),
-      commonjs()
+      commonjs(),
+      alias({ entries: aliases }),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||

@@ -7,12 +7,12 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, del } from '../../../../../utils/axios';
-  import Breadcrumb from '../../../../../components/Breadcrumb.svelte';
-  import { errorNormalizer } from '../../../../../normalizer/errors';
-  import ServerErrors from '../../../../../components/ServerErrors.svelte';
-  import H4Title from '../../../../../components/H4Title.svelte';
-  import Link from '../../../../../components/links/Link.svelte';
+  import { get, del } from 'utils/axios';
+  import Breadcrumb from 'components/Breadcrumb.svelte';
+  import { errorNormalizer } from 'normalizer/errors';
+  import ServerErrors from 'components/ServerErrors.svelte';
+  import H4Title from 'components/H4Title.svelte';
+  import Link from 'components/links/Link.svelte';
   import Table from './_Table.svelte';
 
   export let id;

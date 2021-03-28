@@ -36,7 +36,6 @@ build-tailwind: ## Build Tailwind in production mode
 	${exec} client npm run build:tailwind
 test: ## Run test suite
 	${exec} api npm run test
-	${exec} client npm run test-unit
 test-watch: ## Run test suite
 	${exec} api npm run test:watch
 linter: ## Linter

@@ -2,13 +2,10 @@
   import { tick } from 'svelte';
   import { stores, goto } from '@sapper/app';
   import { guard } from '@beyonk/sapper-rbac';
-  import { settings } from '../store';
   import routes from '../routes';
-  import Nav from './../components/Nav.svelte';
-  import Header from './../components/header/Header.svelte';
-  import { currentPath } from '../store';
-
-  export let segment;
+  import Nav from 'components/Nav.svelte';
+  import Header from 'components/header/Header.svelte';
+  import { currentPath, settings } from 'store';
 
   const { page, session } = stores();
   const options = {
