@@ -4,7 +4,7 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { IQueryBus } from 'src/Application/IQueryBus';
 import { GetUsersByRoleQuery } from 'src/Application/User/Query/GetUsersByRoleQuery';
 import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
-import { User, UserRole } from 'src/Domain/User/User.entity';
+import { UserRole } from 'src/Domain/User/User.entity';
 import { Roles } from '../Decorator/Roles';
 import { RolesGuard } from '../Security/RolesGuard';
 
