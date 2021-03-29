@@ -18,6 +18,6 @@ export class RemoveSchoolProductCommandHandler {
       throw new SchoolProductNotFoundException();
     }
 
-    this.schoolProductRepository.remove(schoolProduct);
+    await this.schoolProductRepository.remove(schoolProduct);
   }
 }

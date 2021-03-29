@@ -16,6 +16,10 @@ export class LeadRepository implements ILeadRepository {
     return this.repository.save(lead);
   }
 
+  public remove(lead: Lead): void {
+    this.repository.delete(lead.getId());
+  }
+
   public findLeads(page = 1): Promise<[Lead[], number]> {
     return this.repository
       .createQueryBuilder('lead')
@@ -41,6 +45,14 @@ export class LeadRepository implements ILeadRepository {
       .createQueryBuilder('lead')
       .select([ 'lead.id' ])
       .where('lower(lead.reference) = :reference', { reference: reference.toLowerCase() })
+      .getOne();
+  }
+
+  public findOneById(id: string): Promise<Lead | undefined> {
+    return this.repository
+      .createQueryBuilder('lead')
+      .select([ 'lead.id' ])
+      .where('lead.id = :id', { id })
       .getOne();
   }
 }
