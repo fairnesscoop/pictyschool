@@ -37,9 +37,25 @@
       "name": "Nom du prospect",
       "address": "Adresse",
       "city": "Ville",
-      "zip_code": "Code postal",
       "email": "Contact email",
+      "phone_number": "Contact tél.",
       "number_of_students": "Nb. d'élèves"
+    },
+    "add": {
+      "title": "Ajouter un prospect"
+    },
+    "form": {
+      "reference": "Référence",
+      "name": "Nom du prospect",
+      "address": "Adresse",
+      "city": "Ville",
+      "zip_code": "Code postal",
+      "number_of_students": "Nombre d'élèves",
+      "email": "Contact email",
+      "phone_number": "Contact téléphone"
+    },
+    "errors": {
+      "already_exist": "Un prospect avec cette référence existe déjà."
     }
   },
   "products": {

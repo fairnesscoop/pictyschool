@@ -21,8 +21,8 @@ export class GetLeadsQueryHandler {
       leadViews.push(
         new LeadView(
           lead.getId(),
-          lead.getName(),
           lead.getReference(),
+          lead.getName(),
           lead.getAddress(),
           lead.getCity(),
           lead.getZipCode(),
