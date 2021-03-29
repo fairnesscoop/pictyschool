@@ -35,4 +35,12 @@ export class LeadRepository implements ILeadRepository {
       .offset((page - 1) * MAX_ITEMS_PER_PAGE)
       .getManyAndCount();
   }
+
+  public findOneByRef(reference: string): Promise<Lead | undefined> {
+    return this.repository
+      .createQueryBuilder('lead')
+      .select([ 'lead.id' ])
+      .where('lower(lead.reference) = :reference', { reference: reference.toLowerCase() })
+      .getOne();
+  }
 }

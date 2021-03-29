@@ -10,22 +10,23 @@
       <th class="px-4 py-3">{$_('leads.list.reference')}</th>
       <th class="px-4 py-3">{$_('leads.list.name')}</th>
       <th class="px-4 py-3">{$_('leads.list.email')}</th>
+      <th class="px-4 py-3">{$_('leads.list.phone_number')}</th>
       <th class="px-4 py-3">{$_('leads.list.address')}</th>
-      <th class="px-4 py-3">{$_('leads.list.zip_code')}</th>
       <th class="px-4 py-3">{$_('leads.list.city')}</th>
       <th class="px-4 py-3">{$_('leads.list.number_of_students')}</th>
       <th class="px-4 py-3">{$_('common.actions')}</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, name, reference, address, city, zipCode, email, numberOfStudents } (id)}
+    {#each items as { id, name, reference, phoneNumber, address, city, zipCode, email, numberOfStudents } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{reference}</td>
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">{email}</td>
+        <td class="px-4 py-3 text-sm">{phoneNumber}</td>
         <td class="px-4 py-3 text-sm">{address}</td>
-        <td class="px-4 py-3 text-sm">{zipCode}</td>
-        <td class="px-4 py-3 text-sm">{city}</td>
+        <td class="px-4 py-3 text-sm">{city} - {zipCode}</td>
+        <td class="px-4 py-3 text-sm">{numberOfStudents}</td>
         <td class="px-4 py-3"></td>
       </tr>
     {/each}
