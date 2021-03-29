@@ -30,8 +30,17 @@
     "title": "Mon compte",
     "logout": "Se déconnecter"
   },
-  "prospects": {
-    "breadcrumb": "Prospects"
+  "leads": {
+    "breadcrumb": "Prospects",
+    "list": {
+      "reference": "Ref.",
+      "name": "Nom du prospect",
+      "address": "Adresse",
+      "city": "Ville",
+      "zip_code": "Code postal",
+      "email": "Contact email",
+      "number_of_students": "Nb. d'élèves"
+    }
   },
   "products": {
     "breadcrumb": "Produits",

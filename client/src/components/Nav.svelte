@@ -4,7 +4,7 @@
   import DashboardIcon from './icons/DashboardIcon.svelte';
   import FolderIcon from './icons/FolderIcon.svelte';
   import SchoolIcon from './icons/SchoolIcon.svelte';
-  import ProspectIcon from './icons/ProspectIcon.svelte';
+  import LeadIcon from './icons/LeadIcon.svelte';
   import SchoolTypeIcon from './icons/SchoolTypeIcon.svelte';
   import UsersIcon from './icons/UsersIcon.svelte';
   import ChevronDownIcon from './icons/ChevronDownIcon.svelte';
@@ -17,7 +17,7 @@
   const productsPath = '/admin/products';
   const schoolTypesPath = '/admin/school-types';
   const usersPath = '/admin/users';
-  const prospectsPath = '/admin/prospects';
+  const leadsPath = '/admin/leads';
   const activeClass =
     'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg';
   const linkClass =
@@ -76,12 +76,12 @@
             </a>
           </li>
           <li class="relative px-6 py-3">
-            {#if $currentPath.includes(prospectsPath)}
+            {#if $currentPath.includes(leadsPath)}
               <span class={activeClass} aria-hidden="true"></span>
             {/if}
-            <a class={$currentPath.includes(prospectsPath) ? activeLinkClass : linkClass} href={prospectsPath}>
-              <ProspectIcon className={'w-5 h-5'} />
-              <span class="ml-4">{$_('prospects.breadcrumb')}</span>
+            <a class={$currentPath.includes(leadsPath) ? activeLinkClass : linkClass} href={leadsPath}>
+              <LeadIcon className={'w-5 h-5'} />
+              <span class="ml-4">{$_('leads.breadcrumb')}</span>
             </a>
           </li>
           <li class="relative px-6 py-3">
