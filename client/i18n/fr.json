@@ -41,6 +41,9 @@
       "phone_number": "Contact tél.",
       "number_of_students": "Nb. d'élèves"
     },
+    "delete": {
+      "confirm": "Êtes-vous sûr de vouloir supprimer ce prospect ?"
+    },
     "add": {
       "title": "Ajouter un prospect"
     },
@@ -55,7 +58,8 @@
       "phone_number": "Contact téléphone"
     },
     "errors": {
-      "already_exist": "Un prospect avec cette référence existe déjà."
+      "already_exist": "Un prospect avec cette référence existe déjà.",
+      "not_found": "Le prospect que vous cherchez n'existe pas."
     }
   },
   "products": {

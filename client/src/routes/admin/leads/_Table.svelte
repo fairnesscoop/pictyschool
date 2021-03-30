@@ -1,5 +1,9 @@
 <script>
   import { _ } from 'svelte-i18n';
+  import { createEventDispatcher } from 'svelte';
+  import DeleteLink from 'components/links/DeleteLink.svelte';
+
+  const dispatch = createEventDispatcher();
 
   export let items;
 </script>
@@ -27,7 +31,9 @@
         <td class="px-4 py-3 text-sm">{address}</td>
         <td class="px-4 py-3 text-sm">{city} - {zipCode}</td>
         <td class="px-4 py-3 text-sm">{numberOfStudents}</td>
-        <td class="px-4 py-3"></td>
+        <td class="px-4 py-3">
+          <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"leads.delete.confirm"} />
+        </td>
       </tr>
     {/each}
   </tbody>

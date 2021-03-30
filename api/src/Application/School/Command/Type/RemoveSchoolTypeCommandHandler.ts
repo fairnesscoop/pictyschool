@@ -18,6 +18,6 @@ export class RemoveSchoolTypeCommandHandler {
       throw new SchoolTypeNotFoundException();
     }
 
-    this.schoolTypeRepository.remove(schoolType);
+    await this.schoolTypeRepository.remove(schoolType);
   }
 }
