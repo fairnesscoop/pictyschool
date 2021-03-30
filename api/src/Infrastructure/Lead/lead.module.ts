@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateLeadCommandHandler } from 'src/Application/Lead/Command/CreateLeadCommandHandler';
 import { RemoveLeadCommandHandler } from 'src/Application/Lead/Command/RemoveLeadCommandHandler';
+import { UpdateLeadCommandHandler } from 'src/Application/Lead/Command/UpdateLeadCommandHandler';
 import { GetLeadByIdQueryHandler } from 'src/Application/Lead/Query/GetLeadByIdQueryHandler';
 import { GetLeadsQueryHandler } from 'src/Application/Lead/Query/GetLeadsQueryHandler';
 import { Lead } from 'src/Domain/Lead/Lead.entity';
@@ -11,6 +12,7 @@ import { CreateLeadAction } from './Action/CreateLeadAction';
 import { GetLeadAction } from './Action/GetLeadAction';
 import { GetLeadsAction } from './Action/GetSchoolsAction';
 import { RemoveLeadAction } from './Action/RemoveLeadAction';
+import { UpdateLeadAction } from './Action/UpdateLeadAction';
 import { LeadRepository } from './Repository/LeadRepository';
 
 @Module({
@@ -24,6 +26,7 @@ import { LeadRepository } from './Repository/LeadRepository';
     GetLeadsAction,
     CreateLeadAction,
     GetLeadAction,
+    UpdateLeadAction,
     RemoveLeadAction
   ],
   providers: [
@@ -32,7 +35,8 @@ import { LeadRepository } from './Repository/LeadRepository';
     IsLeadAlreadyExist,
     CreateLeadCommandHandler,
     RemoveLeadCommandHandler,
-    GetLeadByIdQueryHandler
+    GetLeadByIdQueryHandler,
+    UpdateLeadCommandHandler
   ]
 })
 export class LeadModule {}

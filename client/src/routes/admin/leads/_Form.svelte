@@ -39,11 +39,11 @@
       label={$_('leads.form.name')}
       bind:value={name} />
     <Input
-      label={$_('leads.form.city')}
-      bind:value={city} />
-    <Input
       label={$_('leads.form.address')}
       bind:value={address} />
+    <Input
+      label={$_('leads.form.city')}
+      bind:value={city} />
     <Input
       label={$_('leads.form.zip_code')}
       bind:value={zipCode} />

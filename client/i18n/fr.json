@@ -36,7 +36,6 @@
       "reference": "Ref.",
       "name": "Nom du prospect",
       "address": "Adresse",
-      "city": "Ville",
       "email": "Contact email",
       "phone_number": "Contact tél.",
       "number_of_students": "Nb. d'élèves"
@@ -55,6 +54,9 @@
     },
     "add": {
       "title": "Ajouter un prospect"
+    },
+    "edit": {
+      "title": "Edition du prospect"
     },
     "form": {
       "reference": "Référence",

@@ -91,4 +91,24 @@ export class Lead {
   public getCreatedAt(): number {
     return this.createdAt;
   }
+
+  public update(
+    reference: string,
+    name: string,
+    address: string,
+    zipCode: string,
+    city: string,
+    email: string,
+    phoneNumber: string,
+    numberOfStudents?: number,
+  ): void {
+    this.reference = reference;
+    this.name = name;
+    this.address = address;
+    this.zipCode = zipCode;
+    this.city = city;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.numberOfStudents = numberOfStudents;
+  }
 }
