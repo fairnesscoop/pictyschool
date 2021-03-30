@@ -29,7 +29,7 @@
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">{address} - {city} {zipCode}</td>
         <td class="px-4 py-3">
-          <div class="flex items-center space-x-4 text-sm">
+          <div class="flex items-center space-x-2 text-sm">
             <SeeLink href={`/admin/schools/${id}`} />
             {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
               <EditLink href={`/admin/schools/${id}/edit`} />

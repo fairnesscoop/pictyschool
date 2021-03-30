@@ -2,6 +2,7 @@
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
   import DeleteLink from 'components/links/DeleteLink.svelte';
+  import SeeLink from 'components/links/SeeLink.svelte';
 
   const dispatch = createEventDispatcher();
 
@@ -32,7 +33,10 @@
         <td class="px-4 py-3 text-sm">{city} - {zipCode}</td>
         <td class="px-4 py-3 text-sm">{numberOfStudents}</td>
         <td class="px-4 py-3">
-          <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"leads.delete.confirm"} />
+          <div class="flex items-center space-x-2 text-sm">
+            <SeeLink href={`/admin/leads/${id}`} />
+            <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"leads.delete.confirm"} />
+          </div>
         </td>
       </tr>
     {/each}

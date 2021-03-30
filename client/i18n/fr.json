@@ -41,6 +41,15 @@
       "phone_number": "Contact tél.",
       "number_of_students": "Nb. d'élèves"
     },
+    "dashboard": {
+      "email": "Contact email",
+      "phone_number": "Contact téléphone",
+      "address": "Adresse",
+      "name": "Nom du prospect",
+      "reference": "Référence",
+      "number_of_students": "Nombre d'élèves",
+      "informations": "Fiche prospect {name}"
+    },
     "delete": {
       "confirm": "Êtes-vous sûr de vouloir supprimer ce prospect ?"
     },

@@ -21,7 +21,7 @@
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3">
-          <div class="flex items-center space-x-4 text-sm">
+          <div class="flex items-center space-x-2 text-sm">
             <EditLink href={`/admin/school-types/${id}/edit`} />
             <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"schools.types.delete.confirm"} />
           </div>

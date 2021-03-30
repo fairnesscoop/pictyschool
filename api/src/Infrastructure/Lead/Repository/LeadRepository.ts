@@ -51,7 +51,17 @@ export class LeadRepository implements ILeadRepository {
   public findOneById(id: string): Promise<Lead | undefined> {
     return this.repository
       .createQueryBuilder('lead')
-      .select([ 'lead.id' ])
+      .select([ 
+        'lead.id',
+        'lead.name',
+        'lead.reference',
+        'lead.address',
+        'lead.city',
+        'lead.zipCode',
+        'lead.email',
+        'lead.phoneNumber',
+        'lead.numberOfStudents'
+       ])
       .where('lead.id = :id', { id })
       .getOne();
   }

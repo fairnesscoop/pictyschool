@@ -18,7 +18,6 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UserAuthView } from 'src/Infrastructure/User/Security/UserAuthView';
 
-
 @Controller('schools')
 @ApiTags('School')
 @ApiBearerAuth()
