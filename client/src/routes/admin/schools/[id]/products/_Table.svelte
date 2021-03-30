@@ -32,7 +32,7 @@
           </td>
         <td class="px-4 py-3 text-sm">{format(parentUnitPrice)}</td>
         <td class="px-4 py-3">
-          <div class="flex items-center space-x-4 text-sm">
+          <div class="flex items-center space-x-2 text-sm">
             <EditLink href={`/admin/schools/${schoolId}/products/${id}/edit`} />
             <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage="schools.products.delete.confirm" />
           </div>

@@ -22,7 +22,7 @@
         <td class="px-4 py-3 text-sm">{description}</td>
         <td class="px-4 py-3 text-sm">{format(unitPrice)}</td>
         <td class="px-4 py-3">
-          <div class="flex items-center space-x-4 text-sm">
+          <div class="flex items-center space-x-2 text-sm">
             <EditLink href={`/admin/products/${id}/edit`} />
           </div>
         </td>

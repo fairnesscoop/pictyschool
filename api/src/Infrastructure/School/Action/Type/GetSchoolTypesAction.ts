@@ -9,7 +9,7 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('school-types')
-@ApiTags('School')
+@ApiTags('School type')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolTypesAction {

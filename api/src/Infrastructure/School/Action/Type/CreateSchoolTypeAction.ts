@@ -16,7 +16,7 @@ import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { SchoolTypeDTO } from '../../DTO/SchoolTypeDTO';
 
 @Controller('school-types')
-@ApiTags('School')
+@ApiTags('School type')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class CreateSchoolTypeAction {

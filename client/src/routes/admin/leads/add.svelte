@@ -16,7 +16,7 @@
     try {
       loading = true;
       const { data } = await post('leads', e.detail);
-      goto(`/admin/leads`);
+      goto(`/admin/leads/${data.id}`);
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {
