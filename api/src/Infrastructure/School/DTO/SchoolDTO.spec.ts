@@ -1,5 +1,6 @@
 import { SchoolDTO } from './SchoolDTO';
 import { validate } from 'class-validator';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('SchoolDTO', () => {
   it('testValidDTO', async () => {
@@ -9,22 +10,45 @@ describe('SchoolDTO', () => {
     dto.city = 'Paris';
     dto.zipCode = '75018';
     dto.name = 'Ecole élémentaire';
-    dto.schoolTypeId = 'df8910f9-ac0a-412b-b9a8-dbf299340abc';
     dto.pdv = '2019-12-19T11:20:04.568Z';
     dto.numberOfClasses = 10;
     dto.numberOfStudents = 10;
     dto.observation = 'observation';
     dto.phoneNumber = '010101010101';
+    dto.type = Type.ELEMENTARY;
+    dto.status = Status.PRIVATE;
 
     const validation = await validate(dto);
     expect(validation).toHaveLength(0);
+  });
+
+  it('testInvalidDTO', async () => {
+    const dto = new SchoolDTO();
+    dto.reference = 'xLKJs';
+    dto.address = '127 rue Bélliard';
+    dto.city = 'Paris';
+    dto.zipCode = '75018';
+    dto.name = 'Ecole élémentaire';
+    dto.pdv = '2019';
+    dto.numberOfClasses = 10;
+    dto.numberOfStudents = 10;
+    dto.observation = 'observation';
+    dto.phoneNumber = '010101010101';
+    dto.type = Type.ELEMENTARY;
+    dto.status = Status.PRIVATE;
+
+    const validation = await validate(dto);
+    expect(validation).toHaveLength(1);
+    expect(validation[0].constraints).toMatchObject({
+      isDateString: "pdv must be a ISOString"
+    });
   });
 
   it('testEmptyDTO', async () => {
     const dto = new SchoolDTO();
 
     const validation = await validate(dto);
-    expect(validation).toHaveLength(6);
+    expect(validation).toHaveLength(7);
     expect(validation[0].constraints).toMatchObject({
       isNotEmpty: "reference should not be empty"
     });
@@ -42,25 +66,12 @@ describe('SchoolDTO', () => {
       maxLength: "zipCode must be shorter than or equal to 6 characters"
     });
     expect(validation[5].constraints).toMatchObject({
-      isNotEmpty: "schoolTypeId should not be empty", 
-      isUuid: "schoolTypeId must be an UUID"
+      isEnum: "status must be a valid enum value",
+      isNotEmpty: "status should not be empty"
     });
-  });
-
-  it('testInvalidDTO', async () => {
-    const dto = new SchoolDTO();
-    dto.reference = 'xLKJs';
-    dto.address = '127 rue Bélliard';
-    dto.city = 'Paris';
-    dto.zipCode = '75018';
-    dto.name = 'Ecole élémentaire';
-    dto.schoolTypeId = 'df8910f9-ac0a-412b-b9a8-dbf299340abc';
-    dto.pdv = 'date';
-
-    const validation = await validate(dto);
-    expect(validation).toHaveLength(1);
-    expect(validation[0].constraints).toMatchObject({
-      isDateString: "pdv must be a ISOString"
+    expect(validation[6].constraints).toMatchObject({
+      isEnum: "type must be a valid enum value",
+      isNotEmpty: "type should not be empty"
     });
   });
 });

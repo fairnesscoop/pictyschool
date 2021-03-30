@@ -16,7 +16,7 @@ describe('IsLeadAlreadyExist', () => {
 
   it('testLeadAlreadyExist', async () => {
     when(leadRepository.findOneByRef('xjsoi2')).thenResolve(
-      new Lead(anything(), anything(), anything(), anything(), anything(), anything(), anything())
+      new Lead(anything(), anything(), anything(), anything(), anything(), anything(), anything(), anything(), anything())
     );
     expect(await isLeadAlreadyExist.isSatisfiedBy('xjsoi2')).toBe(
       true

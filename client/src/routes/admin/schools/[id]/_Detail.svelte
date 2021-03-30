@@ -14,12 +14,18 @@
       </tr>
     </thead>
     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-      {#if school.schoolType}
-        <tr class="text-gray-700 dark:text-gray-400">
-          <td class="px-4 py-3 text-sm">{$_('schools.dashboard.school_type')}</td>
-          <td class="px-4 py-3 text-sm">{school.schoolType.name}</td>
-        </tr>
-      {/if}
+      <tr class="text-gray-700 dark:text-gray-400">
+        <td class="px-4 py-3 text-sm">{$_('schools.dashboard.reference')}</td>
+        <td class="px-4 py-3 text-sm">{school.reference}</td>
+      </tr>
+      <tr class="text-gray-700 dark:text-gray-400">
+        <td class="px-4 py-3 text-sm">{$_('schools.dashboard.type')}</td>
+        <td class="px-4 py-3 text-sm">{$_(`leads.types.${school.type}`)}</td>
+      </tr>
+      <tr class="text-gray-700 dark:text-gray-400">
+        <td class="px-4 py-3 text-sm">{$_('schools.dashboard.status')}</td>
+        <td class="px-4 py-3 text-sm">{$_(`leads.statutes.${school.status}`)}</td>
+      </tr>
       {#if school.email}
         <tr class="text-gray-700 dark:text-gray-400">
           <td class="px-4 py-3 text-sm">{$_('schools.dashboard.email')}</td>

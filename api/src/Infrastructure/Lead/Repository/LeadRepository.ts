@@ -30,11 +30,13 @@ export class LeadRepository implements ILeadRepository {
         'lead.address',
         'lead.city',
         'lead.zipCode',
+        'lead.type',
+        'lead.status',
         'lead.email',
         'lead.phoneNumber',
         'lead.numberOfStudents'
       ])
-      .orderBy('lead.createdAt', 'DESC')
+      .orderBy('lead.zipCode', 'ASC')
       .limit(MAX_ITEMS_PER_PAGE)
       .offset((page - 1) * MAX_ITEMS_PER_PAGE)
       .getManyAndCount();
@@ -59,6 +61,8 @@ export class LeadRepository implements ILeadRepository {
         'lead.city',
         'lead.zipCode',
         'lead.email',
+        'lead.type',
+        'lead.status',
         'lead.phoneNumber',
         'lead.numberOfStudents'
        ])

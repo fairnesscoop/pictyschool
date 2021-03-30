@@ -1,5 +1,5 @@
 import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
-import { SchoolTypeView } from './SchoolTypeView';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 export class SchoolDetailView {
   constructor(
@@ -9,12 +9,13 @@ export class SchoolDetailView {
     public readonly address: string,
     public readonly city: string,
     public readonly zipCode: string,
+    public readonly status: Status,
+    public readonly type: Type,
     public readonly phoneNumber?: string,
     public readonly numberOfClasses?: number,
     public readonly numberOfStudents?: number,
     public readonly pdv?: string,
     public readonly observation?: string,
-    public readonly schoolType?: SchoolTypeView,
     public readonly director?: UserSummaryView,
   ) {}
 }

@@ -2,12 +2,16 @@
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
   import Input from 'components/inputs/Input.svelte';
+  import SelectInput from 'components/inputs/SelectInput.svelte';
   import Button from 'components/inputs/Button.svelte';
+  import { TYPES, STATUTES, TYPE_KINDERGARTEN, STATUS_PUBLIC } from 'constants/school';
 
   export let address = '';
   export let city = '';
   export let zipCode = '';
   export let reference = '';
+  export let type = TYPE_KINDERGARTEN;
+  export let status = STATUS_PUBLIC;
   export let phoneNumber;
   export let numberOfStudents;
   export let email;
@@ -25,7 +29,9 @@
       address,
       phoneNumber,
       numberOfStudents,
-      email
+      email,
+      type,
+      status
     });
   };
 </script>
@@ -35,6 +41,20 @@
     <Input
       label={$_('leads.form.reference')}
       bind:value={reference} />
+    <SelectInput
+      label={$_('leads.form.type')}
+      bind:value={type}>
+      {#each TYPES as type}
+        <option value={type}>{$_(`leads.types.${type}`)}</option>
+      {/each}
+    </SelectInput>
+    <SelectInput
+      label={$_('leads.form.status')}
+      bind:value={status}>
+      {#each STATUTES as status}
+        <option value={status}>{$_(`leads.statutes.${status}`)}</option>
+      {/each}
+    </SelectInput>
     <Input
       label={$_('leads.form.name')}
       bind:value={name} />
@@ -63,5 +83,5 @@
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!reference || !email || !name || !address || !city || !zipCode || !phoneNumber || loading} />
+    disabled={!reference || !email || !name || !address || !city || !zipCode || !phoneNumber || !status || !type || loading} />
 </form>

@@ -5,7 +5,6 @@
   import FolderIcon from './icons/FolderIcon.svelte';
   import SchoolIcon from './icons/SchoolIcon.svelte';
   import LeadIcon from './icons/LeadIcon.svelte';
-  import SchoolTypeIcon from './icons/SchoolTypeIcon.svelte';
   import UsersIcon from './icons/UsersIcon.svelte';
   import ChevronDownIcon from './icons/ChevronDownIcon.svelte';
   import { settings, currentPath } from 'store';
@@ -15,7 +14,6 @@
 
   const schoolsPath = '/admin/schools';
   const productsPath = '/admin/products';
-  const schoolTypesPath = '/admin/school-types';
   const usersPath = '/admin/users';
   const leadsPath = '/admin/leads';
   const activeClass =
@@ -57,15 +55,6 @@
           </a>
         </li>
         {#if $session.user.scope === ROLE_PHOTOGRAPHER}
-          <li class="relative px-6 py-3">
-            {#if $currentPath.includes(schoolTypesPath)}
-              <span class={activeClass} aria-hidden="true"></span>
-            {/if}
-            <a class={$currentPath.includes(schoolTypesPath) ? activeLinkClass : linkClass} href={schoolTypesPath}>
-              <SchoolTypeIcon className={'w-5 h-5'} />
-              <span class="ml-4">{$_('schools.types.breadcrumb')}</span>
-            </a>
-          </li>
           <li class="relative px-6 py-3">
             {#if $currentPath.includes(productsPath)}
               <span class={activeClass} aria-hidden="true"></span>

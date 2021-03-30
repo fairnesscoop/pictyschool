@@ -13,8 +13,9 @@
   <thead>
     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
       <th class="px-4 py-3">{$_('leads.list.reference')}</th>
+      <th class="px-4 py-3">{$_('leads.list.type')}</th>
+      <th class="px-4 py-3">{$_('leads.list.status')}</th>
       <th class="px-4 py-3">{$_('leads.list.name')}</th>
-      <th class="px-4 py-3">{$_('leads.list.email')}</th>
       <th class="px-4 py-3">{$_('leads.list.phone_number')}</th>
       <th class="px-4 py-3">{$_('leads.list.address')}</th>
       <th class="px-4 py-3">{$_('leads.list.number_of_students')}</th>
@@ -22,11 +23,12 @@
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, name, reference, phoneNumber, address, city, zipCode, email, numberOfStudents } (id)}
+    {#each items as { id, name, reference, type, status, phoneNumber, address, city, zipCode, numberOfStudents } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{reference}</td>
+        <td class="px-4 py-3 text-sm">{$_(`leads.types.${type}`)}</td>
+        <td class="px-4 py-3 text-sm">{$_(`leads.statutes.${status}`)}</td>
         <td class="px-4 py-3 text-sm">{name}</td>
-        <td class="px-4 py-3 text-sm">{email}</td>
         <td class="px-4 py-3 text-sm">{phoneNumber}</td>
         <td class="px-4 py-3 text-sm">{address} - {zipCode} {city}</td>
         <td class="px-4 py-3 text-sm">{numberOfStudents}</td>

@@ -1,10 +1,10 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { createEventDispatcher, onMount } from 'svelte';
-  import { get } from 'utils/axios';
+  import { createEventDispatcher } from 'svelte';
   import Input from 'components/inputs/Input.svelte';
-  import Button from 'components/inputs/Button.svelte';
   import SelectInput from 'components/inputs/SelectInput.svelte';
+  import Button from 'components/inputs/Button.svelte';
+  import { TYPES, STATUTES, TYPE_KINDERGARTEN, STATUS_PUBLIC } from 'constants/school';
   import H4Title from 'components/H4Title.svelte';
 
   export let address = '';
@@ -16,22 +16,16 @@
   export let numberOfClasses;
   export let pdv;
   export let observation;
-  export let schoolTypeId = '';
   export let name = '';
+  export let type = TYPE_KINDERGARTEN;
+  export let status = STATUS_PUBLIC;
   export let loading;
-
-  let products = [];
-
-  onMount(async () => {
-    products = (await get('school-types')).data;
-  });
 
   const dispatch = createEventDispatcher();
 
   const submit = () => {
     dispatch('save', {
       reference,
-      schoolTypeId,
       city,
       zipCode,
       name,
@@ -39,6 +33,8 @@
       phoneNumber,
       numberOfStudents,
       numberOfClasses,
+      type,
+      status,
       pdv: pdv ? new Date(pdv) : null,
       observation
     });
@@ -47,63 +43,54 @@
 
 <form on:submit|preventDefault={submit}>
   <div class="px-4 py-3 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="flex">
-      <div class="w-1/2 pr-2">
-        <SelectInput
-          label={$_('schools.form.school_type')}
-          bind:value={schoolTypeId}>
-          <option>{$_('schools.form.school_type_placeholder')}</option>
-          {#each products as { id, name }}
-            <option value={id} selected={schoolTypeId === id}>{name}</option>
-          {/each}
-        </SelectInput>
-        <Input
-          label={$_('schools.form.name')}
-          bind:value={name} />
-        <Input
-          label={$_('schools.form.city')}
-          bind:value={city} />
-      </div>
-      <div class="w-1/2 pl-2">
-        <Input
-          label={$_('schools.form.reference')}
-          bind:value={reference} />
-        <Input
-          label={$_('schools.form.address')}
-          bind:value={address} />
-        <Input
-          label={$_('schools.form.zip_code')}
-          bind:value={zipCode} />
-      </div>
-    </div>
-  </div>
-  <H4Title title={$_('schools.form.complementary_informations')}/>
-  <div class="px-4 py-3 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <div class="flex">
-      <div class="w-1/2 pr-2">
-        <Input
-          label={$_('schools.form.number_of_students')}
-          required={false}
-          type={'number'}
-          bind:value={numberOfStudents} />
-        <Input
-          type={'datetime'}
-          label={$_('schools.form.pdv')}
-          required={false}
-          bind:value={pdv} />
-      </div>
-      <div class="w-1/2 pl-2">
-        <Input
-          label={$_('schools.form.number_of_classes')}
-          required={false}
-          type={'number'}
-          bind:value={numberOfClasses} />
-        <Input
-          label={$_('schools.form.phone_number')}
-          required={false}
-          bind:value={phoneNumber} />
-      </div>
-    </div>
+    <Input
+      label={$_('schools.form.reference')}
+      bind:value={reference} />
+    <Input
+      label={$_('schools.form.name')}
+      bind:value={name} />
+    <SelectInput
+      label={$_('leads.form.type')}
+      bind:value={type}>
+      {#each TYPES as type}
+        <option value={type}>{$_(`leads.types.${type}`)}</option>
+      {/each}
+    </SelectInput>
+    <SelectInput
+      label={$_('leads.form.status')}
+      bind:value={status}>
+      {#each STATUTES as status}
+        <option value={status}>{$_(`leads.statutes.${status}`)}</option>
+      {/each}
+    </SelectInput>
+    <Input
+      label={$_('schools.form.address')}
+      bind:value={address} />
+    <Input
+      label={$_('schools.form.city')}
+      bind:value={city} />
+    <Input
+      label={$_('schools.form.zip_code')}
+      bind:value={zipCode} />
+    <Input
+      label={$_('schools.form.phone_number')}
+      required={false}
+      bind:value={phoneNumber} />
+    <Input
+      label={$_('schools.form.number_of_students')}
+      required={false}
+      type={'number'}
+      bind:value={numberOfStudents} />
+    <Input
+      label={$_('schools.form.number_of_classes')}
+      required={false}
+      type={'number'}
+      bind:value={numberOfClasses} />
+    <Input
+      type={'datetime'}
+      label={$_('schools.form.pdv')}
+      required={false}
+      bind:value={pdv} />
     <Input
       label={$_('schools.form.observation')}
       required={false}
@@ -112,5 +99,5 @@
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!reference || !schoolTypeId || !name || !address || !city || !zipCode || loading} />
+    disabled={!reference || !name || !address || !city || !zipCode || !status || !type || loading} />
 </form>

@@ -4,7 +4,6 @@ import { GetSchoolsQuery } from './GetSchoolsQuery';
 import { Pagination } from 'src/Application/Common/Pagination';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
 import { SchoolView } from '../View/SchoolView';
-import { SchoolTypeView } from '../View/SchoolTypeView';
 import { UserRole } from 'src/Domain/User/User.entity';
 
 @QueryHandler(GetSchoolsQuery)
@@ -25,11 +24,6 @@ export class GetSchoolsQueryHandler {
     );
 
     for (const school of schools) {
-      const schoolType = school.getSchoolType();
-      const schoolTypeView = schoolType ?
-        new SchoolTypeView(schoolType.getId(), schoolType.getName()) :
-        null;
-
       schoolViews.push(
         new SchoolView(
           school.getId(),
@@ -38,7 +32,8 @@ export class GetSchoolsQueryHandler {
           school.getAddress(),
           school.getCity(),
           school.getZipCode(),
-          schoolTypeView
+          school.getStatus(),
+          school.getType()
         )
       );
     }

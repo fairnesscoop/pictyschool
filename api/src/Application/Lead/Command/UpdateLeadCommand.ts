@@ -1,4 +1,5 @@
 import { ICommand } from 'src/Application/ICommand';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 export class UpdateLeadCommand implements ICommand {
   constructor(
@@ -10,6 +11,8 @@ export class UpdateLeadCommand implements ICommand {
     public readonly city: string,
     public readonly email: string,
     public readonly phoneNumber: string,
+    public readonly status: Status,
+    public readonly type: Type,
     public readonly numberOfStudents?: number,
   ) {}
 }

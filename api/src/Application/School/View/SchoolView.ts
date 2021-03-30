@@ -1,4 +1,4 @@
-import { SchoolTypeView } from './SchoolTypeView';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 export class SchoolView {
   constructor(
@@ -8,6 +8,7 @@ export class SchoolView {
     public readonly address: string,
     public readonly city: string,
     public readonly zipCode: string,
-    public readonly schoolType?: SchoolTypeView
+    public readonly status: Status,
+    public readonly type: Type,
   ) {}
 }

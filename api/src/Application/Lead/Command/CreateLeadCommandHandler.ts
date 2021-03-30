@@ -23,6 +23,8 @@ export class CreateLeadCommandHandler {
       zipCode,
       numberOfStudents, 
       email,
+      status,
+      type,
       phoneNumber
     } = command;
     
@@ -37,6 +39,8 @@ export class CreateLeadCommandHandler {
         address,
         zipCode,
         city,
+        status,
+        type,
         email,
         phoneNumber,
         numberOfStudents

@@ -1,10 +1,9 @@
 import { mock, instance } from 'ts-mockito';
 import { User } from '../User/User.entity';
+import { Status, Type } from './AbstractSchool';
 import { School } from './School.entity';
-import { SchoolType } from './SchoolType.entity';
 
 describe('School', () => {
-  const schoolType = mock(SchoolType);
   const director = mock(User);
 
   it('testGetters', () => {
@@ -14,12 +13,13 @@ describe('School', () => {
       '127 Rue Belliard',
       '75018',
       'Paris',
+      Status.PUBLIC,
+      Type.ELEMENTARY,
       '010101010101',
       200,
       10,
       'Observation',
       '10/10/2020',
-      instance(schoolType),
     );
     expect(school.getId()).toBeUndefined();
     expect(school.getName()).toBe('Belliard');
@@ -30,27 +30,28 @@ describe('School', () => {
     expect(school.getPhoneNumber()).toBe('010101010101');
     expect(school.getObservation()).toBe('Observation');
     expect(school.getPdv()).toBe('10/10/2020');
+    expect(school.getStatus()).toBe(Status.PUBLIC);
+    expect(school.getType()).toBe(Type.ELEMENTARY);
     expect(school.getNumberOfClasses()).toBe(10);
     expect(school.getNumberOfStudents()).toBe(200);
-    expect(school.getSchoolType()).toBe(instance(schoolType));
     expect(school.getDirector()).toBeUndefined();
     expect(school.getCreatedAt()).toBeUndefined();
   });
 
   it('testUpdate', () => {
-    const schoolType2 = mock(SchoolType);
     const school = new School(
       'LM120I',
       'Belliard',
       '127 Rue Belliard',
       '75018',
       'Paris',
+      Status.PUBLIC,
+      Type.ELEMENTARY,
       '010101010101',
       200,
       10,
       'Observation',
-      '10/10/2020',
-      instance(schoolType)
+      '10/10/2020'
     );
     school.update(
       'ref',
@@ -58,12 +59,13 @@ describe('School', () => {
       'address',
       'zipCode',
       'city',
+      Status.PRIVATE,
+      Type.MIDDLE_SCHOOL,
       'phone',
       1,
       1,
       'obs',
-      '11/10/2020',
-      instance(schoolType2)
+      '11/10/2020'
     );
 
     school.updateDirector(instance(director));
@@ -78,7 +80,8 @@ describe('School', () => {
     expect(school.getPdv()).toBe('11/10/2020');
     expect(school.getNumberOfClasses()).toBe(1);
     expect(school.getNumberOfStudents()).toBe(1);
-    expect(school.getSchoolType()).toBe(instance(schoolType2));
     expect(school.getDirector()).toBe(instance(director));
+    expect(school.getStatus()).toBe(Status.PRIVATE);
+    expect(school.getType()).toBe(Type.MIDDLE_SCHOOL);
   });
 });

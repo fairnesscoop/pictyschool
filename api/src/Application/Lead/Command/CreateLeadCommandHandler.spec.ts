@@ -5,6 +5,7 @@ import { Lead } from 'src/Domain/Lead/Lead.entity';
 import { CreateLeadCommandHandler } from 'src/Application/Lead/Command/CreateLeadCommandHandler';
 import { CreateLeadCommand } from 'src/Application/Lead/Command/CreateLeadCommand';
 import { LeadAlreadyExistException } from 'src/Domain/Lead/Exception/LeadAlreadyExistException';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('CreateLeadCommandHandler', () => {
   let leadRepository: LeadRepository;
@@ -20,6 +21,8 @@ describe('CreateLeadCommandHandler', () => {
     'Paris',
     'test@test.com',
     '010101010101',
+    Status.PRIVATE,
+    Type.ELEMENTARY,
     200
   );
 
@@ -48,6 +51,8 @@ describe('CreateLeadCommandHandler', () => {
             '127 Rue Belliard',
             '75018',
             'Paris',
+            Status.PRIVATE,
+            Type.ELEMENTARY,
             'test@test.com',
             '010101010101',
             200
@@ -70,6 +75,8 @@ describe('CreateLeadCommandHandler', () => {
             '127 Rue Belliard',
             '75018',
             'Paris',
+            Status.PRIVATE,
+            Type.ELEMENTARY,
             'test@test.com',
             '010101010101',
             200

@@ -38,11 +38,12 @@ export class UpdateSchoolAction {
         address,
         zipCode,
         city,
-        schoolTypeId,
         phoneNumber,
         numberOfClasses,
         numberOfStudents,
         observation,
+        status,
+        type,
         pdv
       } = dto;
 
@@ -52,9 +53,10 @@ export class UpdateSchoolAction {
           reference,
           name,
           address,
-          city,
           zipCode,
-          schoolTypeId,
+          city,
+          status,
+          type,
           phoneNumber,
           numberOfStudents,
           numberOfClasses,

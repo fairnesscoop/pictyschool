@@ -37,7 +37,9 @@ export class CreateLeadAction {
       city,
       email,
       phoneNumber,
-      numberOfStudents
+      numberOfStudents,
+      status,
+      type
     } = dto;
 
     try {
@@ -50,6 +52,8 @@ export class CreateLeadAction {
           city,
           email,
           phoneNumber,
+          status,
+          type,
           numberOfStudents
         )
       );

@@ -1,3 +1,5 @@
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
+
 export class LeadView {
   constructor(
     public readonly id: string,
@@ -8,6 +10,8 @@ export class LeadView {
     public readonly city: string,
     public readonly email: string,
     public readonly phoneNumber: string,
+    public readonly status: Status,
+    public readonly type: Type,
     public readonly numberOfStudents?: number,
   ) {}
 }

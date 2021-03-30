@@ -5,16 +5,12 @@ import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepositor
 import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAlreadyExist';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
-import { ISchoolTypeRepository } from 'src/Domain/School/Repository/ISchoolTypeRepository';
-import { SchoolTypeNotFoundException } from 'src/Domain/School/Exception/SchoolTypeNotFoundException';
 
 @CommandHandler(UpdateSchoolCommand)
 export class UpdateSchoolCommandHandler {
   constructor(
     @Inject('ISchoolRepository')
     private readonly schoolRepository: ISchoolRepository,
-    @Inject('ISchoolTypeRepository')
-    private readonly schoolTypeRepository: ISchoolTypeRepository,
     private readonly isSchoolAlreadyExist: IsSchoolAlreadyExist
   ) {}
 
@@ -24,11 +20,12 @@ export class UpdateSchoolCommandHandler {
       reference,
       address,
       city,
-      schoolTypeId,
       name,
       zipCode,
       numberOfClasses,
-      numberOfStudents, 
+      numberOfStudents,
+      status,
+      type,
       observation,
       pdv,
       phoneNumber
@@ -37,11 +34,6 @@ export class UpdateSchoolCommandHandler {
     const school = await this.schoolRepository.findOneById(id);
     if (!school) {
       throw new SchoolNotFoundException();
-    }
-
-    const schoolType = await this.schoolTypeRepository.findOneById(schoolTypeId);
-    if (!schoolType) {
-      throw new SchoolTypeNotFoundException();
     }
 
     if (
@@ -57,12 +49,13 @@ export class UpdateSchoolCommandHandler {
       address,
       zipCode,
       city,
+      status,
+      type,
       phoneNumber,
       numberOfStudents,
       numberOfClasses,
       observation,
-      pdv,
-      schoolType
+      pdv
     );
 
     await this.schoolRepository.save(school);
