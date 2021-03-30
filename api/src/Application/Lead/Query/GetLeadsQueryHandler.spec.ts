@@ -44,8 +44,8 @@ describe('GetLeadsQueryHandler', () => {
           'abcDes',
           'Ecole Primaire les Landes',
           '12 Rue des Lampes',
-          'Paris',
           '75018',
+          'Paris',
           'email2@email.com',
           '0102030406',
           null
@@ -55,8 +55,8 @@ describe('GetLeadsQueryHandler', () => {
           'xLKJSs',
           'Ecole élementaire Belliard',
           '127 Rue Belliard',
-          'Paris',
           '75010',
+          'Paris',
           'email@email.com',
           '0102030405',
           200

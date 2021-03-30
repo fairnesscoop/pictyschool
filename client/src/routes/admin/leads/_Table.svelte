@@ -17,7 +17,6 @@
       <th class="px-4 py-3">{$_('leads.list.email')}</th>
       <th class="px-4 py-3">{$_('leads.list.phone_number')}</th>
       <th class="px-4 py-3">{$_('leads.list.address')}</th>
-      <th class="px-4 py-3">{$_('leads.list.city')}</th>
       <th class="px-4 py-3">{$_('leads.list.number_of_students')}</th>
       <th class="px-4 py-3">{$_('common.actions')}</th>
     </tr>
@@ -29,8 +28,7 @@
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">{email}</td>
         <td class="px-4 py-3 text-sm">{phoneNumber}</td>
-        <td class="px-4 py-3 text-sm">{address}</td>
-        <td class="px-4 py-3 text-sm">{city} - {zipCode}</td>
+        <td class="px-4 py-3 text-sm">{address} - {zipCode} {city}</td>
         <td class="px-4 py-3 text-sm">{numberOfStudents}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2 text-sm">
