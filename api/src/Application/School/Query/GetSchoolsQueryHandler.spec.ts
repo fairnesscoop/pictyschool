@@ -5,17 +5,12 @@ import { GetSchoolsQuery } from 'src/Application/School/Query/GetSchoolsQuery';
 import { School } from 'src/Domain/School/School.entity';
 import { SchoolView } from 'src/Application/School/View/SchoolView';
 import { Pagination } from 'src/Application/Common/Pagination';
-import { SchoolType } from 'src/Domain/School/SchoolType.entity';
-import { SchoolTypeView } from '../View/SchoolTypeView';
 import { UserRole } from 'src/Domain/User/User.entity';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('GetSchoolsQueryHandler', () => {
   it('testGetSchoolsWithPhotographerRole', async () => {
     const schoolRepository = mock(SchoolRepository);
-
-    const schoolType = mock(SchoolType);
-    when(schoolType.getId()).thenReturn('ad7e727c-3066-42bf-982b-7219d26aeabb');
-    when(schoolType.getName()).thenReturn('élementaire');
 
     const school1 = mock(School);
     when(school1.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -24,7 +19,8 @@ describe('GetSchoolsQueryHandler', () => {
     when(school1.getAddress()).thenReturn('127 Rue Belliard');
     when(school1.getCity()).thenReturn('Paris');
     when(school1.getZipCode()).thenReturn('75010');
-    when(school1.getSchoolType()).thenReturn(instance(schoolType));
+    when(school1.getType()).thenReturn(Type.ELEMENTARY);
+    when(school1.getStatus()).thenReturn(Status.PUBLIC);
 
     const school2 = mock(School);
     when(school2.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
@@ -33,6 +29,8 @@ describe('GetSchoolsQueryHandler', () => {
     when(school2.getAddress()).thenReturn('12 Rue des Lampes');
     when(school2.getCity()).thenReturn('Paris');
     when(school2.getZipCode()).thenReturn('75018');
+    when(school2.getType()).thenReturn(Type.ELEMENTARY);
+    when(school2.getStatus()).thenReturn(Status.PRIVATE);
 
     when(schoolRepository.findSchools(1, null)).thenResolve([
       [instance(school2), instance(school1)],
@@ -49,7 +47,8 @@ describe('GetSchoolsQueryHandler', () => {
           '12 Rue des Lampes',
           'Paris',
           '75018',
-          null
+          Status.PRIVATE,
+          Type.ELEMENTARY
         ),
         new SchoolView(
           'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
@@ -58,7 +57,8 @@ describe('GetSchoolsQueryHandler', () => {
           '127 Rue Belliard',
           'Paris',
           '75010',
-          new SchoolTypeView('ad7e727c-3066-42bf-982b-7219d26aeabb', 'élementaire')
+          Status.PUBLIC,
+          Type.ELEMENTARY
         )
       ],
       2
@@ -81,6 +81,8 @@ describe('GetSchoolsQueryHandler', () => {
     when(school3.getAddress()).thenReturn('127 Rue Belliard');
     when(school3.getCity()).thenReturn('Paris');
     when(school3.getZipCode()).thenReturn('75010');
+    when(school3.getType()).thenReturn(Type.ELEMENTARY);
+    when(school3.getStatus()).thenReturn(Status.PUBLIC);
 
     when(schoolRepository.findSchools(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64')).thenResolve([
       [instance(school3)],
@@ -97,7 +99,8 @@ describe('GetSchoolsQueryHandler', () => {
           '127 Rue Belliard',
           'Paris',
           '75010',
-          null
+          Status.PUBLIC,
+          Type.ELEMENTARY
         )
       ],
       1

@@ -35,12 +35,13 @@ export class CreateSchoolAction {
       address,
       zipCode,
       city,
-      schoolTypeId,
       phoneNumber,
       numberOfClasses,
       numberOfStudents,
       observation,
-      pdv
+      pdv,
+      status,
+      type
     } = dto;
 
     try {
@@ -51,7 +52,8 @@ export class CreateSchoolAction {
           address,
           zipCode,
           city,
-          schoolTypeId,
+          status,
+          type,
           phoneNumber,
           numberOfStudents,
           numberOfClasses,

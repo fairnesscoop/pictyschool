@@ -5,7 +5,6 @@ const routes = new Router()
   .unrestrict('/admin/login')
   .restrict('/admin/users.*', [ROLE_PHOTOGRAPHER])
   .restrict('/admin/leads.*', [ROLE_PHOTOGRAPHER])
-  .restrict('/admin/school-types.*', [ROLE_PHOTOGRAPHER])
   .restrict('/admin/products.*', [ROLE_PHOTOGRAPHER])
 
   // School

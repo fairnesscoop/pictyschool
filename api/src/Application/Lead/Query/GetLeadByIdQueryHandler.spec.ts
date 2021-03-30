@@ -5,6 +5,7 @@ import { GetLeadByIdQueryHandler } from './GetLeadByIdQueryHandler';
 import { GetLeadByIdQuery } from './GetLeadByIdQuery';
 import { LeadNotFoundException } from 'src/Domain/Lead/Exception/LeadNotFoundException';
 import { LeadView } from '../View/LeadView';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('GetLeadByIdQueryHandler', () => {
   const query = new GetLeadByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -28,6 +29,8 @@ describe('GetLeadByIdQueryHandler', () => {
       'Paris',
       'mathieu@fairness.coop',
       '010101010101',
+      Status.PUBLIC,
+      Type.ELEMENTARY,
       200
     );
 
@@ -40,6 +43,8 @@ describe('GetLeadByIdQueryHandler', () => {
     when(lead.getPhoneNumber()).thenReturn('010101010101');
     when(lead.getNumberOfStudents()).thenReturn(200);
     when(lead.getEmail()).thenReturn('mathieu@fairness.coop');
+    when(lead.getType()).thenReturn(Type.ELEMENTARY);
+    when(lead.getStatus()).thenReturn(Status.PUBLIC);
     
     when(
       leadRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

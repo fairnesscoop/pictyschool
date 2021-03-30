@@ -40,7 +40,9 @@ export class UpdateLeadAction {
         city,
         email,
         phoneNumber,
-        numberOfStudents
+        numberOfStudents,
+        status,
+        type
       } = dto;
 
       await this.commandBus.execute(
@@ -53,6 +55,8 @@ export class UpdateLeadAction {
           city,
           email,
           phoneNumber,
+          status,
+          type,
           numberOfStudents
         )
       );

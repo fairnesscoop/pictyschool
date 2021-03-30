@@ -65,6 +65,8 @@
     zipCode={lead.zipCode}
     phoneNumber={lead.phoneNumber}
     email={lead.email}
+    status={lead.status}
+    type={lead.type}
     numberOfStudents={lead.numberOfStudents}
     {loading} />
 {/if}

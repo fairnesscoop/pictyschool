@@ -32,13 +32,25 @@
   },
   "leads": {
     "breadcrumb": "Prospects",
+    "statutes": {
+      "private": "Privée",
+      "public": "Public"
+    },
+    "types": {
+      "kindergarten": "Maternelle",
+      "primary": "Primaire",
+      "elementary": "Élémentaire",
+      "middle_school": "Collège",
+      "high_school": "Lycée"
+    },
     "list": {
       "reference": "Ref.",
       "name": "Nom du prospect",
       "address": "Adresse",
-      "email": "Contact email",
       "phone_number": "Contact tél.",
-      "number_of_students": "Nb. d'élèves"
+      "number_of_students": "Nb. d'élèves",
+      "type": "Type",
+      "status": "Statut"
     },
     "dashboard": {
       "email": "Contact email",
@@ -47,7 +59,9 @@
       "name": "Nom du prospect",
       "reference": "Référence",
       "number_of_students": "Nombre d'élèves",
-      "informations": "Fiche prospect {name}"
+      "informations": "Fiche prospect {name}",
+      "type": "Type d'établissement",
+      "status": "Statut"
     },
     "delete": {
       "confirm": "Êtes-vous sûr de vouloir supprimer ce prospect ?"
@@ -66,6 +80,8 @@
       "zip_code": "Code postal",
       "number_of_students": "Nombre d'élèves",
       "email": "Contact email",
+      "type": "Type d'établissement",
+      "status": "Statut",
       "phone_number": "Contact téléphone"
     },
     "errors": {
@@ -123,8 +139,9 @@
   "schools": {
     "breadcrumb": "Écoles",
     "list": {
-      "reference": "Référence",
-      "school_type": "Type d'école",
+      "reference": "Ref.",
+      "type": "Type",
+      "status": "Statut",
       "name": "Nom de l'école",
       "address": "Adresse"
     },
@@ -145,42 +162,22 @@
         "title": "Créer un compte directeur"
       }
     },
-    "types": {
-      "breadcrumb": "Types d'école",
-      "list": {
-        "name": "Nom du type d'école"
-      },
-      "add": {
-        "title": "Ajouter un type d'école"
-      },
-      "edit": {
-        "title": "Edition du type \"{title}\""
-      },
-      "form": {
-        "name": "Type d'école"
-      },
-      "delete": {
-        "confirm": "Êtes-vous sûr de vouloir supprimer ce type d'école ?"
-      },
-      "errors": {
-        "already_exist": "Un type d'école avec ce nom existe déjà.",
-        "not_found": "Le type rd'école echerché n'existe pas."
-      }
-    },
     "dashboard": {
       "products": "Produits",
       "director": "Directeur",
       "orders": "Commandes",
       "photos": "Photos",
-      "school_type": "Type d'école",
-      "phone_number": "Numéro de téléphone",
+      "phone_number": "Contact téléphonique",
       "email": "Adresse email",
       "address": "Adresse",
       "number_of_students": "Nombre d'élèves",
       "number_of_classes": "Nombre de classes",
-      "informations": "Fiche école {name}",
+      "informations": "Fiche \"{name}\"",
+      "reference": "Référence",
       "pdv": "Date et heure de PDV",
-      "observation": "Observation"
+      "observation": "Observation",
+      "type": "Type d'établissement",
+      "status": "Statut"
     },
     "form": {
       "reference": "Référence",
@@ -188,12 +185,9 @@
       "address": "Adresse",
       "city": "Ville",
       "zip_code": "Code postal",
-      "school_type": "Type d'école",
-      "school_type_placeholder": "-- Choisir un type d'école --",
-      "phone_number": "Numéro de téléphone",
+      "phone_number": "Contact téléphonique",
       "number_of_students": "Nombre d'élèves",
       "number_of_classes": "Nombre de classes",
-      "complementary_informations": "Informations complémentaires",
       "pdv": "Date et heure de PDV",
       "observation": "Observation"
     },

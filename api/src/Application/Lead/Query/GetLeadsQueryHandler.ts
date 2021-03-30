@@ -28,6 +28,8 @@ export class GetLeadsQueryHandler {
           lead.getCity(),
           lead.getEmail(),
           lead.getPhoneNumber(),
+          lead.getStatus(),
+          lead.getType(),
           lead.getNumberOfStudents(),
         )
       );

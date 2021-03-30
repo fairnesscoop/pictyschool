@@ -22,6 +22,8 @@ export class UpdateLeadCommandHandler {
       city,
       name,
       zipCode,
+      status,
+      type,
       numberOfStudents, 
       email,
       phoneNumber
@@ -45,6 +47,8 @@ export class UpdateLeadCommandHandler {
       address,
       zipCode,
       city,
+      status,
+      type,
       email,
       phoneNumber,
       numberOfStudents

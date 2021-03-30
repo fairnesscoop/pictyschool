@@ -37,16 +37,15 @@ export class SchoolRepository implements ISchoolRepository {
         'school.phoneNumber',
         'school.numberOfClasses',
         'school.numberOfStudents',
+        'school.type',
+        'school.status',
         'school.pdv',
         'school.observation',
-        'schoolType.id',
-        'schoolType.name',
         'director.id',
         'director.firstName',
         'director.lastName',
         'director.email'
       ])
-      .leftJoin('school.schoolType', 'schoolType')
       .leftJoin('school.director', 'director')
       .where('school.id = :id', { id })
       .getOne();
@@ -62,11 +61,10 @@ export class SchoolRepository implements ISchoolRepository {
         'school.address',
         'school.city',
         'school.zipCode',
-        'schoolType.id',
-        'schoolType.name'
+        'school.type',
+        'school.status'
       ])
-      .leftJoin('school.schoolType', 'schoolType')
-      .orderBy('school.createdAt', 'DESC')
+      .orderBy('school.zipCode', 'ASC')
       .limit(MAX_ITEMS_PER_PAGE)
       .offset((page - 1) * MAX_ITEMS_PER_PAGE);
 

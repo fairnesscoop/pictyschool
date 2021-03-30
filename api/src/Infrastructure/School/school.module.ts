@@ -33,19 +33,6 @@ import { RemoveSchoolProductAction } from './Action/Product/RemoveSchoolProductA
 import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/GetSchoolProductsQueryHandler';
 import { CountSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/CountSchoolProductsQueryHandler';
 import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsAction';
-import { SchoolTypeRepository } from './Repository/SchoolTypeRepository';
-import { SchoolType } from 'src/Domain/School/SchoolType.entity';
-import { UpdateSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/UpdateSchoolTypeCommandHandler';
-import { CreateSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/CreateSchoolTypeCommandHandler';
-import { GetSchoolTypeByIdQueryHandler } from 'src/Application/School/Query/Type/GetSchoolTypeByIdQueryHandler';
-import { GetSchoolTypesQueryHandler } from 'src/Application/School/Query/Type/GetSchoolTypesQueryHandler';
-import { IsSchoolTypeAlreadyExist } from 'src/Domain/School/Specification/Type/IsSchoolTypeAlreadyExist';
-import { GetSchoolTypeAction } from './Action/Type/GetSchoolTypeAction';
-import { CreateSchoolTypeAction } from './Action/Type/CreateSchoolTypeAction';
-import { GetSchoolTypesAction } from './Action/Type/GetSchoolTypesAction';
-import { UpdateSchoolTypeAction } from './Action/Type/UpdateSchoolTypeAction';
-import { RemoveSchoolTypeCommandHandler } from 'src/Application/School/Command/Type/RemoveSchoolTypeCommandHandler';
-import { RemoveSchoolTypeAction } from './Action/Type/RemoveSchoolTypeAction';
 import { User } from 'src/Domain/User/User.entity';
 import { AssignDirectorToSchoolCommandHandler } from 'src/Application/School/Command/AssignDirectorToSchoolCommandHandler';
 import { UserRepository } from '../User/Repository/UserRepository';
@@ -61,7 +48,6 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
       AccessToken,
       SchoolProduct,
       Product,
-      SchoolType,
       User
     ])
   ],
@@ -77,11 +63,6 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
     RemoveSchoolProductAction,
-    GetSchoolTypesAction,
-    CreateSchoolTypeAction,
-    GetSchoolTypeAction,
-    UpdateSchoolTypeAction,
-    RemoveSchoolTypeAction,
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
@@ -89,7 +70,6 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
-    { provide: 'ISchoolTypeRepository', useClass: SchoolTypeRepository },
     { provide: 'IProductRepository', useClass: ProductRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
@@ -103,12 +83,6 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
     GetSchoolProductByIdQueryHandler,
     RemoveSchoolProductCommandHandler,
     CountSchoolProductsQueryHandler,
-    UpdateSchoolTypeCommandHandler,
-    CreateSchoolTypeCommandHandler,
-    GetSchoolTypeByIdQueryHandler,
-    GetSchoolTypesQueryHandler,
-    IsSchoolTypeAlreadyExist,
-    RemoveSchoolTypeCommandHandler,
     AssignDirectorToSchoolCommandHandler,
     CanUserAccessToSchool,
   ]

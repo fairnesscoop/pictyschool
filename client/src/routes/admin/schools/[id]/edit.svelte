@@ -61,12 +61,13 @@
     reference={school.reference}
     name={school.name}
     address={school.address}
-    schoolTypeId={school.schoolType?.id}
     city={school.city}
     zipCode={school.zipCode}
     phoneNumber={school.phoneNumber}
     pdv={school.pdv}
     observation={school.observation}
+    status={school.status}
+    type={school.type}
     numberOfClasses={school.numberOfClasses}
     numberOfStudents={school.numberOfStudents}
     {loading} />

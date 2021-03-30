@@ -3,7 +3,6 @@ import { Inject } from '@nestjs/common';
 import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
-import { SchoolTypeView } from '../View/SchoolTypeView';
 import { SchoolDetailView } from '../View/SchoolDetailView';
 import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
@@ -29,13 +28,6 @@ export class GetSchoolByIdQueryHandler {
       throw new UserCantAccessToSchoolException();
     }
 
-    const schoolType = school.getSchoolType();
-    const schoolTypeView = schoolType ?
-      new SchoolTypeView(
-        schoolType.getId(),
-        schoolType.getName()
-      ) : null;
-
     const director = school.getDirector();
     const directorView = director ?
       new UserSummaryView(
@@ -44,7 +36,6 @@ export class GetSchoolByIdQueryHandler {
         director.getLastName(),
         director.getEmail()
       ) : null;
-    
 
     return new SchoolDetailView(
       school.getId(),
@@ -53,12 +44,13 @@ export class GetSchoolByIdQueryHandler {
       school.getAddress(),
       school.getCity(),
       school.getZipCode(),
+      school.getStatus(),
+      school.getType(),
       school.getPhoneNumber(),
       school.getNumberOfClasses(),
       school.getNumberOfStudents(),
       school.getPdv(),
       school.getObservation(),
-      schoolTypeView,
       directorView
     );
   }

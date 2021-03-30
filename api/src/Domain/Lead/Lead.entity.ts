@@ -1,36 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import { AbstractSchool, Status, Type } from '../School/AbstractSchool';
 
 @Entity()
-export class Lead {
-  @PrimaryGeneratedColumn('uuid')
-  private id: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private reference: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private name: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private address: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private zipCode: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private city: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  private phoneNumber: string;
-
+export class Lead extends AbstractSchool {
   @Column({ type: 'varchar', nullable: false })
   private email: string;
-
-  @Column({ type: 'integer', nullable: true, default: 0 })
-  private numberOfStudents: number;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  private createdAt: number;
 
   constructor(
     reference: string,
@@ -38,58 +12,31 @@ export class Lead {
     address: string,
     zipCode: string,
     city: string,
+    status: Status,
+    type: Type,
     email: string,
     phoneNumber: string,
     numberOfStudents?: number,
+    numberOfClasses?: number,
   ) {
-    this.reference = reference;
-    this.name = name;
-    this.address = address;
-    this.zipCode = zipCode;
-    this.city = city;
+    super(
+      reference,
+      name,
+      address,
+      zipCode,
+      city,
+      status,
+      type,
+      phoneNumber,
+      numberOfStudents,
+      numberOfClasses
+    );
+
     this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.numberOfStudents = numberOfStudents;
-  }
-
-  public getId(): string {
-    return this.id;
-  }
-
-  public getReference(): string {
-    return this.reference;
-  }
-
-  public getName(): string {
-    return this.name;
-  }
-
-  public getZipCode(): string {
-    return this.zipCode;
-  }
-
-  public getAddress(): string {
-    return this.address;
-  }
-
-  public getCity(): string {
-    return this.city;
   }
 
   public getEmail(): string {
     return this.email;
-  }
-
-  public getPhoneNumber(): string {
-    return this.phoneNumber;
-  }
-
-  public getNumberOfStudents(): number {
-    return this.numberOfStudents;
-  }
-
-  public getCreatedAt(): number {
-    return this.createdAt;
   }
 
   public update(
@@ -98,17 +45,26 @@ export class Lead {
     address: string,
     zipCode: string,
     city: string,
+    status: Status,
+    type: Type,
     email: string,
     phoneNumber: string,
     numberOfStudents?: number,
+    numberOfClasses?: number,
   ): void {
-    this.reference = reference;
-    this.name = name;
-    this.address = address;
-    this.zipCode = zipCode;
-    this.city = city;
+    this.baseUpdate(
+      reference,
+      name,
+      address,
+      zipCode,
+      city,
+      status,
+      type,
+      phoneNumber,
+      numberOfStudents,
+      numberOfClasses
+    );
+
     this.email = email;
-    this.phoneNumber = phoneNumber;
-    this.numberOfStudents = numberOfStudents;
   }
 }

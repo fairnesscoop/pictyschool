@@ -5,6 +5,7 @@ import { GetLeadsQuery } from 'src/Application/Lead/Query/GetLeadsQuery';
 import { Lead } from 'src/Domain/Lead/Lead.entity';
 import { LeadView } from 'src/Application/Lead/View/LeadView';
 import { Pagination } from 'src/Application/Common/Pagination';
+import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('GetLeadsQueryHandler', () => {
   it('testGetLeads', async () => {
@@ -20,6 +21,8 @@ describe('GetLeadsQueryHandler', () => {
     when(lead1.getEmail()).thenReturn('email@email.com');
     when(lead1.getPhoneNumber()).thenReturn('0102030405');
     when(lead1.getNumberOfStudents()).thenReturn(200);
+    when(lead1.getStatus()).thenReturn(Status.PRIVATE);
+    when(lead1.getType()).thenReturn(Type.ELEMENTARY);
     
     const lead2 = mock(Lead);
     when(lead2.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
@@ -30,6 +33,8 @@ describe('GetLeadsQueryHandler', () => {
     when(lead2.getZipCode()).thenReturn('75018');
     when(lead2.getEmail()).thenReturn('email2@email.com');
     when(lead2.getPhoneNumber()).thenReturn('0102030406');
+    when(lead2.getStatus()).thenReturn(Status.PUBLIC);
+    when(lead2.getType()).thenReturn(Type.ELEMENTARY);
 
     when(leadRepository.findLeads(1)).thenResolve([
       [instance(lead2), instance(lead1)],
@@ -48,6 +53,8 @@ describe('GetLeadsQueryHandler', () => {
           'Paris',
           'email2@email.com',
           '0102030406',
+          Status.PUBLIC,
+          Type.ELEMENTARY,
           null
         ),
         new LeadView(
@@ -59,6 +66,8 @@ describe('GetLeadsQueryHandler', () => {
           'Paris',
           'email@email.com',
           '0102030405',
+          Status.PRIVATE,
+          Type.ELEMENTARY,
           200
         )
       ],

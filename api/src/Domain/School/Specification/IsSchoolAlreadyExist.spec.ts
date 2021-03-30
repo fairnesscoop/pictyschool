@@ -16,7 +16,8 @@ describe('IsSchoolAlreadyExist', () => {
 
   it('testSchoolAlreadyExist', async () => {
     when(schoolRepository.findOneByReference('xjsoi2')).thenResolve(
-      new School('xjsoi2',
+      new School(
+        'xjsoi2',
         anything(),
         anything(),
         anything(),
