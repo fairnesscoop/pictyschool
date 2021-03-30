@@ -19,10 +19,6 @@
         <td class="px-4 py-3 text-sm">{lead.reference}</td>
       </tr>
       <tr class="text-gray-700 dark:text-gray-400">
-        <td class="px-4 py-3 text-sm">{$_('leads.dashboard.name')}</td>
-        <td class="px-4 py-3 text-sm">{lead.name}</td>
-      </tr>
-      <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{$_('leads.dashboard.type')}</td>
         <td class="px-4 py-3 text-sm">{$_(`leads.types.${lead.type}`)}</td>
       </tr>

@@ -32,7 +32,7 @@
   onMount(async () => {
     try {
       ({ data: school } = await get(`schools/${id}`));
-      title = `${school.reference} - ${school.name}`;
+      title = school.name;
     } catch (e) {
       errors = errorNormalizer(e);
     }

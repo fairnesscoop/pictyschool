@@ -49,7 +49,7 @@
 
 <Breadcrumb items={[
   { title: $_('schools.breadcrumb'), path: '/admin/schools' },
-  { title: school && `${school.reference} - ${school.name}`, path: `/admin/schools/${id}` },
+  { title: school?.name, path: `/admin/schools/${id}` },
   { title: $_('schools.products.title'), path: `/admin/schools/${id}/products` },
   { title }
 ]} />

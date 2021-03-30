@@ -56,10 +56,9 @@
       "email": "Contact email",
       "phone_number": "Contact téléphone",
       "address": "Adresse",
-      "name": "Nom du prospect",
       "reference": "Référence",
       "number_of_students": "Nombre d'élèves",
-      "informations": "Fiche prospect {name}",
+      "informations": "Fiche prospect \"{name}\"",
       "type": "Type d'établissement",
       "status": "Statut"
     },
