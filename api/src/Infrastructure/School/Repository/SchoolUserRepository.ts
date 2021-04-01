@@ -41,12 +41,14 @@ export class SchoolUserRepository implements ISchoolUserRepository {
       .createQueryBuilder('schoolUser')
       .select([
         'schoolUser.id',
+        'user.id',
         'user.firstName',
         'user.lastName',
         'user.email'
       ])
       .innerJoin('schoolUser.user', 'user')
       .innerJoin('schoolUser.school', 'school', 'school.id = :schoolId', { schoolId })
+      .orderBy('user.lastName', 'ASC')
       .getMany();
   }
 }

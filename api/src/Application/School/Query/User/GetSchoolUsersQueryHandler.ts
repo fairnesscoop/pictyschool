@@ -2,7 +2,7 @@ import { QueryHandler } from '@nestjs/cqrs';
 import { Inject } from '@nestjs/common';
 import { GetSchoolUsersQuery } from './GetSchoolUsersQuery';
 import { ISchoolUserRepository } from 'src/Domain/School/Repository/ISchoolUserRepository';
-import { UserSchoolView } from '../../View/UserSchoolView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 
 @QueryHandler(GetSchoolUsersQuery)
 export class GetSchoolUsersQueryHandler {
@@ -11,17 +11,19 @@ export class GetSchoolUsersQueryHandler {
     private readonly schoolUserRepository: ISchoolUserRepository
   ) {}
 
-  public async execute(query: GetSchoolUsersQuery): Promise<UserSchoolView[]> {
-    const userViews: UserSchoolView[] = [];
+  public async execute(query: GetSchoolUsersQuery): Promise<UserSummaryView[]> {
+    const userViews: UserSummaryView[] = [];
     const schoolUsers = await this.schoolUserRepository.findUsersBySchool(query.schoolId);
 
     for (const schoolUser of schoolUsers) {
+      const user = schoolUser.getUser();
+
       userViews.push(
-        new UserSchoolView(
-          schoolUser.getId(),
-          schoolUser.getUser().getFirstName(),
-          schoolUser.getUser().getLastName(),
-          schoolUser.getUser().getEmail()
+        new UserSummaryView(
+          user.getId(),
+          user.getFirstName(),
+          user.getLastName(),
+          user.getEmail()
         )
       );
     }

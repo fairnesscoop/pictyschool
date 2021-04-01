@@ -18,6 +18,8 @@ import { CreateUserCommandHandler } from 'src/Application/User/Command/CreateUse
 import { CreateUserAction } from './Action/CreateUserAction';
 import { GetUsersByRoleQueryHandler } from 'src/Application/User/Query/GetUsersByRoleQueryHandler';
 import { GetPhotographersAction } from './Action/GetPhotographersAction';
+import { RemoveUserCommandHandler } from 'src/Application/User/Command/RemoveUserCommandHandler';
+import { RemoveUserAction } from './Action/RemoveUserAction';
 
 @Module({
   imports: [
@@ -29,6 +31,7 @@ import { GetPhotographersAction } from './Action/GetPhotographersAction';
     UserLoginAction,
     UpdateMeAction,
     GetMeAction,
+    RemoveUserAction,
     CreateUserAction,
     GetPhotographersAction
   ],
@@ -43,6 +46,7 @@ import { GetPhotographersAction } from './Action/GetPhotographersAction';
     RolesGuard,
     CreateUserCommandHandler,
     GetUsersByRoleQueryHandler,
+    RemoveUserCommandHandler,
   ]
 })
 export class UserModule {}
