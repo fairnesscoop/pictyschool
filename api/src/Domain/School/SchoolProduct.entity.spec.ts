@@ -3,7 +3,7 @@ import { SchoolProduct } from './SchoolProduct.entity';
 import { School } from './School.entity';
 import { Product } from '../Product/Product.entity';
 
-describe('SchoolProductProduct', () => {
+describe('SchoolProduct', () => {
   it('testGetters', () => {
     const school = mock(School);
     const product = mock(Product);

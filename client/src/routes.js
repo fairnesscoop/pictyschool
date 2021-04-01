@@ -10,6 +10,7 @@ const routes = new Router()
   // School
   .restrict('/admin/schools/add.*', [ROLE_PHOTOGRAPHER])
   .restrict('/admin/schools/.*/edit.*', [ROLE_PHOTOGRAPHER])
+  .restrict('/admin/schools/.*/users.*', [ROLE_PHOTOGRAPHER])
 
   .restrict('/admin.*', [ROLE_PHOTOGRAPHER, ROLE_DIRECTOR])
   .unrestrict('.*')

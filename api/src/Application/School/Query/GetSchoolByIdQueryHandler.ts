@@ -4,7 +4,6 @@ import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolDetailView } from '../View/SchoolDetailView';
-import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
 import { UserCantAccessToSchoolException } from 'src/Domain/User/Exception/UserCantAccessToSchoolException';
 
@@ -28,15 +27,6 @@ export class GetSchoolByIdQueryHandler {
       throw new UserCantAccessToSchoolException();
     }
 
-    const director = school.getDirector();
-    const directorView = director ?
-      new UserSummaryView(
-        director.getId(),
-        director.getFirstName(),
-        director.getLastName(),
-        director.getEmail()
-      ) : null;
-
     return new SchoolDetailView(
       school.getId(),
       school.getName(),
@@ -46,12 +36,12 @@ export class GetSchoolByIdQueryHandler {
       school.getZipCode(),
       school.getStatus(),
       school.getType(),
+      school.getEmail(),
       school.getPhoneNumber(),
       school.getNumberOfClasses(),
       school.getNumberOfStudents(),
       school.getPdv(),
-      school.getObservation(),
-      directorView
+      school.getObservation()
     );
   }
 }

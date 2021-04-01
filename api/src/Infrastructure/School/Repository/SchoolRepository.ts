@@ -33,6 +33,7 @@ export class SchoolRepository implements ISchoolRepository {
         'school.reference',
         'school.address',
         'school.city',
+        'school.email',
         'school.zipCode',
         'school.phoneNumber',
         'school.numberOfClasses',
@@ -40,19 +41,14 @@ export class SchoolRepository implements ISchoolRepository {
         'school.type',
         'school.status',
         'school.pdv',
-        'school.observation',
-        'director.id',
-        'director.firstName',
-        'director.lastName',
-        'director.email'
+        'school.observation'
       ])
-      .leftJoin('school.director', 'director')
       .where('school.id = :id', { id })
       .getOne();
   }
 
-  public findSchools(page = 1, directorId: string | null): Promise<[School[], number]> {
-    const query = this.repository
+  public findSchools(page = 1): Promise<[School[], number]> {
+    return this.repository
       .createQueryBuilder('school')
       .select([
         'school.id',
@@ -66,14 +62,7 @@ export class SchoolRepository implements ISchoolRepository {
       ])
       .orderBy('school.zipCode', 'ASC')
       .limit(MAX_ITEMS_PER_PAGE)
-      .offset((page - 1) * MAX_ITEMS_PER_PAGE);
-
-      if (directorId) {
-        query
-          .innerJoin('school.director', 'director')
-          .where('director.id = :directorId', { directorId });
-      }
-
-      return query.getManyAndCount();
+      .offset((page - 1) * MAX_ITEMS_PER_PAGE)
+      .getManyAndCount();
   }
 }

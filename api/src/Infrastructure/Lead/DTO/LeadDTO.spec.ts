@@ -23,32 +23,28 @@ describe('LeadDTO', () => {
     const dto = new LeadDTO();
 
     const validation = await validate(dto);
-    expect(validation).toHaveLength(8);
+    expect(validation).toHaveLength(7);
     expect(validation[0].constraints).toMatchObject({
-      isEmail: "email must be an email",
-      isNotEmpty: "email should not be empty"
-    });
-    expect(validation[1].constraints).toMatchObject({
       isNotEmpty: "reference should not be empty"
     });
-    expect(validation[2].constraints).toMatchObject({
+    expect(validation[1].constraints).toMatchObject({
       isNotEmpty: "name should not be empty"
     });
-    expect(validation[3].constraints).toMatchObject({
+    expect(validation[2].constraints).toMatchObject({
       isNotEmpty: "address should not be empty"
     });
-    expect(validation[4].constraints).toMatchObject({
+    expect(validation[3].constraints).toMatchObject({
       isNotEmpty: "city should not be empty",
     });
-    expect(validation[5].constraints).toMatchObject({
+    expect(validation[4].constraints).toMatchObject({
       isNotEmpty: "zipCode should not be empty",
       maxLength: "zipCode must be shorter than or equal to 6 characters"
     });
-    expect(validation[6].constraints).toMatchObject({
+    expect(validation[5].constraints).toMatchObject({
       isEnum: "status must be a valid enum value",
       isNotEmpty: "status should not be empty"
     });
-    expect(validation[7].constraints).toMatchObject({
+    expect(validation[6].constraints).toMatchObject({
       isEnum: "type must be a valid enum value",
       isNotEmpty: "type should not be empty"
     });

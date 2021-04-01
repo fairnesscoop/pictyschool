@@ -5,54 +5,63 @@
 </script>
 
 <script>
+  import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get } from 'utils/axios';
+  import { get, post, put } from 'utils/axios';
   import Breadcrumb from 'components/Breadcrumb.svelte';
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
-  import Link from 'components/links/Link.svelte';
+  import Form from 'components/form/UserForm.svelte';
   import Notice from 'components/Notice.svelte';
-  import Detail from './_Detail.svelte';
+  import { ROLE_DIRECTOR } from 'constants/roles';
 
   export let id;
 
+  let loading = false;
   let school;
-  let title = $_('schools.director.title');
+  let title = $_('schools.users.add.title');
   let errors = [];
 
   onMount(async () => {
     try {
-      school = (await get(`schools/${id}`)).data;
+      ({ data: school } = await get(`schools/${id}`));
     } catch (e) {
       errors = errorNormalizer(e);
     }
   });
+
+  const onSave = async (e) => {
+    try {
+      loading = true;
+      const { data } = await post('users', {
+        ...e.detail, 
+        role: ROLE_DIRECTOR
+      });
+
+      if (data.id) {
+        await put(`schools/${id}/users`, { userId: data.id });
+        goto(`/admin/schools/${id}`);
+      }
+    } catch (e) {
+      errors = errorNormalizer(e);
+    } finally {
+      loading = false;
+    }
+  };
 </script>
 
 <svelte:head>
   <title>{title} - {$_('app')}</title>
 </svelte:head>
 
-<ServerErrors {errors} />
 <Breadcrumb items={[
   { title: $_('schools.breadcrumb'), path: '/admin/schools' },
   { title: school?.name, path: `/admin/schools/${id}` },
   { title }
 ]} />
-<div class="inline-flex items-center">
-  <H4Title {title} />
-  {#if !school || !school.director}
-    <Link href={`/admin/schools/${id}/director/add`} value={$_('schools.director.add.title')} />
-  {/if}
-</div>
-<div class="w-full overflow-hidden rounded-lg shadow-xs">
-  <div class="w-full overflow-x-auto">
-    {#if school && school.director}
-      <Detail director={school.director} />
-    {:else}
-      <Notice notice={$_('schools.director.empty')} />
-    {/if}
-  </div>
-</div>
+<H4Title {title} />
+<ServerErrors {errors} />
+<Notice notice={$_('schools.users.add.notice')} />
+<Form on:save={onSave} {loading} />
