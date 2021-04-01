@@ -15,6 +15,10 @@ export class UserRepository implements IUserRepository {
     return this.repository.save(user);
   }
 
+  public remove(user: User): void {
+    this.repository.delete(user.getId());
+  }
+
   public findOneByApiToken(apiToken: string): Promise<User | undefined> {
     return this.repository
       .createQueryBuilder('user')

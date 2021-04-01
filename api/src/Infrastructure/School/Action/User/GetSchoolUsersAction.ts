@@ -6,8 +6,8 @@ import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UserRole } from 'src/Domain/User/User.entity';
-import { UserSchoolView } from 'src/Application/School/View/UserSchoolView';
 import { GetSchoolUsersQuery } from 'src/Application/School/Query/User/GetSchoolUsersQuery';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 
 @Controller('schools')
 @ApiTags('School')
@@ -22,7 +22,7 @@ export class GetSchoolUsersAction {
   @Get(':id/users')
   @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
   @ApiOperation({summary: 'Get users for a specific school'})
-  public async index(@Param() dto: IdDTO): Promise<UserSchoolView[]> {
+  public async index(@Param() dto: IdDTO): Promise<UserSummaryView[]> {
     try {
       return await this.queryBus.execute(new GetSchoolUsersQuery(dto.id));
     } catch (e) {

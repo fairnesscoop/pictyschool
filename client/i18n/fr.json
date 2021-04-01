@@ -151,6 +151,9 @@
       "title": "Edition de l'établissement"
     },
     "users": {
+      "delete": {
+        "confirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
+      },
       "add": {
         "title": "Créer un compte utilisateur",
         "notice": "L'utilisateur que vous allez créer içi aura uniquement à cet établissement."
