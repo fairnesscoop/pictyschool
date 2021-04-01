@@ -5,6 +5,7 @@
   "pagination": "Affichage {start}-{from} sur {totalItems}",
   "common": {
     "actions": "Actions",
+    "not_defined": "Non-défini",
     "form": {
       "save": "Enregistrer",
       "edit": "Modifier",
@@ -29,6 +30,9 @@
   "profile": {
     "title": "Mon compte",
     "logout": "Se déconnecter"
+  },
+  "calendar": {
+    "breadcrumb": "Calendrier"
   },
   "leads": {
     "breadcrumb": "Prospects",
@@ -58,7 +62,7 @@
       "address": "Adresse",
       "reference": "Référence",
       "number_of_students": "Nombre d'élèves",
-      "informations": "Fiche prospect \"{name}\"",
+      "informations": "Fiche prospect",
       "type": "Type d'établissement",
       "status": "Statut"
     },
@@ -151,6 +155,9 @@
       "title": "Edition de l'établissement"
     },
     "users": {
+      "delete": {
+        "confirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
+      },
       "add": {
         "title": "Créer un compte utilisateur",
         "notice": "L'utilisateur que vous allez créer içi aura uniquement à cet établissement."

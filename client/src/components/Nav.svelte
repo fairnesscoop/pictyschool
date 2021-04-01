@@ -6,6 +6,7 @@
   import SchoolIcon from './icons/SchoolIcon.svelte';
   import LeadIcon from './icons/LeadIcon.svelte';
   import UsersIcon from './icons/UsersIcon.svelte';
+  import CalendarIcon from './icons/CalendarIcon.svelte';
   import ChevronDownIcon from './icons/ChevronDownIcon.svelte';
   import { settings, currentPath } from 'store';
   import { ROLE_PHOTOGRAPHER } from 'constants/roles';
@@ -14,6 +15,7 @@
 
   const schoolsPath = '/admin/schools';
   const productsPath = '/admin/products';
+  const calendarPath = '/admin/calendar';
   const usersPath = '/admin/users';
   const leadsPath = '/admin/leads';
   const activeClass =
@@ -45,6 +47,17 @@
             <span class="ml-4">{$_('dashboard.title')}</span>
           </a>
         </li>
+        {#if $session.user.scope === ROLE_PHOTOGRAPHER}
+          <li class="relative px-6 py-3">
+            {#if $currentPath.includes(calendarPath)}
+              <span class="{activeClass}" aria-hidden="true"></span>
+            {/if}
+            <a class={$currentPath.includes(calendarPath) ? activeLinkClass : linkClass} href={calendarPath}>
+            <CalendarIcon className={'w-5 h-5'} />
+            <span class="ml-4">{$_('calendar.breadcrumb')}</span>
+          </a>
+          </li>
+        {/if}
         <li class="relative px-6 py-3">
           {#if $currentPath.includes(schoolsPath)}
             <span class={activeClass} aria-hidden="true"></span>

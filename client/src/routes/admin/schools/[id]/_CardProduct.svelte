@@ -6,13 +6,13 @@
   
   export let id;
 
-  let total = 'N/A';
+  let total = 0;
 
   onMount(async () => {
     try {
       total = (await get(`schools/${id}/count-products`)).data.total;
     } catch (e) {
-      total = 'N/A';
+      total = 0;
     }
   });
 </script>

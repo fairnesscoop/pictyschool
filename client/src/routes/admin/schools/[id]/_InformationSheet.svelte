@@ -1,7 +1,5 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { format } from 'date-fns';
-  import { fr } from 'date-fns/locale';
 
   export let school;
 </script>
@@ -47,12 +45,6 @@
         <tr class="text-gray-700 dark:text-gray-400">
           <td class="px-4 py-3 text-sm">{$_('schools.dashboard.number_of_students')}</td>
           <td class="px-4 py-3 text-sm">{school.numberOfStudents}</td>
-        </tr>
-      {/if}
-      {#if school.pdv}
-        <tr class="text-gray-700 dark:text-gray-400">
-          <td class="px-4 py-3 text-sm">{$_('schools.dashboard.pdv')}</td>
-          <td class="px-4 py-3 text-sm">{format(new Date(school.pdv), 'dd/MM/yyyy HH:mm')}</td>
         </tr>
       {/if}
       {#if school.observation}

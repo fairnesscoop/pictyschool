@@ -38,10 +38,15 @@
 <Breadcrumb items={[{ title: $_('leads.breadcrumb'), path: '/admin/leads' }, { title }]} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  <Link href={`/admin/leads/${id}/edit`} value={$_('common.form.edit')} />
 </div>
 <ServerErrors {errors} />
 
-{#if lead}
-  <Detail {lead} />
-{/if}
+<div class="px-4 py-3 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+  {#if lead}
+    <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+      {$_('leads.dashboard.informations')}
+      <Link href={`/admin/leads/${id}/edit`} value={$_('common.form.edit')} />
+    </h4>
+    <Detail {lead} />
+  {/if}
+</div>

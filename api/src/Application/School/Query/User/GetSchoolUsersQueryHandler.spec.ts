@@ -4,21 +4,19 @@ import { User } from 'src/Domain/User/User.entity';
 import { GetSchoolUsersQuery } from './GetSchoolUsersQuery';
 import { GetSchoolUsersQueryHandler } from './GetSchoolUsersQueryHandler';
 import { SchoolUserRepository } from 'src/Infrastructure/School/Repository/SchoolUserRepository';
-import { UserSchoolView } from '../../View/UserSchoolView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 
 describe('GetSchoolsQueryHandler', () => {
   it('testGetSchoolUsers', async () => {
     const schoolUserRepository = mock(SchoolUserRepository);
 
     const user1 = mock(User);
+    when(user1.getId()).thenReturn('4de2ffc4-e835-44c8-95b7-17c171c09873');
     when(user1.getFirstName()).thenReturn('Mathieu');
     when(user1.getLastName()).thenReturn('MARCHOIS');
     when(user1.getEmail()).thenReturn('mathieu@fairness.coop');
 
     const schoolUser1 = mock(SchoolUser);
-    when(schoolUser1.getId()).thenReturn(
-      '4de2ffc4-e835-44c8-95b7-17c171c09873'
-    );
     when(schoolUser1.getUser()).thenReturn(instance(user1));
 
     when(
@@ -32,7 +30,7 @@ describe('GetSchoolsQueryHandler', () => {
     );
 
     const expectedResult = [
-      new UserSchoolView(
+      new UserSummaryView(
         '4de2ffc4-e835-44c8-95b7-17c171c09873',
         'Mathieu',
         'MARCHOIS',
