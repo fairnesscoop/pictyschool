@@ -32,7 +32,7 @@ describe('GetSchoolsQueryHandler', () => {
     when(school2.getType()).thenReturn(Type.ELEMENTARY);
     when(school2.getStatus()).thenReturn(Status.PRIVATE);
 
-    when(schoolRepository.findSchools(1, null)).thenResolve([
+    when(schoolRepository.findSchools(1)).thenResolve([
       [instance(school2), instance(school1)],
       2
     ]);
@@ -68,7 +68,7 @@ describe('GetSchoolsQueryHandler', () => {
       await queryHandler.execute(
         new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.PHOTOGRAPHER)
       )).toMatchObject(expectedResult);
-    verify(schoolRepository.findSchools(1, null)).once();
+    verify(schoolRepository.findSchools(1)).once();
   });
 
   it('testGetSchoolsWithDirectorRole', async () => {
@@ -84,7 +84,7 @@ describe('GetSchoolsQueryHandler', () => {
     when(school3.getType()).thenReturn(Type.ELEMENTARY);
     when(school3.getStatus()).thenReturn(Status.PUBLIC);
 
-    when(schoolRepository.findSchools(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64')).thenResolve([
+    when(schoolRepository.findSchools(1)).thenResolve([
       [instance(school3)],
       1
     ]);
@@ -110,6 +110,6 @@ describe('GetSchoolsQueryHandler', () => {
       await queryHandler.execute(
         new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.DIRECTOR)
       )).toMatchObject(expectedResult);
-    verify(schoolRepository.findSchools(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64')).once();
+    verify(schoolRepository.findSchools(1)).once();
   });
 });

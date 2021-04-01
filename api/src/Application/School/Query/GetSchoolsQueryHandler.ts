@@ -4,7 +4,6 @@ import { GetSchoolsQuery } from './GetSchoolsQuery';
 import { Pagination } from 'src/Application/Common/Pagination';
 import { ISchoolRepository } from 'src/Domain/School/Repository/ISchoolRepository';
 import { SchoolView } from '../View/SchoolView';
-import { UserRole } from 'src/Domain/User/User.entity';
 
 @QueryHandler(GetSchoolsQuery)
 export class GetSchoolsQueryHandler {
@@ -17,11 +16,8 @@ export class GetSchoolsQueryHandler {
     query: GetSchoolsQuery
   ): Promise<Pagination<SchoolView>> {
     const { page, userId, userRole } = query;
-    const directorIdFilter = userRole === UserRole.PHOTOGRAPHER ? null : userId;
     const schoolViews: SchoolView[] = [];
-    const [ schools, total ] = await this.schoolRepository.findSchools(
-      page, directorIdFilter
-    );
+    const [ schools, total ] = await this.schoolRepository.findSchools(page);
 
     for (const school of schools) {
       schoolViews.push(

@@ -34,10 +34,15 @@ import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/Prod
 import { CountSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/CountSchoolProductsQueryHandler';
 import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsAction';
 import { User } from 'src/Domain/User/User.entity';
-import { AssignDirectorToSchoolCommandHandler } from 'src/Application/School/Command/AssignDirectorToSchoolCommandHandler';
+import { AssignUserToSchoolCommandHandler } from 'src/Application/School/Command/User/AssignUserToSchoolCommandHandler';
 import { UserRepository } from '../User/Repository/UserRepository';
-import { AssignDirectorToSchoolAction } from './Action/AssignDirectorToSchoolAction';
+import { AssignUserToSchoolAction } from './Action/User/AssignUserToSchoolAction';
 import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
+import { SchoolUser } from 'src/Domain/School/SchoolUser.entity';
+import { SchoolUserRepository } from './Repository/SchoolUserRepository';
+import { IsUserAlreadyAssignedToSchool } from 'src/Domain/User/Specification/IsUserAlreadyAssignedToSchool';
+import { GetSchoolUsersAction } from './Action/User/GetSchoolUsersAction';
+import { GetSchoolUsersQueryHandler } from 'src/Application/School/Query/User/GetSchoolUsersQueryHandler';
 
 @Module({
   imports: [
@@ -47,6 +52,7 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
       Photo,
       AccessToken,
       SchoolProduct,
+      SchoolUser,
       Product,
       User
     ])
@@ -56,7 +62,8 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
     CreateSchoolAction,
     GetSchoolAction,
     UpdateSchoolAction,
-    AssignDirectorToSchoolAction,
+    AssignUserToSchoolAction,
+    GetSchoolUsersAction,
     CreateSchoolProductAction,
     GetSchoolProductAction,
     CountSchoolProductsAction,
@@ -66,6 +73,7 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
   ],
   providers: [
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
+    { provide: 'ISchoolUserRepository', useClass: SchoolUserRepository },
     { provide: 'IUserRepository', useClass: UserRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
@@ -83,8 +91,10 @@ import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAcce
     GetSchoolProductByIdQueryHandler,
     RemoveSchoolProductCommandHandler,
     CountSchoolProductsQueryHandler,
-    AssignDirectorToSchoolCommandHandler,
+    AssignUserToSchoolCommandHandler,
     CanUserAccessToSchool,
+    IsUserAlreadyAssignedToSchool,
+    GetSchoolUsersQueryHandler
   ]
 })
 export class SchoolModule {}

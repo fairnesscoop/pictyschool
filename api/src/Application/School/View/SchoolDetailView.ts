@@ -11,11 +11,11 @@ export class SchoolDetailView {
     public readonly zipCode: string,
     public readonly status: Status,
     public readonly type: Type,
+    public readonly email?: string,
     public readonly phoneNumber?: string,
     public readonly numberOfClasses?: number,
     public readonly numberOfStudents?: number,
     public readonly pdv?: string,
-    public readonly observation?: string,
-    public readonly director?: UserSummaryView,
+    public readonly observation?: string
   ) {}
 }

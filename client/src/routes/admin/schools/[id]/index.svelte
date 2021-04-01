@@ -13,12 +13,13 @@
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
-  import CardPhoto from './_CardPhoto.svelte';
+  import CardClass from './_CardClass.svelte';
   import CardProduct from './_CardProduct.svelte';
   import CardOrder from './_CardOrder.svelte';
-  import CardDirector from './_CardDirector.svelte';
-  import Detail from './_Detail.svelte';
+  import InformationSheet from './_InformationSheet.svelte';
   import Link from 'components/links/Link.svelte';
+  import AddLink from 'components/links/AddLink.svelte';
+  import SchoolUsers from './_SchoolUsers.svelte';
   import { ROLE_PHOTOGRAPHER } from 'constants/roles';
 
   export let id;
@@ -46,18 +47,34 @@
 <Breadcrumb items={[{ title: $_('schools.breadcrumb'), path: '/admin/schools' }, { title }]} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
-    <Link href={`/admin/schools/${id}/edit`} value={$_('common.form.edit')} />
-  {/if}
+  
 </div>
 <ServerErrors {errors} />
 
 {#if school}
-  <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
-    <CardPhoto />
+  <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-3">
+    <CardClass />
     <CardOrder />
     <CardProduct {id} />
-    <CardDirector {id} director={school.director} />
   </div>
-  <Detail {school} />
+  <div class="grid gap-6 mb-8 md:grid-cols-2">
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+        {$_('schools.dashboard.informations')}
+        {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
+          <Link href={`/admin/schools/${id}/edit`} value={$_('common.form.edit')} />
+        {/if}
+      </h4>
+      <InformationSheet {school} />
+    </div>
+    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+      <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+        {$_('schools.dashboard.users')}
+        {#if $session.user?.scope === ROLE_PHOTOGRAPHER}
+          <AddLink href={`/admin/schools/${id}/users`} value={$_('common.form.add')} />
+        {/if}
+      </h4>
+      <SchoolUsers id={school.id} />
+    </div>
+  </div>
 {/if}

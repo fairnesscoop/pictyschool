@@ -64,6 +64,7 @@
     city={school.city}
     zipCode={school.zipCode}
     phoneNumber={school.phoneNumber}
+    email={school.email}
     pdv={school.pdv}
     observation={school.observation}
     status={school.status}

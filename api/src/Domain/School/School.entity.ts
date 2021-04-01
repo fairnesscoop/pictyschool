@@ -1,5 +1,4 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
-import { User } from '../User/User.entity';
+import { Entity, Column } from 'typeorm';
 import { AbstractSchool, Status, Type } from './AbstractSchool';
 
 @Entity()
@@ -10,9 +9,6 @@ export class School extends AbstractSchool {
   @Column({ type: 'timestamp', nullable: true })
   private pdv: string;
 
-  @ManyToOne(() => User, { nullable: true, onDelete: 'SET NULL' })
-  private director: User;
-
   constructor(
     reference: string,
     name: string,
@@ -21,6 +17,7 @@ export class School extends AbstractSchool {
     city: string,
     status: Status,
     type: Type,
+    email?: string,
     phoneNumber?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
@@ -36,6 +33,7 @@ export class School extends AbstractSchool {
       status,
       type,
       phoneNumber,
+      email,
       numberOfStudents,
       numberOfClasses
     );
@@ -52,10 +50,6 @@ export class School extends AbstractSchool {
     return this.pdv;
   }
 
-  public getDirector(): User | null {
-    return this.director;
-  }
-
   public update(
     reference: string,
     name: string,
@@ -64,6 +58,7 @@ export class School extends AbstractSchool {
     city: string,
     status: Status,
     type: Type,
+    email?: string,
     phoneNumber?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
@@ -78,6 +73,7 @@ export class School extends AbstractSchool {
       city,
       status,
       type,
+      email,
       phoneNumber,
       numberOfStudents,
       numberOfClasses
@@ -85,9 +81,5 @@ export class School extends AbstractSchool {
 
     this.observation = observation;
     this.pdv = pdv;
-  }
-
-  public updateDirector(director: User): void {
-    this.director = director;
   }
 }

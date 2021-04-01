@@ -14,6 +14,7 @@
   export let phoneNumber;
   export let numberOfStudents;
   export let numberOfClasses;
+  export let email;
   export let pdv;
   export let observation;
   export let name = '';
@@ -35,6 +36,7 @@
       numberOfClasses,
       type,
       status,
+      email,
       pdv: pdv ? new Date(pdv) : null,
       observation
     });
@@ -72,6 +74,11 @@
     <Input
       label={$_('schools.form.zip_code')}
       bind:value={zipCode} />
+    <Input
+      label={$_('schools.form.email')}
+      type={'email'}
+      required={false}
+      bind:value={email} />
     <Input
       label={$_('schools.form.phone_number')}
       required={false}

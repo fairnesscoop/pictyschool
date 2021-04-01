@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, MaxLength } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, MaxLength } from 'class-validator';
 import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 export abstract class AbstractSchoolDTO {
@@ -23,6 +23,11 @@ export abstract class AbstractSchoolDTO {
   @IsNotEmpty()
   @MaxLength(6)
   public zipCode: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsEmail()
+  public email: string;
 
   @ApiPropertyOptional()
   @IsOptional()

@@ -41,6 +41,9 @@ export abstract class AbstractSchool {
   @Column({ type: 'varchar', nullable: true })
   protected phoneNumber: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  protected email: string;
+
   @Column({ type: 'integer', nullable: true, default: 0 })
   protected numberOfStudents: number;
 
@@ -59,6 +62,7 @@ export abstract class AbstractSchool {
     status: Status,
     type: Type,
     phoneNumber?: string,
+    email?: string,
     numberOfStudents?: number,
     numberOfClasses?: number
   ) {
@@ -70,6 +74,7 @@ export abstract class AbstractSchool {
     this.status = status;
     this.type = type;
     this.phoneNumber = phoneNumber;
+    this.email = email;
     this.numberOfStudents = numberOfStudents;
     this.numberOfClasses = numberOfClasses;
   }
@@ -118,6 +123,10 @@ export abstract class AbstractSchool {
     return this.numberOfClasses;
   }
 
+  public getEmail(): string {
+    return this.email;
+  }
+
   public getCreatedAt(): number {
     return this.createdAt;
   }
@@ -130,6 +139,7 @@ export abstract class AbstractSchool {
     city: string,
     status: Status,
     type: Type,
+    email?: string,
     phoneNumber?: string,
     numberOfStudents?: number,
     numberOfClasses?: number
@@ -141,6 +151,7 @@ export abstract class AbstractSchool {
     this.city = city;
     this.status = status;
     this.type = type;
+    this.email = email;
     this.phoneNumber = phoneNumber;
     this.numberOfStudents = numberOfStudents;
     this.numberOfClasses = numberOfClasses;

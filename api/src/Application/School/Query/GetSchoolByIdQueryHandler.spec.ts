@@ -5,8 +5,6 @@ import { GetSchoolByIdQueryHandler } from './GetSchoolByIdQueryHandler';
 import { GetSchoolByIdQuery } from './GetSchoolByIdQuery';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { SchoolDetailView } from '../View/SchoolDetailView';
-import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
-import { User } from 'src/Domain/User/User.entity';
 import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
 import { UserCantAccessToSchoolException } from 'src/Domain/User/Exception/UserCantAccessToSchoolException';
 import { Status, Type } from 'src/Domain/School/AbstractSchool';
@@ -35,19 +33,13 @@ describe('GetSchoolByIdQueryHandler', () => {
       '75018',
       Status.PUBLIC,
       Type.ELEMENTARY,
+      'mathieu@fairness.coop',
       '010101010101',
       10,
       200,
       '12/12/2020',
-      'Observation',
-      new UserSummaryView('551d848f-a1d5-4067-9a12-5f918b69d077', 'Mathieu', 'MARCHOIS', 'mathieu@fairness.coop')
+      'Observation'
     );
-
-    const director = mock(User);
-    when(director.getId()).thenReturn('551d848f-a1d5-4067-9a12-5f918b69d077');
-    when(director.getFirstName()).thenReturn('Mathieu');
-    when(director.getLastName()).thenReturn('MARCHOIS');
-    when(director.getEmail()).thenReturn('mathieu@fairness.coop');
 
     when(school.getName()).thenReturn('Belliard');
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
@@ -56,59 +48,11 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getCity()).thenReturn('Paris');
     when(school.getZipCode()).thenReturn('75018');
     when(school.getPhoneNumber()).thenReturn('010101010101');
+    when(school.getEmail()).thenReturn('mathieu@fairness.coop');
     when(school.getNumberOfClasses()).thenReturn(10);
     when(school.getNumberOfStudents()).thenReturn(200);
     when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
-    when(school.getType()).thenReturn(Type.ELEMENTARY);
-    when(school.getStatus()).thenReturn(Status.PUBLIC);
-    when(school.getDirector()).thenReturn(instance(director));
-    when(
-      schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
-    ).thenResolve(instance(school));
-    when(
-      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
-    ).thenResolve(true);
-    expect(await queryHandler.execute(query)).toMatchObject(expectedResult);
-
-    verify(
-      schoolRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')
-    ).once();
-    verify(
-      canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
-    ).once();
-  });
-
-  it('testGetSchoolWithoutDirector', async () => {
-    const expectedResult = new SchoolDetailView(
-      'd54f15d6-1a1d-47e8-8672-9f46018f9960',
-      'Belliard',
-      'LM120I',
-      '127 Rue Belliard',
-      'Paris',
-      '75018',
-      Status.PUBLIC,
-      Type.ELEMENTARY,
-      '010101010101',
-      10,
-      200,
-      '12/12/2020',
-      'Observation',
-      null
-    );
-
-    when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
-    when(school.getName()).thenReturn('Belliard');
-    when(school.getReference()).thenReturn('LM120I');
-    when(school.getAddress()).thenReturn('127 Rue Belliard');
-    when(school.getCity()).thenReturn('Paris');
-    when(school.getZipCode()).thenReturn('75018');
-    when(school.getPhoneNumber()).thenReturn('010101010101');
-    when(school.getNumberOfClasses()).thenReturn(10);
-    when(school.getNumberOfStudents()).thenReturn(200);
-    when(school.getPdv()).thenReturn('12/12/2020');
-    when(school.getObservation()).thenReturn('Observation');
-    when(school.getDirector()).thenReturn(null);
     when(school.getType()).thenReturn(Type.ELEMENTARY);
     when(school.getStatus()).thenReturn(Status.PUBLIC);
     when(
@@ -117,7 +61,6 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(
       canUserAccessToSchool.isSatisfiedBy(instance(school), '551d848f-a1d5-4067-9a12-5f918b69d077')
     ).thenResolve(true);
-
     expect(await queryHandler.execute(query)).toMatchObject(expectedResult);
 
     verify(

@@ -1,11 +1,8 @@
-import { Entity, Column } from 'typeorm';
+import { Entity } from 'typeorm';
 import { AbstractSchool, Status, Type } from '../School/AbstractSchool';
 
 @Entity()
 export class Lead extends AbstractSchool {
-  @Column({ type: 'varchar', nullable: false })
-  private email: string;
-
   constructor(
     reference: string,
     name: string,
@@ -28,15 +25,10 @@ export class Lead extends AbstractSchool {
       status,
       type,
       phoneNumber,
+      email,
       numberOfStudents,
       numberOfClasses
     );
-
-    this.email = email;
-  }
-
-  public getEmail(): string {
-    return this.email;
   }
 
   public update(
@@ -60,11 +52,10 @@ export class Lead extends AbstractSchool {
       city,
       status,
       type,
+      email,
       phoneNumber,
       numberOfStudents,
       numberOfClasses
     );
-
-    this.email = email;
   }
 }

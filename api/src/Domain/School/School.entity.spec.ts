@@ -1,11 +1,7 @@
-import { mock, instance } from 'ts-mockito';
-import { User } from '../User/User.entity';
 import { Status, Type } from './AbstractSchool';
 import { School } from './School.entity';
 
 describe('School', () => {
-  const director = mock(User);
-
   it('testGetters', () => {
     const school = new School(
       'LM120I',
@@ -15,6 +11,7 @@ describe('School', () => {
       'Paris',
       Status.PUBLIC,
       Type.ELEMENTARY,
+      'email@test.com',
       '010101010101',
       200,
       10,
@@ -27,6 +24,7 @@ describe('School', () => {
     expect(school.getCity()).toBe('Paris');
     expect(school.getZipCode()).toBe('75018');
     expect(school.getAddress()).toBe('127 Rue Belliard');
+    expect(school.getEmail()).toBe('email@test.com');
     expect(school.getPhoneNumber()).toBe('010101010101');
     expect(school.getObservation()).toBe('Observation');
     expect(school.getPdv()).toBe('10/10/2020');
@@ -34,7 +32,6 @@ describe('School', () => {
     expect(school.getType()).toBe(Type.ELEMENTARY);
     expect(school.getNumberOfClasses()).toBe(10);
     expect(school.getNumberOfStudents()).toBe(200);
-    expect(school.getDirector()).toBeUndefined();
     expect(school.getCreatedAt()).toBeUndefined();
   });
 
@@ -47,6 +44,7 @@ describe('School', () => {
       'Paris',
       Status.PUBLIC,
       Type.ELEMENTARY,
+      'email@test.com',
       '010101010101',
       200,
       10,
@@ -61,14 +59,13 @@ describe('School', () => {
       'city',
       Status.PRIVATE,
       Type.MIDDLE_SCHOOL,
+      'email',
       'phone',
       1,
       1,
       'obs',
       '11/10/2020'
     );
-
-    school.updateDirector(instance(director));
 
     expect(school.getName()).toBe('name');
     expect(school.getReference()).toBe('ref');
@@ -78,9 +75,9 @@ describe('School', () => {
     expect(school.getPhoneNumber()).toBe('phone');
     expect(school.getObservation()).toBe('obs');
     expect(school.getPdv()).toBe('11/10/2020');
+    expect(school.getEmail()).toBe('email');
     expect(school.getNumberOfClasses()).toBe(1);
     expect(school.getNumberOfStudents()).toBe(1);
-    expect(school.getDirector()).toBe(instance(director));
     expect(school.getStatus()).toBe(Status.PRIVATE);
     expect(school.getType()).toBe(Type.MIDDLE_SCHOOL);
   });
