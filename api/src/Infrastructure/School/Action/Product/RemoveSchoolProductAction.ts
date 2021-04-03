@@ -16,7 +16,7 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('schools/:schoolId/products')
-@ApiTags('School')
+@ApiTags('School product')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class RemoveSchoolProductAction {
@@ -27,7 +27,7 @@ export class RemoveSchoolProductAction {
 
   @Delete(':id')
   @Roles(UserRole.PHOTOGRAPHER)
-  @ApiOperation({summary: 'Remove school product'})
+  @ApiOperation({ summary: 'Remove school product' })
   public async index(@Param() { id }: IdDTO) {
     try {
       await this.commandBus.execute(new RemoveSchoolProductCommand(id));

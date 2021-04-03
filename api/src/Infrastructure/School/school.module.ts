@@ -34,15 +34,26 @@ import { GetSchoolProductsQueryHandler } from 'src/Application/School/Query/Prod
 import { CountSchoolProductsQueryHandler } from 'src/Application/School/Query/Product/CountSchoolProductsQueryHandler';
 import { CountSchoolProductsAction } from './Action/Product/CountSchoolProductsAction';
 import { User } from 'src/Domain/User/User.entity';
-import { AssignUserToSchoolCommandHandler } from 'src/Application/School/Command/User/AssignUserToSchoolCommandHandler';
+import { AddUserToSchoolCommandHandler } from 'src/Application/School/Command/User/AddUserToSchoolCommandHandler';
 import { UserRepository } from '../User/Repository/UserRepository';
-import { AssignUserToSchoolAction } from './Action/User/AssignUserToSchoolAction';
+import { AddOrInviteUserToSchoolAction } from './Action/User/AddOrInviteUserToSchoolAction';
 import { CanUserAccessToSchool } from 'src/Domain/User/Specification/CanUserAccessToSchool';
 import { SchoolUser } from 'src/Domain/School/SchoolUser.entity';
 import { SchoolUserRepository } from './Repository/SchoolUserRepository';
-import { IsUserAlreadyAssignedToSchool } from 'src/Domain/User/Specification/IsUserAlreadyAssignedToSchool';
+import { IsUserAlreadyAddedToSchool } from 'src/Domain/User/Specification/IsUserAlreadyAddedToSchool';
 import { GetSchoolUsersAction } from './Action/User/GetSchoolUsersAction';
 import { GetSchoolUsersQueryHandler } from 'src/Application/School/Query/User/GetSchoolUsersQueryHandler';
+import { CodeGeneratorAdapter } from '../Adapter/CodeGeneratorAdapter';
+import { VoucherRepository } from './Repository/VoucherRepository';
+import { Voucher } from 'src/Domain/School/Voucher.entity';
+import { GetUserByEmailQueryHandler } from 'src/Application/User/Query/GetUserByEmailQueryHandler';
+import { IsVoucherAlreadyGenerated } from 'src/Domain/School/Specification/IsVoucherAlreadyGenerated';
+import { CreateVoucherCommandHandler } from 'src/Application/School/Command/Voucher/CreateVoucherCommandHandler';
+import { GetSchoolVouchersQueryHandler } from 'src/Application/School/Query/Voucher/GetSchoolVouchersQueryHandler';
+import { RemoveVoucherAction } from './Action/Voucher/RemoveVoucherAction';
+import { RemoveVoucherCommandHandler } from 'src/Application/School/Command/Voucher/RemoveVoucherCommandHandler';
+import { RemoveSchoolUserAction } from './Action/User/RemoveSchoolUserAction';
+import { RemoveSchoolUserCommandHandler } from 'src/Application/School/Command/User/RemoveSchoolUserCommandHandler';
 
 @Module({
   imports: [
@@ -54,7 +65,8 @@ import { GetSchoolUsersQueryHandler } from 'src/Application/School/Query/User/Ge
       SchoolProduct,
       SchoolUser,
       Product,
-      User
+      User,
+      Voucher
     ])
   ],
   controllers: [
@@ -62,18 +74,22 @@ import { GetSchoolUsersQueryHandler } from 'src/Application/School/Query/User/Ge
     CreateSchoolAction,
     GetSchoolAction,
     UpdateSchoolAction,
-    AssignUserToSchoolAction,
+    AddOrInviteUserToSchoolAction,
     GetSchoolUsersAction,
+    RemoveSchoolUserAction,
     CreateSchoolProductAction,
     GetSchoolProductAction,
     CountSchoolProductsAction,
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
     RemoveSchoolProductAction,
+    RemoveVoucherAction,
   ],
   providers: [
+    { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
     { provide: 'IPhotoRepository', useClass: PhotoRepository },
     { provide: 'ISchoolUserRepository', useClass: SchoolUserRepository },
+    { provide: 'IVoucherRepository', useClass: VoucherRepository },
     { provide: 'IUserRepository', useClass: UserRepository },
     { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
@@ -91,10 +107,16 @@ import { GetSchoolUsersQueryHandler } from 'src/Application/School/Query/User/Ge
     GetSchoolProductByIdQueryHandler,
     RemoveSchoolProductCommandHandler,
     CountSchoolProductsQueryHandler,
-    AssignUserToSchoolCommandHandler,
+    AddUserToSchoolCommandHandler,
     CanUserAccessToSchool,
-    IsUserAlreadyAssignedToSchool,
-    GetSchoolUsersQueryHandler
+    IsUserAlreadyAddedToSchool,
+    GetSchoolUsersQueryHandler,
+    GetUserByEmailQueryHandler,
+    IsVoucherAlreadyGenerated,
+    CreateVoucherCommandHandler,
+    GetSchoolVouchersQueryHandler,
+    RemoveVoucherCommandHandler,
+    RemoveSchoolUserCommandHandler
   ]
 })
 export class SchoolModule {}

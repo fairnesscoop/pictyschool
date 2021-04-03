@@ -9,7 +9,7 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('schools')
-@ApiTags('School')
+@ApiTags('School product')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class CountSchoolProductsAction {
@@ -20,7 +20,7 @@ export class CountSchoolProductsAction {
 
   @Get(':id/count-products')
   @Roles(UserRole.PHOTOGRAPHER)
-  @ApiOperation({ summary: 'Count products for a specific school' })
+  @ApiOperation({ summary: 'Count school products' })
   public async index(@Param() { id }: IdDTO): Promise<any> {
     try {
       const total = await this.queryBus.execute(new CountSchoolProductsQuery(id));

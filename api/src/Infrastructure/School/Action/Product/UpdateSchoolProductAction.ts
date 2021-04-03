@@ -18,7 +18,7 @@ import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UnitPriceDTO } from '../../DTO/UnitPriceDTO';
 
 @Controller('schools/:schoolId/products')
-@ApiTags('School')
+@ApiTags('School product')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class UpdateSchoolProductAction {
@@ -29,7 +29,7 @@ export class UpdateSchoolProductAction {
 
   @Put(':id')
   @Roles(UserRole.PHOTOGRAPHER)
-  @ApiOperation({ summary: 'Edit school product unit price' })
+  @ApiOperation({ summary: ' Edit school product unit price' })
   public async index(
     @Param() { id }: IdDTO,
     @Body() { parentUnitPrice, photographerUnitPrice }: UnitPriceDTO

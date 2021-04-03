@@ -13,8 +13,20 @@ export class SchoolUserRepository implements ISchoolUserRepository {
     private readonly repository: Repository<SchoolUser>
   ) {}
 
-  public save(schooluser: SchoolUser): Promise<SchoolUser> {
-    return this.repository.save(schooluser);
+  public save(schoolUser: SchoolUser): Promise<SchoolUser> {
+    return this.repository.save(schoolUser);
+  }
+
+  public remove(schoolUser: SchoolUser): void {
+    this.repository.delete(schoolUser.getId());
+  }
+
+  public findOneById(id: string): Promise<SchoolUser | undefined> {
+    return this.repository
+      .createQueryBuilder('schoolUser')
+      .select('schoolUser.id')
+      .where('schoolUser.id = :id', { id })
+      .getOne();
   }
 
   public findOneByUserAndSchool(user: User, school: School): Promise<SchoolUser | undefined> {
@@ -39,13 +51,7 @@ export class SchoolUserRepository implements ISchoolUserRepository {
   public findUsersBySchool(schoolId: string): Promise<SchoolUser[]> {
     return this.repository
       .createQueryBuilder('schoolUser')
-      .select([
-        'schoolUser.id',
-        'user.id',
-        'user.firstName',
-        'user.lastName',
-        'user.email'
-      ])
+      .select([ 'schoolUser.id', 'user.email' ])
       .innerJoin('schoolUser.user', 'user')
       .innerJoin('schoolUser.school', 'school', 'school.id = :schoolId', { schoolId })
       .orderBy('user.lastName', 'ASC')

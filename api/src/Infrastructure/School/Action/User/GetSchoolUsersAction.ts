@@ -7,10 +7,11 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UserRole } from 'src/Domain/User/User.entity';
 import { GetSchoolUsersQuery } from 'src/Application/School/Query/User/GetSchoolUsersQuery';
-import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
+import { SchoolUserView } from 'src/Application/School/View/SchoolUserView';
+import { GetSchoolVouchersQuery } from 'src/Application/School/Query/Voucher/GetSchoolVouchersQuery';
 
 @Controller('schools')
-@ApiTags('School')
+@ApiTags('School user')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolUsersAction {
@@ -20,11 +21,16 @@ export class GetSchoolUsersAction {
   ) {}
 
   @Get(':id/users')
-  @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
-  @ApiOperation({summary: 'Get users for a specific school'})
-  public async index(@Param() dto: IdDTO): Promise<UserSummaryView[]> {
+  @Roles(UserRole.PHOTOGRAPHER)
+  @ApiOperation({summary: 'Get users and vouchers for a specific school'})
+  public async index(@Param() { id }: IdDTO): Promise<SchoolUserView[]> {
     try {
-      return await this.queryBus.execute(new GetSchoolUsersQuery(dto.id));
+      const [ users, vouchers ] = await Promise.all([
+        this.queryBus.execute(new GetSchoolUsersQuery(id)),
+        this.queryBus.execute(new GetSchoolVouchersQuery(id)),
+      ]);
+
+      return users.concat(vouchers);
     } catch (e) {
       throw new NotFoundException(e.message);
     }

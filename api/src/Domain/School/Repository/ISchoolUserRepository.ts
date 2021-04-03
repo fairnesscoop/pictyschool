@@ -4,6 +4,8 @@ import { SchoolUser } from '../SchoolUser.entity';
 
 export interface ISchoolUserRepository {
   save(schoolUser: SchoolUser): Promise<SchoolUser>;
+  remove(schoolUser: SchoolUser): void;
+  findOneById(id :string): Promise<SchoolUser | undefined>;
   findOneByUserAndSchool(user: User, school: School): Promise<SchoolUser | undefined>;
   findUsersBySchool(schoolId: string): Promise<SchoolUser[]>;
 }
