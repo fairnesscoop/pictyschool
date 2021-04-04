@@ -4,7 +4,7 @@ import { SchoolUser } from 'src/Domain/School/SchoolUser.entity';
 import { School } from '../../School/School.entity';
 import { User, UserRole } from '../User.entity';
 
-export class IsUserAlreadyAssignedToSchool {
+export class IsUserAlreadyAddedToSchool {
   constructor(
     @Inject('ISchoolUserRepository')
     private readonly schoolUserRepository: ISchoolUserRepository

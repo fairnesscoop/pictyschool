@@ -155,12 +155,16 @@
       "title": "Edition de l'établissement"
     },
     "users": {
+      "status": {
+        "enable": "actif",
+        "waiting": "en attente d'activation"
+      },
       "delete": {
         "confirm": "Êtes-vous sûr de vouloir supprimer cet utilisateur ?"
       },
       "add": {
-        "title": "Créer un compte utilisateur",
-        "notice": "L'utilisateur que vous allez créer içi aura uniquement à cet établissement."
+        "title": "Création d'un utilisateur",
+        "notice": "Veuillez renseigner ci-dessous l'adresse mail de vos contacts au sein de l'établissement. Ils recevront un e-mail les invitant à créer leur compte et choisir leur mot de passe."
       }
     },
     "dashboard": {
@@ -195,7 +199,10 @@
     },
     "errors": {
       "already_exist": "Un établissement avec cette référence existe déjà.",
-      "not_found": "L'établissement recherchée n'existe pas."
+      "not_found": "L'établissement recherchée n'existe pas.",
+      "voucher_already_generated": "Une invitation a déjà été générée avec cette adresse email. Veuillez saisir une autre adresse email.",
+      "voucher_not_found": "Cette invitation n'est plus active.",
+      "school_user_not_found": "La personne recherchée dans cet établissement n'existe pas."
     },
     "products": {
       "title": "Produits",
@@ -205,7 +212,7 @@
         "photographer_unit_price": "Prix photographe TTC"
       },
       "add": {
-        "title": "Associer un nouveau produit"
+        "title": "Ajouter un produit"
       },
       "edit": {
         "title": "Edition du prix unitaire de \"{product}\"",
@@ -222,6 +229,7 @@
       },
       "errors": {
         "already_exist": "Ce produit a déjà été associé à l'établissement",
+        "parent_price_should_be_greater_than_photogtapher_price": "Le prix photographe doit être supérieur au prix parent.",
         "not_found": "Le produit de l'établissement recherché n'existe pas."
       }
     }

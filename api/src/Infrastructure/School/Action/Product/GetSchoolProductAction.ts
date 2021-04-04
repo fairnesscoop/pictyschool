@@ -17,7 +17,7 @@ import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
 @Controller('schools/:schoolId/products')
-@ApiTags('School')
+@ApiTags('School product')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolProductAction {

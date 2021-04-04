@@ -8,12 +8,12 @@
   import { goto } from '@sapper/app';
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, post, put } from 'utils/axios';
+  import { get, post } from 'utils/axios';
   import Breadcrumb from 'components/Breadcrumb.svelte';
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
-  import Form from 'components/form/UserForm.svelte';
+  import Form from './_Form.svelte';
   import Notice from 'components/Notice.svelte';
   import { ROLE_DIRECTOR } from 'constants/roles';
 
@@ -35,15 +35,8 @@
   const onSave = async (e) => {
     try {
       loading = true;
-      const { data } = await post('users', {
-        ...e.detail, 
-        role: ROLE_DIRECTOR
-      });
-
-      if (data.id) {
-        await put(`schools/${id}/users`, { userId: data.id });
-        goto(`/admin/schools/${id}`);
-      }
+      await post(`schools/${id}/users`, e.detail);
+      goto(`/admin/schools/${id}`);
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {

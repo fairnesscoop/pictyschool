@@ -10,7 +10,7 @@ import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UserRole } from 'src/Domain/User/User.entity';
 
 @Controller('schools')
-@ApiTags('School')
+@ApiTags('School product')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
 export class GetSchoolProductsAction {
@@ -21,7 +21,7 @@ export class GetSchoolProductsAction {
 
   @Get(':id/products')
   @Roles(UserRole.PHOTOGRAPHER)
-  @ApiOperation({summary: 'Get all products for a specific school'})
+  @ApiOperation({ summary: 'Get school products '})
   public async index(@Param() dto: IdDTO): Promise<SchoolProductView[]> {
     try {
       return await this.queryBus.execute(new GetSchoolProductsQuery(dto.id));
