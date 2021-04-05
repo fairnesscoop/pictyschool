@@ -13,10 +13,10 @@
   let schoolUsers = [];
   let errors = [];
 
-  const handleDelete = async (userId, type) => {
+  const handleDelete = async (ident, type) => {
     const delPath = type === 'voucher' ?
-      `schools/${id}/vouchers/${userId}` : 
-      `schools/${id}/users/${userId}`
+      `vouchers/${ident}` :
+      `schools/${id}/users/${ident}`
     try {
       schoolUsers = schoolUsers.filter((item) => item.id !== userId);
       await del(delPath);

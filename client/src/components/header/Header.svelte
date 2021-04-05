@@ -1,9 +1,13 @@
 <script>
+  import { stores } from '@sapper/app';
   import Profile from './Profile.svelte';
   import Search from './Search.svelte';
   import ThemeToggler from './ThemeToggler.svelte';
   import BurgerIcon from '../icons/BurgerIcon.svelte';
   import { settings } from 'store';
+  import { ROLE_PHOTOGRAPHER } from 'constants/roles';
+
+  const { session } = stores();
 </script>
 
 <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
@@ -19,7 +23,9 @@
       <BurgerIcon className={'w-6 h-6'} />
     </button>
     <div class="flex justify-center flex-1 lg:mr-32">
-      <Search />
+      {#if $session.user && $session.user.scope === ROLE_PHOTOGRAPHER}
+        <Search />
+      {/if}
     </div>
     <ul class="flex items-center flex-shrink-0 space-x-6">
       <li class="flex">

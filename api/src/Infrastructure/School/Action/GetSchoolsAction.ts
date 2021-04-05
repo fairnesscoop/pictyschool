@@ -9,8 +9,6 @@ import { PaginationDTO } from 'src/Infrastructure/Common/DTO/PaginationDTO';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { UserRole } from 'src/Domain/User/User.entity';
-import { LoggedUser } from 'src/Infrastructure/User/Decorator/LoggedUser';
-import { UserAuthView } from 'src/Infrastructure/User/Security/UserAuthView';
 
 @Controller('schools')
 @ApiTags('School')
@@ -23,12 +21,11 @@ export class GetSchoolsAction {
   ) {}
 
   @Get()
-  @Roles(UserRole.PHOTOGRAPHER, UserRole.DIRECTOR)
+  @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({summary: 'Get all schools'})
   public async index(
-    @Query() { page }: PaginationDTO,
-    @LoggedUser() { id, role }: UserAuthView
+    @Query() { page }: PaginationDTO
   ): Promise<Pagination<SchoolView>> {
-    return await this.queryBus.execute(new GetSchoolsQuery(page, id, role));
+    return await this.queryBus.execute(new GetSchoolsQuery(page));
   }
 }

@@ -28,6 +28,14 @@ export class VoucherRepository implements IVoucherRepository {
       .getOne();
   }
 
+  public findOneByCode(code: string): Promise<Voucher | undefined> {
+    return this.repository
+      .createQueryBuilder('voucher')
+      .select([ 'voucher.id', 'voucher.code', 'voucher.email' ])
+      .where('voucher.code = :code', { code })
+      .getOne();
+  }
+
   public findOneByEmailAndSchool(email: string, school: School): Promise<Voucher | undefined> {
     return this.repository
       .createQueryBuilder('voucher')

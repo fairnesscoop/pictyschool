@@ -15,7 +15,7 @@ import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 
-@Controller('schools')
+@Controller('vouchers')
 @ApiTags('School voucher')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
@@ -25,7 +25,7 @@ export class RemoveVoucherAction {
     private readonly commandBus: ICommandBus
   ) {}
 
-  @Delete('/:schoolId/vouchers/:id')
+  @Delete(':id')
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Remove voucher' })
   public async index(@Param() { id }: IdDTO) {

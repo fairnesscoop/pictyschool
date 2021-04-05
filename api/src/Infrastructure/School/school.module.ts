@@ -50,10 +50,12 @@ import { GetUserByEmailQueryHandler } from 'src/Application/User/Query/GetUserBy
 import { IsVoucherAlreadyGenerated } from 'src/Domain/School/Specification/IsVoucherAlreadyGenerated';
 import { CreateVoucherCommandHandler } from 'src/Application/School/Command/Voucher/CreateVoucherCommandHandler';
 import { GetSchoolVouchersQueryHandler } from 'src/Application/School/Query/Voucher/GetSchoolVouchersQueryHandler';
-import { RemoveVoucherAction } from './Action/Voucher/RemoveVoucherAction';
 import { RemoveVoucherCommandHandler } from 'src/Application/School/Command/Voucher/RemoveVoucherCommandHandler';
 import { RemoveSchoolUserAction } from './Action/User/RemoveSchoolUserAction';
 import { RemoveSchoolUserCommandHandler } from 'src/Application/School/Command/User/RemoveSchoolUserCommandHandler';
+import { ConsumeVoucherAction } from './Action/Voucher/ConsumeVoucherAction';
+import { RemoveVoucherAction } from './Action/Voucher/RemoveVoucherAction';
+import { GetVoucherByCodeQueryHandler } from 'src/Application/School/Query/Voucher/GetVoucherByCodeQueryHandler';
 
 @Module({
   imports: [
@@ -83,6 +85,7 @@ import { RemoveSchoolUserCommandHandler } from 'src/Application/School/Command/U
     GetSchoolProductsAction,
     UpdateSchoolProductAction,
     RemoveSchoolProductAction,
+    ConsumeVoucherAction,
     RemoveVoucherAction,
   ],
   providers: [
@@ -116,7 +119,8 @@ import { RemoveSchoolUserCommandHandler } from 'src/Application/School/Command/U
     CreateVoucherCommandHandler,
     GetSchoolVouchersQueryHandler,
     RemoveVoucherCommandHandler,
-    RemoveSchoolUserCommandHandler
+    RemoveSchoolUserCommandHandler,
+    GetVoucherByCodeQueryHandler
   ]
 })
 export class SchoolModule {}

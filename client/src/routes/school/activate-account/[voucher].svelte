@@ -1,32 +1,34 @@
+<script context="module" lang="ts">
+  export async function preload({ params: { voucher } }) {
+    return { voucher }
+  }
+</script>
+
 <script>
   import { goto, stores } from '@sapper/app';
-  import { _ } from 'svelte-i18n';
-  import Cookies from 'js-cookie';
   import { post } from 'utils/axios';
+  import { _ } from 'svelte-i18n';
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import Input from 'components/inputs/Input.svelte';
   import Button from 'components/inputs/Button.svelte';
 
+  export let voucher;
+
   let errors = [];
-  let email = '';
+  let firstName = '';
+  let lastName = '';
   let password = '';
   let loading = false;
+  let title = $_('school.activate.title');
 
   const { session } = stores();
 
   const handleSubmit = async () => {
     try {
       loading = true;
-      const {
-        data: { id, firstName, lastName, apiToken, role },
-      } = await post('login', { email, password });
-      $session.user = { id, firstName, lastName, email, scope: role };
-      Cookies.set('photoschool_token', apiToken, {
-        expires: 365,
-        secure: process.env.NODE_ENV === 'production',
-      });
-      goto('/admin');
+      await post(`vouchers/${voucher}/consume`, { firstName, lastName, password });
+      goto('/login');
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {
@@ -36,7 +38,7 @@
 </script>
 
 <svelte:head>
-  <title>{$_('login.title')} - {$_('app')}</title>
+  <title>{title} - {$_('app')}</title>
 </svelte:head>
 
 <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
@@ -56,30 +58,24 @@
         <div class="w-full">
           <h1
             class="mb-5 text-xl font-semibold text-center text-gray-700 dark:text-gray-200">
-            {$_('login.sub_title')}
+            {title}
           </h1>
           <ServerErrors errors={errors} />
+          <p class="text-sm mt-3 mb-3">{$_('school.activate.notice')}</p>
           <Input
-            type={'email'}
-            label={$_('login.form.email')}
-            bind:value={email} />
+            label={$_('school.activate.form.first_name')}
+            bind:value={firstName} />
+          <Input
+            label={$_('school.activate.form.last_name')}
+            bind:value={lastName} />
           <Input
             type={'password'}
-            label={$_('login.form.password')}
+            label={$_('school.activate.form.password')}
             bind:value={password} />
           <Button
-            value={$_('login.form.button')}
+            value={$_('school.activate.form.submit')}
             loading={loading}
-            disabled={!email || !password || loading} />
-          <hr class="my-8" />
-          <!--<p class="mt-4">
-            <a
-              class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-              href="login/forgot-password">
-              {$_('login.password_lost')}
-            </a>
-          </p>
-          -->
+            disabled={!lastName ||!firstName || !password || loading} />
         </div>
       </form>
     </div>

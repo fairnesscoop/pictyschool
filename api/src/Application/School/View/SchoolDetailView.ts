@@ -1,4 +1,3 @@
-import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 export class SchoolDetailView {
