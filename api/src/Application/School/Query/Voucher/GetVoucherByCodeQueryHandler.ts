@@ -23,6 +23,7 @@ export class GetVoucherByCodeQueryHandler {
       voucher.getId(),
       voucher.getCode(),
       voucher.getEmail(),
+      voucher.getSchool().getId(),
     );
   }
 }

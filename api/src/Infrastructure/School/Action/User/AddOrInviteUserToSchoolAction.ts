@@ -39,7 +39,7 @@ export class AddOrInviteUserToSchoolAction {
     try {
       const user: User = await this.queryBus.execute(new GetUserByEmailQuery(email));
       if (user instanceof User) {
-        await this.commandBus.execute(new AddUserToSchoolCommand(user, id));
+        await this.commandBus.execute(new AddUserToSchoolCommand(user.getId(), id));
       } else {
         await this.commandBus.execute(new CreateVoucherCommand(id, email));
       }

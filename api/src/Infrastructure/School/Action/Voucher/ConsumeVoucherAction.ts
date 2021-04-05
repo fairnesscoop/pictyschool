@@ -16,6 +16,7 @@ import { VoucherView } from 'src/Application/School/View/VoucherView';
 import { ConsumeVoucherDTO } from '../../DTO/ConsumeVoucherDTO';
 import { UserRole } from 'src/Domain/User/User.entity';
 import { RemoveVoucherCommand } from 'src/Application/School/Command/Voucher/RemoveVoucherCommand';
+import { AddUserToSchoolCommand } from 'src/Application/School/Command/User/AddUserToSchoolCommand';
 
 @Controller('vouchers')
 @ApiTags('School voucher')
@@ -30,7 +31,7 @@ export class ConsumeVoucherAction {
   @Post(':code/consume')
   @ApiOperation({ summary: 'Consume voucher' })
   public async index(
-    @Param() code: string,
+    @Param('code') code: string,
     @Body() { firstName, lastName, password }: ConsumeVoucherDTO
   ): Promise<UserView> {
     try {
@@ -39,7 +40,7 @@ export class ConsumeVoucherAction {
         return;
       }
 
-      await this.commandBus.execute(
+      const id = await this.commandBus.execute(
         new CreateUserCommand(
           firstName,
           lastName,
@@ -49,6 +50,7 @@ export class ConsumeVoucherAction {
         )
       );
 
+      await this.commandBus.execute(new AddUserToSchoolCommand(id, voucher.schoolId));
       await this.commandBus.execute(new RemoveVoucherCommand(voucher.id));
     } catch (e) {
       throw new BadRequestException(e.message);

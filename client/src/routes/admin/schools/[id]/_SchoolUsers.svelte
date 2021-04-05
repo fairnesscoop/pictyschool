@@ -18,7 +18,7 @@
       `vouchers/${ident}` :
       `schools/${id}/users/${ident}`
     try {
-      schoolUsers = schoolUsers.filter((item) => item.id !== userId);
+      schoolUsers = schoolUsers.filter((item) => item.id !== ident);
       await del(delPath);
     } catch (e) {
       errors = errorNormalizer(e);

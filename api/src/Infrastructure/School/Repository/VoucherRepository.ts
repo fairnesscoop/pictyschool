@@ -31,8 +31,14 @@ export class VoucherRepository implements IVoucherRepository {
   public findOneByCode(code: string): Promise<Voucher | undefined> {
     return this.repository
       .createQueryBuilder('voucher')
-      .select([ 'voucher.id', 'voucher.code', 'voucher.email' ])
+      .select([
+        'voucher.id',
+        'voucher.code',
+        'voucher.email',
+        'school.id'
+      ])
       .where('voucher.code = :code', { code })
+      .innerJoin('voucher.school', 'school')
       .getOne();
   }
 
