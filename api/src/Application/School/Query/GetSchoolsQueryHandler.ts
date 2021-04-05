@@ -15,7 +15,7 @@ export class GetSchoolsQueryHandler {
   public async execute(
     query: GetSchoolsQuery
   ): Promise<Pagination<SchoolView>> {
-    const { page, userId, userRole } = query;
+    const { page } = query;
     const schoolViews: SchoolView[] = [];
     const [ schools, total ] = await this.schoolRepository.findSchools(page);
 

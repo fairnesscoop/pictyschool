@@ -5,11 +5,10 @@ import { GetSchoolsQuery } from 'src/Application/School/Query/GetSchoolsQuery';
 import { School } from 'src/Domain/School/School.entity';
 import { SchoolView } from 'src/Application/School/View/SchoolView';
 import { Pagination } from 'src/Application/Common/Pagination';
-import { UserRole } from 'src/Domain/User/User.entity';
 import { Status, Type } from 'src/Domain/School/AbstractSchool';
 
 describe('GetSchoolsQueryHandler', () => {
-  it('testGetSchoolsWithPhotographerRole', async () => {
+  it('testGetSchools', async () => {
     const schoolRepository = mock(SchoolRepository);
 
     const school1 = mock(School);
@@ -65,51 +64,7 @@ describe('GetSchoolsQueryHandler', () => {
     );
 
     expect(
-      await queryHandler.execute(
-        new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.PHOTOGRAPHER)
-      )).toMatchObject(expectedResult);
-    verify(schoolRepository.findSchools(1)).once();
-  });
-
-  it('testGetSchoolsWithDirectorRole', async () => {
-    const schoolRepository = mock(SchoolRepository);
-
-    const school3 = mock(School);
-    when(school3.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
-    when(school3.getName()).thenReturn('Ecole élementaire Belliard');
-    when(school3.getReference()).thenReturn('xLKJSs');
-    when(school3.getAddress()).thenReturn('127 Rue Belliard');
-    when(school3.getCity()).thenReturn('Paris');
-    when(school3.getZipCode()).thenReturn('75010');
-    when(school3.getType()).thenReturn(Type.ELEMENTARY);
-    when(school3.getStatus()).thenReturn(Status.PUBLIC);
-
-    when(schoolRepository.findSchools(1)).thenResolve([
-      [instance(school3)],
-      1
-    ]);
-
-    const queryHandler = new GetSchoolsQueryHandler(instance(schoolRepository));
-    const expectedResult = new Pagination<SchoolView>(
-      [
-        new SchoolView(
-          'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
-          'Ecole élementaire Belliard',
-          'xLKJSs',
-          '127 Rue Belliard',
-          'Paris',
-          '75010',
-          Status.PUBLIC,
-          Type.ELEMENTARY
-        )
-      ],
-      1
-    );
-
-    expect(
-      await queryHandler.execute(
-        new GetSchoolsQuery(1, '2eefa0ec-484b-4c13-ad8f-e7dbce14be64', UserRole.DIRECTOR)
-      )).toMatchObject(expectedResult);
+      await queryHandler.execute(new GetSchoolsQuery(1))).toMatchObject(expectedResult);
     verify(schoolRepository.findSchools(1)).once();
   });
 });

@@ -23,7 +23,7 @@ app
       const options = {
         routes,
         deny: () => {
-          res.redirect('/admin/login');
+          res.redirect('/login');
           return res.end();
         },
         grant: () => {

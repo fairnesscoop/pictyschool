@@ -6,5 +6,6 @@ export interface IVoucherRepository {
   remove(voucher: Voucher): void;
   findOneByEmailAndSchool(email: string, school: School): Promise<Voucher | undefined>;
   findOneById(id: string): Promise<Voucher | undefined>;
+  findOneByCode(code: string): Promise<Voucher | undefined>;
   findBySchool(schoolId: string): Promise<Voucher[]>;
 }

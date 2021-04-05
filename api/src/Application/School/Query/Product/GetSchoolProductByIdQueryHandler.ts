@@ -10,11 +10,11 @@ import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryV
 export class GetSchoolProductByIdQueryHandler {
   constructor(
     @Inject('ISchoolProductRepository')
-    private readonly schoolproductRepository: ISchoolProductRepository
+    private readonly schoolProductRepository: ISchoolProductRepository
   ) {}
 
   public async execute(query: GetSchoolProductByIdQuery): Promise<SchoolProductView> {
-    const schoolProduct = await this.schoolproductRepository.findOneById(query.id);
+    const schoolProduct = await this.schoolProductRepository.findOneById(query.id);
 
     if (!schoolProduct) {
       throw new SchoolProductNotFoundException();
