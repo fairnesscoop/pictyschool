@@ -67,6 +67,14 @@
       {placeholder}
       class={className}
       bind:value />
+  {:else if type === 'time'}
+    <input
+      type="time"
+      {id}
+      {required}
+      {placeholder}
+      class={className}
+      bind:value />
   {:else}
     <input
       type="text"
