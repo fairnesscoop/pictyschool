@@ -23,7 +23,7 @@ describe('GetVoucherByCodeQueryHandler', () => {
     const school = mock(School);
     when(school.getId()).thenReturn('ee18bf86-c72a-4ed9-a6d1-212f4286759e');
 
-    const voucher = mock(Voucher);    
+    const voucher = mock(Voucher);
     when(voucher.getId()).thenReturn('eb9e1d9b-dce2-48a9-B64F-f0872f3157d2');
     when(voucher.getCode()).thenReturn('xLKJS');
     when(voucher.getEmail()).thenReturn('mathieu@fairness.coop');

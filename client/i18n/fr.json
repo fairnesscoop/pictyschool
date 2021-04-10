@@ -32,7 +32,19 @@
     "logout": "Se déconnecter"
   },
   "calendar": {
-    "breadcrumb": "Calendrier"
+    "breadcrumb": "Rendez-vous",
+    "form": {
+      "photographer": "Photographe",
+      "photographer_placeholder": "-- Choisir un photographe --",
+      "school": "Etablissement",
+      "school_placeholder": "-- Choisir un établissement --",
+      "from_date": "Heure de début",
+      "to_date": "Heure de fin",
+      "summary": "Observation"
+    },
+    "add": {
+      "title": "Ajouter un rendez-vous le {date}"
+    }
   },
   "leads": {
     "breadcrumb": "Prospects",
