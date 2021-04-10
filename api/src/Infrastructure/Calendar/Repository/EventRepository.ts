@@ -14,4 +14,22 @@ export class EventRepository implements IEventRepository {
   public save(event: Event): Promise<Event> {
     return this.repository.save(event);
   }
+
+  public findByPeriod(fromDate: Date, toDate: Date): Promise<Event[]> {
+    return this.repository
+      .createQueryBuilder('event')
+      .select([
+        'event.id',
+        'school.name',
+        'school.reference',
+        'photographer.firstName',
+        'photographer.lastName',
+        'event.date'
+      ])
+      .innerJoin('event.school', 'school')
+      .innerJoin('event.photographer', 'photographer')
+      .where('event.date >= :fromDate', { fromDate })
+      .andWhere('event.date <= :toDate', { toDate })
+      .getMany();
+  }
 }

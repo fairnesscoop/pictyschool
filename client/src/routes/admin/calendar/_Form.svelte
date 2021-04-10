@@ -7,8 +7,7 @@
   import Button from 'components/inputs/Button.svelte';
 
   export let date;
-  export let startHour = '09:00';
-  export let endHour = '10:00';
+  export let hour = '09:00';
   export let summary = '';
   export let schoolId = '';
   export let userId = '';
@@ -34,8 +33,7 @@
       schoolId,
       userId,
       summary,
-      fromDate: new Date(`${date} ${startHour}`),
-      toDate: new Date(`${date} ${endHour}`)
+      date: new Date(`${date} ${hour}`),
     });
   };
 </script>
@@ -57,12 +55,8 @@
   </SelectInput>
   <Input
     type={'time'}
-    label={$_('calendar.form.from_date')}
-    bind:value={startHour} />  
-  <Input
-    type={'time'}
-    label={$_('calendar.form.to_date')}
-    bind:value={endHour} />
+    label={$_('calendar.form.hour')}
+    bind:value={hour} />  
   <Input
     label={$_('calendar.form.summary')}
     required={false}
@@ -70,5 +64,5 @@
   <Button
     value={$_('common.form.save')}
     {loading}
-    disabled={!schoolId || !userId || !startHour || !endHour || loading} />
+    disabled={!schoolId || !userId || !hour || loading} />
 </form>
