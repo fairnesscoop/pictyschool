@@ -19,7 +19,7 @@
   }
   .tooltip .tooltip-arrow,
   .popper .popper__arrow {
-    border-color: #FFC107;
+    border-color: #d5d6d7;
   }
   
   .popper[x-placement^="top"],
