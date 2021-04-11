@@ -1,23 +1,21 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
-import { DateGreaterOrEqualThan } from 'src/Infrastructure/Common/Validator/DateGreaterOrEqualThan';
 
 export class EventDTO {
   @ApiProperty()
   @IsNotEmpty()
   @IsDateString()
-  public fromDate: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsDateString()
-  @DateGreaterOrEqualThan('fromDate')
-  public toDate: string;
+  public date: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsUUID()
   public schoolId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUUID()
+  public userId: string;
 
   @ApiPropertyOptional()
   @IsOptional()

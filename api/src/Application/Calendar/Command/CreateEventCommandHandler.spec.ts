@@ -27,7 +27,6 @@ describe('CreateEventCommandHandler', () => {
   const school = mock(School);
   const command = new CreateEventCommand(
     new Date('2020-10-19'),
-    new Date('2020-10-20'),
     'e3fc9666-2932-4dc1-b2b9-d904388293fb',
     '50e624ef-3609-4053-a437-f74844a2d2de',
     'Prise de vue'
@@ -104,7 +103,6 @@ describe('CreateEventCommandHandler', () => {
         deepEqual(
           new Event(
             new Date('2020-10-19'),
-            new Date('2020-10-20'),
             instance(user),
             instance(school),
             'Prise de vue'
@@ -124,7 +122,6 @@ describe('CreateEventCommandHandler', () => {
       deepEqual(
         new Event(
           new Date('2020-10-19'),
-          new Date('2020-10-20'),
           instance(user),
           instance(school),
           'Prise de vue'

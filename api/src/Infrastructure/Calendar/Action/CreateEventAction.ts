@@ -11,10 +11,8 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateEventCommand } from 'src/Application/Calendar/Command/CreateEventCommand';
 import { ICommandBus } from 'src/Application/ICommandBus';
 import { UserRole } from 'src/Domain/User/User.entity';
-import { LoggedUser } from 'src/Infrastructure/User/Decorator/LoggedUser';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
-import { UserAuthView } from 'src/Infrastructure/User/Security/UserAuthView';
 import { EventDTO } from '../DTO/EventDTO';
 
 @Controller('events')
@@ -30,23 +28,14 @@ export class CreateEventAction {
   @Post()
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Create new event' })
-  public async index(
-    @Body() dto: EventDTO,
-    @LoggedUser() user: UserAuthView
-  ) {
-    const {
-      fromDate,
-      toDate,
-      schoolId,
-      summary
-    } = dto;
+  public async index(@Body() dto: EventDTO) {
+    const { date, schoolId, userId, summary } = dto;
 
     try {
       const id = await this.commandBus.execute(
         new CreateEventCommand(
-          new Date(fromDate),
-          new Date(toDate),
-          user.id,
+          new Date(date),
+          userId,
           schoolId,
           summary
         )

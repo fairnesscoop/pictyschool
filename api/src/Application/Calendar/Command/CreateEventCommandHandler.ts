@@ -20,7 +20,7 @@ export class CreateEventCommandHandler {
   ) {}
 
   public async execute(command: CreateEventCommand): Promise<string> {
-    const { fromDate, toDate, summary, userId, schoolId } = command;
+    const { date, summary, userId, schoolId } = command;
 
     const user = await this.userRepository.findOneById(userId);
     if (!user) {
@@ -34,8 +34,7 @@ export class CreateEventCommandHandler {
 
     const event = await this.eventRepository.save(
       new Event(
-        fromDate,
-        toDate,
+        date,
         user,
         school,
         summary

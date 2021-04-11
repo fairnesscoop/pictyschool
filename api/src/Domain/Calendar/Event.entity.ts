@@ -7,11 +7,8 @@ export class Event {
   @PrimaryGeneratedColumn('uuid')
   private id: string;
 
-  @Column({ type: 'date', nullable: false })
-  private fromDate: Date;
-
-  @Column({ type: 'date', nullable: false })
-  private toDate: Date;
+  @Column({ type: 'timestamp', nullable: false })
+  private date: Date;
 
   @Column({ type: 'varchar', nullable: true })
   private summary: string;
@@ -23,14 +20,12 @@ export class Event {
   private photographer: User;
 
   constructor(
-    fromDate: Date,
-    toDate: Date,
+    date: Date,
     photographer: User,
     school: School,
     summary?: string
   ) {
-    this.fromDate = fromDate;
-    this.toDate = toDate;
+    this.date = date;
     this.photographer = photographer;
     this.school = school;
     this.summary = summary;
@@ -40,12 +35,8 @@ export class Event {
     return this.id;
   }
 
-  public getFromDate(): Date {
-    return this.fromDate;
-  }
-
-  public getToDate(): Date {
-    return this.toDate;
+  public getDate(): Date {
+    return this.date;
   }
 
   public getSummary(): string | null {
