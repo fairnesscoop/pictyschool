@@ -1,7 +1,5 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { format } from 'date-fns';
-  import { fr } from 'date-fns/locale';
 
   export let lead;
 </script>

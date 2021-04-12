@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateEventCommandHandler } from 'src/Application/Calendar/Command/CreateEventCommandHandler';
+import { GetEventByIdQueryHandler } from 'src/Application/Calendar/Query/GetEventByIdQueryHandler';
 import { GetEventsByPeriodQueryHandler } from 'src/Application/Calendar/Query/GetEventsByPeriodQueryHandler';
 import { Event } from 'src/Domain/Calendar/Event.entity';
 import { School } from 'src/Domain/School/School.entity';
@@ -9,6 +10,7 @@ import { BusModule } from '../bus.module';
 import { SchoolRepository } from '../School/Repository/SchoolRepository';
 import { UserRepository } from '../User/Repository/UserRepository';
 import { CreateEventAction } from './Action/CreateEventAction';
+import { GetEventAction } from './Action/GetEventAction';
 import { GetEventsAction } from './Action/GetEventsAction';
 import { EventRepository } from './Repository/EventRepository';
 
@@ -23,14 +25,16 @@ import { EventRepository } from './Repository/EventRepository';
   ],
   controllers: [
     GetEventsAction,
-    CreateEventAction
+    CreateEventAction,
+    GetEventAction
   ],
   providers: [
     { provide: 'IEventRepository', useClass: EventRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     { provide: 'IUserRepository', useClass: UserRepository },
     CreateEventCommandHandler,
-    GetEventsByPeriodQueryHandler
+    GetEventsByPeriodQueryHandler,
+    GetEventByIdQueryHandler
   ]
 })
 export class CalendarModule {}
