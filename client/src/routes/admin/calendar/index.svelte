@@ -39,26 +39,33 @@
         right: 'dayGridMonth,timeGridWeek'
       },
       weekends: false,
-      events: async ({startStr, endStr}, successCallback, failureCallback) => {
+      eventClick: (info) => {
+        document.querySelectorAll('.tooltip').forEach(el => el.remove());
+      },
+      events: async ({startStr, endStr}, callback) => {
         try {
           const { data } = await get('events', { params: { fromDate: startStr, toDate: endStr }});
-          successCallback(data);
+          callback(data);
         } catch {
-          successCallback([]);
+          callback([]);
         }
+      },
+      eventDataTransform: (data) => {
+        data.url = `/admin/calendar/${data.id}`;
       },
       dateClick: (info) => {
         goto(`/admin/calendar/${info.dateStr}/add`);
       },
-    });  
+    });
     calendar.render();
   };
 
-  onMount(async() => fullCalendar());
+  onMount(fullCalendar);
 </script>
 
 <svelte:head>
   <title>{title} - {$_('app')}</title>
+  <link rel="stylesheet" href="css/popin.css" />
   <script src='https://unpkg.com/popper.js/dist/umd/popper.min.js'></script>
   <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
 </svelte:head>

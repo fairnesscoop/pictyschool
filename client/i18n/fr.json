@@ -33,6 +33,14 @@
   },
   "calendar": {
     "breadcrumb": "Rendez-vous",
+    "detail": {
+      "informations": "Détail du rendez-vous",
+      "photographer": "Photographe",
+      "school": "Etablissement",
+      "address": "Adresse",
+      "date": "Date et heure du rendez-vous",
+      "summary": "Observation"
+    },
     "form": {
       "photographer": "Photographe",
       "photographer_placeholder": "-- Choisir un photographe --",
@@ -43,6 +51,9 @@
     },
     "add": {
       "title": "Ajouter un rendez-vous le {date}"
+    },
+    "errors": {
+      "event_not_found": "Le rendez-vous que vous cherchez n'existe pas."
     }
   },
   "leads": {

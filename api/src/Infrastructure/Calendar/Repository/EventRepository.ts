@@ -32,4 +32,26 @@ export class EventRepository implements IEventRepository {
       .andWhere('event.date <= :toDate', { toDate })
       .getMany();
   }
+
+  public findOneById(id: string): Promise<Event | undefined> {
+    return this.repository
+      .createQueryBuilder('event')
+      .select([
+        'event.id',
+        'event.date',
+        'event.summary',
+        'school.id',
+        'school.name',
+        'school.address',
+        'school.city',
+        'school.zipCode',
+        'school.reference',
+        'photographer.firstName',
+        'photographer.lastName',
+      ])
+      .innerJoin('event.school', 'school')
+      .innerJoin('event.photographer', 'photographer')
+      .where('event.id = :id', { id })
+      .getOne();
+  }
 }
