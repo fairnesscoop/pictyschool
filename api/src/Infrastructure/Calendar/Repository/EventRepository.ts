@@ -15,6 +15,10 @@ export class EventRepository implements IEventRepository {
     return this.repository.save(event);
   }
 
+  public remove(event: Event): void {
+    this.repository.delete(event.getId());
+  }
+
   public findByPeriod(fromDate: Date, toDate: Date): Promise<Event[]> {
     return this.repository
       .createQueryBuilder('event')
