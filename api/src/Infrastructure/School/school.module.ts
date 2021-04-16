@@ -78,10 +78,13 @@ import { GetShootingByIdQueryHandler } from 'src/Application/School/Query/Shooti
 import { GetShootingAction } from './Action/Shooting/GetShootingAction';
 import { UpdateShootingAction } from './Action/Shooting/UpdateShootingAction';
 import { UpdateShootingCommandHandler } from 'src/Application/School/Command/Shooting/UpdateShootingCommandHandler';
+import { GetSchoolUploadEnpointAction } from './Action/Photo/GetUploadEnpointAction';
+import { IngestionModule } from '../Ingestion/ingestion.module';
 
 @Module({
   imports: [
     BusModule,
+    IngestionModule,
     TypeOrmModule.forFeature([
       School,
       Photo,
@@ -118,7 +121,8 @@ import { UpdateShootingCommandHandler } from 'src/Application/School/Command/Sho
     GetSchoolDiscountsAction,
     CreateDiscountAction,
     CountSchoolDiscountsAction,
-    RemoveDiscountAction
+    RemoveDiscountAction,
+    GetSchoolUploadEnpointAction,
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
