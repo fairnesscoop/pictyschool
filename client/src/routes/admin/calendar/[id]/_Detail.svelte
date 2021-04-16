@@ -32,7 +32,7 @@
       </tr>
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{$_('calendar.detail.photographer')}</td>
-        <td class="px-4 py-3 text-sm">{event.firstName} {event.lastName}</td>
+        <td class="px-4 py-3 text-sm">{event.user.firstName} {event.user.lastName}</td>
       </tr>
       {#if event.summary}
         <tr class="text-gray-700 dark:text-gray-400">

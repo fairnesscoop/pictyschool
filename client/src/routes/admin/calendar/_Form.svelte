@@ -29,11 +29,16 @@
   });
 
   const submit = () => {
+    const savedDate = new Date(date);
+    const time = hour.split(':');
+    savedDate.setHours(time[0]);
+    savedDate.setMinutes(time[1]);
+
     dispatch('save', {
       schoolId,
       userId,
       summary,
-      date: new Date(`${date} ${hour}`),
+      date: savedDate,
     });
   };
 </script>
@@ -44,13 +49,13 @@
   <SelectInput label={$_('calendar.form.photographer')} bind:value={userId}>
     <option>{$_('calendar.form.photographer_placeholder')}</option>
     {#each photographers as { id, firstName, lastName} (id)}
-      <option value={id}>{firstName} {lastName}</option>
+      <option value={id} selected={id === userId}>{firstName} {lastName}</option>
     {/each}
   </SelectInput>
   <SelectInput label={$_('calendar.form.school')} bind:value={schoolId}>
     <option>{$_('calendar.form.school_placeholder')}</option>
     {#each schools?.items as { id, name, reference} (id)}
-      <option value={id}>{reference} - {name}</option>
+      <option value={id} selected={id === schoolId}>{reference} - {name}</option>
     {/each}
   </SelectInput>
   <Input

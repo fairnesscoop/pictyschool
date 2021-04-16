@@ -1,4 +1,5 @@
 import { Event } from 'src/Domain/Calendar/Event.entity';
+import { EventNotFoundException } from 'src/Domain/Calendar/Exception/EventNotFoundException';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 import { School } from 'src/Domain/School/School.entity';
 import { UserNotFoundException } from 'src/Domain/User/Exception/UserNotFoundException';
@@ -14,18 +15,20 @@ import {
   anything,
   deepEqual
 } from 'ts-mockito';
-import { CreateEventCommand } from './CreateEventCommand';
-import { CreateEventCommandHandler } from './CreateEventCommandHandler';
+import { UpdateEventCommand } from './UpdateEventCommand';
+import { UpdateEventCommandHandler } from './UpdateEventCommandHandler';
 
-describe('CreateEventCommandHandler', () => {
+describe('UpdateEventCommandHandler', () => {
   let schoolRepository: SchoolRepository;
   let userRepository: UserRepository;
   let eventRepository: EventRepository;
-  let handler: CreateEventCommandHandler;
+  let handler: UpdateEventCommandHandler;
 
   const user = mock(User);
   const school = mock(School);
-  const command = new CreateEventCommand(
+  const event = mock(Event);
+  const command = new UpdateEventCommand(
+    'dbcf03dc-c300-458e-a7a6-46c962d36842',
     new Date('2020-10-19'),
     'e3fc9666-2932-4dc1-b2b9-d904388293fb',
     '50e624ef-3609-4053-a437-f74844a2d2de',
@@ -37,20 +40,43 @@ describe('CreateEventCommandHandler', () => {
     userRepository = mock(UserRepository);
     eventRepository = mock(EventRepository);
 
-    handler = new CreateEventCommandHandler(
+    handler = new UpdateEventCommandHandler(
       instance(schoolRepository),
       instance(userRepository),
-      instance(eventRepository)
+      instance(eventRepository),
     );
   });
 
+  it('testEventNotFound', async () => {
+    when(
+      eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+    ).thenResolve(null);
+
+    try {
+      expect(await handler.execute(command)).toBeUndefined();
+    } catch (e) {
+      expect(e).toBeInstanceOf(EventNotFoundException);
+      expect(e.message).toBe('calendar.errors.event_not_found');
+      verify(schoolRepository.findOneById(anything())).never();
+      verify(userRepository.findOneById(anything())).never();
+      verify(
+        eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+      ).once();
+      verify(eventRepository.save(anything())).never();
+    }
+  });
+
   it('testSchoolNotFound', async () => {
+    when(
+      eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+    ).thenResolve(instance(event));
     when(
       userRepository.findOneById('e3fc9666-2932-4dc1-b2b9-d904388293fb')
     ).thenResolve(instance(user));
     when(
       schoolRepository.findOneById('50e624ef-3609-4053-a437-f74844a2d2de')
     ).thenResolve(null);
+
     try {
       expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
@@ -62,11 +88,17 @@ describe('CreateEventCommandHandler', () => {
       verify(
         userRepository.findOneById('e3fc9666-2932-4dc1-b2b9-d904388293fb')
       ).once();
+      verify(
+        eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+      ).once();
       verify(eventRepository.save(anything())).never();
     }
   });
 
   it('testUserNotFound', async () => {
+    when(
+      eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+    ).thenResolve(instance(event));
     when(
       schoolRepository.findOneById('50e624ef-3609-4053-a437-f74844a2d2de')
     ).thenResolve(instance(school));
@@ -85,30 +117,24 @@ describe('CreateEventCommandHandler', () => {
       verify(
         userRepository.findOneById('e3fc9666-2932-4dc1-b2b9-d904388293fb')
       ).once();
+      verify(
+        eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+      ).once();
       verify(eventRepository.save(anything())).never();
     }
   });
 
-  it('testEventCreated', async () => {
-    const event = mock(Event);
+  it('testEventUpdated', async () => {
+    when(event.getId()).thenReturn('6d48fae8-d579-4ab7-9155-1978dd650f0e');
+
     when(
       schoolRepository.findOneById('50e624ef-3609-4053-a437-f74844a2d2de')
     ).thenResolve(instance(school));
     when(
       userRepository.findOneById('e3fc9666-2932-4dc1-b2b9-d904388293fb')
     ).thenResolve(instance(user));
-    when(event.getId()).thenReturn('6d48fae8-d579-4ab7-9155-1978dd650f0e');
     when(
-      eventRepository.save(
-        deepEqual(
-          new Event(
-            new Date('2020-10-19'),
-            instance(user),
-            instance(school),
-            'Prise de vue'
-          )
-        )
-      )
+      eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
     ).thenResolve(instance(event));
 
     expect(await handler.execute(command)).toBe('6d48fae8-d579-4ab7-9155-1978dd650f0e');
@@ -118,15 +144,17 @@ describe('CreateEventCommandHandler', () => {
     verify(
       userRepository.findOneById('e3fc9666-2932-4dc1-b2b9-d904388293fb')
     ).once();
-    verify(eventRepository.save(
-      deepEqual(
-        new Event(
-          new Date('2020-10-19'),
-          instance(user),
-          instance(school),
-          'Prise de vue'
-        )
+    verify(
+        eventRepository.findOneById('dbcf03dc-c300-458e-a7a6-46c962d36842')
+      ).once();
+    verify(
+      event.update(
+        deepEqual(new Date('2020-10-19')),
+        instance(user),
+        instance(school),
+        'Prise de vue'
       )
-    )).once();
+    ).once();
+    verify(eventRepository.save(instance(event))).once();
   });
 });

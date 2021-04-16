@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateEventCommandHandler } from 'src/Application/Calendar/Command/CreateEventCommandHandler';
 import { RemoveEventCommandHandler } from 'src/Application/Calendar/Command/RemoveEventCommandHandler';
+import { UpdateEventCommandHandler } from 'src/Application/Calendar/Command/UpdateEventCommandHandler';
 import { GetEventByIdQueryHandler } from 'src/Application/Calendar/Query/GetEventByIdQueryHandler';
 import { GetEventsByPeriodQueryHandler } from 'src/Application/Calendar/Query/GetEventsByPeriodQueryHandler';
 import { Event } from 'src/Domain/Calendar/Event.entity';
@@ -14,6 +15,7 @@ import { CreateEventAction } from './Action/CreateEventAction';
 import { GetEventAction } from './Action/GetEventAction';
 import { GetEventsAction } from './Action/GetEventsAction';
 import { RemoveEventAction } from './Action/RemoveEventAction';
+import { UpdateEventAction } from './Action/UpdateEventAction';
 import { EventRepository } from './Repository/EventRepository';
 
 @Module({
@@ -29,6 +31,7 @@ import { EventRepository } from './Repository/EventRepository';
     GetEventsAction,
     CreateEventAction,
     GetEventAction,
+    UpdateEventAction,
     RemoveEventAction
   ],
   providers: [
@@ -38,7 +41,8 @@ import { EventRepository } from './Repository/EventRepository';
     CreateEventCommandHandler,
     GetEventsByPeriodQueryHandler,
     GetEventByIdQueryHandler,
-    RemoveEventCommandHandler
+    RemoveEventCommandHandler,
+    UpdateEventCommandHandler
   ]
 })
 export class CalendarModule {}

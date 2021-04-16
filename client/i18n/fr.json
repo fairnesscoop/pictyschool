@@ -49,6 +49,10 @@
       "hour": "Heure du rdv",
       "summary": "Observation"
     },
+    "edit": {
+      "sub_title": "Edition du rendez-vous du {date}",
+      "title": "Edition"
+    },
     "add": {
       "title": "Ajouter un rendez-vous le {date}"
     },
