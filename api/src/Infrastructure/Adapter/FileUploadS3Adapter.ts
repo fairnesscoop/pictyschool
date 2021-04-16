@@ -1,22 +1,19 @@
-import { S3 } from 'aws-sdk';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { IFileUpload } from 'src/Application/IFileUpload';
+import { S3Factory } from '../Ingestion/S3Factory';
 
+@Injectable()
 export class FileUploadS3Adapter implements IFileUpload {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly s3Factory: S3Factory
+  ) {}
 
   public getEndPoint(filePath: string): Promise<string> {
-    const accessKeyId = this.configService.get<string>('S3_API_KEY');
-    const secretAccessKey = this.configService.get<string>('S3_API_SECRET');
     const bucket = this.configService.get<string>('STORAGE_BUCKET');
 
-    const s3 = new S3({
-      accessKeyId,
-      secretAccessKey,
-      endpoint: 'https://s3.fr-par.scw.cloud',
-      region: 'fr-par',
-      signatureVersion: 's3v4'
-    });
+    const s3Api = this.s3Factory.create();
 
     const s3Params = {
       Bucket: bucket,
@@ -26,7 +23,7 @@ export class FileUploadS3Adapter implements IFileUpload {
     };
 
     return new Promise<string>((resolve, reject) => {
-      s3.getSignedUrl('putObject', s3Params, (err, data) => {
+      s3Api.getSignedUrl('putObject', s3Params, (err, data) => {
         if (err) {
           reject(err);
         }

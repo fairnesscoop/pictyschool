@@ -1,7 +1,7 @@
-import { Controller, Inject, UseGuards, Get, Param } from '@nestjs/common';
+import { Controller, Inject, UseGuards, Post, Param } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-// import { IQueryBus } from 'src/Application/IQueryBus';
+import { IQueryBus } from 'src/Application/IQueryBus';
 import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
@@ -12,19 +12,20 @@ import { IFileUpload } from 'src/Application/IFileUpload';
 @ApiTags('School')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
-export class GetSchoolUploadEnpointAction {
+export class CreateSchoolIngestion {
   constructor(
-    // @Inject('IQueryBus')
-    // private readonly queryBus: IQueryBus,
+    @Inject('IQueryBus')
+    private readonly queryBus: IQueryBus,
     @Inject('IFileUpload')
     private readonly fileUploadAdapter: IFileUpload
   ) {}
 
-  @Get(':id/photos/upload')
+  @Post(':id/photos/ingestion')
   @Roles('photographer')
   @ApiOperation({summary: 'Get enpoint to upload files containing photos'})
   public async index(@Param() dto: IdDTO): Promise<SchoolUploadEndpointView> {
-      const url = await this.fileUploadAdapter.getEndPoint(dto.id);
+    const url = await this.fileUploadAdapter.getEndPoint(`${dto.id}.zip`);
+
     return new SchoolUploadEndpointView(url);
   }
 }

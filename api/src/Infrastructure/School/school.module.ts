@@ -80,6 +80,7 @@ import { UpdateShootingAction } from './Action/Shooting/UpdateShootingAction';
 import { UpdateShootingCommandHandler } from 'src/Application/School/Command/Shooting/UpdateShootingCommandHandler';
 import { GetSchoolUploadEnpointAction } from './Action/Photo/GetUploadEnpointAction';
 import { IngestionModule } from '../Ingestion/ingestion.module';
+import { CreateSchoolIngestion } from './Action/Photo/CreateSchoolIngestionAction';
 
 @Module({
   imports: [
@@ -123,6 +124,7 @@ import { IngestionModule } from '../Ingestion/ingestion.module';
     CountSchoolDiscountsAction,
     RemoveDiscountAction,
     GetSchoolUploadEnpointAction,
+    CreateSchoolIngestion,
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
