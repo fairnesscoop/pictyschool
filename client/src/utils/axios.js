@@ -7,7 +7,7 @@ const client = axios.create({
 });
 
 const authorizationBearerHeader = (token) => {
-  const bearer = token || Cookies.get('photoschool_token');
+  const bearer = token || Cookies.get('pictyschool_token');
   const headers = bearer ? { Authorization: `Bearer ${bearer}` } : {};
   return {
     headers,

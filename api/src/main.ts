@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   const options = new DocumentBuilder()
-    .setTitle('PhotoSchool')
+    .setTitle('PictySchool')
     .setDescription('Open source and eco design school photo management software')
     .setVersion('1.0.0')
     .addBearerAuth()

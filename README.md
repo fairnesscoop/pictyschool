@@ -1,11 +1,11 @@
-PhotoSchool is an open source and eco design school photo management software
+PictySchool is an open source and eco design school photo management software
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/photoschool/CI)
-[![codecov](https://codecov.io/gh/fairnesscoop/photoschool/branch/master/graph/badge.svg)](https://codecov.io/gh/fairnesscoop/photoschool)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fairnesscoop/photoschool/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fairnesscoop/photoschool/?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/photoschool?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/photoschool&utm_campaign=Badge_Grade)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/fairnesscoop/photoschool)
-[![GitHub license](https://img.shields.io/github/license/fairnesscoop/photoschool.svg)](https://github.com/fairnesscoop/photoschool)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/pictyschool/CI)
+[![codecov](https://codecov.io/gh/fairnesscoop/pictyschool/branch/master/graph/badge.svg)](https://codecov.io/gh/fairnesscoop/pictyschool)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fairnesscoop/pictyschool/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/fairnesscoop/pictyschool/?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9ff796f1fa614239a0990d5b4932fc49)](https://app.codacy.com/gh/fairnesscoop/pictyschool?utm_source=github.com&utm_medium=referral&utm_content=fairnesscoop/pictyschool&utm_campaign=Badge_Grade)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/fairnesscoop/pictyschool)
+[![GitHub license](https://img.shields.io/github/license/fairnesscoop/pictyschool.svg)](https://github.com/fairnesscoop/pictyschool)
 
 ## Technical stack
 

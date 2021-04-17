@@ -1,7 +1,7 @@
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-compose = docker-compose -p photoschool
+compose = docker-compose -p pictyschool
 exec = ${compose} exec
 run = ${compose} run
 logs = ${compose} logs -f
@@ -56,7 +56,7 @@ database-migrate: ## Database migrations
 database-diff: ## Generate database diff
 	${exec} api npm run migration:diff $(MIGRATION_NAME)
 database-connect: ## Connect to the database container
-	${exec} database psql -h database -d photoschool
+	${exec} database psql -h database -d pictyschool
 ci: ## Run CI checks
 	${run} api npm run test:cov
 	${run} api npm run lint

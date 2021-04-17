@@ -23,7 +23,7 @@
         data: { id, firstName, lastName, apiToken, role },
       } = await post('login', { email, password });
       $session.user = { id, firstName, lastName, email, scope: role };
-      Cookies.set('photoschool_token', apiToken, {
+      Cookies.set('pictyschool_token', apiToken, {
         expires: 365,
         secure: process.env.NODE_ENV === 'production',
       });

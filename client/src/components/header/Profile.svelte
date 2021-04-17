@@ -11,7 +11,7 @@
   const { session } = stores();
   const handleLogout = async () => {
     $session.user = null;
-    Cookies.remove('photoschool_token');
+    Cookies.remove('pictyschool_token');
     return goto('/login');
   };
 </script>

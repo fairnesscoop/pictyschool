@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Photoschool",
+  "description": "PictySchool",
   "author": "Mathieu MARCHOIS",
   "license": "MIT",
   "scripts": {
