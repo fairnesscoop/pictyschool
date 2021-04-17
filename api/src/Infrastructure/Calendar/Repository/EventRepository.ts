@@ -50,6 +50,8 @@ export class EventRepository implements IEventRepository {
         'school.city',
         'school.zipCode',
         'school.reference',
+        'photographer.id',
+        'photographer.email',
         'photographer.firstName',
         'photographer.lastName',
       ])

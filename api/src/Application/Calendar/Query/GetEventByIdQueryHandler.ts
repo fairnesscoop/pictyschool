@@ -5,6 +5,7 @@ import { EventDetailView } from '../View/EventDetailView';
 import { IEventRepository } from 'src/Domain/Calendar/Repository/IEventRepository';
 import { EventNotFoundException } from 'src/Domain/Calendar/Exception/EventNotFoundException';
 import { SchoolSummaryView } from 'src/Application/School/View/SchoolSummaryView';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 
 @QueryHandler(GetEventByIdQuery)
 export class GetEventByIdQueryHandler {
@@ -32,8 +33,12 @@ export class GetEventByIdQueryHandler {
         school.getCity(),
         school.getZipCode(),
       ),
-      user.getFirstName(),
-      user.getLastName(),
+      new UserSummaryView(
+        user.getId(),
+        user.getFirstName(),
+        user.getLastName(),
+        user.getEmail(),
+      ),
       event.getDate(),
       event.getSummary()
     );

@@ -9,6 +9,7 @@ import { Event } from 'src/Domain/Calendar/Event.entity';
 import { User } from 'src/Domain/User/User.entity';
 import { School } from 'src/Domain/School/School.entity';
 import { EventNotFoundException } from 'src/Domain/Calendar/Exception/EventNotFoundException';
+import { UserSummaryView } from 'src/Application/User/View/UserSummaryView';
 
 describe('GetEventByIdQueryHandler', () => {
   const query = new GetEventByIdQuery('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
@@ -33,15 +34,21 @@ describe('GetEventByIdQueryHandler', () => {
         'Paris',
         '75018'
       ),
-      'Mathieu',
-      'MARCHOIS',
+      new UserSummaryView(
+        '484f0ddd-9a44-4f6d-9d4e-cdeded631e39',
+        'Mathieu',
+        'MARCHOIS',
+        'mathieu@fairness.coop'
+      ),
       new Date('2021-04-01'),
       'Prise de vue'
     );
 
     const photographer = mock(User);
+    when(photographer.getId()).thenReturn('484f0ddd-9a44-4f6d-9d4e-cdeded631e39');
     when(photographer.getFirstName()).thenReturn('Mathieu');
     when(photographer.getLastName()).thenReturn('MARCHOIS');
+    when(photographer.getEmail()).thenReturn('mathieu@fairness.coop');
 
     const school = mock(School);
     when(school.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');

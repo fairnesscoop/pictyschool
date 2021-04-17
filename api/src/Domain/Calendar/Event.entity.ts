@@ -50,4 +50,16 @@ export class Event {
   public getPhotographer(): User | null {
     return this.photographer;
   }
+
+  public update(
+    date: Date,
+    photographer: User,
+    school: School,
+    summary?: string
+  ): void {
+    this.date = date;
+    this.photographer = photographer;
+    this.school = school;
+    this.summary = summary;
+  }
 }

@@ -33,8 +33,8 @@
   const onSave = async (e) => {
     try {
       loading = true;
-      await post('events', e.detail);
-      goto(`/admin/calendar`);
+      const { data: { id } } = await post('events', e.detail);
+      goto(`/admin/calendar/${id}`);
     } catch (e) {
       errors = errorNormalizer(e);
     } finally {

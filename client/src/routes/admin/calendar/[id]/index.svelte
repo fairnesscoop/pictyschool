@@ -63,17 +63,15 @@
   {#if event}
     <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
       {$_('calendar.detail.informations')}
-    </h4>
-    <Detail {event} />
-    <div class="text-center mt-4">
       <Link href={`/admin/calendar/${id}/edit`} value={$_('common.form.edit')} />
       <button
         disable={loading}
-        class="ml-2 px-2 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple"
+        class="ml-1 px-2 py-1 text-sm font-medium leading-4 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-purple"
         type="button"
         on:click={handleDelete}>
         {$_('common.form.remove')}
       </button>
-    </div>
+    </h4>
+    <Detail {event} />
   {/if}
 </div>
