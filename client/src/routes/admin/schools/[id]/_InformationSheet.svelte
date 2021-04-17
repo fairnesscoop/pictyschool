@@ -13,22 +13,15 @@
       </tr>
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{$_('schools.dashboard.type')}</td>
-        <td class="px-4 py-3 text-sm">{$_(`leads.types.${school.type}`)}</td>
+        <td class="px-4 py-3 text-sm">{$_(`leads.types.${school.type}`)} - {$_(`leads.statutes.${school.status}`)}</td>
       </tr>
-      <tr class="text-gray-700 dark:text-gray-400">
-        <td class="px-4 py-3 text-sm">{$_('schools.dashboard.status')}</td>
-        <td class="px-4 py-3 text-sm">{$_(`leads.statutes.${school.status}`)}</td>
-      </tr>
-      {#if school.email}
+      {#if school.email || school.phoneNumber}
         <tr class="text-gray-700 dark:text-gray-400">
-          <td class="px-4 py-3 text-sm">{$_('schools.dashboard.email')}</td>
-          <td class="px-4 py-3 text-sm">{school.email}</td>
-        </tr>
-      {/if}
-      {#if school.phoneNumber}
-        <tr class="text-gray-700 dark:text-gray-400">
-          <td class="px-4 py-3 text-sm">{$_('schools.dashboard.phone_number')}</td>
-          <td class="px-4 py-3 text-sm">{school.phoneNumber}</td>
+          <td class="px-4 py-3 text-sm">{$_('schools.dashboard.contact')}</td>
+          <td class="px-4 py-3 text-sm">
+            {school.email}
+            {#if school.phoneNumber} / {school.phoneNumber}{/if}
+          </td>
         </tr>
       {/if}
       <tr class="text-gray-700 dark:text-gray-400">

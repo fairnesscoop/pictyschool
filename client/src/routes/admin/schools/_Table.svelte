@@ -14,7 +14,7 @@
       <th class="px-4 py-3">{$_('schools.list.type')}</th>
       <th class="px-4 py-3">{$_('schools.list.status')}</th>
       <th class="px-4 py-3">{$_('schools.list.city')}</th>
-      <th class="px-4 py-3">{$_('common.actions')}</th>
+      <th class="px-4 py-3">{$_('common.detail')}</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

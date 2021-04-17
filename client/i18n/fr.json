@@ -5,6 +5,7 @@
   "pagination": "Affichage {start}-{from} sur {totalItems}",
   "common": {
     "actions": "Actions",
+    "detail": "Détails",
     "not_defined": "Non-défini",
     "form": {
       "save": "Enregistrer",
@@ -195,20 +196,19 @@
     },
     "dashboard": {
       "products": "Produits et prix",
-      "orders": "Commandes",
-      "class": "Classes",
-      "phone_number": "Contact téléphonique",
-      "email": "Contact e-mail",
+      "offers": "Promotions",
+      "stats": "Statistiques",
+      "contact": "Contact",
       "address": "Adresse",
-      "number_of_students": "Nombre d'élèves",
-      "number_of_classes": "Nombre de classes",
+      "number_of_students": "Nb. d'élèves",
+      "number_of_classes": "Nb. de classes",
       "informations": "Fiche établissement",
       "reference": "Référence",
       "users": "Utilisateurs de l'établissement",
-      "pdv": "Date et heure de PDV",
+      "shooting": "Shooting",
       "observation": "Observation",
       "type": "Type d'établissement",
-      "status": "Statut"
+      "last_orders": "Dernières commandes"
     },
     "form": {
       "reference": "Référence",

@@ -13,10 +13,10 @@
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
-  import CardPdv from './_CardPdv.svelte';
-  import CardClass from './_CardClass.svelte';
+  import CardShooting from './_CardShooting.svelte';
+  import CardOffer from './_CardOffer.svelte';
   import CardProduct from './_CardProduct.svelte';
-  import CardOrder from './_CardOrder.svelte';
+  import CardStats from './_CardStats.svelte';
   import InformationSheet from './_InformationSheet.svelte';
   import Link from 'components/links/Link.svelte';
   import AddLink from 'components/links/AddLink.svelte';
@@ -48,15 +48,14 @@
 <Breadcrumb items={[{ title: $_('schools.breadcrumb'), path: '/admin/schools' }, { title }]} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  
 </div>
 <ServerErrors {errors} />
 
 {#if school}
   <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
-    <CardPdv {school} />
-    <CardClass />
-    <CardOrder />
+    <CardShooting {id} />
+    <CardStats {id} />
+    <CardOffer {id} />
     <CardProduct {id} />
   </div>
   <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-2">
@@ -78,5 +77,10 @@
       </h4>
       <SchoolUsers id={school.id} />
     </div>
+  </div>
+  <div class="px-4 py-3 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+      {$_('schools.dashboard.last_orders')}
+    </h4>
   </div>
 {/if}
