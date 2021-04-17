@@ -40,7 +40,6 @@ export class CreateSchoolAction {
       numberOfClasses,
       numberOfStudents,
       observation,
-      pdv,
       status,
       type
     } = dto;
@@ -59,8 +58,7 @@ export class CreateSchoolAction {
           phoneNumber,
           numberOfStudents,
           numberOfClasses,
-          observation,
-          pdv
+          observation
         )
       );
 

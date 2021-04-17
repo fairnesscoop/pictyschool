@@ -44,8 +44,7 @@ export class UpdateSchoolAction {
         numberOfStudents,
         observation,
         status,
-        type,
-        pdv
+        type
       } = dto;
 
       const id = await this.commandBus.execute(
@@ -62,8 +61,7 @@ export class UpdateSchoolAction {
           phoneNumber,
           numberOfStudents,
           numberOfClasses,
-          observation,
-          pdv
+          observation
         )
       );
 

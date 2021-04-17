@@ -15,7 +15,6 @@
   export let numberOfStudents;
   export let numberOfClasses;
   export let email;
-  export let pdv;
   export let observation;
   export let name = '';
   export let type = TYPE_KINDERGARTEN;
@@ -37,7 +36,6 @@
       type,
       status,
       email,
-      pdv: pdv ? new Date(pdv) : null,
       observation
     });
   };
@@ -93,11 +91,6 @@
       required={false}
       type={'number'}
       bind:value={numberOfClasses} />
-    <Input
-      type={'datetime'}
-      label={$_('schools.form.pdv')}
-      required={false}
-      bind:value={pdv} />
     <Input
       label={$_('schools.form.observation')}
       required={false}

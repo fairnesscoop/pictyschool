@@ -16,7 +16,6 @@ describe('School', () => {
       200,
       10,
       'Observation',
-      '10/10/2020',
     );
     expect(school.getId()).toBeUndefined();
     expect(school.getName()).toBe('Belliard');
@@ -27,7 +26,6 @@ describe('School', () => {
     expect(school.getEmail()).toBe('email@test.com');
     expect(school.getPhoneNumber()).toBe('010101010101');
     expect(school.getObservation()).toBe('Observation');
-    expect(school.getPdv()).toBe('10/10/2020');
     expect(school.getStatus()).toBe(Status.PUBLIC);
     expect(school.getType()).toBe(Type.ELEMENTARY);
     expect(school.getNumberOfClasses()).toBe(10);
@@ -48,8 +46,7 @@ describe('School', () => {
       '010101010101',
       200,
       10,
-      'Observation',
-      '10/10/2020'
+      'Observation'
     );
     school.update(
       'ref',
@@ -63,8 +60,7 @@ describe('School', () => {
       'phone',
       1,
       1,
-      'obs',
-      '11/10/2020'
+      'obs'
     );
 
     expect(school.getName()).toBe('name');
@@ -74,7 +70,6 @@ describe('School', () => {
     expect(school.getAddress()).toBe('address');
     expect(school.getPhoneNumber()).toBe('phone');
     expect(school.getObservation()).toBe('obs');
-    expect(school.getPdv()).toBe('11/10/2020');
     expect(school.getEmail()).toBe('email');
     expect(school.getNumberOfClasses()).toBe(1);
     expect(school.getNumberOfStudents()).toBe(1);

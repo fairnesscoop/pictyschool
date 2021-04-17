@@ -12,7 +12,7 @@ export class Voucher {
   @Column({type: 'varchar', nullable: false})
   private email: string;
 
-  @ManyToOne(type => School, {onDelete: 'CASCADE', nullable: false})
+  @ManyToOne(() => School, {onDelete: 'CASCADE', nullable: false})
   private school: School;
 
   @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})

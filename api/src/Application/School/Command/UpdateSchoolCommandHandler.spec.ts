@@ -28,8 +28,7 @@ describe('UpdateSchoolCommandHandler', () => {
     '010101010101',
     200,
     10,
-    'Observation',
-    '12/12/2020',
+    'Observation'
   );
 
   beforeEach(() => {
@@ -111,8 +110,7 @@ describe('UpdateSchoolCommandHandler', () => {
         '010101010101',
         200,
         10,
-        'Observation',
-        '12/12/2020'
+        'Observation'
       )
     ).calledBefore(schoolRepository.save(instance(school)));
     verify(schoolRepository.save(instance(school))).once();

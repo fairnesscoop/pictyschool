@@ -2,9 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Photo } from 'src/Domain/School/Photo.entity';
 import { School } from 'src/Domain/School/School.entity';
-import { AccessToken } from 'src/Domain/School/AccessToken.entity';
 import { PhotoRepository } from './Repository/PhotoRepository';
-import { AccessTokenRepository } from './Repository/AccessTokenRepository';
 import { SchoolRepository } from './Repository/SchoolRepository';
 import { IsSchoolAlreadyExist } from 'src/Domain/School/Specification/IsSchoolAlreadyExist';
 import { CreateSchoolCommandHandler } from 'src/Application/School/Command/CreateSchoolCommandHandler';
@@ -56,6 +54,8 @@ import { RemoveSchoolUserCommandHandler } from 'src/Application/School/Command/U
 import { ConsumeVoucherAction } from './Action/Voucher/ConsumeVoucherAction';
 import { RemoveVoucherAction } from './Action/Voucher/RemoveVoucherAction';
 import { GetVoucherByCodeQueryHandler } from 'src/Application/School/Query/Voucher/GetVoucherByCodeQueryHandler';
+import { Shooting } from 'src/Domain/School/Shooting.entity';
+import { ShootingRepository } from './Repository/ShootingRepository';
 
 @Module({
   imports: [
@@ -63,11 +63,11 @@ import { GetVoucherByCodeQueryHandler } from 'src/Application/School/Query/Vouch
     TypeOrmModule.forFeature([
       School,
       Photo,
-      AccessToken,
       SchoolProduct,
       SchoolUser,
       Product,
       User,
+      Shooting,
       Voucher
     ])
   ],
@@ -94,10 +94,10 @@ import { GetVoucherByCodeQueryHandler } from 'src/Application/School/Query/Vouch
     { provide: 'ISchoolUserRepository', useClass: SchoolUserRepository },
     { provide: 'IVoucherRepository', useClass: VoucherRepository },
     { provide: 'IUserRepository', useClass: UserRepository },
-    { provide: 'IAccessTokenRepository', useClass: AccessTokenRepository },
     { provide: 'ISchoolRepository', useClass: SchoolRepository },
     { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
     { provide: 'IProductRepository', useClass: ProductRepository },
+    { provide: 'IShootingRepository', useClass: ShootingRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
     GetSchoolProductsQueryHandler,

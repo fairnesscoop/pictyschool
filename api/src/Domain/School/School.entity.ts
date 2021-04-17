@@ -6,9 +6,6 @@ export class School extends AbstractSchool {
   @Column({ type: 'text', nullable: true })
   private observation: string;
 
-  @Column({ type: 'timestamp', nullable: true })
-  private pdv: string;
-
   constructor(
     reference: string,
     name: string,
@@ -21,8 +18,7 @@ export class School extends AbstractSchool {
     phoneNumber?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
-    observation?: string,
-    pdv?: string
+    observation?: string
   ) {
     super(
       reference,
@@ -39,15 +35,10 @@ export class School extends AbstractSchool {
     );
 
     this.observation = observation;
-    this.pdv = pdv;
   }
 
   public getObservation(): string {
     return this.observation;
-  }
-
-  public getPdv(): string {
-    return this.pdv;
   }
 
   public update(
@@ -62,8 +53,7 @@ export class School extends AbstractSchool {
     phoneNumber?: string,
     numberOfStudents?: number,
     numberOfClasses?: number,
-    observation?: string,
-    pdv?: string
+    observation?: string
   ): void {
     this.baseUpdate(
       reference,
@@ -80,6 +70,5 @@ export class School extends AbstractSchool {
     );
 
     this.observation = observation;
-    this.pdv = pdv;
   }
 }

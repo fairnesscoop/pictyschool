@@ -28,7 +28,6 @@ export class UpdateSchoolCommandHandler {
       status,
       type,
       observation,
-      pdv,
       phoneNumber
     } = command;
 
@@ -56,8 +55,7 @@ export class UpdateSchoolCommandHandler {
       phoneNumber,
       numberOfStudents,
       numberOfClasses,
-      observation,
-      pdv
+      observation
     );
 
     await this.schoolRepository.save(school);

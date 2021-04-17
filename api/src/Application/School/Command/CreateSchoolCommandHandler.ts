@@ -27,7 +27,6 @@ export class CreateSchoolCommandHandler {
       status,
       type, 
       observation,
-      pdv,
       phoneNumber
     } = command;
 
@@ -48,8 +47,7 @@ export class CreateSchoolCommandHandler {
         phoneNumber,
         numberOfStudents,
         numberOfClasses,
-        observation,
-        pdv
+        observation
       )
     );
 
