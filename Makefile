@@ -8,8 +8,8 @@ logs = ${compose} logs -f
 
 install: ## Install API and client
 	cp api/ormconfig.json.dist api/ormconfig.json
-	cp api/.env.dist api/.env
-	cp client/config.js.dist client/config.js
+	if [ ! -f 'api/.env' ]; then cp api/.env.dist api/.env; fi;
+	if [ ! -f 'client/config.js' ]; then cp client/config.js.dist client/config.js; fi;
 	docker run -it --rm -v ${PWD}/api:/app -w /app node npm i
 	docker run -it --rm -v ${PWD}/client:/app -w /app node npm i
 	make start-container
