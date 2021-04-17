@@ -10,7 +10,6 @@ describe('SchoolDTO', () => {
     dto.city = 'Paris';
     dto.zipCode = '75018';
     dto.name = 'Ecole élémentaire';
-    dto.pdv = '2019-12-19T11:20:04.568Z';
     dto.numberOfClasses = 10;
     dto.numberOfStudents = 10;
     dto.observation = 'observation';
@@ -20,28 +19,6 @@ describe('SchoolDTO', () => {
 
     const validation = await validate(dto);
     expect(validation).toHaveLength(0);
-  });
-
-  it('testInvalidDTO', async () => {
-    const dto = new SchoolDTO();
-    dto.reference = 'xLKJs';
-    dto.address = '127 rue Bélliard';
-    dto.city = 'Paris';
-    dto.zipCode = '75018';
-    dto.name = 'Ecole élémentaire';
-    dto.pdv = '2019';
-    dto.numberOfClasses = 10;
-    dto.numberOfStudents = 10;
-    dto.observation = 'observation';
-    dto.phoneNumber = '010101010101';
-    dto.type = Type.ELEMENTARY;
-    dto.status = Status.PRIVATE;
-
-    const validation = await validate(dto);
-    expect(validation).toHaveLength(1);
-    expect(validation[0].constraints).toMatchObject({
-      isDateString: "pdv must be a ISOString"
-    });
   });
 
   it('testEmptyDTO', async () => {

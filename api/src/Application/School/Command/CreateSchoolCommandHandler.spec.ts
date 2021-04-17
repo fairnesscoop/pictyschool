@@ -25,8 +25,7 @@ describe('CreateSchoolCommandHandler', () => {
     '010101010101',
     200,
     10,
-    'Observation',
-    '12/12/2020',
+    'Observation'
   );
 
   beforeEach(() => {
@@ -60,8 +59,7 @@ describe('CreateSchoolCommandHandler', () => {
             '010101010101',
             200,
             10,
-            'Observation',
-            '12/12/2020'
+            'Observation'
           )
         )
       )
@@ -87,8 +85,7 @@ describe('CreateSchoolCommandHandler', () => {
             '010101010101',
             200,
             10,
-            'Observation',
-            '12/12/2020'
+            'Observation'
           )
         )
       )

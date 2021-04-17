@@ -37,7 +37,6 @@ describe('GetSchoolByIdQueryHandler', () => {
       '010101010101',
       10,
       200,
-      '12/12/2020',
       'Observation'
     );
 
@@ -51,7 +50,6 @@ describe('GetSchoolByIdQueryHandler', () => {
     when(school.getEmail()).thenReturn('mathieu@fairness.coop');
     when(school.getNumberOfClasses()).thenReturn(10);
     when(school.getNumberOfStudents()).thenReturn(200);
-    when(school.getPdv()).thenReturn('12/12/2020');
     when(school.getObservation()).thenReturn('Observation');
     when(school.getType()).thenReturn(Type.ELEMENTARY);
     when(school.getStatus()).thenReturn(Status.PUBLIC);

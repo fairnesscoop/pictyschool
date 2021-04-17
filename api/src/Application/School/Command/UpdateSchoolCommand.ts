@@ -15,7 +15,6 @@ export class UpdateSchoolCommand implements ICommand {
     public readonly phoneNumber?: string,
     public readonly numberOfStudents?: number,
     public readonly numberOfClasses?: number,
-    public readonly observation?: string,
-    public readonly pdv?: string
+    public readonly observation?: string
   ) {}
 }

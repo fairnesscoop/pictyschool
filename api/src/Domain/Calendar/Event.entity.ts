@@ -13,10 +13,10 @@ export class Event {
   @Column({ type: 'varchar', nullable: true })
   private summary: string;
 
-  @ManyToOne(type => School, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => School, { nullable: false, onDelete: 'CASCADE' })
   private school: School;
 
-  @ManyToOne(type => User, { nullable: false, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, { nullable: false, onDelete: 'CASCADE' })
   private photographer: User;
 
   constructor(

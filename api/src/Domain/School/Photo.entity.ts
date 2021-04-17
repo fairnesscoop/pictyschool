@@ -2,11 +2,9 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToOne,
-  OneToOne
+  ManyToOne
 } from 'typeorm';
-import { School } from './School.entity';
-import { AccessToken } from './AccessToken.entity';
+import { Shooting } from './Shooting.entity';
 
 export enum PhotoType {
   UNIT = 'unit',
@@ -28,20 +26,27 @@ export class Photo {
   @Column({ type: 'varchar', nullable: false })
   private path: string;
 
+  @Column({ type: 'varchar', nullable: false })
+  private token: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   private createdAt: Date;
 
-  @ManyToOne(() => School, { nullable: false, onDelete: 'CASCADE' })
-  private school: School;
+  @ManyToOne(() => Shooting, { nullable: false, onDelete: 'CASCADE' })
+  private shooting: Shooting;
 
-  @OneToOne(() => AccessToken, accessToken => accessToken.photo)
-  accessToken: AccessToken;
-
-  constructor(type: PhotoType, name: string, path: string, school: School) {
+  constructor(
+    type: PhotoType,
+    name: string,
+    path: string,
+    token: string,
+    shooting: Shooting
+  ) {
     this.type = type;
     this.name = name;
     this.path = path;
-    this.school = school;
+    this.token = token;
+    this.shooting = shooting;
   }
 
   public getId(): string {
@@ -60,15 +65,15 @@ export class Photo {
     return this.path;
   }
 
+  public getToken(): string {
+    return this.token;
+  }
+
   public getCreatedAt(): Date {
     return this.createdAt;
   }
 
-  public getSchool(): School {
-    return this.school;
-  }
-
-  public getAccessToken(): AccessToken {
-    return this.accessToken;
+  public getShooting(): Shooting {
+    return this.shooting;
   }
 }

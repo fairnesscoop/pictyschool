@@ -40,7 +40,6 @@ export class SchoolRepository implements ISchoolRepository {
         'school.numberOfStudents',
         'school.type',
         'school.status',
-        'school.pdv',
         'school.observation'
       ])
       .where('school.id = :id', { id })

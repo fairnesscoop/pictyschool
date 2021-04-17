@@ -40,7 +40,6 @@ export class GetSchoolByIdQueryHandler {
       school.getPhoneNumber(),
       school.getNumberOfClasses(),
       school.getNumberOfStudents(),
-      school.getPdv(),
       school.getObservation()
     );
   }
