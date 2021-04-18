@@ -205,7 +205,7 @@
       "informations": "Fiche établissement",
       "reference": "Référence",
       "users": "Utilisateurs de l'établissement",
-      "shooting": "Shooting",
+      "shooting": "Prises de vue",
       "observation": "Observation",
       "type": "Type d'établissement",
       "last_orders": "Dernières commandes"
@@ -256,6 +256,17 @@
         "already_exist": "Ce produit a déjà été associé à l'établissement",
         "parent_price_should_be_greater_than_photogtapher_price": "Le prix photographe doit être supérieur au prix parent.",
         "not_found": "Le produit de l'établissement recherché n'existe pas."
+      }
+    },
+    "shootings": {
+      "title": "Prises de vue",
+      "add": {
+        "title": "Nouvelle prise de vue"
+      },
+      "form": {
+        "name": "Nom de la prise de vue",
+        "closing_date": "Date de la fermeture des commandes",
+        "shooting_date": "Date de la prise de vue"
       }
     }
   },
