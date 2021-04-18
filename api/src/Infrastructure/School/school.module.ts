@@ -64,6 +64,13 @@ import { CountShootingsBySchoolQueryHandler } from 'src/Application/School/Query
 import { CountSchoolShootingsAction } from './Action/Shooting/CountSchoolShootingsAction';
 import { Discount } from 'src/Domain/School/Discount.entity';
 import { DiscountRepository } from './Repository/DiscountRepository';
+import { IsDiscountAlreadyExist } from 'src/Domain/School/Specification/Discount/IsDiscountAlreadyExist';
+import { CreateDiscountCommandHandler } from 'src/Application/School/Command/Discount/CreateDiscountCommandHandler';
+import { GetSchoolDiscountsAction } from './Action/Discount/GetSchoolDiscountsAction';
+import { CountSchoolDiscountsAction } from './Action/Discount/CountSchoolDiscountsAction';
+import { CreateDiscountAction } from './Action/Discount/CreateDiscountAction';
+import { GetDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/Discount/GetDiscountsBySchoolQueryHandler';
+import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/Discount/CountDiscountsBySchoolQueryHandler';
 
 @Module({
   imports: [
@@ -98,7 +105,10 @@ import { DiscountRepository } from './Repository/DiscountRepository';
     RemoveVoucherAction,
     GetSchoolShootingsAction,
     CreateShootingAction,
-    CountSchoolShootingsAction
+    CountSchoolShootingsAction,
+    GetSchoolDiscountsAction,
+    CreateDiscountAction,
+    CountSchoolDiscountsAction
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
@@ -136,7 +146,11 @@ import { DiscountRepository } from './Repository/DiscountRepository';
     GetVoucherByCodeQueryHandler,
     CreateShootingCommandHandler,
     GetShootingsBySchoolQueryHandler,
-    CountShootingsBySchoolQueryHandler
+    CountShootingsBySchoolQueryHandler,
+    IsDiscountAlreadyExist,
+    CreateDiscountCommandHandler,
+    GetDiscountsBySchoolQueryHandler,
+    CountDiscountsBySchoolQueryHandler
   ]
 })
 export class SchoolModule {}

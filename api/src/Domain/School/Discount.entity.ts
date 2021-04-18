@@ -1,27 +1,37 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { School } from './School.entity';
 
+export enum DiscountType {
+  PERCENT = 'percent',
+  AMOUNT = 'amount'
+}
+
 @Entity()
 export class Discount {
   @PrimaryGeneratedColumn('uuid')
   private id: string;
 
+  @Column('enum', { enum: DiscountType, nullable: false })
+  protected type: DiscountType;
+
   @Column({ type: 'integer', nullable: false })
   private amount: number;
 
   @Column({ type: 'integer', nullable: false })
-  private discount: number;
+  private value: number;
 
   @ManyToOne(() => School, { nullable: false, onDelete: 'CASCADE' })
   private school: School;
 
   constructor(
+    type: DiscountType,
     amount: number,
-    discount: number,
+    value: number,
     school: School
   ) {
+    this.type = type;
     this.amount = amount;
-    this.discount = discount;
+    this.value = value;
     this.school = school;
   }
 
@@ -33,8 +43,12 @@ export class Discount {
     return this.amount;
   }
 
-  public getDiscount(): number {
-    return this.discount;
+  public getValue(): number {
+    return this.value;
+  }
+
+  public getType(): DiscountType {
+    return this.type;
   }
 
   public getSchool(): School {

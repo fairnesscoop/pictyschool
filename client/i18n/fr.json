@@ -229,6 +229,30 @@
       "voucher_not_found": "Le code d'accès n'est plus valide. Veuillez vous rapprocher de votre photographe.",
       "school_user_not_found": "La personne recherchée dans cet établissement n'existe pas."
     },
+    "discounts": {
+      "title": "Promotions",
+      "errors": {
+        "already_exist": "Une promotion est déjà en cours pour ce montant."
+      },
+      "add": {
+        "title": "Créer une nouvelle promotion"
+      },
+      "list": {
+        "amount": "Montant",
+        "discount": "Réduction",
+        "value": "{amount} de réduction",
+        "from": "À partir de {amount}"
+      },
+      "form": {
+        "type": "Type de réduction",
+        "amount": "Montant",
+        "value": "Réduction"
+      },
+      "type": {
+        "percent": "Pourcentage",
+        "amount": "Montant"
+      }
+    },
     "products": {
       "title": "Produits",
       "list": {
