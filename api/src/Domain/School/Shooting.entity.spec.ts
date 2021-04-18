@@ -14,7 +14,7 @@ describe('Shooting', () => {
     );
     expect(shooting.getId()).toBeUndefined();
     expect(shooting.getName()).toBe('Prise de vue début année');
-    expect(shooting.getShoointingDate()).toMatchObject(new Date('2021-04-17T00:00:00.000Z'));
+    expect(shooting.getShootingDate()).toMatchObject(new Date('2021-04-17T00:00:00.000Z'));
     expect(shooting.getClosingDate()).toMatchObject(new Date('2021-09-01T00:00:00.000Z'));
     expect(shooting.getStatus()).toBe(ShootingStatus.DISABLED);
     expect(shooting.getSchool()).toBe(instance(school));

@@ -14,4 +14,27 @@ export class ShootingRepository implements IShootingRepository {
   public save(shooting: Shooting): Promise<Shooting> {
     return this.repository.save(shooting);
   }
+
+  public findBySchool(schoolId: string): Promise<Shooting[]> {
+    return this.repository
+      .createQueryBuilder('shooting')
+      .select([
+        'shooting.id',
+        'shooting.name',
+        'shooting.status',
+        'shooting.shootingDate',
+        'shooting.closingDate'
+      ])
+      .innerJoin('shooting.school', 'school', 'school.id = :schoolId', { schoolId })
+      .orderBy('shooting.shootingDate', 'DESC')
+      .getMany();
+  }
+
+  public countBySchool(id: string): Promise<number> {
+    return this.repository
+      .createQueryBuilder('shooting')
+      .select('shooting.id')
+      .innerJoin('shooting.school', 'school', 'school.id = :id', { id })
+      .getCount();
+  }
 }

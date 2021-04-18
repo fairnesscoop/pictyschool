@@ -58,6 +58,10 @@ import { Shooting } from 'src/Domain/School/Shooting.entity';
 import { ShootingRepository } from './Repository/ShootingRepository';
 import { CreateShootingAction } from './Action/Shooting/CreateShootingAction';
 import { CreateShootingCommandHandler } from 'src/Application/School/Command/Shooting/CreateShootingCommandHandler';
+import { GetShootingsBySchoolQueryHandler } from 'src/Application/School/Query/Shooting/GetShootingsBySchoolQueryHandler';
+import { GetSchoolShootingsAction } from './Action/Shooting/GetSchoolShootingsAction';
+import { CountShootingsBySchoolQueryHandler } from 'src/Application/School/Query/Shooting/CountShootingsBySchoolQueryHandler';
+import { CountSchoolShootingsAction } from './Action/Shooting/CountSchoolShootingsAction';
 
 @Module({
   imports: [
@@ -89,7 +93,9 @@ import { CreateShootingCommandHandler } from 'src/Application/School/Command/Sho
     RemoveSchoolProductAction,
     ConsumeVoucherAction,
     RemoveVoucherAction,
+    GetSchoolShootingsAction,
     CreateShootingAction,
+    CountSchoolShootingsAction
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
@@ -124,7 +130,9 @@ import { CreateShootingCommandHandler } from 'src/Application/School/Command/Sho
     RemoveVoucherCommandHandler,
     RemoveSchoolUserCommandHandler,
     GetVoucherByCodeQueryHandler,
-    CreateShootingCommandHandler
+    CreateShootingCommandHandler,
+    GetShootingsBySchoolQueryHandler,
+    CountShootingsBySchoolQueryHandler
   ]
 })
 export class SchoolModule {}
