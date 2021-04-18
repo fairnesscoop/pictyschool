@@ -7,43 +7,29 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { onMount } from 'svelte';
-  import { get, del } from 'utils/axios';
+  import { get } from 'utils/axios';
   import Breadcrumb from 'components/Breadcrumb.svelte';
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
   import Link from 'components/links/Link.svelte';
-  import Table from './_Table.svelte';
 
   export let id;
 
   let school;
-  let title = $_('schools.products.title');
+  let title = $_('schools.shootings.title');
   let errors = [];
-  let schoolProducts = [];
 
   onMount(async () => {
     try {
-      const [ schoolResponse, schoolProductsResponse ] = await Promise.all([
-        get(`schools/${id}`),
-        get(`schools/${id}/products`),
+      const [ schoolResponse ] = await Promise.all([
+        get(`schools/${id}`)
       ]);
       school = schoolResponse.data;
-      schoolProducts = schoolProductsResponse.data;
     } catch (e) {
       errors = errorNormalizer(e);
     }
   });
-
-  const handleDeleteProduct = async (event) => {
-    const productId = event.detail;
-    try {
-      await del(`schools/${id}/products/${productId}`);
-      schoolProducts = schoolProducts.filter((product) => product.id !== productId);
-    } catch (e) {
-      errors = errorNormalizer(e);
-    }
-  }
 </script>
 
 <svelte:head>
@@ -58,10 +44,9 @@
 <ServerErrors {errors} />
 <div class="inline-flex items-center">
   <H4Title {title} />
-  <Link href={`/admin/schools/${id}/products/add`} value={$_('schools.products.add.title')} />
+  <Link href={`/admin/schools/${id}/shootings/add`} value={$_('schools.shootings.add.title')} />
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
-  <div class="w-full overflow-x-auto">
-    <Table items={schoolProducts} schoolId={id} on:delete={handleDeleteProduct} />
-  </div>
+  <div class="w-full overflow-x-auto"></div>
 </div>
+

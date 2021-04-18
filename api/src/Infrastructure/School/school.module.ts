@@ -56,6 +56,8 @@ import { RemoveVoucherAction } from './Action/Voucher/RemoveVoucherAction';
 import { GetVoucherByCodeQueryHandler } from 'src/Application/School/Query/Voucher/GetVoucherByCodeQueryHandler';
 import { Shooting } from 'src/Domain/School/Shooting.entity';
 import { ShootingRepository } from './Repository/ShootingRepository';
+import { CreateShootingAction } from './Action/Shooting/CreateShootingAction';
+import { CreateShootingCommandHandler } from 'src/Application/School/Command/Shooting/CreateShootingCommandHandler';
 
 @Module({
   imports: [
@@ -87,6 +89,7 @@ import { ShootingRepository } from './Repository/ShootingRepository';
     RemoveSchoolProductAction,
     ConsumeVoucherAction,
     RemoveVoucherAction,
+    CreateShootingAction,
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
@@ -120,7 +123,8 @@ import { ShootingRepository } from './Repository/ShootingRepository';
     GetSchoolVouchersQueryHandler,
     RemoveVoucherCommandHandler,
     RemoveSchoolUserCommandHandler,
-    GetVoucherByCodeQueryHandler
+    GetVoucherByCodeQueryHandler,
+    CreateShootingCommandHandler
   ]
 })
 export class SchoolModule {}
