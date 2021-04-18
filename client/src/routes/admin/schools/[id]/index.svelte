@@ -14,7 +14,7 @@
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
   import CardShooting from './_CardShooting.svelte';
-  import CardOffer from './_CardOffer.svelte';
+  import CardDiscount from './_CardDiscount.svelte';
   import CardProduct from './_CardProduct.svelte';
   import CardStats from './_CardStats.svelte';
   import InformationSheet from './_InformationSheet.svelte';
@@ -55,7 +55,7 @@
   <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-4">
     <CardShooting {id} />
     <CardStats {id} />
-    <CardOffer {id} />
+    <CardDiscount {id} />
     <CardProduct {id} />
   </div>
   <div class="grid gap-6 mb-4 md:grid-cols-2 xl:grid-cols-2">

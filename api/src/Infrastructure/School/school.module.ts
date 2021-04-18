@@ -62,6 +62,8 @@ import { GetShootingsBySchoolQueryHandler } from 'src/Application/School/Query/S
 import { GetSchoolShootingsAction } from './Action/Shooting/GetSchoolShootingsAction';
 import { CountShootingsBySchoolQueryHandler } from 'src/Application/School/Query/Shooting/CountShootingsBySchoolQueryHandler';
 import { CountSchoolShootingsAction } from './Action/Shooting/CountSchoolShootingsAction';
+import { Discount } from 'src/Domain/School/Discount.entity';
+import { DiscountRepository } from './Repository/DiscountRepository';
 
 @Module({
   imports: [
@@ -74,6 +76,7 @@ import { CountSchoolShootingsAction } from './Action/Shooting/CountSchoolShootin
       Product,
       User,
       Shooting,
+      Discount,
       Voucher
     ])
   ],
@@ -107,6 +110,7 @@ import { CountSchoolShootingsAction } from './Action/Shooting/CountSchoolShootin
     { provide: 'ISchoolProductRepository', useClass: SchoolProductRepository },
     { provide: 'IProductRepository', useClass: ProductRepository },
     { provide: 'IShootingRepository', useClass: ShootingRepository },
+    { provide: 'IDiscountRepository', useClass: DiscountRepository },
     IsSchoolAlreadyExist,
     CreateSchoolCommandHandler,
     GetSchoolProductsQueryHandler,
