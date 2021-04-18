@@ -267,6 +267,18 @@
         "name": "Nom de la prise de vue",
         "closing_date": "Date de la fermeture des commandes",
         "shooting_date": "Date de la prise de vue"
+      },
+      "status": {
+        "enabled": "Publiée",
+        "disabled": "En attente de publication"
+      },
+      "list": {
+        "name": "Prise de vue",
+        "closing_date": "Fermeture commandes",
+        "shooting_date": "Date",
+        "status": "Etat",
+        "class": "Nb classes",
+        "photos": "Nb photos"
       }
     }
   },

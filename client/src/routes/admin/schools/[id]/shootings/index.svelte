@@ -13,19 +13,23 @@
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
   import Link from 'components/links/Link.svelte';
+  import Table from './_Table.svelte';
 
   export let id;
 
   let school;
+  let shootings = [];
   let title = $_('schools.shootings.title');
   let errors = [];
 
   onMount(async () => {
     try {
-      const [ schoolResponse ] = await Promise.all([
-        get(`schools/${id}`)
+      const [ schoolResponse, shootingsResponse ] = await Promise.all([
+        get(`schools/${id}`),
+        get(`schools/${id}/shootings`)
       ]);
       school = schoolResponse.data;
+      shootings = shootingsResponse.data;
     } catch (e) {
       errors = errorNormalizer(e);
     }
@@ -47,6 +51,8 @@
   <Link href={`/admin/schools/${id}/shootings/add`} value={$_('schools.shootings.add.title')} />
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
-  <div class="w-full overflow-x-auto"></div>
+  <div class="w-full overflow-x-auto">
+    <Table items={shootings} schoolId={id} />
+  </div>
 </div>
 

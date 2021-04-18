@@ -15,7 +15,7 @@ export class Shooting {
   private name: string;
 
   @Column({ type: 'date', nullable: false })
-  private shoointingDate: Date;
+  private shootingDate: Date;
 
   @Column({ type: 'date', nullable: false })
   private closingDate: Date;
@@ -28,13 +28,13 @@ export class Shooting {
 
   constructor(
     name: string,
-    shoointingDate: Date,
+    shootingDate: Date,
     closingDate: Date,
     status: ShootingStatus,
     school: School
   ) {
     this.name = name;
-    this.shoointingDate = shoointingDate;
+    this.shootingDate = shootingDate;
     this.closingDate = closingDate;
     this.status = status;
     this.school = school;
@@ -48,8 +48,8 @@ export class Shooting {
     return this.name;
   }
 
-  public getShoointingDate(): Date {
-    return this.shoointingDate;
+  public getShootingDate(): Date {
+    return this.shootingDate;
   }
 
   public getClosingDate(): Date {

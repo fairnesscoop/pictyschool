@@ -6,7 +6,7 @@ export class Shooting1618659343512 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`ALTER TABLE "photo" DROP CONSTRAINT "FK_92a92cf6e76017c70a95170a540"`);
         await queryRunner.query(`CREATE TYPE "shooting_status_enum" AS ENUM('enabled', 'disabled')`);
-        await queryRunner.query(`CREATE TABLE "shooting" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "shoointingDate" date NOT NULL, "closingDate" date NOT NULL, "status" "shooting_status_enum" NOT NULL DEFAULT 'disabled', "schoolId" uuid NOT NULL, CONSTRAINT "PK_f41f1588cd6d69dca794f93c8f4" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "shooting" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "name" character varying NOT NULL, "shootingDate" date NOT NULL, "closingDate" date NOT NULL, "status" "shooting_status_enum" NOT NULL DEFAULT 'disabled', "schoolId" uuid NOT NULL, CONSTRAINT "PK_f41f1588cd6d69dca794f93c8f4" PRIMARY KEY ("id"))`);
         await queryRunner.query(`ALTER TABLE "school" DROP COLUMN "pdv"`);
         await queryRunner.query(`ALTER TABLE "photo" DROP COLUMN "schoolId"`);
         await queryRunner.query(`ALTER TABLE "photo" ADD "token" character varying NOT NULL`);

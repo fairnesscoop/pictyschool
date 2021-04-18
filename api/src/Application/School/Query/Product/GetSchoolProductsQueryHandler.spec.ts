@@ -7,7 +7,7 @@ import { GetSchoolProductsQueryHandler } from './GetSchoolProductsQueryHandler';
 import { SchoolProductRepository } from 'src/Infrastructure/School/Repository/SchoolProductRepository';
 import { ProductSummaryView } from 'src/Application/Product/View/ProductSummaryView';
 
-describe('GetSchoolsQueryHandler', () => {
+describe('GetSchoolProductsQueryHandler', () => {
   it('testGetSchoolProducts', async () => {
     const schoolProductRepository = mock(SchoolProductRepository);
 
