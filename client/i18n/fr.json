@@ -196,7 +196,7 @@
     },
     "dashboard": {
       "products": "Produits et prix",
-      "offers": "Promotions",
+      "discounts": "Promotions",
       "stats": "Statistiques",
       "contact": "Contact",
       "address": "Adresse",
@@ -269,7 +269,7 @@
         "shooting_date": "Date de la prise de vue"
       },
       "status": {
-        "enabled": "Publiée",
+        "enabled": "En ligne",
         "disabled": "En attente de publication"
       },
       "list": {
