@@ -2,6 +2,7 @@
   import { _ } from 'svelte-i18n';
   import { createEventDispatcher } from 'svelte';
   import { format } from 'normalizer/money';
+  import DeleteLink from 'components/links/DeleteLink.svelte';
 
   export let schoolId;
   export let items;
@@ -32,6 +33,7 @@
         </td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2 text-sm">
+            <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"schools.discounts.delete.confirm"} />
           </div>
         </td>
       </tr>
