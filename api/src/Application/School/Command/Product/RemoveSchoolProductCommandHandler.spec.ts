@@ -24,12 +24,6 @@ describe('RemoveSchoolProductCommandHandler', () => {
   it('testSchoolProductRemovedSuccessfully', async () => {
     when(schoolProductRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedSchoolProduct));
-    when(removedSchoolProduct.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      schoolProductRepository.save(instance(removedSchoolProduct))
-    ).thenResolve(instance(removedSchoolProduct));
 
     await handler.execute(command);
 

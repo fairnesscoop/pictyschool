@@ -28,13 +28,6 @@ describe('RemoveUserCommandHandler', () => {
   it('testUserRemovedSuccessfully', async () => {
     when(userRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedUser));
-    when(removedUser.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      userRepository.save(instance(removedUser))
-    ).thenResolve(instance(removedUser));
-
     await handler.execute(command);
 
     verify(

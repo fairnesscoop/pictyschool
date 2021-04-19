@@ -12,6 +12,8 @@ import { UpdateProductCommandHandler } from 'src/Application/Product/Command/Upd
 import { UpdateProductAction } from './Action/UpdateProductAction';
 import { GetProductByIdQueryHandler } from 'src/Application/Product/Query/GetProductByIdQueryHandler';
 import { GetProductAction } from './Action/GetProductAction';
+import { RemoveProductCommandHandler } from 'src/Application/Product/Command/RemoveProductCommandHandler';
+import { RemoveProductAction } from './Action/RemoveProductAction';
 
 @Module({
   imports: [BusModule, TypeOrmModule.forFeature([Product])],
@@ -19,7 +21,8 @@ import { GetProductAction } from './Action/GetProductAction';
     GetProductsAction,
     CreateProductAction,
     GetProductAction,
-    UpdateProductAction
+    UpdateProductAction,
+    RemoveProductAction
   ],
   providers: [
     { provide: 'IProductRepository', useClass: ProductRepository },
@@ -27,7 +30,8 @@ import { GetProductAction } from './Action/GetProductAction';
     IsProductAlreadyExist,
     GetProductsQueryHandler,
     UpdateProductCommandHandler,
-    GetProductByIdQueryHandler
+    GetProductByIdQueryHandler,
+    RemoveProductCommandHandler
   ]
 })
 export class ProductModule {}

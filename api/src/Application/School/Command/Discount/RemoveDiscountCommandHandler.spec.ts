@@ -24,13 +24,6 @@ describe('RemoveDiscountCommandHandler', () => {
   it('testDiscountRemovedSuccessfully', async () => {
     when(discountRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedDiscount));
-    when(removedDiscount.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      discountRepository.save(instance(removedDiscount))
-    ).thenResolve(instance(removedDiscount));
-
     await handler.execute(command);
 
     verify(

@@ -16,6 +16,10 @@ export class ProductRepository implements IProductRepository {
     return this.repository.save(product);
   }
 
+  public remove(product: Product): void {
+    this.repository.delete(product.getId());
+  }
+
   public findOneByTitle(title: string): Promise<Product | undefined> {
     return this.repository
       .createQueryBuilder('product')

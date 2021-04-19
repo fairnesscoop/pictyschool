@@ -24,12 +24,6 @@ describe('RemoveLeadCommandHandler', () => {
   it('testLeadRemovedSuccessfully', async () => {
     when(leadRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedLead));
-    when(removedLead.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      leadRepository.save(instance(removedLead))
-    ).thenResolve(instance(removedLead));
 
     await handler.execute(command);
 

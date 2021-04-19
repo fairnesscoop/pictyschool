@@ -1,7 +1,11 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { format } from 'normalizer/money';
+  import { createEventDispatcher } from 'svelte';
+  import DeleteLink from 'components/links/DeleteLink.svelte';
   import EditLink from 'components/links/EditLink.svelte';
+
+  const dispatch = createEventDispatcher();
 
   export let items;
 </script>
@@ -24,6 +28,7 @@
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2 text-sm">
             <EditLink href={`/admin/products/${id}/edit`} />
+            <DeleteLink on:confirm={() => dispatch('delete', id)} confirmMessage={"products.delete.confirm"} />
           </div>
         </td>
       </tr>

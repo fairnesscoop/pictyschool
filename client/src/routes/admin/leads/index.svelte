@@ -32,8 +32,6 @@
     pageCount: 0,
   };
 
-  onMount(() => fetchLeads());
-
   const changePage = async (e) => {
     page = e.detail;
     historyPushState('leads', { page });
@@ -58,6 +56,8 @@
       errors = errorNormalizer(e);
     }
   }
+
+  onMount(fetchLeads);
 </script>
 
 <svelte:head>
