@@ -24,12 +24,6 @@ describe('RemoveVoucherCommandHandler', () => {
   it('testVoucherRemovedSuccessfully', async () => {
     when(voucherRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedVoucher));
-    when(removedVoucher.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      voucherRepository.save(instance(removedVoucher))
-    ).thenResolve(instance(removedVoucher));
 
     await handler.execute(command);
 

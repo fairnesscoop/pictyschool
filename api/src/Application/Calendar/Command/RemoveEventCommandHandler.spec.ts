@@ -24,13 +24,6 @@ describe('RemoveEventCommandHandler', () => {
   it('testEventRemovedSuccessfully', async () => {
     when(eventRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedEvent));
-    when(removedEvent.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      eventRepository.save(instance(removedEvent))
-    ).thenResolve(instance(removedEvent));
-
     await handler.execute(command);
 
     verify(

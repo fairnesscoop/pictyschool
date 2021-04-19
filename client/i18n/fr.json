@@ -132,6 +132,9 @@
     "edit": {
       "title": "Edition du produit \"{title}\""
     },
+    "delete": {
+      "confirm": "Êtes-vous sûr de vouloir supprimer ce produit ?"
+    },
     "form": {
       "title": "Nom du produit",
       "description": "Description",

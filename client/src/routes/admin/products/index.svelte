@@ -9,7 +9,7 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import { get } from 'utils/axios';
+  import { get, del } from 'utils/axios';
   import { errorNormalizer } from 'normalizer/errors';
   import Breadcrumb from 'components/Breadcrumb.svelte';
   import H4Title from 'components/H4Title.svelte';
@@ -29,8 +29,6 @@
     pageCount: 0,
   };
 
-  onMount(() => fetchProducts());
-
   const changePage = async (e) => {
     page = e.detail;
     historyPushState('admin/products', { page });
@@ -44,6 +42,17 @@
       errors = errorNormalizer(e);
     }
   };
+
+  const handleDelete = async ({detail}) => {
+    try {
+      await del(`products/${detail}`);
+      response.items = response.items.filter((item) => item.id !== detail);
+    } catch (e) {
+      errors = errorNormalizer(e);
+    }
+  };
+
+  onMount(fetchProducts);
 </script>
 
 <svelte:head>
@@ -58,7 +67,7 @@
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
   <div class="w-full overflow-x-auto">
-    <Table items={response.items} />
+    <Table items={response.items} on:delete={handleDelete} />
   </div>
   <Pagination
     on:change={changePage}

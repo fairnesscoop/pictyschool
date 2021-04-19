@@ -24,12 +24,6 @@ describe('RemoveSchoolUserCommandHandler', () => {
   it('testSchoolUserRemovedSuccessfully', async () => {
     when(schooluserRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad'))
       .thenResolve(instance(removedSchoolUser));
-    when(removedSchoolUser.getId()).thenReturn(
-      '17efcbee-bd2f-410e-9e99-51684b592bad'
-    );
-    when(
-      schooluserRepository.save(instance(removedSchoolUser))
-    ).thenResolve(instance(removedSchoolUser));
 
     await handler.execute(command);
 

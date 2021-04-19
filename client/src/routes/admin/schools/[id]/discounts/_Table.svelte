@@ -4,7 +4,6 @@
   import { format } from 'normalizer/money';
   import DeleteLink from 'components/links/DeleteLink.svelte';
 
-  export let schoolId;
   export let items;
 
   const dispatch = createEventDispatcher();
