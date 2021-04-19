@@ -232,7 +232,8 @@
     "discounts": {
       "title": "Promotions",
       "errors": {
-        "already_exist": "Une promotion est déjà en cours pour ce montant."
+        "already_exist": "Une promotion est déjà en cours pour ce montant.",
+        "not_found": "La promotion n'existe pas."
       },
       "add": {
         "title": "Créer une nouvelle promotion"
@@ -245,8 +246,11 @@
       },
       "form": {
         "type": "Type de réduction",
-        "amount": "Montant",
+        "amount": "À partir de",
         "value": "Réduction"
+      },
+      "delete": {
+        "confirm": "Êtes-vous sûr de vouloir supprimer cette promotion ?"
       },
       "type": {
         "percent": "Pourcentage",

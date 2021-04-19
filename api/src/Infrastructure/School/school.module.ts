@@ -71,6 +71,8 @@ import { CountSchoolDiscountsAction } from './Action/Discount/CountSchoolDiscoun
 import { CreateDiscountAction } from './Action/Discount/CreateDiscountAction';
 import { GetDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/Discount/GetDiscountsBySchoolQueryHandler';
 import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/Discount/CountDiscountsBySchoolQueryHandler';
+import { RemoveDiscountAction } from './Action/Discount/RemoveDiscountAction';
+import { RemoveDiscountCommandHandler } from 'src/Application/School/Command/Discount/RemoveDiscountCommandHandler';
 
 @Module({
   imports: [
@@ -108,7 +110,8 @@ import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query
     CountSchoolShootingsAction,
     GetSchoolDiscountsAction,
     CreateDiscountAction,
-    CountSchoolDiscountsAction
+    CountSchoolDiscountsAction,
+    RemoveDiscountAction
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
@@ -150,7 +153,8 @@ import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query
     IsDiscountAlreadyExist,
     CreateDiscountCommandHandler,
     GetDiscountsBySchoolQueryHandler,
-    CountDiscountsBySchoolQueryHandler
+    CountDiscountsBySchoolQueryHandler,
+    RemoveDiscountCommandHandler
   ]
 })
 export class SchoolModule {}

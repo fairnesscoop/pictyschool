@@ -16,6 +16,18 @@ export class DiscountRepository implements IDiscountRepository {
     return this.repository.save(discount);
   }
 
+  public remove(discount: Discount): void {
+    this.repository.delete(discount.getId());
+  }
+
+  public findOneById(id: string): Promise<Discount | undefined> {
+    return this.repository
+      .createQueryBuilder('discount')
+      .select(['discount.id'])
+      .where('discount.id = :id', { id })
+      .getOne();
+  }
+
   public findOneByAmountAndSchool(amount: number, school: School): Promise<Discount | undefined> {
     return this.repository
       .createQueryBuilder('discount')
