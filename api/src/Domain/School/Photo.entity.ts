@@ -4,7 +4,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne
 } from 'typeorm';
-import { Shooting } from './Shooting.entity';
+import { Classroom } from './Classroom.entity';
 
 export enum PhotoType {
   UNIT = 'unit',
@@ -32,21 +32,21 @@ export class Photo {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   private createdAt: Date;
 
-  @ManyToOne(() => Shooting, { nullable: false, onDelete: 'CASCADE' })
-  private shooting: Shooting;
+  @ManyToOne(() => Classroom, { nullable: false, onDelete: 'CASCADE' })
+  private classroom: Classroom;
 
   constructor(
     type: PhotoType,
     name: string,
     path: string,
     token: string,
-    shooting: Shooting
+    classroom: Classroom
   ) {
     this.type = type;
     this.name = name;
     this.path = path;
     this.token = token;
-    this.shooting = shooting;
+    this.classroom = classroom;
   }
 
   public getId(): string {
@@ -73,7 +73,7 @@ export class Photo {
     return this.createdAt;
   }
 
-  public getShooting(): Shooting {
-    return this.shooting;
+  public getClassroom(): Classroom {
+    return this.classroom;
   }
 }
