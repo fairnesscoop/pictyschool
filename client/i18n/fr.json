@@ -119,6 +119,9 @@
       "not_found": "Le prospect que vous cherchez n'existe pas."
     }
   },
+  "orders": {
+    "breadcrumb": "Commandes"
+  },
   "products": {
     "breadcrumb": "Produits",
     "list": {

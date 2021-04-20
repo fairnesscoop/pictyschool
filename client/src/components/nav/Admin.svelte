@@ -6,6 +6,7 @@
   import LeadIcon from 'components/icons/LeadIcon.svelte';
   import UsersIcon from 'components/icons/UsersIcon.svelte';
   import CalendarIcon from 'components/icons/CalendarIcon.svelte';
+  import OrderIcon from 'components/icons/OrderIcon.svelte';
   import { settings, currentPath } from 'store';
 
   const schoolsPath = '/admin/schools';
@@ -13,6 +14,7 @@
   const calendarPath = '/admin/calendar';
   const usersPath = '/admin/users';
   const leadsPath = '/admin/leads';
+  const ordersPath = '/admin/orders';
   const activeClass =
     'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg';
   const linkClass =
@@ -46,9 +48,9 @@
           <span class="{activeClass}" aria-hidden="true"></span>
         {/if}
         <a class={$currentPath.includes(calendarPath) ? activeLinkClass : linkClass} href={calendarPath}>
-        <CalendarIcon className={'w-5 h-5'} />
-        <span class="ml-4">{$_('calendar.breadcrumb')}</span>
-      </a>
+          <CalendarIcon className={'w-5 h-5'} />
+          <span class="ml-4">{$_('calendar.breadcrumb')}</span>
+        </a>
       </li>
       <li class="relative px-6 py-3">
         {#if $currentPath.includes(schoolsPath)}
@@ -57,6 +59,15 @@
         <a class={$currentPath.includes(schoolsPath) ? activeLinkClass : linkClass} href={schoolsPath}>
           <SchoolIcon className={'w-5 h-5'} />
           <span class="ml-4">{$_('schools.breadcrumb')}</span>
+        </a>
+      </li>
+      <li class="relative px-6 py-3">
+        {#if $currentPath.includes(ordersPath)}
+          <span class={activeClass} aria-hidden="true"></span>
+        {/if}
+        <a class={$currentPath.includes(ordersPath) ? activeLinkClass : linkClass} href={ordersPath}>
+          <OrderIcon className={'w-5 h-5'} />
+          <span class="ml-4">{$_('orders.breadcrumb')}</span>
         </a>
       </li>
       <li class="relative px-6 py-3">
