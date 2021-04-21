@@ -57,4 +57,11 @@ export class ProductRepository implements IProductRepository {
       .offset((page - 1) * MAX_ITEMS_PER_PAGE)
       .getManyAndCount();
   }
+
+  public findProductsToImport(): Promise<Product[]> {
+    return this.repository
+      .createQueryBuilder('product')
+      .select([ 'product.id', 'product.unitPrice' ])
+      .getMany();
+  }
 }
