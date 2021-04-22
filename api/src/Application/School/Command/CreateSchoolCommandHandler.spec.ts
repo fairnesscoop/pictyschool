@@ -6,9 +6,12 @@ import { CreateSchoolCommandHandler } from 'src/Application/School/Command/Creat
 import { CreateSchoolCommand } from 'src/Application/School/Command/CreateSchoolCommand';
 import { SchoolAlreadyExistException } from 'src/Domain/School/Exception/SchoolAlreadyExistException';
 import { Status, Type } from 'src/Domain/School/AbstractSchool';
+import { EventBusAdapter } from 'src/Infrastructure/Adapter/EventBusAdapter';
+import { SchoolCreatedEvent } from '../Event/SchoolCreatedEvent';
 
 describe('CreateSchoolCommandHandler', () => {
   let schoolRepository: SchoolRepository;
+  let eventBusAdapter: EventBusAdapter;
   let isSchoolAlreadyExist: IsSchoolAlreadyExist;
   let createdSchool: School;
   let handler: CreateSchoolCommandHandler;
@@ -31,10 +34,12 @@ describe('CreateSchoolCommandHandler', () => {
   beforeEach(() => {
     schoolRepository = mock(SchoolRepository);
     isSchoolAlreadyExist = mock(IsSchoolAlreadyExist);
+    eventBusAdapter = mock(EventBusAdapter);
     createdSchool = mock(School);
 
     handler = new CreateSchoolCommandHandler(
       instance(schoolRepository),
+      instance(eventBusAdapter),
       instance(isSchoolAlreadyExist)
     );
   });
@@ -70,6 +75,9 @@ describe('CreateSchoolCommandHandler', () => {
     );
 
     verify(isSchoolAlreadyExist.isSatisfiedBy('LM120I')).once();
+    verify(eventBusAdapter.publish(
+      deepEqual(new SchoolCreatedEvent('2d5fb4da-12c2-11ea-8d71-362b9e155667'))
+    )).once();
     verify(
       schoolRepository.save(
         deepEqual(
@@ -90,7 +98,7 @@ describe('CreateSchoolCommandHandler', () => {
         )
       )
     ).once();
-    verify(createdSchool.getId()).once();
+    verify(createdSchool.getId()).twice();
   });
 
   it('testSchoolAlreadyExist', async () => {
@@ -101,6 +109,7 @@ describe('CreateSchoolCommandHandler', () => {
     } catch (e) {
       expect(e).toBeInstanceOf(SchoolAlreadyExistException);
       expect(e.message).toBe('schools.errors.already_exist');
+      verify(eventBusAdapter.publish(anything())).never();
       verify(isSchoolAlreadyExist.isSatisfiedBy('LM120I')).once();
       verify(schoolRepository.save(anything())).never();
       verify(createdSchool.getId()).never();

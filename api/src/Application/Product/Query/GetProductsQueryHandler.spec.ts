@@ -14,12 +14,12 @@ describe('GetProductsQueryHandler', () => {
     when(product1.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
     when(product1.getTitle()).thenReturn('Mug');
     when(product1.getDescription()).thenReturn('Mug portrait enfant');
-    when(product1.getUnitPrice()).thenReturn(999);
+    when(product1.getPriceFromCents()).thenReturn(9.99);
 
     const product2 = mock(Product);
     when(product2.getId()).thenReturn('d54f15d6-1a1d-47e8-8672-9f46018f9960');
     when(product2.getTitle()).thenReturn('Porte clef');
-    when(product2.getUnitPrice()).thenReturn(1000);
+    when(product2.getPriceFromCents()).thenReturn(10);
 
     when(productRepository.findProducts(1)).thenResolve([
       [instance(product2), instance(product1)],

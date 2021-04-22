@@ -73,6 +73,7 @@ import { GetDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/D
 import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query/Discount/CountDiscountsBySchoolQueryHandler';
 import { RemoveDiscountAction } from './Action/Discount/RemoveDiscountAction';
 import { RemoveDiscountCommandHandler } from 'src/Application/School/Command/Discount/RemoveDiscountCommandHandler';
+import { SchoolCreatedEventListener } from 'src/Application/School/EventListener/SchoolCreatedEventListener';
 
 @Module({
   imports: [
@@ -154,7 +155,8 @@ import { RemoveDiscountCommandHandler } from 'src/Application/School/Command/Dis
     CreateDiscountCommandHandler,
     GetDiscountsBySchoolQueryHandler,
     CountDiscountsBySchoolQueryHandler,
-    RemoveDiscountCommandHandler
+    RemoveDiscountCommandHandler,
+    SchoolCreatedEventListener
   ]
 })
 export class SchoolModule {}
