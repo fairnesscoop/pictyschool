@@ -36,6 +36,10 @@ export class Product {
     return this.unitPrice;
   }
 
+  public getPriceFromCents(): number {
+    return this.unitPrice / 100;
+  }
+
   public update(title: string, description: string, unitPrice: number): void {
     this.title = title;
     this.description = description;

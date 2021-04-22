@@ -17,7 +17,7 @@ export class SchoolCreatedEventListener {
     const products = await this.productRepository.findProductsToImport();
 
     for (const product of products) {
-      const price = product.getUnitPrice() / 100;
+      const price = product.getPriceFromCents();
 
       await this.commandBus.execute(
         new CreateSchoolProductCommand(

@@ -25,11 +25,11 @@ describe('SchoolCreatedEventListener', () => {
   it('testSchoolCreatedEventListener', async () => {
     const p1 = mock(Product);
     when(p1.getId()).thenReturn('b783b181-c638-4f8c-ae83-9f61a1ba387e');
-    when(p1.getUnitPrice()).thenReturn(10000);
+    when(p1.getPriceFromCents()).thenReturn(100);
 
     const p2 = mock(Product);
     when(p2.getId()).thenReturn('45e7dfb8-bd28-4336-a4d0-72fe9fedee4c');
-    when(p2.getUnitPrice()).thenReturn(15000);
+    when(p2.getPriceFromCents()).thenReturn(150);
     when(
       productRepository.findProductsToImport()
     ).thenResolve([instance(p1), instance(p2)]);

@@ -23,12 +23,12 @@ describe('GetSchoolProductByIdQueryHandler', () => {
 
     const product = mock(Product);
     when(product.getTitle()).thenReturn('Tasse à café');
-    when(product.getUnitPrice()).thenReturn(900);
+    when(product.getPriceFromCents()).thenReturn(9);
 
     const schoolproduct = mock(SchoolProduct);
     when(schoolproduct.getId()).thenReturn('eb9e1d9b-dce2-48a9-B64F-f0872f3157d2');
-    when(schoolproduct.getParentUnitPrice()).thenReturn(399);
-    when(schoolproduct.getPhotographerUnitPrice()).thenReturn(999);
+    when(schoolproduct.getParentPriceFromCents()).thenReturn(3.99);
+    when(schoolproduct.getPhotographerPriceFromCents()).thenReturn(9.99);
     when(schoolproduct.getProduct()).thenReturn(instance(product));
     when(
       schoolproductRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

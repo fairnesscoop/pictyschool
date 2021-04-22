@@ -22,7 +22,7 @@ export class GetProductByIdQueryHandler {
     return new ProductView(
       product.getId(),
       product.getTitle(),
-      product.getUnitPrice() / 100,
+      product.getPriceFromCents(),
       product.getDescription()
     );
   }

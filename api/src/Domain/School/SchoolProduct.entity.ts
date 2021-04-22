@@ -44,8 +44,16 @@ export class SchoolProduct {
     return this.photographerUnitPrice;
   }
 
+  public getPhotographerPriceFromCents(): number {
+    return this.photographerUnitPrice / 100;
+  }
+
   public getParentUnitPrice(): number {
     return this.parentUnitPrice;
+  }
+
+  public getParentPriceFromCents(): number {
+    return this.parentUnitPrice / 100;
   }
 
   public getSchool(): School {

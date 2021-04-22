@@ -22,11 +22,11 @@ export class GetSchoolProductByIdQueryHandler {
 
     return new SchoolProductView(
       schoolProduct.getId(),
-      schoolProduct.getParentUnitPrice() / 100,
-      schoolProduct.getPhotographerUnitPrice() / 100,
+      schoolProduct.getParentPriceFromCents(),
+      schoolProduct.getPhotographerPriceFromCents(),
       new ProductSummaryView(
         schoolProduct.getProduct().getTitle(),
-        schoolProduct.getProduct().getUnitPrice() / 100
+        schoolProduct.getProduct().getPriceFromCents()
       )
     );
   }

@@ -13,27 +13,27 @@ describe('GetSchoolProductsQueryHandler', () => {
 
     const product1 = mock(Product);
     when(product1.getTitle()).thenReturn('Photo de classe traditionnelle');
-    when(product1.getUnitPrice()).thenReturn(1500);
+    when(product1.getPriceFromCents()).thenReturn(15);
 
     const schoolProduct1 = mock(SchoolProduct);
     when(schoolProduct1.getId()).thenReturn(
       '4de2ffc4-e835-44c8-95b7-17c171c09873'
     );
     when(schoolProduct1.getProduct()).thenReturn(instance(product1));
-    when(schoolProduct1.getParentUnitPrice()).thenReturn(1200);
-    when(schoolProduct1.getPhotographerUnitPrice()).thenReturn(1800);
+    when(schoolProduct1.getParentPriceFromCents()).thenReturn(12);
+    when(schoolProduct1.getPhotographerPriceFromCents()).thenReturn(18);
 
     const product2 = mock(Product);
     when(product2.getTitle()).thenReturn('1 page individuelle');
-    when(product2.getUnitPrice()).thenReturn(1500);
+    when(product2.getPriceFromCents()).thenReturn(15);
 
     const schoolProduct2 = mock(SchoolProduct);
     when(schoolProduct2.getId()).thenReturn(
       '12b4aa8a-ece7-45f0-a07e-ca755e67be1e'
     );
     when(schoolProduct2.getProduct()).thenReturn(instance(product2));
-    when(schoolProduct2.getParentUnitPrice()).thenReturn(1500);
-    when(schoolProduct2.getPhotographerUnitPrice()).thenReturn(1900);
+    when(schoolProduct2.getParentPriceFromCents()).thenReturn(15);
+    when(schoolProduct2.getPhotographerPriceFromCents()).thenReturn(19);
 
     when(
       schoolProductRepository.findBySchoolId(
