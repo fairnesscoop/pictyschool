@@ -297,6 +297,9 @@
       "add": {
         "title": "Nouvelle prise de vue"
       },
+      "errors": {
+        "not_found": "La prise de vue recherchée n'existe pas."
+      },
       "form": {
         "name": "Nom de la prise de vue",
         "closing_date": "Date de la fermeture des commandes",
@@ -312,7 +315,8 @@
         "shooting_date": "Date",
         "status": "Etat",
         "class": "Nb classes",
-        "photos": "Nb photos"
+        "photos": "Nb photos",
+        "orders": "Nb commandes"
       }
     }
   },

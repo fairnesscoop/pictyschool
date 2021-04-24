@@ -21,6 +21,7 @@
       <th class="px-4 py-3">{$_('schools.shootings.list.closing_date')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.class')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.photos')}</th>
+      <th class="px-4 py-3">{$_('schools.shootings.list.orders')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.status')}</th>
       <th class="px-4 py-3">{$_('common.detail')}</th>
     </tr>
@@ -35,6 +36,7 @@
         <td class="px-4 py-3 text-sm">
           {format(new Date(closingDate), 'dd/MM/yyyy', { locale: fr })}
         </td>
+        <td class="px-4 py-3">0</td>
         <td class="px-4 py-3">0</td>
         <td class="px-4 py-3">0</td>
         <td class="px-4 py-3 text-sm">

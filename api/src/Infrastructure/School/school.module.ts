@@ -74,6 +74,8 @@ import { CountDiscountsBySchoolQueryHandler } from 'src/Application/School/Query
 import { RemoveDiscountAction } from './Action/Discount/RemoveDiscountAction';
 import { RemoveDiscountCommandHandler } from 'src/Application/School/Command/Discount/RemoveDiscountCommandHandler';
 import { SchoolCreatedEventListener } from 'src/Application/School/EventListener/SchoolCreatedEventListener';
+import { GetShootingByIdQueryHandler } from 'src/Application/School/Query/Shooting/GetShootingByIdQueryHandler';
+import { GetShootingAction } from './Action/Shooting/GetShootingAction';
 
 @Module({
   imports: [
@@ -107,6 +109,7 @@ import { SchoolCreatedEventListener } from 'src/Application/School/EventListener
     ConsumeVoucherAction,
     RemoveVoucherAction,
     GetSchoolShootingsAction,
+    GetShootingAction,
     CreateShootingAction,
     CountSchoolShootingsAction,
     GetSchoolDiscountsAction,
@@ -156,7 +159,8 @@ import { SchoolCreatedEventListener } from 'src/Application/School/EventListener
     GetDiscountsBySchoolQueryHandler,
     CountDiscountsBySchoolQueryHandler,
     RemoveDiscountCommandHandler,
-    SchoolCreatedEventListener
+    SchoolCreatedEventListener,
+    GetShootingByIdQueryHandler
   ]
 })
 export class SchoolModule {}
