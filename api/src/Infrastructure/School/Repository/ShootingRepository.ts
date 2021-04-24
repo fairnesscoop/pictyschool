@@ -30,6 +30,19 @@ export class ShootingRepository implements IShootingRepository {
       .getMany();
   }
 
+  public findOneById(id: string): Promise<Shooting | undefined> {
+    return this.repository
+      .createQueryBuilder('shooting')
+      .select([
+        'shooting.name',
+        'shooting.status',
+        'shooting.shootingDate',
+        'shooting.closingDate'
+      ])
+      .where('shooting.id = :id', { id })
+      .getOne();
+  }
+
   public countBySchool(id: string): Promise<number> {
     return this.repository
       .createQueryBuilder('shooting')
