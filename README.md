@@ -1,3 +1,5 @@
+<h1 align="center"><a href="https://fairness.coop"><img src="https://github.com/fairnesscoop/pictyschool/blob/master/client/static/images/logo.png" alt="Pictyschool"></a></h1>
+
 PictySchool is an open source and eco design school photo management software
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/fairnesscoop/pictyschool/CI)
