@@ -11,7 +11,7 @@ const providers = [
 
 @Module({
   imports: [
-    ConfigModule
+    ConfigModule,
   ],
   providers: [...providers, S3],
   exports: providers

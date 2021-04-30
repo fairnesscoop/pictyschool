@@ -78,9 +78,8 @@ import { GetShootingByIdQueryHandler } from 'src/Application/School/Query/Shooti
 import { GetShootingAction } from './Action/Shooting/GetShootingAction';
 import { UpdateShootingAction } from './Action/Shooting/UpdateShootingAction';
 import { UpdateShootingCommandHandler } from 'src/Application/School/Command/Shooting/UpdateShootingCommandHandler';
-import { GetSchoolUploadEnpointAction } from './Action/Photo/GetUploadEnpointAction';
 import { IngestionModule } from '../Ingestion/ingestion.module';
-import { CreateSchoolIngestion } from './Action/Photo/CreateSchoolIngestionAction';
+import { CreateFileIngestionAction } from './Action/Photo/CreateFileIngestionAction';
 
 @Module({
   imports: [
@@ -123,8 +122,7 @@ import { CreateSchoolIngestion } from './Action/Photo/CreateSchoolIngestionActio
     CreateDiscountAction,
     CountSchoolDiscountsAction,
     RemoveDiscountAction,
-    GetSchoolUploadEnpointAction,
-    CreateSchoolIngestion,
+    CreateFileIngestionAction,
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },

@@ -12,7 +12,7 @@ import { IFileUpload } from 'src/Application/IFileUpload';
 @ApiTags('School')
 @ApiBearerAuth()
 @UseGuards(AuthGuard('bearer'), RolesGuard)
-export class CreateSchoolIngestion {
+export class CreateFileIngestionAction {
   constructor(
     @Inject('IQueryBus')
     private readonly queryBus: IQueryBus,

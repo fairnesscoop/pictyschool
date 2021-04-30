@@ -7,6 +7,7 @@ import { IngestionModule } from './Infrastructure/Ingestion/ingestion.module';
 import { ProductModule } from './Infrastructure/Product/product.module';
 import { SchoolModule } from './Infrastructure/School/school.module';
 import { UserModule } from './Infrastructure/User/user.module';
+import { SchoolModule } from './Infrastructure/School/school.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { UserModule } from './Infrastructure/User/user.module';
     OrderModule,
     CalendarModule
     CalendarModule,
-    IngestionModule
+    IngestionModule,
+    ConfigModule,
   ],
   controllers: [],
   providers: []
