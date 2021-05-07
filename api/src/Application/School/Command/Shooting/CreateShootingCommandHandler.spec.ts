@@ -4,7 +4,6 @@ import { Shooting, ShootingStatus } from 'src/Domain/School/Shooting.entity';
 import { CreateShootingCommandHandler } from './CreateShootingCommandHandler';
 import { SchoolRepository } from 'src/Infrastructure/School/Repository/SchoolRepository';
 import { CreateShootingCommand } from './CreateShootingCommand';
-import { Product } from 'src/Domain/Product/Product.entity';
 import { School } from 'src/Domain/School/School.entity';
 import { SchoolNotFoundException } from 'src/Domain/School/Exception/SchoolNotFoundException';
 
