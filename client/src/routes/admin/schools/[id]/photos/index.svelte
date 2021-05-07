@@ -38,11 +38,16 @@
     }
 
     try {
-      const uploadEndpointResponse = await post(`schools/${id}/photos/ingestion`, { params: { originalName: event.target.files[0].name }});
+      const uploadEndpointResponse = await post(
+        `ingestions/${school.id}/photos`,
+        { params: { originalName: event.target.files[0].name }}
+      );
       loading = true;
-      const uploadResponse = await axios.put(uploadEndpointResponse.data.link, event.target.files[0], { onUploadProgress });
+      const uploadResponse = await axios.put(
+        uploadEndpointResponse.data.link, event.target.files[0],
+        { onUploadProgress }
+      );
       loading = false;
-      console.log(uploadResponse);
     } catch (e) {
       errors = errorNormalizer(e);
     }
