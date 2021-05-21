@@ -9,7 +9,7 @@ export class ShootingRepository implements IShootingRepository {
   constructor(
     @InjectRepository(Shooting)
     private readonly repository: Repository<Shooting>
-  ) {}
+  ) { }
 
   public save(shooting: Shooting): Promise<Shooting> {
     return this.repository.save(shooting);
@@ -34,6 +34,7 @@ export class ShootingRepository implements IShootingRepository {
     return this.repository
       .createQueryBuilder('shooting')
       .select([
+        'shooting.id',
         'shooting.name',
         'shooting.status',
         'shooting.shootingDate',
