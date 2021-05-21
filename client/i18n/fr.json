@@ -297,6 +297,9 @@
       "add": {
         "title": "Nouvelle prise de vue"
       },
+      "edit": {
+        "title": "Edititon de la prise de vue"
+      },
       "errors": {
         "not_found": "La prise de vue recherchée n'existe pas."
       },

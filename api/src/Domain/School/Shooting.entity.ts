@@ -63,4 +63,14 @@ export class Shooting {
   public getStatus(): ShootingStatus {
     return this.status;
   }
+
+  public update(
+    name: string,
+    shootingDate: Date,
+    closingDate: Date,
+  ): void {
+    this.name = name;
+    this.shootingDate = shootingDate;
+    this.closingDate = closingDate;
+  }
 }
