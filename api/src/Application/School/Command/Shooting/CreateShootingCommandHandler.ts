@@ -16,7 +16,7 @@ export class CreateShootingCommandHandler {
   ) {}
 
   public async execute(command: CreateShootingCommand): Promise<string> {
-    const { name, closingDate, schoolId, shootingDate, notice } = command;
+    const { name, groupClosingDate, individualClosingDate, schoolId, shootingDate, notice } = command;
 
     const school = await this.schoolRepository.findOneById(schoolId);
     if (!school) {
@@ -27,7 +27,8 @@ export class CreateShootingCommandHandler {
       new Shooting(
         name,
         shootingDate,
-        closingDate,
+        groupClosingDate,
+        individualClosingDate,
         ShootingStatus.DISABLED,
         school,
         notice

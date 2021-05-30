@@ -5,7 +5,8 @@
   import Button from 'components/inputs/Button.svelte';
 
   export let shootingDate = '';
-  export let closingDate = '';
+  export let groupClosingDate = '';
+  export let individualClosingDate = '';
   export let name = '';
   export let notice = '';
   export let loading;
@@ -14,8 +15,9 @@
   const submit = () => {
     dispatch('save', {
       name,
-      closingDate: new Date(closingDate),
+      groupClosingDate: new Date(groupClosingDate),
       shootingDate: new Date(shootingDate),
+      individualClosingDate: new Date(individualClosingDate),
       notice
     });
   };
@@ -33,8 +35,12 @@
     bind:value={shootingDate} />
   <Input
     type={'date'}
-    label={$_('schools.shootings.form.closing_date')}
-    bind:value={closingDate} />
+    label={$_('schools.shootings.form.group_closing_date')}
+    bind:value={groupClosingDate} />
+  <Input
+    type={'date'}
+    label={$_('schools.shootings.form.individual_closing_date')}
+    bind:value={individualClosingDate} />
   <Input
     required={false}
     label={$_('schools.shootings.form.notice')}
@@ -42,5 +48,5 @@
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!shootingDate || !closingDate || !name || loading} />
+    disabled={!shootingDate || !groupClosingDate || !name || loading} />
 </form>

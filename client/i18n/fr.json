@@ -207,7 +207,9 @@
       "phone_number": "Contact téléphonique",
       "number_of_students": "Nombre d'élèves",
       "number_of_classes": "Nombre de classes",
-      "observation": "Observation"
+      "observation": "Observation",
+      "type": "Type",
+      "status": "Statut"
     },
     "errors": {
       "already_exist": "Un établissement avec cette référence existe déjà.",
@@ -286,7 +288,8 @@
       },
       "form": {
         "name": "Nom de la prise de vue",
-        "closing_date": "Date de la fermeture des commandes groupées",
+        "group_closing_date": "Date fermeture des commandes groupées",
+        "individual_closing_date": "Date fermeture des commandes individuelles",
         "shooting_date": "Date de la prise de vue",
         "notice": "Message d'information qui sera affiché au client"
       },
@@ -296,7 +299,6 @@
       },
       "list": {
         "name": "Prise de vue",
-        "closing_date": "Fermeture commandes groupées",
         "shooting_date": "Date",
         "status": "Etat",
         "class": "Nb classes",

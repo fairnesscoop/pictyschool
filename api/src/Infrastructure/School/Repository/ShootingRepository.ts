@@ -22,8 +22,7 @@ export class ShootingRepository implements IShootingRepository {
         'shooting.id',
         'shooting.name',
         'shooting.status',
-        'shooting.shootingDate',
-        'shooting.closingDate'
+        'shooting.shootingDate'
       ])
       .innerJoin('shooting.school', 'school', 'school.id = :schoolId', { schoolId })
       .orderBy('shooting.shootingDate', 'DESC')
@@ -39,7 +38,8 @@ export class ShootingRepository implements IShootingRepository {
         'shooting.status',
         'shooting.notice',
         'shooting.shootingDate',
-        'shooting.closingDate'
+        'shooting.groupClosingDate',
+        'shooting.individualClosingDate'
       ])
       .where('shooting.id = :id', { id })
       .getOne();

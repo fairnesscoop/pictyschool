@@ -15,6 +15,7 @@ describe('UpdateShootingCommandHandler', () => {
     'Prise de vue début année',
     new Date('2021-04-18'),
     new Date('2021-09-01'),
+    new Date('2021-12-01'),
     'Message notice'
   );
 
@@ -49,6 +50,7 @@ describe('UpdateShootingCommandHandler', () => {
       'Prise de vue début année',
       deepEqual(new Date('2021-04-18')),
       deepEqual(new Date('2021-09-01')),
+      deepEqual(new Date('2021-12-01')),
       'Message notice'
     )).once();
     verify(shootingRepository.findOneById('17efcbee-bd2f-410e-9e99-51684b592bad')).once();

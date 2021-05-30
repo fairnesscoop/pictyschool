@@ -24,7 +24,8 @@ export class GetShootingByIdQueryHandler {
       shooting.getName(),
       shooting.getStatus(),
       shooting.getShootingDate(),
-      shooting.getClosingDate(),
+      shooting.getGroupClosingDate(),
+      shooting.getIndividualClosingDate(),
       shooting.getNotice()
     );
   }

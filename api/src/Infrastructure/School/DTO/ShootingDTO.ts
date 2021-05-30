@@ -20,5 +20,11 @@ export class ShootingDTO {
   @IsNotEmpty()
   @IsDateString()
   @DateGreaterOrEqualThan('shootingDate')
-  public closingDate: string;
+  public groupClosingDate: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsDateString()
+  @DateGreaterOrEqualThan('groupClosingDate')
+  public individualClosingDate: string;
 }
