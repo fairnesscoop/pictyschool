@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ShippingCost } from 'src/Domain/Order/ShippingCost.entity';
 import { IShippingCostRepository } from 'src/Domain/Order/Repository/IShippingCostRepository';
-import { MAX_ITEMS_PER_PAGE } from 'src/Application/Common/Pagination';
 
 @Injectable()
 export class ShippingCostRepository implements IShippingCostRepository {
@@ -14,6 +13,10 @@ export class ShippingCostRepository implements IShippingCostRepository {
 
   public save(shippingCost: ShippingCost): Promise<ShippingCost> {
     return this.repository.save(shippingCost);
+  }
+
+  public remove(shippingCost: ShippingCost): void {
+    this.repository.delete(shippingCost.getId());
   }
 
   public findOneByGrams(grams: number): Promise<ShippingCost | undefined> {
