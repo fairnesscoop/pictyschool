@@ -50,17 +50,17 @@
       label={$_('schools.form.name')}
       bind:value={name} />
     <SelectInput
-      label={$_('leads.form.type')}
+      label={$_('schools.form.type')}
       bind:value={type}>
       {#each TYPES as type}
-        <option value={type}>{$_(`leads.types.${type}`)}</option>
+        <option value={type}>{$_(`schools.types.${type}`)}</option>
       {/each}
     </SelectInput>
     <SelectInput
-      label={$_('leads.form.status')}
+      label={$_('schools.form.status')}
       bind:value={status}>
       {#each STATUTES as status}
-        <option value={status}>{$_(`leads.statutes.${status}`)}</option>
+        <option value={status}>{$_(`schools.statutes.${status}`)}</option>
       {/each}
     </SelectInput>
     <Input

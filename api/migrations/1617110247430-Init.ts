@@ -4,9 +4,6 @@ export class Init1617110247430 implements MigrationInterface {
     name = 'Init1617110247430'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TYPE "lead_status_enum" AS ENUM('private', 'public')`);
-        await queryRunner.query(`CREATE TYPE "lead_type_enum" AS ENUM('kindergarten', 'primary', 'elementary', 'middle_school', 'high_school')`);
-        await queryRunner.query(`CREATE TABLE "lead" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "reference" character varying NOT NULL, "name" character varying NOT NULL, "address" character varying NOT NULL, "zipCode" character varying NOT NULL, "city" character varying NOT NULL, "status" "lead_status_enum" NOT NULL, "type" "lead_type_enum" NOT NULL, "phoneNumber" character varying, "numberOfStudents" integer DEFAULT 0, "numberOfClasses" integer DEFAULT 0, "createdAt" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, "email" character varying NOT NULL, CONSTRAINT "PK_ca96c1888f7dcfccab72b72fffa" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "product" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "title" character varying NOT NULL, "description" character varying, "unitPrice" integer NOT NULL DEFAULT 0, CONSTRAINT "PK_bebc9158e480b949565b4dc7a82" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TYPE "user_role_enum" AS ENUM('photographer', 'director')`);
         await queryRunner.query(`CREATE TABLE "user" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "firstName" character varying NOT NULL, "lastName" character varying NOT NULL, "email" character varying NOT NULL, "apiToken" character varying, "password" character varying NOT NULL, "role" "user_role_enum" NOT NULL, CONSTRAINT "UQ_e12875dfb3b1d92d7d7c5377e22" UNIQUE ("email"), CONSTRAINT "PK_cace4a159ff9f2512dd42373760" PRIMARY KEY ("id"))`);
@@ -43,9 +40,6 @@ export class Init1617110247430 implements MigrationInterface {
         await queryRunner.query(`DROP TABLE "user"`);
         await queryRunner.query(`DROP TYPE "user_role_enum"`);
         await queryRunner.query(`DROP TABLE "product"`);
-        await queryRunner.query(`DROP TABLE "lead"`);
-        await queryRunner.query(`DROP TYPE "lead_type_enum"`);
-        await queryRunner.query(`DROP TYPE "lead_status_enum"`);
     }
 
 }

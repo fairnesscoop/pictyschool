@@ -22,8 +22,8 @@
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{reference}</td>
         <td class="px-4 py-3 text-sm">{name}</td>
-        <td class="px-4 py-3 text-sm">{$_(`leads.types.${type}`)}</td>
-        <td class="px-4 py-3 text-sm">{$_(`leads.statutes.${status}`)}</td>
+        <td class="px-4 py-3 text-sm">{$_(`schools.types.${type}`)}</td>
+        <td class="px-4 py-3 text-sm">{$_(`schools.statutes.${status}`)}</td>
         <td class="px-4 py-3 text-sm">{zipCode} {city}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2 text-sm">

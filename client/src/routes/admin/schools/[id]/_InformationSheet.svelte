@@ -13,7 +13,7 @@
       </tr>
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{$_('schools.dashboard.type')}</td>
-        <td class="px-4 py-3 text-sm">{$_(`leads.types.${school.type}`)} - {$_(`leads.statutes.${school.status}`)}</td>
+        <td class="px-4 py-3 text-sm">{$_(`schools.types.${school.type}`)} - {$_(`schools.statutes.${school.status}`)}</td>
       </tr>
       {#if school.email || school.phoneNumber}
         <tr class="text-gray-700 dark:text-gray-400">

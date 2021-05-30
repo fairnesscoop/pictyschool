@@ -86,64 +86,6 @@
       "confirm": "Êtes-vous sûr de vouloir supprimer ce frais de port ?"
     }
   },
-  "leads": {
-    "breadcrumb": "Prospects",
-    "statutes": {
-      "private": "Privée",
-      "public": "Public"
-    },
-    "types": {
-      "kindergarten": "Maternelle",
-      "primary": "Primaire",
-      "elementary": "Élémentaire",
-      "middle_school": "Collège",
-      "high_school": "Lycée"
-    },
-    "list": {
-      "reference": "Ref.",
-      "name": "Nom du prospect",
-      "city": "Ville",
-      "phone_number": "Contact tél.",
-      "number_of_students": "Nb. d'élèves",
-      "type": "Type",
-      "status": "Statut"
-    },
-    "dashboard": {
-      "email": "Contact e-mail",
-      "phone_number": "Contact téléphone",
-      "address": "Adresse",
-      "reference": "Référence",
-      "number_of_students": "Nombre d'élèves",
-      "informations": "Fiche prospect",
-      "type": "Type d'établissement",
-      "status": "Statut"
-    },
-    "delete": {
-      "confirm": "Êtes-vous sûr de vouloir supprimer ce prospect ?"
-    },
-    "add": {
-      "title": "Ajouter un prospect"
-    },
-    "edit": {
-      "title": "Edition du prospect"
-    },
-    "form": {
-      "reference": "Référence",
-      "name": "Nom du prospect",
-      "address": "Adresse",
-      "city": "Ville",
-      "zip_code": "Code postal",
-      "number_of_students": "Nombre d'élèves",
-      "email": "Contact e-mail",
-      "type": "Type d'établissement",
-      "status": "Statut",
-      "phone_number": "Contact téléphone"
-    },
-    "errors": {
-      "already_exist": "Un prospect avec cette référence existe déjà.",
-      "not_found": "Le prospect que vous cherchez n'existe pas."
-    }
-  },
   "orders": {
     "breadcrumb": "Commandes"
   },
@@ -214,6 +156,17 @@
     },
     "edit": {
       "title": "Edition de l'établissement"
+    },
+    "statutes": {
+      "private": "Privée",
+      "public": "Public"
+    },
+    "types": {
+      "kindergarten": "Maternelle",
+      "primary": "Primaire",
+      "elementary": "Élémentaire",
+      "middle_school": "Collège",
+      "high_school": "Lycée"
     },
     "users": {
       "status": {

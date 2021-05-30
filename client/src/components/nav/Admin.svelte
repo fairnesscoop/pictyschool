@@ -3,7 +3,6 @@
   import DashboardIcon from 'components/icons/DashboardIcon.svelte';
   import FolderIcon from 'components/icons/FolderIcon.svelte';
   import SchoolIcon from 'components/icons/SchoolIcon.svelte';
-  import LeadIcon from 'components/icons/LeadIcon.svelte';
   import UsersIcon from 'components/icons/UsersIcon.svelte';
   import CalendarIcon from 'components/icons/CalendarIcon.svelte';
   import OrderIcon from 'components/icons/OrderIcon.svelte';
@@ -14,7 +13,6 @@
   const productsPath = '/admin/products';
   const calendarPath = '/admin/calendar';
   const usersPath = '/admin/users';
-  const leadsPath = '/admin/leads';
   const ordersPath = '/admin/orders';
   const shippingCostsPath = '/admin/shipping-costs';
   const activeClass =
@@ -88,15 +86,6 @@
         <a class={$currentPath.includes(productsPath) ? activeLinkClass : linkClass} href={productsPath}>
           <FolderIcon className={'w-5 h-5'} />
           <span class="ml-4">{$_('products.breadcrumb')}</span>
-        </a>
-      </li>
-      <li class="relative px-6 py-3">
-        {#if $currentPath.includes(leadsPath)}
-          <span class={activeClass} aria-hidden="true"></span>
-        {/if}
-        <a class={$currentPath.includes(leadsPath) ? activeLinkClass : linkClass} href={leadsPath}>
-          <LeadIcon className={'w-5 h-5'} />
-          <span class="ml-4">{$_('leads.breadcrumb')}</span>
         </a>
       </li>
       <li class="relative px-6 py-3">
