@@ -32,9 +32,9 @@ export class UpdateShippingCostAction {
   @ApiOperation({ summary: 'Update shipping cost' })
   public async index(@Param() idDto: IdDTO, @Body() dto: ShippingCostDTO) {
     try {
-      const { price, grams } = dto;
+      const { price, weight } = dto;
       const id = await this.commandBus.execute(
-        new UpdateShippingCostCommand(idDto.id, grams, price)
+        new UpdateShippingCostCommand(idDto.id, weight, price)
       );
 
       return { id };

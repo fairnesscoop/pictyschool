@@ -32,9 +32,9 @@ export class UpdateProductAction {
   @ApiOperation({ summary: 'Update product' })
   public async index(@Param() idDto: IdDTO, @Body() dto: ProductDTO) {
     try {
-      const { title, description, unitPrice } = dto;
+      const { title, description, unitPrice, weight } = dto;
       const id = await this.commandBus.execute(
-        new UpdateProductCommand(idDto.id, title, unitPrice, description)
+        new UpdateProductCommand(idDto.id, title, unitPrice, weight, description)
       );
 
       return { id };

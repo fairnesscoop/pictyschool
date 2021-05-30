@@ -1,7 +1,7 @@
 export class ShippingCostView {
   constructor(
     public readonly id: string,
-    public readonly grams: number,
+    public readonly weight: number,
     public readonly price: number,
   ) {}
 }

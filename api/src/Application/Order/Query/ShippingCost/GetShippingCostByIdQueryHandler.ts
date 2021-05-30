@@ -21,7 +21,7 @@ export class GetShippingCostByIdQueryHandler {
 
     return new ShippingCostView(
       shippingCost.getId(),
-      shippingCost.getGrams(),
+      shippingCost.getWeight(),
       shippingCost.getPriceFromCents(),
     );
   }

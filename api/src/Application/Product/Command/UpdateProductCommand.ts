@@ -5,6 +5,7 @@ export class UpdateProductCommand implements ICommand {
     public readonly id: string,
     public readonly title: string,
     public readonly unitPrice: number,
+    public readonly weight: number,
     public readonly description?: string
   ) {}
 }

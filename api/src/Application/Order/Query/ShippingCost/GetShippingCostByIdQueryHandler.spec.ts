@@ -20,7 +20,7 @@ describe('GetShippingCostByIdQueryHandler', () => {
 
     const shippingcost = mock(ShippingCost);
     when(shippingcost.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
-    when(shippingcost.getGrams()).thenReturn(1000);
+    when(shippingcost.getWeight()).thenReturn(1000);
     when(shippingcost.getPriceFromCents()).thenReturn(9.99);
     when(
       shippingcostRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

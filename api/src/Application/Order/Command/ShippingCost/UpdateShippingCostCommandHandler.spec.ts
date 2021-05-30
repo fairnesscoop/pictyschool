@@ -51,7 +51,7 @@ describe('UpdateShippingCostCommandHandler', () => {
   });
 
   it('testShippingCostAlreadyExist', async () => {
-    when(shippingcost.getGrams()).thenReturn(100);
+    when(shippingcost.getWeight()).thenReturn(100);
     when(
       shippingcostRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(shippingcost));
@@ -77,7 +77,7 @@ describe('UpdateShippingCostCommandHandler', () => {
 
   it('testSuccessfullyUpdated', async () => {
     when(shippingcost.getId()).thenReturn('8a9df044-94a7-4e6c-abd1-ecdd69d788d5');
-    when(shippingcost.getGrams()).thenReturn(1000);
+    when(shippingcost.getWeight()).thenReturn(1000);
     when(
       shippingcostRepository.findOneById('8a9df044-94a7-4e6c-abd1-ecdd69d788d5')
     ).thenResolve(instance(shippingcost));

@@ -18,6 +18,7 @@ describe('UpdateProductCommandHandler', () => {
     '8a9df044-94a7-4e6c-abd1-ecdd69d788d5',
     'Mug',
     9.99,
+    1000,
     'Mug portrait'
   );
 
@@ -46,7 +47,7 @@ describe('UpdateProductCommandHandler', () => {
       verify(isProductAlreadyExist.isSatisfiedBy(anything())).never();
       verify(productRepository.save(anything())).never();
       verify(
-        product.update(anything(), anything(), anything())
+        product.update(anything(), anything(), anything(), anything())
       ).never();
     }
   });
@@ -70,7 +71,7 @@ describe('UpdateProductCommandHandler', () => {
         isProductAlreadyExist.isSatisfiedBy('Mug')
       ).once();
       verify(
-        product.update(anything(), anything(), anything())
+        product.update(anything(), anything(), anything(), anything())
       ).never();
       verify(productRepository.save(anything())).never();
     }
@@ -92,7 +93,8 @@ describe('UpdateProductCommandHandler', () => {
       product.update(
         'Mug',
         'Mug portrait',
-        999
+        999,
+        1000
       )
     ).calledBefore(productRepository.save(instance(product)));
     verify(productRepository.save(instance(product))).once();

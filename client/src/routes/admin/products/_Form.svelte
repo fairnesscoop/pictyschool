@@ -6,13 +6,14 @@
 
   export let unitPrice = '';
   export let description = '';
+  export let weight = '';
   export let title = '';
   export let loading;
 
   const dispatch = createEventDispatcher();
 
   const submit = () => {
-    dispatch('save', { title, description, unitPrice });
+    dispatch('save', { title, description, unitPrice, weight });
   };
 </script>
 
@@ -30,8 +31,12 @@
     type={'money'}
     label={$_('products.form.unit_price')}
     bind:value={unitPrice} />
+  <Input
+    type={'number'}
+    label={$_('products.form.weight')}
+    bind:value={weight} />
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!title || !unitPrice || loading} />
+    disabled={!title || !unitPrice || !weight || loading} />
 </form>

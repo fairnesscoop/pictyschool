@@ -16,6 +16,7 @@ describe('CreateProductCommandHandler', () => {
     'Mug',
     'Mug portrait enfant',
     9.99,
+    1000
   );
 
   beforeEach(() => {
@@ -41,6 +42,7 @@ describe('CreateProductCommandHandler', () => {
             'Mug',
             'Mug portrait enfant',
             999,
+            1000
           )
         )
       )
@@ -58,6 +60,7 @@ describe('CreateProductCommandHandler', () => {
             'Mug',
             'Mug portrait enfant',
             999,
+            1000
           )
         )
       )

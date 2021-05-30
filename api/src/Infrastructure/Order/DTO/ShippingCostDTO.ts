@@ -5,7 +5,7 @@ export class ShippingCostDTO {
   @ApiProperty()
   @IsPositive()
   @IsNotEmpty()
-  public grams: number;
+  public weight: number;
 
   @ApiProperty()
   @IsPositive()

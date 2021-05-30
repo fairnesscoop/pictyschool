@@ -13,4 +13,9 @@ export class ProductDTO {
   @IsPositive()
   @IsNotEmpty()
   public unitPrice: number;
+
+  @ApiProperty()
+  @IsPositive()
+  @IsNotEmpty()
+  public weight: number;
 }
