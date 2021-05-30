@@ -9,5 +9,6 @@ describe('ShippingCost', () => {
     expect(shippingcost.getId()).toBeUndefined();
     expect(shippingcost.getGrams()).toBe(1000);
     expect(shippingcost.getPrice()).toBe(999);
+    expect(shippingcost.getPriceFromCents()).toBe(9.99);
   });
 });

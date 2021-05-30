@@ -70,6 +70,11 @@
       "price": "Prix",
       "grams": "Poids en grammes"
     },
+    "list": {
+      "grams": "Poids",
+      "price": "Montant",
+      "from": "À partir de {grams} grammes"
+    },
     "errors": {
       "already_exist": "Un frais de port a déjà été configuré pour ce poids."
     }
