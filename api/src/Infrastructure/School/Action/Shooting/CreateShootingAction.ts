@@ -31,14 +31,15 @@ export class CreateShootingAction {
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Create a shooting' })
   public async index(@Param() idDto: IdDTO, @Body() dto: ShootingDTO) {
-    const { name, shootingDate, closingDate, notice } = dto;
+    const { name, shootingDate, groupClosingDate, individualClosingDate, notice } = dto;
 
     try {
       const id = await this.commandBus.execute(
         new CreateShootingCommand(
           name,
           new Date(shootingDate),
-          new Date(closingDate),
+          new Date(groupClosingDate),
+          new Date(individualClosingDate),
           idDto.id,
           notice
         )

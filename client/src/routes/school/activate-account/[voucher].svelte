@@ -5,7 +5,7 @@
 </script>
 
 <script>
-  import { goto, stores } from '@sapper/app';
+  import { goto } from '@sapper/app';
   import { post } from 'utils/axios';
   import { _ } from 'svelte-i18n';
   import { errorNormalizer } from 'normalizer/errors';
@@ -20,9 +20,7 @@
   let lastName = '';
   let password = '';
   let loading = false;
-  let title = $_('school.activate.title');
-
-  const { session } = stores();
+  const title = $_('school.activate.title');
 
   const handleSubmit = async () => {
     try {

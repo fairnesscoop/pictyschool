@@ -15,23 +15,19 @@
     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
       <th class="px-4 py-3">{$_('schools.shootings.list.name')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.shooting_date')}</th>
-      <th class="px-4 py-3">{$_('schools.shootings.list.closing_date')}</th>
-      <th class="px-4 py-3">{$_('schools.shootings.list.class')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.photos')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.orders')}</th>
+      <th class="px-4 py-3">{$_('schools.shootings.list.class')}</th>
       <th class="px-4 py-3">{$_('schools.shootings.list.status')}</th>
       <th class="px-4 py-3">{$_('common.detail')}</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, name, closingDate, status, shootingDate } (id)}
+    {#each items as { id, name, groupClosingDate, status, shootingDate } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{name}</td>
         <td class="px-4 py-3 text-sm">
           {format(new Date(shootingDate), 'dd/MM/yyyy', { locale: fr })}
-        </td>
-        <td class="px-4 py-3 text-sm">
-          {format(new Date(closingDate), 'dd/MM/yyyy', { locale: fr })}
         </td>
         <td class="px-4 py-3">0</td>
         <td class="px-4 py-3">0</td>

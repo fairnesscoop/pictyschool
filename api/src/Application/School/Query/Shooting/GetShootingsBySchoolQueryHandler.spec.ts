@@ -1,10 +1,10 @@
 import { mock, instance, when, verify } from 'ts-mockito';
 import { Shooting, ShootingStatus } from 'src/Domain/School/Shooting.entity';
-import { ShootingView } from '../../View/ShootingView';
 import { GetShootingsBySchoolQuery } from './GetShootingsBySchoolQuery';
 import { GetShootingsBySchoolQueryHandler } from './GetShootingsBySchoolQueryHandler';
 import { ShootingRepository } from 'src/Infrastructure/School/Repository/ShootingRepository';
 import { School } from 'src/Domain/School/School.entity';
+import { ShootingSummaryView } from '../../View/ShootingSummaryView';
 
 describe('GetShootingBySchoolQueryHandler', () => {
   it('testGetShootings', async () => {
@@ -16,8 +16,7 @@ describe('GetShootingBySchoolQueryHandler', () => {
       '4de2ffc4-e835-44c8-95b7-17c171c09873'
     );
     when(shooting.getName()).thenReturn('Prise de vue fin année');
-    when(shooting.getClosingDate()).thenReturn(new Date('2021-09-01'));
-    when(shooting.getShootingDate()).thenReturn(new Date('2021-04-18'));
+    when(shooting.getShootingDate()).thenReturn(new Date('2021-09-01'));
     when(shooting.getSchool()).thenReturn(instance(school));
     when(shooting.getStatus()).thenReturn(ShootingStatus.DISABLED);
 
@@ -32,11 +31,10 @@ describe('GetShootingBySchoolQueryHandler', () => {
     );
 
     const expectedResult = [
-      new ShootingView(
+      new ShootingSummaryView(
         '4de2ffc4-e835-44c8-95b7-17c171c09873',
         'Prise de vue fin année',
         ShootingStatus.DISABLED,
-        new Date('2021-04-18'),
         new Date('2021-09-01')
       )
     ];

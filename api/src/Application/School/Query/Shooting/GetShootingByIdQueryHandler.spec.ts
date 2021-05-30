@@ -18,13 +18,15 @@ describe('GetShootingByIdQueryHandler', () => {
       ShootingStatus.DISABLED,
       new Date('2021-04-18'),
       new Date('2021-09-01'),
+      new Date('2021-12-01'),
       'Notice'
     );
 
     const shooting = mock(Shooting);
     when(shooting.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
     when(shooting.getName()).thenReturn('Prise de vue fin année');
-    when(shooting.getClosingDate()).thenReturn(new Date('2021-09-01'));
+    when(shooting.getGroupClosingDate()).thenReturn(new Date('2021-09-01'));
+    when(shooting.getIndividualClosingDate()).thenReturn(new Date('2021-12-01'));
     when(shooting.getShootingDate()).thenReturn(new Date('2021-04-18'));
     when(shooting.getNotice()).thenReturn('Notice');
     when(shooting.getStatus()).thenReturn(ShootingStatus.DISABLED);

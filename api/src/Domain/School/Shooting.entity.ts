@@ -18,7 +18,10 @@ export class Shooting {
   private shootingDate: Date;
 
   @Column({ type: 'date', nullable: false })
-  private closingDate: Date;
+  private groupClosingDate: Date;
+
+  @Column({ type: 'date', nullable: false })
+  private individualClosingDate: Date;
 
   @Column({ type: 'varchar', nullable: true })
   private notice: string;
@@ -32,14 +35,16 @@ export class Shooting {
   constructor(
     name: string,
     shootingDate: Date,
-    closingDate: Date,
+    groupClosingDate: Date,
+    individualClosingDate: Date,
     status: ShootingStatus,
     school: School,
     notice?: string
   ) {
     this.name = name;
     this.shootingDate = shootingDate;
-    this.closingDate = closingDate;
+    this.groupClosingDate = groupClosingDate;
+    this.individualClosingDate = individualClosingDate;
     this.status = status;
     this.school = school;
     this.notice = notice;
@@ -57,8 +62,12 @@ export class Shooting {
     return this.shootingDate;
   }
 
-  public getClosingDate(): Date {
-    return this.closingDate;
+  public getGroupClosingDate(): Date {
+    return this.groupClosingDate;
+  }
+
+  public getIndividualClosingDate(): Date {
+    return this.individualClosingDate;
   }
 
   public getNotice(): string {
@@ -76,12 +85,14 @@ export class Shooting {
   public update(
     name: string,
     shootingDate: Date,
-    closingDate: Date,
+    groupClosingDate: Date,
+    individualClosingDate: Date,
     notice?: string,
   ): void {
     this.name = name;
     this.shootingDate = shootingDate;
-    this.closingDate = closingDate;
+    this.groupClosingDate = groupClosingDate;
+    this.individualClosingDate = individualClosingDate;
     this.notice = notice;
   }
 }

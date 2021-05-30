@@ -19,6 +19,7 @@ describe('CreateShootingCommandHandler', () => {
     'Prise de vue début année',
     new Date('2021-04-18'),
     new Date('2021-09-01'),
+    new Date('2021-12-01'),
     '553e2b3c-eb11-42b1-8f76-903add071ca7',
     'Message notice'
   );
@@ -47,6 +48,7 @@ describe('CreateShootingCommandHandler', () => {
             'Prise de vue début année',
             new Date('2021-04-18'),
             new Date('2021-09-01'),
+            new Date('2021-12-01'),
             ShootingStatus.DISABLED,
             instance(school),
             'Message notice'
@@ -66,6 +68,7 @@ describe('CreateShootingCommandHandler', () => {
             'Prise de vue début année',
             new Date('2021-04-18'),
             new Date('2021-09-01'),
+            new Date('2021-12-01'),
             ShootingStatus.DISABLED,
             instance(school),
             'Message notice'

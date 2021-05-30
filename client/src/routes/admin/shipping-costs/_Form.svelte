@@ -5,7 +5,7 @@
   import Button from 'components/inputs/Button.svelte';
 
   export let price = '';
-  export let weight = 0;
+  export let weight = '';
   export let loading;
 
   const dispatch = createEventDispatcher();

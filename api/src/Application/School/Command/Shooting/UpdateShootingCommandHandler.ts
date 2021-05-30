@@ -12,14 +12,14 @@ export class UpdateShootingCommandHandler {
   ) { }
 
   public async execute(command: UpdateShootingCommand): Promise<string> {
-    const { name, closingDate, shootingDate, notice, id } = command;
+    const { name, groupClosingDate, individualClosingDate, shootingDate, notice, id } = command;
 
     const shooting = await this.shootingRepository.findOneById(id);
     if (!shooting) {
       throw new ShootingNotFoundException();
     }
 
-    shooting.update(name, shootingDate, closingDate, notice);
+    shooting.update(name, shootingDate, groupClosingDate, individualClosingDate, notice);
     await this.shootingRepository.save(shooting);
 
     return shooting.getId();

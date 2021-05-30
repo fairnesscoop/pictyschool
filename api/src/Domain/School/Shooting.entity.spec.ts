@@ -9,6 +9,7 @@ describe('Shooting', () => {
       'Prise de vue début année',
       new Date('2021-04-17'),
       new Date('2021-09-01'),
+      new Date('2021-12-01'),
       ShootingStatus.DISABLED,
       instance(school),
       'Fin des commandes le 10'
@@ -16,7 +17,8 @@ describe('Shooting', () => {
     expect(shooting.getId()).toBeUndefined();
     expect(shooting.getName()).toBe('Prise de vue début année');
     expect(shooting.getShootingDate()).toMatchObject(new Date('2021-04-17T00:00:00.000Z'));
-    expect(shooting.getClosingDate()).toMatchObject(new Date('2021-09-01T00:00:00.000Z'));
+    expect(shooting.getGroupClosingDate()).toMatchObject(new Date('2021-09-01T00:00:00.000Z'));
+    expect(shooting.getIndividualClosingDate()).toMatchObject(new Date('2021-12-01T00:00:00.000Z'));
     expect(shooting.getStatus()).toBe(ShootingStatus.DISABLED);
     expect(shooting.getSchool()).toBe(instance(school));
     expect(shooting.getNotice()).toBe('Fin des commandes le 10');
@@ -28,6 +30,7 @@ describe('Shooting', () => {
       'Prise de vue début année',
       new Date('2021-04-17'),
       new Date('2021-09-01'),
+      new Date('2021-12-01'),
       ShootingStatus.DISABLED,
       instance(school)
     );
@@ -36,14 +39,15 @@ describe('Shooting', () => {
       'Prise de vue fin année',
       new Date('2022-04-17'),
       new Date('2022-09-01'),
+      new Date('2022-12-01'),
       'Message notice'
     );
-
 
     expect(shooting.getId()).toBeUndefined();
     expect(shooting.getName()).toBe('Prise de vue fin année');
     expect(shooting.getShootingDate()).toMatchObject(new Date('2022-04-17T00:00:00.000Z'));
-    expect(shooting.getClosingDate()).toMatchObject(new Date('2022-09-01T00:00:00.000Z'));
+    expect(shooting.getGroupClosingDate()).toMatchObject(new Date('2022-09-01T00:00:00.000Z'));
+    expect(shooting.getIndividualClosingDate()).toMatchObject(new Date('2022-12-01T00:00:00.000Z'));
     expect(shooting.getStatus()).toBe(ShootingStatus.DISABLED);
     expect(shooting.getSchool()).toBe(instance(school));
     expect(shooting.getNotice()).toBe('Message notice');

@@ -68,8 +68,9 @@
   <Form
     on:save={onSave}
     name={shooting.name}
-    closingDate={shooting.closingDate}
+    groupClosingDate={shooting.groupClosingDate}
     shootingDate={shooting.shootingDate}
     notice={shooting.notice}
+    individualClosingDate={shooting.individualClosingDate}
     {loading} />
 {/if}

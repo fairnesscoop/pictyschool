@@ -6,8 +6,8 @@ import { IdDTO } from 'src/Infrastructure/Common/DTO/IdDTO';
 import { Roles } from 'src/Infrastructure/User/Decorator/Roles';
 import { RolesGuard } from 'src/Infrastructure/User/Security/RolesGuard';
 import { UserRole } from 'src/Domain/User/User.entity';
-import { ShootingView } from 'src/Application/School/View/ShootingView';
 import { GetShootingsBySchoolQuery } from 'src/Application/School/Query/Shooting/GetShootingsBySchoolQuery';
+import { ShootingSummaryView } from 'src/Application/School/View/ShootingSummaryView';
 
 @Controller('schools')
 @ApiTags('School shooting')
@@ -22,7 +22,7 @@ export class GetSchoolShootingsAction {
   @Get(':id/shootings')
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Get school shootings' })
-  public async index(@Param() dto: IdDTO): Promise<ShootingView[]> {
+  public async index(@Param() dto: IdDTO): Promise<ShootingSummaryView[]> {
     try {
       return await this.queryBus.execute(new GetShootingsBySchoolQuery(dto.id));
     } catch (e) {
