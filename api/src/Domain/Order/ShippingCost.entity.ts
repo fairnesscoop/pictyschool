@@ -31,4 +31,9 @@ export class ShippingCost {
   public getPriceFromCents(): number {
     return this.price / 100;
   }
+
+  public update(grams: number, price: number): void {
+    this.grams = grams;
+    this.price = price;
+  }
 }

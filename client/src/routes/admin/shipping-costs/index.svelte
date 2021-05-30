@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import { get } from 'utils/axios';
+  import { get, del } from 'utils/axios';
   import { errorNormalizer } from 'normalizer/errors';
   import Breadcrumb from 'components/Breadcrumb.svelte';
   import H4Title from 'components/H4Title.svelte';
@@ -13,7 +13,7 @@
   let errors = [];
   let items = [];
 
-  const fetchProducts = async () => {
+  const fetchShippingCosts = async () => {
     try {
       items = (await get('shipping-costs')).data;
     } catch (e) {
@@ -21,7 +21,16 @@
     }
   };
 
-  onMount(fetchProducts);
+  const handleDelete = async ({detail}) => {
+    try {
+      await del(`shipping-costs/${detail}`);
+      items = items.filter((item) => item.id !== detail);
+    } catch (e) {
+      errors = errorNormalizer(e);
+    }
+  };
+
+  onMount(fetchShippingCosts);
 </script>
 
 <svelte:head>
@@ -36,6 +45,6 @@
 </div>
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
   <div class="w-full overflow-x-auto">
-    <Table {items} />
+    <Table {items} on:delete={handleDelete} />
   </div>
 </div>

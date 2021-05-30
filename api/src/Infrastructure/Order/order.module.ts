@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateShippingCostCommandHandler } from 'src/Application/Order/Command/ShippingCost/CreateShippingCostCommandHandler';
+import { RemoveShippingCostCommandHandler } from 'src/Application/Order/Command/ShippingCost/RemoveShippingCostCommandHandler';
+import { UpdateShippingCostCommandHandler } from 'src/Application/Order/Command/ShippingCost/UpdateShippingCostCommandHandler';
 import { GetShippingCostByIdQueryHandler } from 'src/Application/Order/Query/ShippingCost/GetShippingCostByIdQueryHandler';
 import { GetShippingCostsQueryHandler } from 'src/Application/Order/Query/ShippingCost/GetShippingCostsQueryHandler';
 import { ShippingCost } from 'src/Domain/Order/ShippingCost.entity';
@@ -9,6 +11,8 @@ import { BusModule } from '../bus.module';
 import { CreateShippingCostAction } from './Action/ShippingCost/CreateShippingCostAction';
 import { GetShippingCostAction } from './Action/ShippingCost/GetShippingCostAction';
 import { GetShippingCostsAction } from './Action/ShippingCost/GetShippingCostsAction';
+import { RemoveShippingCostAction } from './Action/ShippingCost/RemoveShippingCostAction';
+import { UpdateShippingCostAction } from './Action/ShippingCost/UpdateShippingCostAction';
 import { ShippingCostRepository } from './Repository/ShippingCostRepository';
 
 @Module({
@@ -21,14 +25,18 @@ import { ShippingCostRepository } from './Repository/ShippingCostRepository';
   controllers: [
     GetShippingCostsAction,
     CreateShippingCostAction,
-    GetShippingCostAction
+    GetShippingCostAction,
+    UpdateShippingCostAction,
+    RemoveShippingCostAction
   ],
   providers: [
     { provide: 'IShippingCostRepository', useClass: ShippingCostRepository },
     IsShippingCostAlreadyExist,
     CreateShippingCostCommandHandler,
     GetShippingCostsQueryHandler,
-    GetShippingCostByIdQueryHandler
+    GetShippingCostByIdQueryHandler,
+    RemoveShippingCostCommandHandler,
+    UpdateShippingCostCommandHandler
   ]
 })
 export class OrderModule {}

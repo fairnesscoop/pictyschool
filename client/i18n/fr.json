@@ -70,13 +70,20 @@
       "price": "Prix",
       "grams": "Poids en grammes"
     },
+    "edit": {
+      "title": "Edition du frais de port"
+    },
     "list": {
       "grams": "Poids",
       "price": "Montant",
       "from": "À partir de {grams} grammes"
     },
     "errors": {
-      "already_exist": "Un frais de port a déjà été configuré pour ce poids."
+      "already_exist": "Un frais de port a déjà été configuré pour ce poids.",
+      "not_found": "Le frais de port recherché n'existe pas."
+    },
+    "delete": {
+      "confirm": "Êtes-vous sûr de vouloir supprimer ce frais de port ?"
     }
   },
   "leads": {
