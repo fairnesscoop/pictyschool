@@ -286,8 +286,9 @@
       },
       "form": {
         "name": "Nom de la prise de vue",
-        "closing_date": "Date de la fermeture des commandes",
-        "shooting_date": "Date de la prise de vue"
+        "closing_date": "Date de la fermeture des commandes groupées",
+        "shooting_date": "Date de la prise de vue",
+        "notice": "Message d'information qui sera affiché au client"
       },
       "status": {
         "enabled": "En ligne",
@@ -295,7 +296,7 @@
       },
       "list": {
         "name": "Prise de vue",
-        "closing_date": "Fermeture commandes",
+        "closing_date": "Fermeture commandes groupées",
         "shooting_date": "Date",
         "status": "Etat",
         "class": "Nb classes",

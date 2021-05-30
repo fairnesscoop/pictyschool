@@ -7,5 +7,6 @@ export class ShootingView {
     public readonly status: ShootingStatus,
     public readonly shootingDate: Date,
     public readonly closingDate: Date,
+    public readonly notice?: string,
   ) {}
 }

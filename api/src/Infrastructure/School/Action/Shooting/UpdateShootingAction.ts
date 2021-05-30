@@ -32,13 +32,14 @@ export class UpdateShootingAction {
   @ApiOperation({ summary: 'Update shooting' })
   public async index(@Param() idDto: IdDTO, @Body() dto: ShootingDTO) {
     try {
-      const { name, closingDate, shootingDate } = dto;
+      const { name, closingDate, shootingDate, notice } = dto;
       const id = await this.commandBus.execute(
         new UpdateShootingCommand(
           idDto.id,
           name,
           new Date(shootingDate),
-          new Date(closingDate)
+          new Date(closingDate),
+          notice
         )
       );
 

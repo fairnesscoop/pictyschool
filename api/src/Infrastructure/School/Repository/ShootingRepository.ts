@@ -37,6 +37,7 @@ export class ShootingRepository implements IShootingRepository {
         'shooting.id',
         'shooting.name',
         'shooting.status',
+        'shooting.notice',
         'shooting.shootingDate',
         'shooting.closingDate'
       ])

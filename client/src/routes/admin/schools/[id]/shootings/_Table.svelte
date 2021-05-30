@@ -1,6 +1,5 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { createEventDispatcher } from 'svelte';
   import { format } from 'date-fns';
   import { fr } from 'date-fns/locale';
   import SeeLink from 'components/links/SeeLink.svelte';
@@ -9,8 +8,6 @@
 
   export let schoolId;
   export let items;
-
-  const dispatch = createEventDispatcher();
 </script>
 
 <table class="w-full whitespace-no-wrap">

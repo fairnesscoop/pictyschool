@@ -1,11 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNotEmpty } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsDateString, IsNotEmpty, IsOptional } from 'class-validator';
 import { DateGreaterOrEqualThan } from 'src/Infrastructure/Common/Validator/DateGreaterOrEqualThan';
 
 export class ShootingDTO {
   @ApiProperty()
   @IsNotEmpty()
   public name: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  public notice: string;
 
   @ApiProperty()
   @IsNotEmpty()
