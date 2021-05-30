@@ -61,6 +61,19 @@
       "event_not_found": "Le rendez-vous que vous cherchez n'existe pas."
     }
   },
+  "shipping_costs": {
+    "breadcrumb": "Frais de port",
+    "add": {
+      "title": "Ajouter un frais de port"
+    },
+    "form": {
+      "price": "Prix",
+      "grams": "Poids en grammes"
+    },
+    "errors": {
+      "already_exist": "Un frais de port a déjà été configuré pour ce poids."
+    }
+  },
   "leads": {
     "breadcrumb": "Prospects",
     "statutes": {

@@ -14,4 +14,12 @@ export class ShippingCostRepository implements IShippingCostRepository {
   public save(shippingCost: ShippingCost): Promise<ShippingCost> {
     return this.repository.save(shippingCost);
   }
+
+  public findOneByGrams(grams: number): Promise<ShippingCost | undefined> {
+    return this.repository
+      .createQueryBuilder('shippingCost')
+      .select([ 'shippingCost.id' ])
+      .where('shippingCost.grams = :grams', { grams })
+      .getOne();
+  }
 }
