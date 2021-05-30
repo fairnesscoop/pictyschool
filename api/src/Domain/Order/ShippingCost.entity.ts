@@ -6,13 +6,13 @@ export class ShippingCost {
   private id: string;
 
   @Column({ type: 'integer', nullable: false, default: 0 })
-  private grams: number;
+  private weight: number;
 
   @Column({ type: 'integer', nullable: false, default: 0 })
   private price: number;
 
-  constructor(grams: number, price: number) {
-    this.grams = grams;
+  constructor(weight: number, price: number) {
+    this.weight = weight;
     this.price = price;
   }
 
@@ -20,8 +20,8 @@ export class ShippingCost {
     return this.id;
   }
 
-  public getGrams(): number {
-    return this.grams;
+  public getWeight(): number {
+    return this.weight;
   }
 
   public getPrice(): number {
@@ -32,8 +32,8 @@ export class ShippingCost {
     return this.price / 100;
   }
 
-  public update(grams: number, price: number): void {
-    this.grams = grams;
+  public update(weight: number, price: number): void {
+    this.weight = weight;
     this.price = price;
   }
 }

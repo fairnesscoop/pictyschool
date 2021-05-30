@@ -14,10 +14,19 @@ export class Product {
   @Column({ type: 'integer', nullable: false, default: 0 })
   private unitPrice: number;
 
-  constructor(title: string, description: string, unitPrice: number) {
+  @Column({ type: 'integer', nullable: false, default: 0 })
+  private weight: number;
+
+  constructor(
+    title: string,
+    description: string,
+    unitPrice: number,
+    weight: number
+  ) {
     this.title = title;
     this.description = description;
     this.unitPrice = unitPrice;
+    this.weight = weight;
   }
 
   public getId(): string {
@@ -36,13 +45,23 @@ export class Product {
     return this.unitPrice;
   }
 
+  public getWeight(): number {
+    return this.weight;
+  }
+
   public getPriceFromCents(): number {
     return this.unitPrice / 100;
   }
 
-  public update(title: string, description: string, unitPrice: number): void {
+  public update(
+    title: string,
+    description: string,
+    unitPrice: number,
+    weight: number
+  ): void {
     this.title = title;
     this.description = description;
     this.unitPrice = unitPrice;
+    this.weight = weight;
   }
 }

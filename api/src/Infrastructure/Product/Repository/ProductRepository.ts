@@ -36,6 +36,7 @@ export class ProductRepository implements IProductRepository {
       .select([
         'product.id',
         'product.title',
+        'product.weight',
         'product.description',
         'product.unitPrice'
       ])
@@ -43,13 +44,14 @@ export class ProductRepository implements IProductRepository {
       .getOne();
   }
 
-  public findProducts(page: number = 1): Promise<[Product[], number]> {
+  public findProducts(page = 1): Promise<[Product[], number]> {
     return this.repository
       .createQueryBuilder('product')
       .select([
         'product.id',
         'product.title',
         'product.description',
+        'product.weight',
         'product.unitPrice'
       ])
       .orderBy('product.title', 'ASC')

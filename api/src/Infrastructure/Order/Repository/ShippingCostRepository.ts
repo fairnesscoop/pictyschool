@@ -19,11 +19,11 @@ export class ShippingCostRepository implements IShippingCostRepository {
     this.repository.delete(shippingCost.getId());
   }
 
-  public findOneByGrams(grams: number): Promise<ShippingCost | undefined> {
+  public findOneByWeight(weight: number): Promise<ShippingCost | undefined> {
     return this.repository
       .createQueryBuilder('shippingCost')
       .select([ 'shippingCost.id' ])
-      .where('shippingCost.grams = :grams', { grams })
+      .where('shippingCost.weight = :weight', { weight })
       .getOne();
   }
 
@@ -32,7 +32,7 @@ export class ShippingCostRepository implements IShippingCostRepository {
       .createQueryBuilder('shippingcost')
       .select([
         'shippingcost.id',
-        'shippingcost.grams',
+        'shippingcost.weight',
         'shippingcost.price'
       ])
       .where('shippingcost.id = :id', { id })
@@ -45,9 +45,9 @@ export class ShippingCostRepository implements IShippingCostRepository {
       .select([
         'shippingcost.id',
         'shippingcost.price',
-        'shippingcost.grams'
+        'shippingcost.weight'
       ])
-      .orderBy('shippingcost.grams', 'ASC')
+      .orderBy('shippingcost.weight', 'ASC')
       .getMany();
   }
 }

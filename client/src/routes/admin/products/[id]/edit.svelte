@@ -10,10 +10,10 @@
   import { onMount } from 'svelte';
   import { get, put } from 'utils/axios';
   import Breadcrumb from 'components/Breadcrumb.svelte';
-  import Form from '../_Form.svelte';
   import { errorNormalizer } from 'normalizer/errors';
   import ServerErrors from 'components/ServerErrors.svelte';
   import H4Title from 'components/H4Title.svelte';
+  import Form from '../_Form.svelte';
 
   export let id;
 
@@ -56,6 +56,7 @@
     on:save={onSave}
     title={product.title}
     description={product.description}
+    weight={product.weight}
     unitPrice={product.unitPrice}
     {loading} />
 {/if}

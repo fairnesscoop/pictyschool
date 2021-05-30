@@ -15,7 +15,7 @@ export class UpdateProductCommandHandler {
   ) {}
 
   public async execute(command: UpdateProductCommand): Promise<string> {
-    const { id, title, description, unitPrice } = command;
+    const { id, title, description, unitPrice, weight } = command;
 
     const product = await this.productRepository.findOneById(id);
     if (!product) {
@@ -29,7 +29,7 @@ export class UpdateProductCommandHandler {
       throw new ProductAlreadyExistException();
     }
 
-    product.update(title, description, Math.round(unitPrice * 100));
+    product.update(title, description, Math.round(unitPrice * 100), weight);
 
     await this.productRepository.save(product);
 

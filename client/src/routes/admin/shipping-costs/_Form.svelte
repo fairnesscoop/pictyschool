@@ -5,13 +5,13 @@
   import Button from 'components/inputs/Button.svelte';
 
   export let price = '';
-  export let grams = 0;
+  export let weight = 0;
   export let loading;
 
   const dispatch = createEventDispatcher();
 
   const submit = () => {
-    dispatch('save', { price, grams });
+    dispatch('save', { price, weight });
   };
 </script>
 
@@ -20,8 +20,8 @@
   class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
   <Input
     type={"number"}
-    label={$_('shipping_costs.form.grams')}
-    bind:value={grams} />
+    label={$_('shipping_costs.form.weight')}
+    bind:value={weight} />
   <Input
     type={'money'}
     label={$_('shipping_costs.form.price')}
@@ -29,5 +29,5 @@
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!grams || !price || loading} />
+    disabled={!weight || !price || loading} />
 </form>

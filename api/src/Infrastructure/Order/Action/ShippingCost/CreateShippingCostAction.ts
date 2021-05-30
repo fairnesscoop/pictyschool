@@ -29,11 +29,11 @@ export class CreateShippingCostAction {
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Create new shipping cost' })
   public async index(@Body() dto: ShippingCostDTO) {
-    const { grams, price } = dto;
+    const { weight, price } = dto;
 
     try {
       const id = await this.commandBus.execute(
-        new CreateShippingCostCommand(grams, price)
+        new CreateShippingCostCommand(weight, price)
       );
 
       return { id };

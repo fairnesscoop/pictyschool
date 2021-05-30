@@ -15,20 +15,20 @@ describe('IsShippingCostAlreadyExist', () => {
   });
 
   it('testShippingCostAlreadyExist', async () => {
-    when(shippingCostRepository.findOneByGrams(100)).thenResolve(
+    when(shippingCostRepository.findOneByWeight(100)).thenResolve(
       new ShippingCost(100, 99)
     );
     expect(await isShippingCostAlreadyExist.isSatisfiedBy(100)).toBe(
       true
     );
-    verify(shippingCostRepository.findOneByGrams(100)).once();
+    verify(shippingCostRepository.findOneByWeight(100)).once();
   });
 
   it('testShippingCostDontExist', async () => {
-    when(shippingCostRepository.findOneByGrams(100)).thenResolve(null);
+    when(shippingCostRepository.findOneByWeight(100)).thenResolve(null);
     expect(await isShippingCostAlreadyExist.isSatisfiedBy(100)).toBe(
       false
     );
-    verify(shippingCostRepository.findOneByGrams(100)).once();
+    verify(shippingCostRepository.findOneByWeight(100)).once();
   });
 });

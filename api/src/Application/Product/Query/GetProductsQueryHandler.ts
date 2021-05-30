@@ -28,6 +28,7 @@ export class GetProductsQueryHandler {
           product.getId(),
           product.getTitle(),
           product.getPriceFromCents(),
+          product.getWeight(),
           product.getDescription(),
         )
       );

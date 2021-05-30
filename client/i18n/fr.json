@@ -68,15 +68,15 @@
     },
     "form": {
       "price": "Prix",
-      "grams": "Poids en grammes"
+      "weight": "Poids en grammes"
     },
     "edit": {
       "title": "Edition du frais de port"
     },
     "list": {
-      "grams": "Poids",
+      "weight": "Poids",
       "price": "Montant",
-      "from": "À partir de {grams} grammes"
+      "from": "À partir de {weight} grammes"
     },
     "errors": {
       "already_exist": "Un frais de port a déjà été configuré pour ce poids.",
@@ -152,7 +152,9 @@
     "list": {
       "title": "Nom du produit",
       "description": "Description",
-      "unit_price": "Prix unitaire TTC"
+      "unit_price": "Prix unitaire TTC",
+      "weight": "Poids",
+      "grams": "{weight} grammes"
     },
     "add": {
       "title": "Ajouter un produit"
@@ -166,7 +168,8 @@
     "form": {
       "title": "Nom du produit",
       "description": "Description",
-      "unit_price": "Prix unitaire TTC"
+      "unit_price": "Prix unitaire TTC",
+      "weight": "Poids en grammes"
     },
     "errors": {
       "already_exist": "Un produit avec ce nom existe déjà.",

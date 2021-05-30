@@ -15,14 +15,14 @@ export class CreateProductCommandHandler {
   ) {}
 
   public async execute(command: CreateProductCommand): Promise<string> {
-    const { title, description, unitPrice } = command;
+    const { title, description, unitPrice, weight } = command;
 
     if (true === (await this.isProductAlreadyExist.isSatisfiedBy(title))) {
       throw new ProductAlreadyExistException();
     }
 
     const product = await this.productRepository.save(
-      new Product(title, description, Math.round(unitPrice * 100))
+      new Product(title, description, Math.round(unitPrice * 100), weight)
     );
 
     return product.getId();

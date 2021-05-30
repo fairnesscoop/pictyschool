@@ -54,6 +54,6 @@
   <Form
     on:save={onSave}
     price={shippingCost.price}
-    grams={shippingCost.grams}
+    weight={shippingCost.weight}
     {loading} />
 {/if}

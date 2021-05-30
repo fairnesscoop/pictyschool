@@ -19,7 +19,7 @@ export class GetShippingCostsQueryHandler {
       shippingcostViews.push(
         new ShippingCostView(
           shippingCost.getId(),
-          shippingCost.getGrams(),
+          shippingCost.getWeight(),
           shippingCost.getPriceFromCents(),
         )
       );

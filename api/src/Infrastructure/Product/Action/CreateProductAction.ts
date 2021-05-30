@@ -29,11 +29,11 @@ export class CreateProductAction {
   @Roles(UserRole.PHOTOGRAPHER)
   @ApiOperation({ summary: 'Create new product' })
   public async index(@Body() dto: ProductDTO) {
-    const { title, description, unitPrice } = dto;
+    const { title, description, unitPrice, weight } = dto;
 
     try {
       const id = await this.commandBus.execute(
-        new CreateProductCommand(title, description, unitPrice)
+        new CreateProductCommand(title, description, unitPrice, weight)
       );
 
       return { id };

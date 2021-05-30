@@ -16,6 +16,7 @@ describe('GetProductByIdQueryHandler', () => {
       'eb9e1d9b-dce2-48a9-b64f-f0872f3157d2',
       'Mug',
       9.99,
+      1000,
       'Mug portrait enfant'
     );
 
@@ -23,6 +24,7 @@ describe('GetProductByIdQueryHandler', () => {
     when(product.getId()).thenReturn('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2');
     when(product.getTitle()).thenReturn('Mug');
     when(product.getDescription()).thenReturn('Mug portrait enfant');
+    when(product.getWeight()).thenReturn(1000);
     when(product.getPriceFromCents()).thenReturn(9.99);
     when(
       productRepository.findOneById('eb9e1d9b-dce2-48a9-b64f-f0872f3157d2')

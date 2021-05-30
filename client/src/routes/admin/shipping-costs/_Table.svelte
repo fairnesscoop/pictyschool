@@ -13,16 +13,16 @@
 <table class="w-full whitespace-no-wrap">
   <thead>
     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-      <th class="px-4 py-3">{$_('shipping_costs.list.grams')}</th>
+      <th class="px-4 py-3">{$_('shipping_costs.list.weight')}</th>
       <th class="px-4 py-3">{$_('shipping_costs.list.price')}</th>
       <th class="px-4 py-3">{$_('common.actions')}</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, grams, price } (id)}
+    {#each items as { id, weight, price } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">
-          {$_('shipping_costs.list.from', { values: { grams }})}
+          {$_('shipping_costs.list.from', { values: { weight }})}
         </td>
         <td class="px-4 py-3 text-sm">{format(price)}</td>
         <td class="px-4 py-3">

@@ -4,6 +4,7 @@ export class CreateProductCommand implements ICommand {
   constructor(
     public readonly title: string,
     public readonly description: string,
-    public readonly unitPrice: number
+    public readonly unitPrice: number,
+    public readonly weight: number
   ) {}
 }

@@ -8,9 +8,9 @@ export class IsShippingCostAlreadyExist {
     private readonly shippingcostRepository: IShippingCostRepository
   ) {}
 
-  public async isSatisfiedBy(grams: number): Promise<boolean> {
+  public async isSatisfiedBy(weight: number): Promise<boolean> {
     return (
-      (await this.shippingcostRepository.findOneByGrams(grams)) instanceof ShippingCost
+      (await this.shippingcostRepository.findOneByWeight(weight)) instanceof ShippingCost
     );
   }
 }

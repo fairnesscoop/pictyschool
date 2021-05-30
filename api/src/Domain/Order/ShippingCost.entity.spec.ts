@@ -7,7 +7,7 @@ describe('ShippingCost', () => {
       999
     );
     expect(shippingcost.getId()).toBeUndefined();
-    expect(shippingcost.getGrams()).toBe(1000);
+    expect(shippingcost.getWeight()).toBe(1000);
     expect(shippingcost.getPrice()).toBe(999);
     expect(shippingcost.getPriceFromCents()).toBe(9.99);
   });
@@ -18,12 +18,12 @@ describe('ShippingCost', () => {
       999
     );
     expect(shippingcost.getId()).toBeUndefined();
-    expect(shippingcost.getGrams()).toBe(1000);
+    expect(shippingcost.getWeight()).toBe(1000);
     expect(shippingcost.getPrice()).toBe(999);
     expect(shippingcost.getPriceFromCents()).toBe(9.99);
 
     shippingcost.update(100, 399);
-    expect(shippingcost.getGrams()).toBe(100);
+    expect(shippingcost.getWeight()).toBe(100);
     expect(shippingcost.getPrice()).toBe(399);
     expect(shippingcost.getPriceFromCents()).toBe(3.99);
   });

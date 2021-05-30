@@ -15,7 +15,7 @@ export class UpdateShippingCostCommandHandler {
   ) {}
 
   public async execute(command: UpdateShippingCostCommand): Promise<string> {
-    const { id, grams, price } = command;
+    const { id, weight, price } = command;
 
     const shippingCost = await this.shippingcostRepository.findOneById(id);
     if (!shippingCost) {
@@ -23,13 +23,13 @@ export class UpdateShippingCostCommandHandler {
     }
 
     if (
-      grams !== shippingCost.getGrams() &&
-      true === (await this.isShippingCostAlreadyExist.isSatisfiedBy(grams))
+      weight !== shippingCost.getWeight() &&
+      true === (await this.isShippingCostAlreadyExist.isSatisfiedBy(weight))
     ) {
       throw new ShippingCostAlreadyExistException();
     }
 
-    shippingCost.update(grams, Math.round(price * 100));
+    shippingCost.update(weight, Math.round(price * 100));
 
     await this.shippingcostRepository.save(shippingCost);
 

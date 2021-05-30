@@ -16,7 +16,7 @@ describe('IsProductAlreadyExist', () => {
 
   it('testProductAlreadyExist', async () => {
     when(productRepository.findOneByTitle('Mug')).thenResolve(
-      new Product('Mug', anything(), anything())
+      new Product('Mug', anything(), anything(), anything())
     );
     expect(await isProductAlreadyExist.isSatisfiedBy('Mug')).toBe(
       true

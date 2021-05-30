@@ -16,15 +16,17 @@
       <th class="px-4 py-3">{$_('products.list.title')}</th>
       <th class="px-4 py-3">{$_('products.list.description')}</th>
       <th class="px-4 py-3">{$_('products.list.unit_price')}</th>
+      <th class="px-4 py-3">{$_('products.list.weight')}</th>
       <th class="px-4 py-3">{$_('common.actions')}</th>
     </tr>
   </thead>
   <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-    {#each items as { id, title, description, unitPrice } (id)}
+    {#each items as { id, title, description, unitPrice, weight } (id)}
       <tr class="text-gray-700 dark:text-gray-400">
         <td class="px-4 py-3 text-sm">{title}</td>
         <td class="px-4 py-3 text-sm">{description}</td>
         <td class="px-4 py-3 text-sm">{format(unitPrice)}</td>
+        <td class="px-4 py-3 text-sm">{$_('products.list.grams', { values: { weight } })}</td>
         <td class="px-4 py-3">
           <div class="flex items-center space-x-2 text-sm">
             <EditLink href={`/admin/products/${id}/edit`} />

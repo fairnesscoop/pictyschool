@@ -15,14 +15,14 @@ export class CreateShippingCostCommandHandler {
   ) {}
 
   public async execute(command: CreateShippingCostCommand): Promise<string> {
-    const { grams, price } = command;
+    const { weight, price } = command;
 
-    if (true === (await this.isShippingCostAlreadyExist.isSatisfiedBy(grams))) {
+    if (true === (await this.isShippingCostAlreadyExist.isSatisfiedBy(weight))) {
       throw new ShippingCostAlreadyExistException();
     }
 
     const shippingCost = await this.shippingcostRepository.save(
-      new ShippingCost(grams, Math.round(price * 100))
+      new ShippingCost(weight, Math.round(price * 100))
     );
 
     return shippingCost.getId();
