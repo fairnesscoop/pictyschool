@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ShippingCost } from 'src/Domain/Order/ShippingCost.entity';
 import { IShippingCostRepository } from 'src/Domain/Order/Repository/IShippingCostRepository';
+import { MAX_ITEMS_PER_PAGE } from 'src/Application/Common/Pagination';
 
 @Injectable()
 export class ShippingCostRepository implements IShippingCostRepository {
@@ -21,5 +22,29 @@ export class ShippingCostRepository implements IShippingCostRepository {
       .select([ 'shippingCost.id' ])
       .where('shippingCost.grams = :grams', { grams })
       .getOne();
+  }
+
+  public findOneById(id: string): Promise<ShippingCost | undefined> {
+    return this.repository
+      .createQueryBuilder('shippingcost')
+      .select([
+        'shippingcost.id',
+        'shippingcost.grams',
+        'shippingcost.price'
+      ])
+      .where('shippingcost.id = :id', { id })
+      .getOne();
+  }
+
+  public findShippingCosts(): Promise<ShippingCost[]> {
+    return this.repository
+      .createQueryBuilder('shippingcost')
+      .select([
+        'shippingcost.id',
+        'shippingcost.price',
+        'shippingcost.grams'
+      ])
+      .orderBy('shippingcost.grams', 'ASC')
+      .getMany();
   }
 }

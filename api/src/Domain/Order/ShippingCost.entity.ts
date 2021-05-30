@@ -27,4 +27,8 @@ export class ShippingCost {
   public getPrice(): number {
     return this.price;
   }
+
+  public getPriceFromCents(): number {
+    return this.price / 100;
+  }
 }
