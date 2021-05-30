@@ -7,6 +7,7 @@
   import UsersIcon from 'components/icons/UsersIcon.svelte';
   import CalendarIcon from 'components/icons/CalendarIcon.svelte';
   import OrderIcon from 'components/icons/OrderIcon.svelte';
+  import ShippingCostIcon from 'components/icons/ShippingCostIcon.svelte';
   import { settings, currentPath } from 'store';
 
   const schoolsPath = '/admin/schools';
@@ -15,6 +16,7 @@
   const usersPath = '/admin/users';
   const leadsPath = '/admin/leads';
   const ordersPath = '/admin/orders';
+  const shippingCostsPath = '/admin/shipping-costs';
   const activeClass =
     'absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg';
   const linkClass =
@@ -68,6 +70,15 @@
         <a class={$currentPath.includes(ordersPath) ? activeLinkClass : linkClass} href={ordersPath}>
           <OrderIcon className={'w-5 h-5'} />
           <span class="ml-4">{$_('orders.breadcrumb')}</span>
+        </a>
+      </li>
+      <li class="relative px-6 py-3">
+        {#if $currentPath.includes(shippingCostsPath)}
+          <span class={activeClass} aria-hidden="true"></span>
+        {/if}
+        <a class={$currentPath.includes(shippingCostsPath) ? activeLinkClass : linkClass} href={shippingCostsPath}>
+          <ShippingCostIcon className={'w-5 h-5'} />
+          <span class="ml-4">{$_('shipping_costs.breadcrumb')}</span>
         </a>
       </li>
       <li class="relative px-6 py-3">
