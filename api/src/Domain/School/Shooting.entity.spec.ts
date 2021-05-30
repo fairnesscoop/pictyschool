@@ -10,7 +10,8 @@ describe('Shooting', () => {
       new Date('2021-04-17'),
       new Date('2021-09-01'),
       ShootingStatus.DISABLED,
-      instance(school)
+      instance(school),
+      'Fin des commandes le 10'
     );
     expect(shooting.getId()).toBeUndefined();
     expect(shooting.getName()).toBe('Prise de vue début année');
@@ -18,6 +19,7 @@ describe('Shooting', () => {
     expect(shooting.getClosingDate()).toMatchObject(new Date('2021-09-01T00:00:00.000Z'));
     expect(shooting.getStatus()).toBe(ShootingStatus.DISABLED);
     expect(shooting.getSchool()).toBe(instance(school));
+    expect(shooting.getNotice()).toBe('Fin des commandes le 10');
   });
 
   it('testUpdate', () => {
@@ -33,7 +35,8 @@ describe('Shooting', () => {
     shooting.update(
       'Prise de vue fin année',
       new Date('2022-04-17'),
-      new Date('2022-09-01')
+      new Date('2022-09-01'),
+      'Message notice'
     );
 
 
@@ -43,5 +46,6 @@ describe('Shooting', () => {
     expect(shooting.getClosingDate()).toMatchObject(new Date('2022-09-01T00:00:00.000Z'));
     expect(shooting.getStatus()).toBe(ShootingStatus.DISABLED);
     expect(shooting.getSchool()).toBe(instance(school));
+    expect(shooting.getNotice()).toBe('Message notice');
   });
 });

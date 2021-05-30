@@ -14,13 +14,13 @@ describe('CreateShootingCommandHandler', () => {
   let createdShooting: Shooting;
   let handler: CreateShootingCommandHandler;
 
-  const product = mock(Product);
   const school = mock(School);
   const command = new CreateShootingCommand(
     'Prise de vue début année',
     new Date('2021-04-18'),
     new Date('2021-09-01'),
     '553e2b3c-eb11-42b1-8f76-903add071ca7',
+    'Message notice'
   );
 
   beforeEach(() => {
@@ -49,6 +49,7 @@ describe('CreateShootingCommandHandler', () => {
             new Date('2021-09-01'),
             ShootingStatus.DISABLED,
             instance(school),
+            'Message notice'
           )
         )
       )
@@ -67,6 +68,7 @@ describe('CreateShootingCommandHandler', () => {
             new Date('2021-09-01'),
             ShootingStatus.DISABLED,
             instance(school),
+            'Message notice'
           )
         )
       )

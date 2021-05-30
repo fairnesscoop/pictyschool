@@ -5,6 +5,7 @@ export class CreateShootingCommand implements ICommand {
     public readonly name: string,
     public readonly shootingDate: Date,
     public readonly closingDate: Date,
-    public readonly schoolId: string
+    public readonly schoolId: string,
+    public readonly notice: string,
   ) {}
 }

@@ -20,6 +20,9 @@ export class Shooting {
   @Column({ type: 'date', nullable: false })
   private closingDate: Date;
 
+  @Column({ type: 'varchar', nullable: true })
+  private notice: string;
+
   @Column('enum', { enum: ShootingStatus, nullable: false, default: ShootingStatus.DISABLED })
   private status: ShootingStatus;
 
@@ -31,13 +34,15 @@ export class Shooting {
     shootingDate: Date,
     closingDate: Date,
     status: ShootingStatus,
-    school: School
+    school: School,
+    notice?: string
   ) {
     this.name = name;
     this.shootingDate = shootingDate;
     this.closingDate = closingDate;
     this.status = status;
     this.school = school;
+    this.notice = notice;
   }
 
   public getId(): string {
@@ -56,6 +61,10 @@ export class Shooting {
     return this.closingDate;
   }
 
+  public getNotice(): string {
+    return this.notice;
+  }
+
   public getSchool(): School {
     return this.school;
   }
@@ -68,9 +77,11 @@ export class Shooting {
     name: string,
     shootingDate: Date,
     closingDate: Date,
+    notice?: string,
   ): void {
     this.name = name;
     this.shootingDate = shootingDate;
     this.closingDate = closingDate;
+    this.notice = notice;
   }
 }

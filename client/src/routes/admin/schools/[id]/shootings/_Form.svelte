@@ -7,6 +7,7 @@
   export let shootingDate = '';
   export let closingDate = '';
   export let name = '';
+  export let notice = '';
   export let loading;
 
   const dispatch = createEventDispatcher();
@@ -14,7 +15,8 @@
     dispatch('save', {
       name,
       closingDate: new Date(closingDate),
-      shootingDate: new Date(shootingDate)
+      shootingDate: new Date(shootingDate),
+      notice
     });
   };
 </script>
@@ -33,6 +35,10 @@
     type={'date'}
     label={$_('schools.shootings.form.closing_date')}
     bind:value={closingDate} />
+  <Input
+    required={false}
+    label={$_('schools.shootings.form.notice')}
+    bind:value={notice} />
   <Button
     value={$_('common.form.save')}
     loading={loading}
