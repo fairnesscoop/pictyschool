@@ -9,13 +9,13 @@ logs = ${compose} logs -f
 install: ## Install API and client
 	cp api/ormconfig.json.dist api/ormconfig.json
 	if [ ! -f 'api/.env' ]; then cp api/.env.dist api/.env; fi;
-	if [ ! -f 'client/config.js' ]; then cp client/config.js.dist client/config.js; fi;
-	docker run -it --rm -v ${PWD}/api:/app -w /app node npm i
-	docker run -it --rm -v ${PWD}/client:/app -w /app node npm i
+	#if [ ! -f 'client/config.js' ]; then cp client/config.js.dist client/config.js; fi;
+	docker run -it --rm -v ${PWD}/api:/app -w /app node:16 npm i
+	docker run -it --rm -v ${PWD}/kit:/app -w /app node:16 npm i
 	make start-container
 	make api-build-dist
 	make database-migrate
-	make watch-tailwind
+	#make watch-tailwind
 stop: ## Stop docker containers
 	${compose} stop
 rm: ## Remove docker containers
@@ -51,6 +51,10 @@ client-logs: ## Display Client logs
 	${logs} client
 client-bash: ## Connect to client container
 	${exec} client bash
+kit-logs: ## Display kit logs
+	${logs} kit
+kit-bash: ## Connect to kit container
+	${exec} kit bash
 database-migrate: ## Database migrations
 	${exec} api npm run migration:migrate
 database-diff: ## Generate database diff
