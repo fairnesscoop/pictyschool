@@ -75,7 +75,7 @@ describe('CreateEventCommandHandler', () => {
     ).thenResolve(null);
 
     try {
-      await handler.execute(command);
+      expect(await handler.execute(command)).toBeUndefined();
     } catch (e) {
       expect(e).toBeInstanceOf(UserNotFoundException);
       expect(e.message).toBe('users.errors.not_found');

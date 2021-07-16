@@ -9,7 +9,7 @@
 </script>
 
 <div class="block mb-4 text-sm">
-  <label class="text-gray-700 dark:text-gray-400" for="{id}">{label}</label>
+  <label class="text-gray-700 dark:text-gray-400 {required}" for="{id}">{label}</label>
   <select
     {id}
     {required}

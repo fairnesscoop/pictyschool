@@ -12,3 +12,8 @@
   background: #fff;
   display: block;
 }
+
+label.required:after {
+  content: ' *';
+  color: #e32;
+}

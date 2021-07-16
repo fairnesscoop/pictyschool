@@ -15,7 +15,7 @@
 
 <div class={`block text-sm ${marginClass}`}>
   {#if label}
-    <label class="text-gray-700 dark:text-gray-400" for={id}>{label}</label>
+    <label class="text-gray-700 dark:text-gray-400 {required}" for={id}>{label}</label>
   {/if}
   {#if type === 'email'}
     <input

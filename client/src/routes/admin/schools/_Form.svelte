@@ -75,7 +75,6 @@
     <Input
       label={$_('schools.form.email')}
       type={'email'}
-      required={false}
       bind:value={email} />
     <Input
       label={$_('schools.form.phone_number')}
@@ -99,5 +98,5 @@
   <Button
     value={$_('common.form.save')}
     loading={loading}
-    disabled={!reference || !name || !address || !city || !zipCode || !status || !type || loading} />
+    disabled={!reference || !name || !address || !city || !email || !zipCode || !status || !type || loading} />
 </form>
