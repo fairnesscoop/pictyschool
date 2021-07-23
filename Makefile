@@ -4,7 +4,7 @@ help:
 compose = docker-compose -p pictyschool
 exec = ${compose} exec
 run = ${compose} run
-logs = ${compose} logs -f
+logs = ${compose} logs -f --tail 200
 
 install: ## Install API and client
 	cp api/ormconfig.json.dist api/ormconfig.json
