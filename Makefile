@@ -53,8 +53,10 @@ client-bash: ## Connect to client container
 	${exec} client bash
 database-migrate: ## Database migrations
 	${exec} api npm run migration:migrate
-database-diff: ## Generate database diff
+database-diff: ## Generate database diff. Usage: make database-diff MIGRATION_NAME=MyMigration
 	${exec} api npm run migration:diff $(MIGRATION_NAME)
+database-show-mig: ## Show migrations
+	${exec} api npm run migration:show
 database-connect: ## Connect to the database container
 	${exec} database psql -h database -d pictyschool
 ci: ## Run CI checks
