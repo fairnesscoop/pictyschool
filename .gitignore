@@ -13,3 +13,6 @@ Thumbs.db
 # Tests
 **/coverage
 **/.nyc_output
+
+# local config
+/docker-compose.override.yml

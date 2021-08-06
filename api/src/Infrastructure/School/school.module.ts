@@ -118,7 +118,7 @@ import { UpdateShootingCommandHandler } from 'src/Application/School/Command/Sho
     GetSchoolDiscountsAction,
     CreateDiscountAction,
     CountSchoolDiscountsAction,
-    RemoveDiscountAction
+    RemoveDiscountAction,
   ],
   providers: [
     { provide: 'ICodeGenerator', useClass: CodeGeneratorAdapter },
